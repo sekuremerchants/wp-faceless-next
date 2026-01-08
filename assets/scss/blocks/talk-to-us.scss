@@ -1,0 +1,139 @@
+@use 'block-base';
+
+.talk-us-block {
+	.svg-icon-wrap {
+		border-radius: 50%;
+		background-color: $green-1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		height:30px;
+		width:30px;
+	
+		@media screen and ($mobile) {
+		  height: 50px;
+		  width: 50px;
+		}
+		&.triangle-element {
+			height:30px;
+			width:30px;
+		}
+		&.triangle-element::before {
+		  content: '';
+		  display: inline-block;
+		  position: absolute;
+		  width: 0;
+		  height: 0;
+		  border-style: solid;
+		  border-color: $green-1 transparent transparent transparent;
+		  @media screen and ($mobile_sm) {
+			@include vw(bottom, -13px, 500);
+			@include vw(right, 15px, 500);
+			border-width: 17px 16px 0 0;
+		  }
+		  @media screen and ($mobile_lg) {
+			bottom: -13px;
+			right: 15px;
+			border-width: 17px 16px 0 0;
+		  }
+		  @media screen and ($min1024) {
+			bottom: -10px;
+			right: 5px;
+			border-width: 17px 16px 0 0;
+		  }
+		  @media screen and ($min1920) {
+			bottom: -13px;
+			right: 15px;
+			border-width: 17px 16px 0 0;
+		  }
+		}
+	}
+
+	.contact-icon {
+		flex: 0 0 auto;
+
+		path,
+		circle {
+			fill: $green-1;
+		}
+	}
+
+	.msg-icon {
+		width: 35px;
+		height: 35px;
+		padding: 5px 10px;
+
+		path,
+		circle {
+			fill: #0f7196;
+		}
+
+		.st0 {
+			opacity: 1;
+		}
+	}
+
+	.email-btn {
+		.cls-1-top {
+			transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+		}
+		&:hover {
+			.cls-1-top {
+			transform: translate(0, 52%) rotateX(130deg);
+			}
+		}
+	}
+
+	.email-icon {
+		width: 45px;
+		height: 45px;
+
+		/*
+		&.email-btn &.bottom-email-icon {
+			left: 6px;
+			bottom: 0;
+			transform: none;
+			top: 10px;
+			transform-origin: unset;
+			width: 45px;
+			height: 45px;
+		}
+		&.top-part-svg {
+			left: 28px;
+			top: 30px;
+		}
+		*/
+	}
+
+	.phone-icon {
+		width: 51px;
+		height: 51px;
+		padding: 11px 5px 13px 9px;
+
+		@media screen and ($mobile) {
+			width: 45px;
+			height: 45px;
+		}
+
+		.signal-path {
+			opacity: 0;
+		}
+	}
+
+	.msg-icon {
+		.st0 {
+			fill-rule: evenodd;
+			clip-rule: evenodd;
+		}
+	}
+
+	.checkmark-blue {
+		height:35px;
+		width:30px;
+	}
+
+	a[href^="tel:"]:not(.btn-default):not(.contact-section-btn) {
+		color: #fff !important;
+	}
+}

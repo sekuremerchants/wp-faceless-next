@@ -1,0 +1,137 @@
+@use 'block-base';
+.block--j {
+  .icons-content-block-vertical {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+
+    .txt-post-rtf {
+      width: 100%;
+    }
+
+    ul {
+      margin-left: 0px !important;
+    }
+
+    .icons-block-item {
+      width: 100%;
+      margin: 0 0 25px;
+
+      @media screen and ($min1024) {
+        width: calc(33.33% - 1.25vw);
+        @include vw(margin, 30px 12px);
+        @include vw(padding-right, 150px);
+      }
+
+      @media screen and ($min1920) {
+        width: calc(33.33% - 24px);
+        margin: 30px 12px;
+        padding-right: 150px;
+      }
+    }
+
+    .img-wrap {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      margin-bottom: 25px;
+
+      @media screen and ($mobile_sm) {
+        @include vw(height, 90px, 500);
+        justify-content: flex-start;
+      }
+
+      @media screen and ($mobile_lg) {
+        height: 90px;
+        justify-content: flex-start;
+      }
+
+      @media screen and ($min1024) {
+        @include vw(height, 90px);
+        @include vw(margin-bottom, 25px);
+        @include vw(padding-right, 40px);
+      }
+
+      @media screen and ($min1920) {
+        height: 90px;
+        margin-bottom: 25px;
+        padding-right: 40px;
+      }
+
+      img {
+        max-height: 100%;
+      }
+    }
+  }
+  .img--wrap,
+  .img--wrap img {
+    height: 60px;
+    width: 72px;
+    margin-bottom: 25px;
+  }
+  .img--wrap img {
+    object-fit: contain;
+    object-position: left center;
+    margin-bottom: 15px;
+  }
+
+  .img--container {
+    text-align: center;
+  }
+
+  .icons--item {
+    .img--container {
+      margin-bottom: 32px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &.grid-2 {
+    .icons--item {
+      display: grid;
+      grid-template-rows: 50px auto;
+      align-items: center;
+      width: 50%;
+      margin-bottom: 45px;
+
+      .img--wrap, .list-title {
+        margin-bottom:0;
+      }
+
+      p {
+        grid-column-start:2;
+        width:75%;
+      }
+    }
+  }
+
+  &.checklist {
+    .icons--item {
+      display: grid;
+      grid-template-columns: 30px auto;
+
+      .img--wrap {
+        height: 17px;
+        width: 17px;
+        margin-top: 10px;
+        margin-bottom: 0;
+
+        img {
+          height: 17px;
+          width: 17px;
+        }
+      }
+
+      .list-title {
+        margin-bottom:15px;
+      }
+
+      p {
+        grid-column-start:2;
+      }
+    }
+  }
+}

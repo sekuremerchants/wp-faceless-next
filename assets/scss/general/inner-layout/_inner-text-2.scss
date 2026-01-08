@@ -1,0 +1,35 @@
+.inner-txt-section-type-2 {
+  background-color: $green-1;
+
+  .background-flower-path-patterns {
+    pointer-events: none;
+    @include pabs;
+    // @include fit;
+    top: 0;
+    display: flex;
+    flex-flow: row wrap;
+    z-index: 1;
+
+    @media screen and ($mobile_all) {
+      display: none;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(left, -80px);
+      @include vw(height, 1448px);
+      @include vw(width, 2172px);
+    }
+  }
+
+  .background-flower-path-svg {
+    flex: 0 0 auto;
+    height: 50%;
+    width: 33.33%;
+    opacity: 0.5;
+
+    path {
+      fill: transparent;
+      stroke: $white;
+    }
+  }
+}

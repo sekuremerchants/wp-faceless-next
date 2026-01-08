@@ -1,0 +1,427 @@
+/* Base */
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font-family: $redhat;
+  color: $blue-1;
+  letter-spacing: 0.5px;
+  line-height: 1.2em;
+  font-style: normal;
+  font-weight: 700;
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom:0;
+  }
+}
+
+.h1 b,
+.h1 strong,
+.h2 b,
+.h2 strong,
+.h3 b,
+.h3 strong,
+.h4 b,
+.h4 strong,
+.h5 b,
+.h5 strong,
+.h6 b,
+.h6 strong,
+h1 b,
+h1 strong,
+h2 b,
+h2 strong,
+h3 b,
+h3 strong,
+h4 b,
+h4 strong,
+h5 b,
+h5 strong,
+h6 b,
+h6 strong {
+  font-weight: 700;
+}
+
+h1, .h1 {
+  font-size:54px;
+  line-height:64px;
+}
+h2, .h2 {
+  font-size:38px;
+  line-height:44px;
+}
+h3, .h3 {
+  font-size:28px;
+  line-height:32px;
+}
+h4, .h4 {
+  font-size:22px;
+  line-height:28px;
+}
+
+p {
+  font-family: $libre;
+  color: $blue-1;
+  font-size:18px;
+  line-height:26px;
+  font-weight:400;
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &:empty {
+    display: none;
+  }
+}
+
+.list-style-none {
+  list-style-type:none;
+}
+
+.sk-block {
+  a {
+    font-weight:600;
+  }
+
+  ul, ol {
+    li {
+      line-height:1.55em;
+  
+      &:not(:last-of-type) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+ul.wp-block-list {
+  line-height:1.55em;
+}
+
+/* Font sizes */
+/*
+.txt-size-36, .txt-size-36 p {
+  font-size:36px;
+  line-height:42px;
+}
+
+.txt-size-24, .txt-size-24 p {
+  font-size:24px;
+}
+
+.txt-size-14,
+.txt-size-14 p {
+  font-size:14px;
+}
+
+.txt-size-12,
+.txt-size-12 p,
+.overline p,
+.overline {
+  font-size:12px;
+}
+
+.txt-size-10,
+.txt-size-10 p {
+  font-size: 10px;
+}
+
+.list-title,
+.list-title h3 {
+  font-family: $libre;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+}
+  
+.text-headline {
+  text-transform: uppercase;
+  font-family: $libre;
+  font-size: 14px;
+  font-weight: 250;
+  letter-spacing: 7px;
+  text-align: left;
+}
+*/
+
+.title-highlight,
+.text-highlight {
+  display:block;
+  font-size:24px;
+  font-weight:600;
+  line-height: 1.55em;
+}
+
+.txt-size-12,
+.text-headline,
+.text-overline {
+  font-family: $libre;
+  font-weight: 200;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.disclaimer {
+  font-size: 12px;
+  line-height:150%;
+  letter-spacing: 0.6px;
+}
+
+/* Main font sizes and line heights */
+@media screen and ($max1440) {
+  h1, .h1 {
+    font-size:48px;
+    line-height:56px;
+  }
+  h2, .h2 {
+    font-size:32px;
+    line-height:38px;
+  }
+  h3, .h3 {
+    font-size:24px;
+    line-height:28px;
+  }
+  h4, .h4 {
+    font-size:20px;
+    line-height:24px;
+  }
+  p {
+    font-size:16px;
+    line-height:24px;
+  }
+  ul, ol {
+    font-size:16px;
+  }
+}
+@media screen and ($max500){
+  h1, .h1 {
+    font-size:42px;
+    line-height:50px;
+  }
+  h2, .h2 {
+    font-size:28px;
+    line-height:34px;
+  }
+  h3, .h3 {
+    font-size:22px;
+    line-height:26px;
+  }
+}
+
+/* Helper classes */
+.ff-libre {
+  font-family: $libre;
+}
+
+.ff-redhat {
+  font-family: $redhat;
+}
+
+.fw {
+  &-300 {
+    font-weight: 300;
+  }
+
+  &-400 {
+    font-weight: 400;
+  }
+
+  &-500 {
+    font-weight: 500;
+  }
+
+  &-600 {
+    font-weight: 600;
+  }
+
+  &-700 {
+    font-weight: 700;
+  }
+
+  &-800 {
+    font-weight: 800;
+  }
+}
+
+.letter-spacing {
+  letter-spacing:0.25vw;
+}
+
+// text color classes
+.text-white, .text-white {
+  *:not(.btn-default):not(.btn-txt) {
+    color: $white;
+  }
+  p a:not(.btn):not(.button) {
+    color: $green-1;
+    text-decoration: underline;
+  }
+}
+.text-blue, .text-blue *:not(.btn-default):not(.btn-txt) {
+  color: $blue-1;
+}
+
+.c {
+  &-black {
+    color: $black;
+  }
+
+  &-white {
+    color: $white;
+
+    a:not(.btn):not(.button) {
+      color: $green-1;
+      text-decoration: underline;
+    }
+  }
+
+  &-blue, &-blue-1 {
+    color: $blue-1;
+
+    a:not(.btn):not(.button) {
+      color: $blue-1;
+      text-decoration: underline;
+    }
+  }
+
+  &-red-2 {
+    color: $red-2;
+  }
+
+  &-blue-7 {
+    color: $blue-7;
+  }
+
+  &-blue-15 {
+    color: $blue-15;
+  }
+
+  &-green-1 {
+    color: $green-1;
+  }
+
+  &-gray-2 {
+    color: $gray-2;
+  }
+
+  &-gray-8 {
+    color: $gray-8;
+  }
+
+  &-gray-18 {
+    color: $gray-18;
+  }
+
+  &-blue-5 {
+    color: $blue-5;
+  }
+
+  &-green-5 {
+    color: $green-5;
+  }
+}
+
+ul.checklist,
+.green-checkmark {
+  list-style-image: url($ROOT_PATH + 'media/svgs/green-check.svg');
+
+  li {
+    padding-left:5px;
+  }
+}
+
+.phone-icon {
+  display: inline-flex;
+  &:before {
+    margin-right: 15px;
+    content: '';
+    display: inline-block;
+    background-image: url($ROOT_PATH + 'media/svgs/phone-icon.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    position: relative;
+  }
+}
+
+ol.numbered-list-styled {
+  list-style: none;
+  counter-reset: item;
+
+  li {
+    counter-increment: item;
+    margin-bottom: 5px;
+  }
+  li:before {
+    content: counter(item);
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    margin-right: 10px;
+    color: #002ea6;
+    line-height: 26px;
+    font-size: 16px;
+    font-weight:600;
+    text-align: center;
+    background: #17fcc4;
+    border-radius: 50%;
+  }
+}
+
+.list-num {
+  counter-reset: item;
+
+  li {
+    list-style-type: none;
+    counter-increment: item;
+    position: relative;
+    padding-left: 35px;
+
+    &:before {
+      content: counter(item);
+      position: absolute;
+      left: 0;
+      top: -2px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 26px;
+      height: 26px;
+      font-family: $libre;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 0;
+      text-align: center;
+      color: $white;
+      background-color: $blue-1;
+      border-radius: 50%;
+    }
+  }
+  
+  &.green {
+    li {
+      &:before {
+        color: $blue-1;
+        background-color: $green-1;
+      }
+    }
+  }
+}
+
+.learn-more-link {
+  display:inline-block;
+  position:relative;
+  
+  &:after {
+    content: "→";
+    position: absolute;
+    right: -25px;
+  }
+}

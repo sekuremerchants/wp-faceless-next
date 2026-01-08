@@ -1,0 +1,36 @@
+// Newsletter
+.newsletter-signup-wrap {
+  background-color: $blue-1;
+  padding: 30px;
+  margin-bottom:48px;
+
+  @media screen and ($min1024) {
+    padding: 65px 80px 55px;
+  }
+
+  .newsletter-inner-holder {
+    position: relative;
+    z-index: 4;
+
+    @media screen and ($min1024) {
+      max-width: 750px;
+    }
+  }
+
+  .newsletter-description {
+    margin-top: 20px;
+    margin-bottom: 25px;
+  }
+
+  .newsletter-background-img {
+    background-size: cover;
+
+    @media screen and ($tablet) {
+      background-position: 70% 50%;
+    }
+
+    @media screen and ($mobile) {
+      background-position: 75% 50%;
+    }
+  }
+}

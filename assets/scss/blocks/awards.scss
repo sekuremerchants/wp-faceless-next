@@ -1,0 +1,32 @@
+@use 'block-base';
+.block--awards {
+	.txt-content {
+		position:relative;
+		z-index:2;
+		background:$blue-1;
+
+		@media screen and ($min1024){
+			&::before {
+				background: #002ea6;
+				bottom: 0;
+				content: "";
+				height: 150%;
+				left: -100%;
+				position: absolute;
+				top: -50%;
+				right: 0;
+				z-index: -1;
+			}
+		}
+	}
+	.swiper-slide {
+    	width: 80px;
+		margin-right: 60px;
+	}
+	.swiper-pagination .swiper-pagination-bullet {
+		background: #fff;
+	}
+	.swiper-pagination .swiper-pagination-bullet-active {
+		background: #17fcc4;
+	}
+}

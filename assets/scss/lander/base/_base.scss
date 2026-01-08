@@ -1,0 +1,37 @@
+@for $i from 1 through 12 {
+  .flex-#{$i} {
+    flex: #{$i};
+  }
+}
+
+.contact-form-block {
+  ul {
+    li {
+      font-size: 1rem;
+    }
+  }
+}
+
+.arrow-dot {
+  list-style-type: none;
+  position: relative;
+  &::before {
+    content: '';
+    background-color: transparent !important;
+    background-image: url($ROOT_PATH + 'media/icons/right-arrow.svg');
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    display: inline-block;
+    left: -20px;
+    top: 9px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
+.sk-lander {
+  .wp-block-spacer {
+    display: none !important;
+  }
+}

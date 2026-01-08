@@ -1,0 +1,718 @@
+.hero-section {
+  z-index: 5;
+  //padding-top:$sk-block-padding;
+  padding-bottom:$sk-block-padding;
+
+  @media screen and ($max1024){
+    padding-top:10px;
+    overflow:hidden;
+
+    .txt-content {
+      padding-top:$sk-block-padding;
+    }
+  }
+
+  @media screen and (max-width:768px) {
+    .txt-content {
+      padding-top:55vw;
+    }
+  }
+
+  @media screen and ($max500){
+    padding-top:10px;
+    padding-bottom:$sk-block-padding-mobile;
+
+    .txt-content {
+      width:100%;
+    }
+  }
+
+  /*
+  @media screen and ($min1024) {
+    @include vw(padding-top, 88px);
+    @include vw(padding-bottom, 157px);
+  }
+
+  @media screen and ($min1920) {
+    padding-top: 88px;
+    padding-bottom: 157px;
+  }
+  */
+
+  /*
+  h1 {
+    font-size:80px;
+    line-height:90px;
+
+    @media screen and ($min1440){
+      font-size:100px;
+      line-height: 110px;
+    }
+    @media screen and ($max1024) {
+      font-size:56px;
+      line-height: 52px;
+    }
+  }
+  */
+
+  .bg-el-wrap {
+    @include abs-cover-el;
+    
+    @media screen and ($mobile_all) {
+      display: none;
+    }a
+
+    .bg-image {
+      opacity: 0;
+    }
+  }
+
+  .payments-section-position-el {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 50%;
+
+    @media screen and ($mobile_all) {
+      display: none;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 350px);
+      @include vw(height, 350px);
+      //@include vw(top, 370px);
+      //@include vw(left, 885px);
+      top:7.25vw;
+      right:32.5vw;
+    }
+
+    @media screen and (min-width:1100px){
+      top:7.25vw;
+      right:32.5vw;
+    }
+    @media screen and (min-width:1200px){
+      top:8.75vw;
+      right:32.5vw;
+    }
+    @media screen and (min-width:1300px){
+      top:10vw;
+      right:32.5vw;
+    }
+    @media screen and (min-width:1400px){
+      top:11vw;
+    }
+    @media screen and (min-width:1500px){
+      top:12vw;
+      right:31.25vw;
+    }
+    @media screen and (min-width:1600px){
+      top:13.5vw;
+      right:28.5vw;
+    }
+    @media screen and (min-width:1700px){
+      top:14vw;
+      right:25.5vw;
+    }
+    @media screen and (min-width:1800px) {
+      top:15vw;
+      right: 23.5vw;
+    }
+
+    @media screen and ($min1920) {
+      width: 350px;
+      height: 350px;
+      top: 370px;
+      left: 760px;
+    }
+  }
+
+  .payments-section-img {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 50%;
+
+    @media screen and ($mobile_all) {
+      display: none;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 350px);
+      @include vw(height, 350px);
+      //@include vw(top, 370px);
+      //@include vw(left, 885px);
+      top:7.25vw;
+      right:32.5vw;
+    }
+
+    @media screen and (min-width:1100px){
+      top:7.25vw;
+      right:32.5vw;
+    }
+    @media screen and (min-width:1200px){
+      top:8.75vw;
+      right: 32.5vw;
+    }
+    @media screen and (min-width:1300px){
+      top:10vw;
+      right:32.5vw;
+    }
+    @media screen and (min-width:1400px){
+      top:11vw;
+    }
+    @media screen and (min-width:1500px){
+      top:12vw;
+      right:31.25vw;
+    }
+    @media screen and (min-width:1600px){
+      top:13.5vw;
+      right:28.5vw;
+    }
+    @media screen and (min-width:1700px){
+      top:14vw;
+      right:25.5vw;
+    }
+    @media screen and (min-width:1800px) {
+      top:15vw;
+      right: 23.5vw;
+    }
+
+    @media screen and ($min1920) {
+      width: 350px;
+      height: 350px;
+      top: 370px;
+      left: 885px;
+    }
+  }
+
+  .bg-image {
+    background-size: cover;
+    background-position: 50% 0%;
+
+    &.active-img {
+      background-size: 68% auto;
+      background-position: 105% 50%;
+    }
+  }
+
+  .svg-wrap {
+    @include abs-cover-el;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    top: -2px;
+    left: -2px;
+  }
+
+  .mask-svg {
+    @include abs-cover-el;
+
+    #svg-background {
+      fill: $blue-1;
+    }
+  }
+
+  /*
+  .content-wrap {
+    @media screen and ($mobile_sm) {
+      @include vw(padding-top, 247px, 500);
+      @include vw(padding-bottom, 106px, 500);
+    }
+
+    @media screen and ($mobile_lg) {
+      padding-top: 247px;
+      padding-bottom: 106px;
+    }
+  }
+  */
+
+  /*
+  .txt-content {
+    @media screen and ($min640) {
+      width: 55vw;
+    }
+
+    @media screen and ($min1024) {
+      width: 45vw;
+      //padding-left: 7vw;
+    }
+  }
+  */
+  
+  /*
+  .txt-post-rtf {
+    @media screen and ($mobile_sm) {
+      @include vw(max-width, 296px, 500);
+    }
+
+    @media screen and ($mobile_lg) {
+      max-width: 296px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(margin-right, 150px);
+    }
+
+    @media screen and ($min1920) {
+      margin-right: 150px;
+    }
+  }
+  */
+
+  .mobile-image {
+    display: none;
+
+    @media screen and ($mobile_all) {
+      display: block;
+    }
+  }
+
+  .desktop-image {
+    display: none;
+
+    @media screen and ($min1024) {
+      display: block;
+    }
+  }
+
+  .hero-icons-wrap {
+    @include pabs;
+    z-index: 2;
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    @media screen and ($max1024) {
+      display: none;
+    }
+  }
+
+  .icon-part {
+    backface-visibility: hidden;
+    position: absolute;
+  }
+
+  .hero-icons-1 {
+    @media screen and ($min1024) {
+      left: 56vw;
+      top: -5.5vw;
+      @include vw(width, 89px);
+      @include vw(height, 89px);
+    }
+    @media screen and (min-width:1200px) {
+      left: 54vw;
+      top: -5.5vw;
+    }
+    @media screen and (min-width:1300px) {
+      left: 52vw;
+      top: -5.5vw;
+    }
+    @media screen and (min-width:1400px) {
+      left: 50vw;
+      top: -5.5vw;
+    }
+    @media screen and (min-width:1500px) {
+      left: 50vw;
+      top: -5.5vw;
+    }
+    @media screen and (min-width:1600px) {
+      left: 47vw;
+      top: -5.5vw;
+    }
+    @media screen and (min-width:1700px) {
+      left: 43vw;
+      top: -5.5vw;
+    }
+    @media screen and (min-width:1800px) {
+      left: 39.25vw;
+      top: -6.25vw;
+    }
+    @media screen and ($min1920) {
+      left: 800px;
+      top: -115px;
+      width: 89px;
+      height: 89px;
+    }
+  }
+
+  .hero-icons-2 {
+    @media screen and ($min1024) {
+      right: 5.5vw;
+      top: -6vw;
+      @include vw(width, 188px);
+      @include vw(height, 188px);
+    }
+    @media screen and (min-width:1200px) {
+      right: 4.75vw;
+      top: -2.5vw;
+    }
+    @media screen and (min-width:1300px) {
+      right: 4.5vw;
+      top: -1vw;
+    }
+    @media screen and (min-width:1400px) {
+      right: 4.25vw;
+      top: 0.25vw; 
+    }
+    @media screen and (min-width:1500px) {
+      right: 3vw;
+      top: 1.25vw;
+    }
+    @media screen and (min-width:1600px) {
+      right: -0.25vw;
+      top: 2.2vw;
+    }
+    @media screen and (min-width:1700px) {
+      right: -3vw;
+      top: 3.1vw;
+    }
+    @media screen and (min-width:1800px) {
+      right: -7.25vw;
+      top: 4.5vw;
+    }
+    @media screen and ($min1920) {
+      right: -155px;
+      top: 35px;
+      width: 188px;
+      height: 188px;
+    }
+  }
+
+  .hero-icons-3 {
+    @media screen and ($min1024) {
+      left: 59.5vw;
+      top: -3.25vw;
+      @include vw(width, 47px);
+      @include vw(height, 47px);
+    }
+    @media screen and (min-width:1200px) {
+      left: 57.5vw;
+    }
+    @media screen and (min-width:1300px) {
+      left: 55.5vw;
+    }
+    @media screen and (min-width:1400px) {
+      left: 53.5vw;
+    }
+    @media screen and (min-width:1500px) {
+      left: 53.5vw;
+    }
+    @media screen and (min-width:1600px) {
+      left:50.5vw;
+    }
+    @media screen and (min-width:1700px) {
+      left: 46.5vw;
+    }
+    @media screen and (min-width:1800px) {
+      left: 43vw;
+      top: -4vw;
+    }
+    @media screen and ($min1920) {
+      left: 865px;
+      top: -65px;
+      width: 47px;
+      height: 47px;
+    }
+  }
+
+  .hero-icons-4 {
+    @media screen and ($min1024) {
+      left: 53.75vw;
+      top: 0.5vw;
+      @include vw(width, 89px);
+      @include vw(height, 89px);
+    }
+    @media screen and (min-width:1200px) {
+      left: 51.75vw;
+    }
+    @media screen and (min-width:1300px) {
+      left: 49.75vw;
+    }
+    @media screen and (min-width:1400px) {
+      left: 48vw;
+    }
+    @media screen and (min-width:1500px) {
+      left: 48vw;
+    }
+    @media screen and (min-width:1600px) {
+      left:44.5vw;
+    }
+    @media screen and (min-width:1700px) {
+      left: 41vw;
+      top: 1.5vw;
+    }
+    @media screen and (min-width:1800px) {
+      left: 37vw;
+    }
+    @media screen and ($min1920) {
+      left: 755px;
+      top: 0;
+      width: 89px;
+      height: 89px;
+    }
+  }
+
+  .hero-icons-5 {
+    @media screen and ($min1024) {
+      left: 57.75vw;
+      top: 6vw;
+      @include vw(width, 140px);
+      @include vw(height, 70px);
+    }
+    @media screen and (min-width:1200px)  {
+      left: 55.75vw;
+    }
+    @media screen and (min-width:1300px)  {
+      left: 53.75vw;
+    }
+    @media screen and (min-width:1400px)  {
+      left: 51.75vw;
+    }
+    @media screen and (min-width:1500px)  {
+      left: 51.75vw;
+    }
+    @media screen and (min-width:1600px)  {
+      left:47.75vw;
+    }
+    @media screen and (min-width:1700px)  {
+      top: 6vw;
+      left:45.75vw;
+    }
+    @media screen and (min-width:1800px)  {
+      left: 41vw;
+      top: 5.5vw;
+    }
+    @media screen and ($min1920) {
+      left: 830px;
+      top: 90px;
+      width: 140px;
+      height: 70px;
+    }
+  }
+
+  .hero-icons-6 {
+    display:none;
+    @media screen and ($min1024) {
+      @include vw(top, 318px);
+      @include vw(left, 1313px);
+      @include vw(width, 86px);
+      @include vw(height, 86px);
+    }
+    @media screen and ($min1920) {
+      left: 1100px;
+      top: 200px;
+      width: 86px;
+      height: 86px;
+    }
+  }
+
+  .hero-icons-7 {
+    @media screen and ($min1024) {
+      right: 7vw;
+      top: 12vw;
+      @include vw(width, 73px);
+      @include vw(height, 73px);
+    }
+    @media screen and (min-width:1300px) {
+    }
+    @media screen and (min-width:1400px) {
+      right: 7vw;
+      top: 12vw;
+    }
+    @media screen and (min-width:1500px) {
+      right: 5.75vw;
+      top: 13vw;
+    }
+    @media screen and (min-width:1600px) {
+      right: 2.25vw;
+      top: 13.9vw;
+    }
+    @media screen and (min-width:1700px) {
+      right:-0.8vw;
+      top:14.8vw;
+    }
+    @media screen and (min-width:1800px) {
+      top:16vw;
+      right:-5vw;
+    }
+    @media screen and ($min1920) {
+      right: -100px;
+      top: 257px;
+      width: 73px;
+      height: 73px;
+    }
+  }
+
+  .hero-icons-8 {
+    @media screen and ($min1024) {
+      right: 11vw;
+      top: 16vw;
+      @include vw(width, 148px);
+      @include vw(height, 148px);
+    }
+    @media screen and (min-width:1400px) {
+      right: 11vw;
+      top: 16vw;
+    }
+    @media screen and (min-width:1500px) {
+      right: 10vw;
+      top: 16.5vw;
+    }
+    @media screen and (min-width:1600px) {
+      right: 6vw;
+      top: 17.5vw;
+    }
+    @media screen and (min-width:1700px) {
+      right: 3vw;
+      top: 18.5vw;
+    }
+    @media screen and (min-width:1800px) {
+      top:20vw;
+      right:-1vw;
+    }
+    @media screen and ($min1920) {
+      right: -28px;
+      top: 330px;
+      width: 148px;
+      height: 148px;
+    }
+  }
+
+  .hero-icons-9 {
+    @media screen and ($min1024) {
+      right: 3.25vw;
+      top: 16vw;
+      @include vw(width, 147px);
+      @include vw(height, 147px);
+    }
+    @media screen and (min-width:1400px) {
+      right: 3.25vw;
+      top: 16vw;
+    }
+    @media screen and (min-width:1500px) {
+      right: 2vw;
+      top: 16.86vw;
+    }
+    @media screen and (min-width:1600px) {
+      right: -1.8vw;
+      top: 17.75vw;
+    }
+    @media screen and (min-width:1700px) {
+      right: -4.95vw;
+      top: 18.85vw;
+    }
+    @media screen and (min-width:1800px) {
+      top:20vw;
+      right:-8.75vw;
+    }
+    @media screen and ($min1920) {
+      right: -175px;
+      top: 330px;
+      width: 147px;
+      height: 147px;
+    }
+  }
+
+  .hero-icons-10 {
+    @media screen and ($min1024) {
+      right: 11vw;
+      top: 8.25vw;
+      @include vw(width, 147px);
+      @include vw(height, 147px);
+    }
+    @media screen and (min-width:1400px) {
+      right: 11vw;
+      top: 8.25vw;
+    }
+    @media screen and (min-width:1500px) {
+      right: 10vw;
+      top: 9vw;
+    }
+    @media screen and (min-width:1600px) {
+      right: 6vw;
+      top: 10vw;
+    }
+    @media screen and (min-width:1700px) {
+      right: 3vw;
+      top: 11vw;
+    }
+    @media screen and (min-width:1800px) {
+      top:12.25vw;
+      right:-1vw;
+    }
+    @media screen and ($min1920) {
+      right: -28px;
+      top: 183px;
+      width: 147px;
+      height: 147px;
+    }
+  }
+
+  .main-img-wrap {
+    z-index: 1;
+    position: absolute;
+    backface-visibility: hidden;
+    overflow: hidden;
+    border-radius: 50%;
+    top: 0;
+
+    @media screen and ($max1024) {
+      right:0;
+      width: 500px;
+      height: 500px;
+    }
+
+    @media screen and (max-width:768px) {
+      //@include vw(top, 15px, 500);
+      @include vw(left, 162px, 500);
+      @include vw(width, 477px, 500);
+      @include vw(height, 477px, 500);
+    }
+
+    @media screen and ($min1024) {
+      top:33.5%;
+      right:6.5vw;
+      transform: translateY(-50%);
+      @include vw(width, 795px);
+      @include vw(height, 795px);
+      //@include vw(right, -40px);
+    }
+
+    @media screen and (min-width:1100px){
+      top:35%;
+      right:6.85vw;
+    }
+    @media screen and (min-width:1200px){
+      top:32.5%;
+      right:6vw;
+    }
+    @media screen and (min-width:1300px){
+      top:34.5%;
+      right:5.2vw;
+    }
+    @media screen and (min-width:1400px){
+      top:36.95%;
+      right:5vw;
+    }
+    @media screen and (min-width:1500px){
+      top:37.5%;
+      right:3.85vw;
+    }
+    @media screen and (min-width:1600px){
+      top:38%;
+      right:0.85vw;
+    }
+    @media screen and (min-width:1700px){
+      top:38.5%;
+      @include vw(right, -40px);
+    }
+    @media screen and (min-width:1800px){
+      top:38.5%;
+      right:-6.083vw;
+    }
+
+    @media screen and ($min1920) {
+      width: 795px;
+      height: 795px;
+      right: 70px;
+    }
+  }
+}

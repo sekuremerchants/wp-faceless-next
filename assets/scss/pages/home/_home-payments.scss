@@ -1,0 +1,451 @@
+.payments-section-home {
+  .inner-block-content {
+    @media screen and ($min1024) {
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  background: rgb(0, 46, 166);
+
+  @media screen and ($min1024) {
+    z-index: 5;
+    // .content-wrap {
+    //   padding-top: 200px;
+    // }
+  }
+  .bg-image {
+    z-index: 1;
+    background-size: cover;
+    background-position: 50% 0%;
+    display: none;
+    @media screen and ($mobile_all) {
+      display: block;
+    }
+  }
+
+  .section-transform-container {
+    width: 100%;
+    // transition: transform ease-in-out 100ms;
+    @media screen and ($min1024) {
+      pointer-events: none;
+    }
+  }
+
+  .section-content-wrapper {
+    width: 100%;
+    @media screen and ($min1024) {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  .bg-el-wrap {
+    pointer-events: none;
+    @include abs-cover-el;
+    opacity: 0;
+  }
+  .svg-wrap {
+    @include abs-cover-el;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    top: -2px;
+    left: -2px;
+    z-index: 2;
+    @media screen and ($mobile_all) {
+      display: none;
+    }
+  }
+
+  .mask-svg {
+    @include abs-cover-el;
+
+    #svg-background-2 {
+      fill: $blue-1;
+    }
+  }
+
+  .container {
+    z-index: 3;
+
+    // @media screen and ($mobile_sm) {
+    //   @include vw(padding-top, 127px, 500);
+    //   @include vw(padding-bottom, 103px, 500);
+    // }
+
+    // @media screen and ($mobile_lg) {
+    padding-top: 200px;
+    padding-bottom: 100px;
+    @media screen and ($max1024){
+      padding-top:$sk-block-padding; 
+      padding-bottom:$sk-block-padding; 
+    }
+    @media screen and ($max500){
+      padding-top:$sk-block-padding-mobile; 
+      padding-bottom:$sk-block-padding-mobile; 
+    }
+    // }
+
+    // @media screen and ($min1024) and ($max1250) {
+    //   padding-top: 100px;
+    // }
+
+    @media screen and ($min1024) {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      // @include vw(padding-top, 177px);
+      // @include vw(padding-bottom, 244px);
+    }
+
+    // @media screen and ($min1920) {
+    //   padding-top: 177px;
+    //   padding-bottom: 244px;
+    // }
+  }
+
+  .content-wrap {
+    z-index: 3;
+    width: 100%;
+  }
+
+  .background-petal-svg {
+    position: absolute;
+
+    @media screen and ($mobile_all) {
+      display: none;
+    }
+
+    path {
+      fill: $red-2;
+      stroke: none;
+      stroke-miterlimit: 10;
+    }
+
+    &.petal-svg-big {
+      @media screen and ($min1024) {
+        @include vw(width, 80px);
+        @include vw(right, 343px);
+        @include vw(bottom, 464px);
+      }
+
+      @media screen and ($min1920) {
+        width: 80px;
+        right: 343px;
+        bottom: 464px;
+      }
+    }
+
+    &.petal-svg-sm {
+      @media screen and ($min1024) {
+        @include vw(width, 48px);
+        @include vw(bottom, 410px);
+        @include vw(right, 180px);
+      }
+
+      @media screen and ($min1920) {
+        width: 48px;
+        bottom: 410px;
+        right: 180px;
+      }
+    }
+  }
+
+  .background-paths-canvas {
+    position: absolute;
+    z-index: 2;
+    opacity: 0.3;
+
+    @media screen and ($mobile_all) {
+      display: none;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 1031px);
+      @include vw(height, 1363px);
+      @include vw(left, -116px);
+      @include vw(top, -5px);
+    }
+
+    @media screen and ($min1920) {
+      width: 1031px;
+      height: 1363px;
+      left: -116px;
+      top: -5px;
+    }
+  }
+
+  .background-flower-path-canvas {
+    position: absolute;
+    z-index: 2;
+
+    @media screen and ($mobile_all) {
+      display: none;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 450px);
+      @include vw(height, 450px);
+      @include vw(bottom, 8px);
+      @include vw(right, 430px);
+    }
+
+    @media screen and ($min1920) {
+      width: 450px;
+      height: 450px;
+      bottom: 8px;
+      right: 430px;
+    }
+  }
+
+  .background-pink-flower-path-svg {
+    position: absolute;
+    z-index: 2;
+
+    @media screen and ($mobile_all) {
+      display: none;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 800px);
+      @include vw(bottom, -167px);
+      @include vw(right, -202px);
+    }
+
+    @media screen and ($min1920) {
+      width: 800px;
+      bottom: -167px;
+      right: -202px;
+    }
+
+    .st0 {
+      fill: $red-2;
+      stroke: none;
+      stroke-miterlimit: 10;
+    }
+
+    .bottom-left-petal, .top-left-petal {
+      opacity: 0.2;
+    }
+  }
+
+  /*
+  .txt-content {
+    width: 100%;
+
+    @media screen and ($min1024) {
+      width: 75%;
+    }
+
+    @media screen and ($min1250) {
+      width: 65%;
+    }
+
+    @media screen and ($min1920) {
+      max-width: 700px;
+    }
+  }
+  */
+
+  /*
+  .txt-post-rtf {
+    @media screen and ($mobile_sm) {
+      @include vw(max-width, 340px, 500);
+    }
+
+    @media screen and ($mobile_lg) {
+      max-width: 340px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(margin-right, 70px);
+    }
+
+    @media screen and ($min1920) {
+      margin-right: 70px;
+    }
+  }
+  */
+
+  .txt-blocks-hold {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+  }
+
+  .single-block {
+    position: relative;
+
+    @media screen and ($mobile_all) {
+      padding: 5vw 10vw;
+      border: 1px solid $gray-9;
+    }
+
+    @media screen and ($min1024) {
+      padding-right:25px;
+    }
+
+    a {
+      display:flex;
+      align-items:flex-start;
+
+      &:hover,
+      &:focus {
+        text-decoration:none;
+      }
+
+      @media screen and ($max1024){
+        justify-content:space-between;
+        align-items:center;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      a {
+        color:#fff !important;
+        text-decoration:none;
+
+        span {
+          color:#fff !important;
+        }
+      }
+      @media screen and ($min1024) {
+        .block-svg {
+          opacity: 1;
+        }
+
+        .block-link-icon {
+          opacity: 0;
+        }
+      }
+    }
+
+    .whole-block-link:focus {
+      & ~ .txt-size-36 {
+        background-size: 100% 1px;
+      }
+
+      @media screen and ($min1024) {
+        & ~ .block-svg {
+          opacity: 1;
+        }
+
+        & ~ .block-link-icon {
+          opacity: 0;
+        }
+      }
+    }
+
+    .txt-size-36 {
+      text-decoration: none;
+      background-image: linear-gradient(currentColor, currentColor);
+      background-position: 0% 100%;
+      background-repeat: no-repeat;
+      background-size: 0% 1px;
+      transition: background-size 0.5s $easeOutSine;
+      display: inline;
+    }
+  }
+
+  .block-link-icon {
+    position:relative;
+    border-radius: 50%;
+    border: 1px solid $gray-2;
+    transition: opacity 0.5s $easeOutSine;
+    overflow: hidden;
+    transform:rotate(-90deg);
+
+    @media screen and ($mobile_sm) {
+      height:10vw;
+      width:10vw;
+    }
+
+    @media screen and ($mobile_lg) {
+      width: 100px;
+      height: 100px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 80px);
+      @include vw(height, 80px);
+    }
+
+    @media screen and ($min1920) {
+      width: 80px;
+      height: 80px;
+    }
+
+    .scroll-btn-img {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      @media screen and ($mobile_sm) {
+        width:3vw;
+      }
+
+      @media screen and ($mobile_lg) {
+        width: 30px;
+      }
+
+      @media screen and ($min1024) {
+        @include vw(width, 25px);
+      }
+
+      @media screen and ($min1920) {
+        width: 25px;
+      }
+    }
+  }
+
+  .block-svg {
+    position: absolute;
+    right: calc(100% + 15px);
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.5s $easeOutSine;
+    outline: none !important;
+  }
+
+  .bird-icon {
+    @media screen and ($mobile_all) {
+      display: none;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 50px);
+    }
+
+    @media screen and ($min1920) {
+      width: 50px;
+    }
+
+    .st0 {
+      fill: none;
+    }
+
+    .st1 {
+      fill: $white;
+    }
+
+    .st2 {
+      fill: $red-1;
+    }
+
+    .st3 {
+      fill: $blue-2;
+    }
+
+    .st4 {
+      fill: $green-2;
+    }
+  }
+}

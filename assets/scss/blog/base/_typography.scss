@@ -1,0 +1,19 @@
+.sk-blog-content {
+  .article-body > .article-content {
+    .blog-content {
+      a:not(.btn) {
+        font-weight: 600;
+        text-decoration: underline;
+      }
+
+      ul, ol {
+        line-height: 1.55em;
+        font-size: 18px;
+
+        li:not(:last-child){
+          margin-bottom:10px;
+        }
+      }
+    }
+  }
+}

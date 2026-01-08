@@ -1,0 +1,79 @@
+.bg {
+  &-light {
+    background-color: $gray-21;
+  }
+  &-blue {
+    background-color: $blue-1;
+  }
+  &-blue-6 {
+    background-color: $blue-6;
+  }
+  &-blue-12 {
+    background-color: $blue-12;
+  }
+  &-blue, &-blue-12, &-blue-6 {
+    @include WhiteText;
+
+    a:not(button, .btn, .btn-primary, .btn-default, .btn-txt, .single-block) {
+      color: $green-1 !important;
+      text-decoration: none !important;
+      font-weight: 600;
+      &:hover {
+        text-decoration: underline !important;
+      }
+    }
+  }
+  &-green {
+    background-color: $green-1;
+    //@include BlueText;
+
+    a[href^='tel:']:not(.btn-default):not(.contact-section-btn):not(.btn):not([type='submit']) {
+    color: $blue-1 !important;
+    }
+  }
+}
+
+/*
+.bg-light {
+  background-color: $gray-21;
+}
+
+.bg-blue, .hero-section {
+  background-color: $blue-1;
+  @include WhiteText;
+
+  a:not(button, .btn, .btn-primary, .btn-default, .btn-txt) {
+    color: $green-1 !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    &:hover {
+      text-decoration: underline !important;
+    }
+  }
+}
+
+.bg-blue-12 {
+  background-color: $blue-12;
+  @include WhiteText;
+
+  a:not(button, .btn, .btn-primary, .btn-default, .btn-txt) {
+    color: $green-1 !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    &:hover {
+      text-decoration: underline !important;
+    }
+  }
+}
+
+.bg-green {
+  background-color: $green-1;
+  @include BlueText;
+
+  a[href^='tel:']:not(.btn-default):not(.contact-section-btn):not(.btn):not(
+      [type='submit']
+    ) {
+    color: $blue-1 !important;
+  }
+}
+*/

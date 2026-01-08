@@ -1,0 +1,77 @@
+.inner-pages-slider-section {
+  .swiper-container {
+    overflow: visible;
+    margin: 0 -15px;
+
+    @media screen and ($max480) {
+      overflow: hidden;
+    }
+
+    @media screen and ($min400) {
+      margin: 0 -25px;
+    }
+
+    @media screen and ($min500) {
+      margin: 0 -42px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(margin, 0 -42px);
+      @include vw(padding-left, 7px);
+    }
+
+    @media screen and ($min1920) {
+      margin: 0 -42px;
+      padding-left: 7px;
+    }
+  }
+
+  .swiper-slide {
+    box-sizing: content-box;
+    padding: 0 15px;
+
+    @media screen and ($min400) {
+      padding: 0 25px;
+    }
+
+    @media screen and ($min500) {
+      padding: 0 42px;
+    }
+
+    @media screen and ($mobile_all) {
+      max-width: 518px;
+      width: 75%;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 518px);
+      @include vw(padding, 0 42px);
+    }
+
+    @media screen and ($min1920) {
+      width: 518px;
+      padding: 0 42px;
+    }
+  }
+
+  .img-wrapper {
+    margin-bottom: 15px;
+    width: 100%;
+
+    @media screen and ($min500) {
+      margin-bottom: 28px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(margin-bottom, 28px);
+    }
+
+    @media screen and ($min1920) {
+      margin-bottom: 28px;
+    }
+
+    img {
+      position:relative;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+<svg class="solution-svg professional-services-svg" viewBox="0 0 216.2 210.6">
+    <!-- Circle SVG -->
+    <g class="svg-circle">
+        <circle class="st0 circle-el" cx="108.1" cy="43.9" r="43.9" />
+    </g>
+
+    <!-- Bottom SVG -->
+    <g class="svg-bottom">
+        <path class="st1 path-bottom" d="M164.9 210.6c0-31.4-25.4-56.8-56.8-56.8s-56.8 25.4-56.8 56.8H0c0-59.7 48.4-108.1 108.1-108.1 59.7 0 108.1 48.4 108.1 108.1h-51.3z" />
+    </g>
+
+    <!-- Overlay rectangle for both SVGs -->
+    <rect class="img-overlay-anim" width="100%" height="100%" fill="rgba(255,255,255,1)" />
+</svg>

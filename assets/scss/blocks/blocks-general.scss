@@ -1,0 +1,143 @@
+@use 'block-base';
+
+.sk-block.blocks {
+	.blocks-grid {
+		display:grid;
+
+		&.blocks-grid-2,
+		&.blocks-grid-3,
+		&.blocks-grid-4 {
+			.block {
+				display:flex;
+				flex-direction:column;
+				gap:25px;
+			}
+		}
+	}
+	.blocks-grid-2 {
+		grid-template-columns:1fr 1fr;
+	}
+	.blocks-grid-3 {
+		grid-template-columns:1fr 1fr 1fr;
+	}
+	.blocks-grid-4 {
+		grid-template-columns:1fr 1fr 1fr 1fr;
+	}
+	.blocks-grid-1 .block-content {
+		display:flex;
+		align-items:center;
+		gap:20px;
+	}
+	.blocks-grid-1 .block-heading {
+		flex-shrink:0;
+	}
+
+	&.blocks-full {
+		.container {
+			max-width:100%;
+			padding-left:0;
+			padding-right:0;
+		}
+		.blocks-grid {
+			gap:0;
+		}
+		.block picture {
+			display:flex;
+			justify-content:center;
+			align-items:center;
+		}
+		.block picture img {
+			object-fit:cover;
+			max-width:none;
+			height:100%;
+			width:100%;
+		}
+	}
+
+	&.images-rounded .block img {
+    	border-radius: 15px;
+	}
+
+	.content-collapse {
+		position:relative;
+		display:inline-flex;
+		justify-content:center;
+		align-items:center;
+		height: 18px;
+		width: 18px;
+		line-height: 18px;
+		color: #17fcc4;
+		font-size: 17px;
+		text-align:center;
+		background: #002ea6;
+		border-radius: 50%;
+		transition:all 0.3s ease;
+	}
+	.content-collapse.visible {
+		background:#17fcc4;
+		transform:rotate(180deg);
+	}
+	.content-collapse.visible::before {
+		content:"-";
+		position: absolute;
+		top: -2px;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		display:inline-flex;
+		justify-content:center;
+		align-items:center;
+		font-size: 19px;
+		line-height: 14px;
+		text-align:center;
+		color:#002ea6;
+		transition:all 0.3s ease;
+	}
+	.blocks-type-icons .block {
+		.block-content {
+			h2:first-child, h3:first-child {
+				margin-bottom:10px;
+			}
+		}
+	}
+	.blocks-type-icons .block img {
+		width:40px;
+	}
+
+	&.blocks-cards {
+		.block {
+			padding: 25px 40px;
+			background: #fff;
+			border-radius: 15px;
+
+			img {
+				width:70px;
+			}
+		}
+	}
+
+	@media screen and (max-width:1024px){
+		.blocks-grid-3 {
+			grid-template-columns:1fr 1fr;
+		}
+		.blocks-grid-4 {
+			grid-template-columns:1fr 1fr 1fr;
+		}
+		&.blocks-full .blocks-grid-4 {
+			grid-template-columns:1fr 1fr;
+		}
+	}
+	@media screen and (max-width:768px){
+		.blocks-grid-4 {
+			grid-template-columns:1fr 1fr;
+		}
+		.blocks-grid-1 .block-content {
+			display:block;
+		}
+	}
+	@media screen and (max-width:640px){
+		.blocks-grid {
+			grid-template-columns:1fr;
+		}
+	}
+}

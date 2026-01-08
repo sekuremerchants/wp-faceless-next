@@ -1,0 +1,205 @@
+@use 'block-base';
+.block--i {
+  overflow: hidden;
+
+  .circle-info-white-block {
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-between;
+
+    @media screen and ($mobile_all) {
+      flex-flow: row wrap;
+    }
+
+    .arc {
+      &-border-pink,
+      &-light-pink,
+      &-light-pink-2 {
+        border-radius: 50%;
+
+        @media screen and (min-width:1024px){
+          height: 325px;
+          width: 325px;
+        }
+
+        @media screen and (min-width:1441px){
+          height: 375px;
+          width: 375px;
+        }
+
+        @media screen and (max-width:1023px) {
+          display: none;
+        }
+      }
+      &-border-pink {
+        border: 1px solid $blue-1;
+        z-index: -1;
+        transform: translateY(73.5%);
+        opacity: 0.2;
+      }
+      &-light-pink {
+        z-index: -2;
+        background-color: $blue-1;
+        transform: translate(78%, 73.5%);
+        opacity: 0.05;
+
+        @media screen and (min-width:1280px){
+          transform: translate(0, 73.5%);
+          left:235px;
+        }
+        @media screen and (min-width:1440px){
+          left: 265px;
+        }
+      }
+    }
+
+    .img-wrap {
+      display:flex;
+      position: relative;
+
+      picture {
+        @media screen and (min-width:1024px){
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          height: 325px;
+          width: 325px;
+        }
+        @media screen and (min-width:1441px){
+          height: 375px;
+          width: 375px;
+        }
+        @media screen and ($max1024){
+          height: 375px;
+          width: 375px;
+        }
+        @media screen and (max-width:768px){
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          width:100%;
+          height:auto;
+        }
+
+        img {
+          width:100%;
+          object-fit: cover;
+
+          @media screen and (min-width:1280px){
+            height: 325px;
+            width: 325px;
+          }
+          @media screen and (min-width:1441px){
+            height: 375px;
+            width: 375px;
+          }
+        }
+      }
+    }
+
+    /*
+    .txt-content {
+      flex: 0 0 auto;
+    }
+    */
+
+    .img-txt-col {
+      z-index: 1;
+
+      @media screen and ($desktop) {
+        justify-content: flex-end;
+      }
+
+      @media screen and ($tablet) {
+        position: relative;
+      }
+
+      .quote-details {
+        position: relative;
+        padding-left: 52px;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          position: absolute;
+          left: 25px;
+          background-color: $white;
+          height: 2px;
+          top: calc(0.5em + 2px);
+          width: 18px;
+        }
+      }
+
+      &-person-position,
+      &-person-name {
+        font-size: 16px;
+        color: $white;
+        margin-bottom: 0;
+      }
+
+      &-person-name {
+        font-weight: 600;
+      }
+
+      .img-txt-content {
+        position:relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: $red-8;
+
+        @media screen and ($min1024){
+          height: 325px;
+          width: 325px;
+          position: absolute;
+          left:0;
+          transform: translate(78%);
+        }
+        @media screen and (min-width:1441px) {
+          height:375px;
+          width:375px;
+        }
+
+        @media screen and ($max1024){
+          height:375px;
+          width:375px;
+        }
+
+        @media screen and (max-width:768px){
+          position:absolute;
+          top:0;
+          left:0;
+          right:0;
+          bottom:0;
+          height:100%;
+          width:100%;
+        }
+
+        @media screen and (max-width:500px){
+          position:relative;
+          top:auto;
+          left:auto;
+          right:auto;
+          bottom:auto;
+          height:auto;
+          margin-top:-90px;
+          border-radius:18px;
+        }
+
+        .inner-text {
+          padding: 40px 30px 0;
+
+          @media screen and (max-width:500px){
+            padding:30px;
+          }
+        }
+
+        .img-txt-quote {
+          color: $white;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

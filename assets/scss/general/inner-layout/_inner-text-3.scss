@@ -1,0 +1,22 @@
+.inner-txt-section-type-3 {
+  .color-overlay {
+    background-color: $blue-9;
+  }
+
+  @media screen and ($min1024) {
+    .row {
+      & > *:first-of-type {
+          &::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            right: 24px;
+            width: 1px;
+            height: 100%;
+            background-color: $gray-11;
+          }
+      }
+    }
+  }
+}

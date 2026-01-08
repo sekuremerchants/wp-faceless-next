@@ -1,0 +1,527 @@
+/*
+.article-content,
+.sk-lander {
+
+}
+*/
+.hbspt-form {
+  padding: 45px;
+  background: $blue-1;
+  border-radius: 50px;
+
+  input, textarea {
+    &:auto-fill {
+      color: $white;
+    }
+  }
+
+  input[type=file]{
+    cursor:pointer;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    color: $white;
+  }
+  p {
+    font-weight: 600;
+  }
+  fieldset {
+    max-width: none !important;
+    width: 100%;
+    margin-bottom: 0px !important;
+  }
+
+  ul.inputs-list {
+    padding-left:0;
+    list-style-type: none;
+  }
+
+  @media screen and ($max1024) {
+    .form-columns-2 .hs-form-field {
+      width: 100% !important;
+    }
+  }
+
+  .submitted-message.hs-main-font-element {
+    color: $white !important;
+    p,
+    * {
+      color: $white !important;
+    }
+  }
+
+  .hs-error-msgs {
+    margin:5px 0 0;
+    padding-left: 0;
+    list-style: none;
+    li {
+      list-style: none;
+      &::before {
+        content: none !important;
+      }
+    }
+  }
+}
+
+.popup, .talk-us-block, .sk-block.one-column {
+  .hbspt-form {
+    padding: 0;
+    background: transparent;
+    border-radius: 0px;
+  }
+}
+
+.talk-us-block {
+  .hbspt-form {
+    form {
+      flex-direction: column;
+    }
+    
+    .hs-form-field {
+      margin-bottom: 20px !important;
+    }
+
+    input[type=email] {
+      height: auto !important;
+      line-height: 30px !important;
+      padding: .938vw .781vw !important;
+      border: 1px solid hsla(0, 0%, 100%, .5) !important;
+    }
+
+    .hs-error-msgs.inputs-list  {
+      margin-top:0;
+
+      li {
+        padding-left:0;
+      }
+    }
+
+    .hs-error-msg {
+      background: 0 0;
+      color: #17fcc4 !important;
+    }
+
+    .hs-submit .hs-button {
+      width:100% !important;
+    }
+  }
+}
+.content-block-holder.bg-blue {
+  .hbspt-form {
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+}
+.sekure-block.bg-blue {
+  .hbspt-form {
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+}
+.landing-page-form {
+  .hbspt-form {
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    fieldset {
+      margin-bottom: 0 !important;
+    }
+    .hs-error-msgs {
+      // margin-bottom: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+  }
+}
+.firefox {
+  .hbspt-form {
+    .hs-fieldtype-file {
+      label {
+        position: relative;
+        top: auto;
+        left: auto;
+        padding: 0;
+        background: transparent;
+      }
+    }
+    fieldset {
+      .hs-input[type='file'] {
+        padding: 0;
+        line-height: unset;
+        border: none;
+      }
+    }
+  }
+  .hs-fieldtype-file {
+    .hs-input {
+      background-color: transparent !important;
+      font-size: 0.9rem;
+    }
+    input[type='file'] {
+      &::file-selector-button {
+        margin-right: 20px;
+        border: none;
+        background: #17fcc4;
+        padding: 5px 10px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        border-radius: 20px;
+        color: $blue-1;
+        cursor: pointer;
+        transition: background 0.2s ease-in-out;
+        &:hover {
+          background: #fff;
+        }
+        &:active {
+          background: #fff;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 880px) {
+  .hbspt-form {
+    .hs-form-field {
+      label {
+        font-size: 14px;
+      }
+      label#label-how_has_partnering_with_sekure_helped_to_improve_your_business_and_what_challenges_did_you_face_bef-8da3bd32-0a4b-430a-bc8e-6ee0c9f08f38 {
+        top: -30px;
+      }
+    }
+    fieldset {
+      .hs-richtext {
+        p {
+          font-size: 18px;
+        }
+      }
+    }
+    .hs-button {
+      padding: 0.99rem 2.125rem !important;
+    }
+  }
+}
+@media screen and (max-width: 640px) {
+  .hbspt-form {
+    padding: 45px 30px;
+    .hs-form-field {
+      label {
+        font-size: 14px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .hbspt-form {
+    .hs-form-field {
+      label#label-how_has_partnering_with_sekure_helped_to_improve_your_business_and_what_challenges_did_you_face_bef-8da3bd32-0a4b-430a-bc8e-6ee0c9f08f38 {
+        top: auto;
+      }
+      margin-bottom: 20px;
+      label {
+        display: inline-block;
+        position: relative;
+        top: auto;
+        left: auto;
+        padding: 0;
+        margin-bottom: 10px;
+        letter-spacing: 0;
+        background: transparent;
+      }
+    }
+    fieldset {
+      margin-bottom: 0 !important;
+      .input {
+        margin-right: 0 !important;
+      }
+      .hs-input {
+        width: 100% !important;
+      }
+    }
+  }
+  .hs-fieldtype-file {
+    .input {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.hbspt-form {
+  fieldset {
+    max-width: none !important;
+    width: 100%;
+  }
+
+  .hs-form-field {
+    position: relative;
+    margin-bottom: 40px !important;
+  }
+
+  .hs-input {
+    &:not(input[type='checkbox']) {
+      display: flex;
+      align-items: center;
+      height: 42px !important;
+      line-height: 42px !important;
+      width: 100% !important;
+      padding: 0 15px;
+      color: #fff;
+      font-weight: 400;
+      font-size: 16px;
+      letter-spacing: 0.021vw;
+      background-color: transparent !important;
+      border: 1px solid #6682ca;
+      appearance: auto;
+
+      &::placeholder {
+        font-size: 18px;
+        font-style: normal;
+      }
+    }
+
+    &[type='file'] {
+      font-weight: 700 !important;
+    }
+
+    &[type='checkbox'] {
+      display: inline-block !important;
+      height: 15px !important;
+      width: 15px !important;
+      margin-right: 5px;
+      padding: 0;
+      background: 0 0 !important;
+      border: 1px solid #6682ca;
+    }
+
+    &::placeholder {
+      font-size: 12px;
+      font-style: normal;
+      color: #fff;
+    }
+
+    &[type='number']::placeholder {
+      font-size: 14px;
+      color: #fff;
+    }
+  }
+
+  textarea.hs-input:not(input[type='checkbox']) {
+    height: auto !important;
+    min-height: 125px !important;
+    padding: 10px 15px;
+    line-height: 1.5em !important;
+  }
+
+  select.hs-input {
+    width: 100% !important;
+    height: 42px;
+    padding: 0 15px;
+    color: #fff;
+    background: 0 0 !important;
+    border: 1px solid #6682ca;
+
+    option {
+      font-size: 18px;
+      color: #002ea6;
+      background: #fff;
+    }
+  }
+
+  .hs-button {
+    line-height:1;
+  }
+}
+
+.contact-col .hbspt-form,
+.newsletter-form-wrap .hbspt-form,
+.subscribe-newsletter-form .hbspt-form,
+.footer .hbspt-form,
+.contact-block .hbspt-form,
+.contacts-tab-form .hbspt-form,
+.section-download-guide .hbspt-form,
+.talk-us-block .hbspt-form,
+.form-contact-section-home .hbspt-form,
+.talk-us-block .sk-lander .hbspt-form {
+  padding: 0;
+  background: 0 0;
+  border-radius: 0;
+}
+
+.contacts-tab-form .hbspt-form {
+  margin-top:30px;
+}
+
+/*
+.contact-col .hbspt-form,
+.newsletter-form-wrap .hbspt-form,
+.subscribe-newsletter-form .hbspt-form,
+.footer .hbspt-form {
+  margin-top: 0;
+}
+*/
+
+.contact-col .hbspt-form .hs-form-field,
+.newsletter-form-wrap .hbspt-form .hs-form-field,
+.subscribe-newsletter-form .hbspt-form .hs-form-field {
+  margin-bottom: 0 !important;
+}
+.contact-col .hbspt-form .grecaptcha-badge,
+.contact-col .hbspt-form .hs-form-field label,
+.hero.fancy .breadcrumb-wrap,
+.newsletter-form-wrap .hbspt-form .grecaptcha-badge,
+.newsletter-form-wrap .hbspt-form .hs-form-field label,
+.subscribe-newsletter-form .hbspt-form .grecaptcha-badge,
+.subscribe-newsletter-form .hbspt-form .hs-form-field label {
+  display: none !important;
+}
+.contact-col .hbspt-form .hs-form-field label,
+.hbspt-form .hs-fieldtype-checkbox label,
+.hbspt-form .hs-fieldtype-file label,
+.newsletter-form-wrap .hbspt-form .hs-form-field label {
+  position: relative;
+  top: auto;
+  left: auto;
+  padding: 0;
+}
+
+.footer {
+  .hbspt-form {
+    .hs-input {
+      &:not(input[type='checkbox']) {
+        font-size: 14px;
+        height: 42px !important;
+        line-height: 42px;
+        letter-spacing: 0.021vw;
+
+        &::placeholder {
+          color: #fff;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .submitted-message p {
+      font-size: 12px;
+    }
+
+    ul.hs-error-msgs {
+      padding-left: 0;
+      margin-top: 10px;
+      margin-bottom: 0;
+      list-style: none;
+
+      label {
+        display: block;
+      }
+    }
+  }
+}
+
+.contact-col,
+.newsletter-form-wrap {
+  .hbspt-form {
+    .hs-input {
+      &:not(input[type='checkbox']) {
+        width: 100%;
+        padding: 0 35px 0 0;
+        color: #fff;
+        background: 0 0;
+        border: none;
+        border-bottom: 1px solid #6682ca;
+      }
+    }
+
+    .hs-button {
+      font-family: 'Red Hat Display';
+      width: 30px !important;
+      height: 30px !important;
+      padding: 0 !important;
+      margin-top: 0 !important;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+      color: transparent !important;
+      background: url(/wp-content/uploads/2022/07/green-arrow-right.png) center
+        center no-repeat !important;
+      border: none;
+      border-radius: 40px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .hs_submit.hs-submit {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}
+
+.home-page-form {
+  .hbspt-form {
+    form {
+      flex-direction: column;
+    }
+
+    .hs-input {
+      &:not(input[type='checkbox']) {
+        border: none;
+        border-bottom: 1px solid hsla(0, 0%, 100%, 0.5);
+      }
+      &.hide-placeholder::placeholder {
+        visibility:hidden;
+        pointer-events:none;
+      }
+    }
+
+    textarea.hs-input:not(input[type='checkbox']) {
+      min-height: auto !important;
+      padding: 0;
+    }
+
+    .actions {
+      text-align: right;
+    }
+  }
+}
+
+.subscribe-newsletter-form {
+  .hbspt-form {
+    .hs-input:not(input[type='checkbox']) {
+      padding: 0 15px !important;
+      height: 55px !important;
+      line-height: 27px !important;
+    }
+
+    .hs-email.hs-fieldtype-text {
+      @media screen and ($min1024) {
+        margin-right:15px;
+      }
+    }
+  }
+}
+
+/*
+.newsletter-form {
+  .hbspt-form {
+    input[type=email] {
+      height:auto !important;
+      line-height:30px !important;
+    }
+  }
+}
+*/
+
+#filters-category-options,
+#filters-business-type-options,
+#filters-content-type-options {
+  display:none;
+}

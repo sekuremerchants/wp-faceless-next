@@ -1,0 +1,9 @@
+@mixin SekureBlocks {
+  padding-top: $sk-block-padding;
+  padding-bottom: $sk-block-padding;
+
+  img.size-full {
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+  }
+}

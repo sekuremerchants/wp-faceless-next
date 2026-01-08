@@ -1,0 +1,220 @@
+/*
+html {
+  &.open-popup-form {
+    overflow: hidden;
+
+    .popup-form {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      z-index: 1000;
+    }
+  }
+
+  &.open-header-popup-form {
+    overflow: hidden;
+
+    .popup-form {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &.open-download-popup-form {
+    overflow: hidden;
+
+    .download-popup-form {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &.open-callback-popup-form {
+    overflow: hidden;
+
+    .callback-popup-form {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &.open-talk-to-us-block-popup-form {
+    overflow: hidden;
+
+    .talk-to-us-block-popup-form {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+*/
+
+// Contact-form pop-up
+/*
+.popup-form {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 9999;
+  background-color: $blue-1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition:
+    opacity 0.5s $easeOutSine,
+    visibility 0.5s $easeOutSine,
+    transform 0.5s $easeOutSine;
+  transform: translateY(-100%);
+
+  @media screen and ($mobile_sm) {
+    &.calendly-wrap {
+      .mobile-contact-form {
+        width: auto;
+
+        h3,
+        p {
+          width: 70%;
+          margin: 0 auto;
+        }
+      }
+
+      .form-popup-close-btn {
+        right: 0;
+      }
+    }
+  }
+
+  @media screen and ($min1024) {
+    input {
+      width: 100%;
+    }
+  }
+
+  @media screen and ($mobile_all) {
+    padding-top: 50px;
+    align-items: flex-start;
+  }
+
+  .mobile-contact-form {
+    max-height: 100%;
+    width: 70%;
+    margin: 0 auto;
+    position: relative;
+    padding: 40px 0 0;
+
+    @media screen and ($min1024) {
+      padding: 200px 0 0;
+      width: 30%;
+    }
+  }
+}
+*/
+/*
+// Download our guide form
+.download-popup-form {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 5;
+  background-color: $blue-1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition:
+    opacity 0.5s $easeOutSine,
+    visibility 0.5s $easeOutSine,
+    transform 0.5s $easeOutSine;
+  transform: translateY(-100%);
+
+  @media screen and ($min1024) {
+    input {
+      width: 100%;
+    }
+  }
+
+  // @media screen and (max-width:580px){
+  //     padding-top:140px;
+  //     align-items: flex-start;
+  //     h3, .h3 {
+  //         font-size: 20px;
+  //     }
+  // }
+  @media screen and ($mobile_all) {
+    padding-top: 160px;
+    align-items: flex-start;
+  }
+
+  .mobile-contact-form {
+    max-height: 100%;
+    width: 70%;
+    margin: 0 auto;
+    position: relative;
+    padding: 40px 0 0;
+
+    @media screen and ($min1024) {
+      padding: 200px 0 0;
+      width: 30%;
+    }
+  }
+}
+
+.callback-popup-form {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 5;
+  background-color: $blue-1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition:
+    opacity 0.5s $easeOutSine,
+    visibility 0.5s $easeOutSine,
+    transform 0.5s $easeOutSine;
+  transform: translateY(-100%);
+
+  @media screen and ($min1024) {
+    input {
+      width: 100%;
+    }
+  }
+
+  .mobile-contact-form {
+    width: 70%;
+    margin: 0 auto;
+    position: relative;
+    padding: 40px 0 0;
+
+    @media screen and ($min1024) {
+      padding: 200px 0 0;
+      width: 30%;
+    }
+  }
+}
+*/
+

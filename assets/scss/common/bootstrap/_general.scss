@@ -1,0 +1,31 @@
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+// @use "bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+// @use "bootstrap-variables";
+
+// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+// @use "bootstrap/scss/variables";
+// @use "bootstrap/scss/variables-dark";
+
+// 4. Include any default map overrides here
+// $theme-colors: map-remove($theme-colors, "info", "light", "dark");
+
+// 5. Include remainder of required parts
+@use 'bootstrap/scss/maps';
+// @use "bootstrap/scss/mixins";
+@use 'bootstrap/scss/root';
+
+// 6. Optionally include any other parts as needed
+@use 'bootstrap/scss/utilities';
+// @use "bootstrap/scss/reboot";
+// @use "bootstrap/scss/type";
+// @use "bootstrap/scss/images";
+@use 'bootstrap/scss/containers';
+@use 'bootstrap/scss/placeholders';
+@use 'bootstrap/scss/alert';
+@use 'bootstrap/scss/grid';
+@use 'bootstrap/scss/helpers';
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@use 'bootstrap/scss/utilities/api';

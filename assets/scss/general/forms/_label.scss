@@ -1,0 +1,277 @@
+/*
+.article-content,
+.sk-lander {
+
+}
+*/
+.hbspt-form {
+  .hs-richtext.hs-main-font-element {
+    padding: 0;
+    font-weight: 700;
+    margin-bottom:20px;
+  }
+
+  .hs-error-msgs {
+    .hs-main-font-element {
+      padding: 0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      line-height: 20px;
+    }
+  }
+
+  .hs_error_rollup {
+    margin-bottom:30px;
+  }
+  
+  .hs-form-field {
+    position: relative;
+    margin-bottom: 30px !important;
+    label:not(.hs-form-checkbox-display):not(.hs-error-msg) {
+      position: absolute;
+      z-index: 3;
+      top: -12px;
+      left: 22px;
+      color: $white;
+      background-color: $blue-1;
+      padding: 0 10px 0 10px;
+      font-size: 12px;
+      line-height: 20px;
+      font-weight: 400;
+      letter-spacing: 0.6px;
+      font-family: $libre;
+
+      @media screen and ($max1024) {
+        position: relative;
+        top: 0;
+        left: 0;
+        background-color: transparent;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      @media screen and ($min1024) {
+        @include vw(top, -12px);
+        @include vw(left, 22px);
+        @include vw(padding, 0 10px 0 10px);
+        letter-spacing: 0.6px;
+      }
+
+      @media screen and ($min1920) {
+        top: -12px;
+        left: 22px;
+        padding: 0 10px 0 10px;
+        letter-spacing: 0.6px;
+      }
+    }
+    .hs-error-msgs {
+      .hs-main-font-element {
+        padding: 0;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        line-height: 20px;
+      }
+    }
+    label.hs-form-booleancheckbox-display {
+      display: flex;
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      padding: 0 !important;
+      margin-bottom: 5px;
+    }
+    .hs-form-booleancheckbox {
+      list-style-type: none;
+      &::before {
+        content: none !important;
+      }
+    }
+    .hs-field-desc {
+      display:none !important;
+    }
+
+    &.hs-fieldtype-checkbox {
+      label {
+        position:relative !important;
+        left: auto !important;
+        top: auto !important;
+        padding: 0 !important;
+      }
+    }
+
+    .inputs-list {
+      .hs-form-checkbox:not(:last-of-type) {
+        margin-bottom:10px;
+      }
+    }
+  }
+
+  .legal-consent-container {
+    .hs-richtext {
+      margin-bottom:24px;
+      font-size:12px;
+      letter-spacing:.6px;
+      line-height:150%;
+    }
+  }
+}
+
+.home-page-form {
+  .hbspt-form {
+    .hs-form-field {
+      label:not(.hs-form-checkbox-display):not(.hs-error-msg) {
+        position:absolute;
+        top: 6px;
+        left: 0;
+        z-index: 0;
+        width: 90%;
+        padding: 0 15px;
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 0.4px;
+        line-height: 30px;
+        color: #fff;
+        background-color:transparent;
+        backface-visibility: hidden;
+        transform-origin: 0 50%;
+        transition:
+          top 0.25s cubic-bezier(0.61, 1, 0.88, 1),
+          color 0.25s cubic-bezier(0.61, 1, 0.88, 1),
+          transform 0.25s cubic-bezier(0.61, 1, 0.88, 1),
+          opacity 0.25s cubic-bezier(0.61, 1, 0.88, 1);
+  
+        &.hide {
+          display: none !important;
+        }
+
+        #label-to_upload_your_logo__photos__and_or_video__click_the_button_below__select_all_your_images_at_once__-fe3b226e-d271-445a-bafe-940bf9e41427 {
+          position:relative;
+          top:0;
+          padding: 0 15px;
+          margin-bottom:5px;
+        }
+      }
+
+      &.hs-fieldtype-select {
+        label:not(.hs-form-checkbox-display):not(.hs-error-msg) {
+          background-color:#3358b8;
+        }
+      }
+    }
+    @media screen and (max-width:500px){
+      .hs_is_a_customer_.hs-fieldtype-select {
+        label {
+          position: relative !important;
+        }
+      }
+    }
+  }
+}
+
+.home-page-form,
+.landing-page-form,
+.signup,
+.popup {
+  .hbspt-form {
+    .hs-error-msgs .hs-main-font-element {
+      color: #17fcc4;
+    }
+    input[type=checkbox]:checked{
+      background-color:#17fcc4 !important;
+      border-color:#17fcc4 !important;
+    }
+  }
+}
+
+.contacts-tab-form,
+.contact-section {
+  .hbspt-form {
+    .hs-form-field {
+      label:not(.hs-form-checkbox-display):not(.hs-error-msg) {
+        color: #002ea6;
+        background-color: #fff;
+      }
+    }
+  }
+}
+
+.article-content .hbspt-form,
+.sk-lander .hbspt-form {
+  .hs-fieldtype-checkbox,
+  .hs-fieldtype-checkbox {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #6682ca;
+
+    label:not(.hs-form-checkbox-display):not(.hs-error-msg) {
+      position: absolute !important;
+      left: 1.146vw !important;
+      top: -.625vw !important;
+      padding: 0 .521vw !important;
+      letter-spacing: .6px;
+    }
+
+    .inputs-list {
+      padding:20px;
+      margin-bottom:0;
+    }
+
+    .hs-form-checkbox-display {
+      display:flex;
+      align-items: center;
+      font-size:14px;
+      color:#fff;
+    }
+  }
+
+  .hs-input[type=checkbox] {
+    -webkit-appearance: auto !important;
+    -moz-appearance: auto !important;
+    appearance: auto !important;
+    background: transparent !important;
+    border: 1px solid #6682ca;
+    display: inline-block !important;
+    height: 15px !important;
+    margin-right: 5px;
+    padding: 0;
+    width: 15px !important;
+  }
+
+  .hs-form-booleancheckbox {
+    a {
+      color: #17fcc4;
+      text-decoration: underline;
+    }
+  }
+}
+
+.block--a .right-content-form.bg-primary,
+.popup {
+  .hbspt-form {
+    .legal-consent-container {
+      .hs-richtext {
+        color:#fff;
+        
+        a {
+          color: #17fcc4;
+        }
+      }
+    }
+  }
+}
+
+.blog-subscribe-form .hbspt-form .hs-form-field .hs-error-msgs .hs-main-font-element {
+  display: block !important;
+  color: #17fcc4;
+}
+
+@media screen and ($min1024) {
+  .talk-us-block {
+    .hbspt-form .hs-form-field label:not(.hs-form-checkbox-display):not(.hs-error-msg) {
+      background-color: #127398;
+    }
+  }
+}
+

@@ -1,0 +1,363 @@
+.inner-pages-contact-section {
+  background-color: $blue-1;
+  padding-top: $sk-block-padding;
+  padding-bottom: $sk-block-padding;
+  overflow: hidden;
+
+  @media screen and ($max1024){
+    padding-top:0px;
+    padding-bottom:0px;
+
+    .container {
+      max-width:100%;
+      padding-left:0 !important;
+      padding-right:0 !important;
+    }
+
+    .row {
+      margin-left:0 !important;
+      margin-right:0 !important;
+    }
+
+    .content-wrap {
+      max-width: 880px;
+      margin:0 auto;
+      padding-left: 64px;
+      padding-right: 64px;
+      padding-top:$sk-block-padding;
+      padding-bottom:$sk-block-padding;
+    }
+  }
+
+  @media screen and ($max500){
+    .content-wrap {
+      max-width:320px;
+      padding-left:24px;
+      padding-right:24px;
+      padding-top:$sk-block-padding-mobile;
+      padding-bottom:$sk-block-padding-mobile;
+    }
+
+    &.blog-social-media {
+      padding-top: 0;
+      padding-bottom: 0;      
+    }
+  }
+
+  @media screen and ($min1024) {
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 2;
+      background-color: $blue-10;
+    }
+  }
+
+  &.blog-social-media {
+    &::after {
+      background-color: $green-2;
+      opacity: 0.8;
+    }
+
+    .contact-block {
+      //background-color: $green-2;
+      opacity: 0.8;
+      @media screen and ($mobile_all) {
+        background-color: $green-2;
+      }
+
+      /*
+      @media screen and ($min1024) {
+        @include vw(padding-left, 212px);
+      }
+
+      @media screen and ($min1920) {
+        padding-left: 212px;
+      }
+      */
+    }
+  }
+
+  .bg-image {
+    z-index: 1;
+    object-fit: cover;
+    opacity: 0;
+
+    @media screen and ($max1024) {
+      opacity: 1 !important;
+    }
+  }
+
+  .txt-content {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+  }
+
+  .background-flower-path-patterns {
+    pointer-events: none;
+    @include pabs;
+    display: flex;
+    align-items: flex-start;
+    flex-flow: row wrap;
+    z-index: 3;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @media screen and ($mobile_all) {
+      display: none;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(right, 25px);
+      @include vw(width, 904px);
+      @include vw(height, 904px);
+    }
+
+    @media screen and ($min1920) {
+      right: 25px;
+      width: 904px;
+      height: 904px;
+    }
+  }
+
+  .background-flower-path-svg {
+    flex: 0 0 auto;
+    height: 50%;
+    width: 50%;
+    opacity: 0.2;
+
+    path {
+      fill: transparent;
+      stroke: $white;
+    }
+  }
+
+  .single-block {
+    @media screen and ($max1024){
+      padding-left:0;
+      padding-right:0;
+      
+      .container {
+        max-width: 880px!important;
+        padding-left: 64px!important;
+        padding-right: 64px!important;  
+      }
+    }
+    @media screen and ($max500){ 
+      .container {
+        max-width: 320px !important;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+      }
+    }
+    .container {
+      @media screen and ($min1024){
+        max-width:100% !important;
+        padding-left:0 !important;
+        padding-right:0 !important;
+      }
+    }
+  }
+
+  /*
+  .single-block {
+    flex: 0 1 auto;
+    width: 100%;
+
+    @media screen and ($max1024){
+      padding:100px 30px;
+    }
+
+    @media screen and ($min1024) {
+      width: 50%;
+    }
+  }
+  */
+
+  /*
+  .txt-content-block {
+    @media screen and ($min1024) {
+      @include vw(padding-right, 220px);
+    }
+
+    @media screen and ($min1920) {
+      padding-right: 282px;
+    }
+
+    .txt-post-rtf {
+      width: 100%;
+
+      @media screen and ($min1024) {
+        @include vw(max-width, 330px);
+      }
+    }
+  }
+  */
+
+  .contact-block {
+    @media screen and ($mobile_all) {
+      background-color: $blue-10;
+    }
+
+    /*
+    @media screen and ($min1024) {
+      @include vw(padding-left, 220px);
+    }
+
+    @media screen and ($min1920) {
+      padding-left: 282px;
+    }
+    */
+
+    .btn-default {
+      width: 100%;
+    }
+  }
+
+  &.block--s {
+    .contact-block {
+      @media screen and ($mobile_all) {
+        background-color: $blue-10;
+      }
+    }
+    @media screen and ($mobile_all) {
+      &.blog-social-media {
+        .contact-block {
+          background-color: $green-2;
+        }
+      }
+    }
+  }
+
+  .contact-section-btn {
+    &:hover,
+    &:focus {
+      border: 1px solid $white;
+
+      .contact-btn-icon {
+        transform: scale(1.05) translateY(-50%);
+      }
+
+      .btn-txt {
+        transform: translateX(5px);
+      }
+    }
+
+    &:not(:last-of-type) {
+      margin-bottom: 17px;
+
+      @media screen and ($min1024) {
+        @include vw(margin-bottom, 17px);
+      }
+
+      @media screen and ($min1920) {
+        margin-bottom: 17px;
+      }
+    }
+
+    .btn-txt {
+      color: $white;
+      &:hover {
+        color: $white;
+      }
+    }
+
+    &.callback-popup-btn {
+      text-align: left;
+      .btn-txt {
+        color: $white;
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+    &.block-callback-popup-btn {
+      text-align: left;
+      .btn-txt {
+        color: $white;
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  ul {
+    list-style-type: none;
+
+    li {
+      position: relative;
+      padding-left: 39px;
+
+      @media screen and ($min1024) {
+        @include vw(padding-left, 39px);
+      }
+
+      @media screen and ($min1920) {
+        padding-left: 39px;
+      }
+
+      &::before {
+        content: '' !important;
+        display: inline-block;
+        position: absolute;
+        top: 0.5em;
+        left: 0;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url($ROOT_PATH + 'media/images/pictograms/checkmark-green.webp');
+        width: 21px;
+        height: 15px;
+
+        @media screen and ($min1024) {
+          @include vw(width, 21px);
+          @include vw(height, 15px);
+        }
+
+        @media screen and ($min1920) {
+          width: 21px;
+          height: 15px;
+        }
+      }
+    }
+  }
+
+  .guide-form {
+    margin-top: 39px;
+    width: 100%;
+
+    @media screen and ($min1024) {
+      @include vw(margin-top, 39px);
+      @include vw(margin-left, -27px);
+      width: calc(100% + 4.375vw);
+    }
+
+    @media screen and ($min1920) {
+      margin-top: 39px;
+      margin-left: (-$contentPadding);
+      width: calc(100% + 84px);
+    }
+  }
+
+  &.section-download-guide .hbspt-form form {
+    flex-direction:column;
+
+    .hs-form-field label:not(.hs-form-checkbox-display):not(.hs-error-msg) {
+      background-color: #0f7197;
+    }
+
+    .hs-error-msgs li {
+      padding-left:0;
+    }
+
+    .hs-error-msg {
+      color:$green-1;
+    }
+  }
+}

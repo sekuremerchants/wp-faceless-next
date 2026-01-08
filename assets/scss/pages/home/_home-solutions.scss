@@ -1,0 +1,385 @@
+.solutions-section-home {
+  padding-top: $sk-block-padding;
+  padding-bottom: $sk-block-padding;
+
+  @media screen and ($max500) {
+    padding-top: $sk-block-padding-mobile;
+    padding-bottom: $sk-block-padding-mobile;
+  }
+
+  .retail-svg {
+    path {
+      opacity: 0;
+    }
+  }
+
+  /*
+  .txt-content {
+    * {
+      flex:1;
+    }
+  }
+
+  .blocks-wrap {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+
+    @media screen and ($mobile_all) {
+      justify-content: center;
+    }
+
+    @media screen and ($mobile_sm) {
+      @include vw(margin-left, -35px, 500);
+      @include vw(margin-right, -35px, 500);
+      @include vw(padding-left, 25px, 500);
+      @include vw(padding-right, 25px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      margin-left: -35px;
+      margin-right: -35px;
+
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+
+    @media screen and ($min1024) {
+      margin-left:-48px;
+      margin-right:-48px;
+    }
+  }
+  */
+
+  .single-block {
+    .txt-wrap {
+      @media screen and ($mobile){
+        hyphens:auto;
+        word-break:break-word;
+      }
+    }
+    @media screen and ($min1024){
+      width:20%;
+    }
+  }
+
+  .img-overlay-anim {
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    top: -5%;
+    left: -5%;
+    background-color: $white;
+    transform-origin: 100% 50%;
+    z-index: 4;
+  }
+
+  .icon-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom:25px;
+    height: 80px;
+
+    svg {
+      height:100%;
+      width:auto;
+
+      &:not(.restaurant-svg) {
+        max-width:65px;
+      }
+    }
+    /*
+    @media screen and ($mobile_sm) {
+      @include vw(padding-bottom, 18px, 500);
+      @include vw(height, 80px, 500);
+    }
+
+    @media screen and ($min1024) {
+      @include vw(padding-bottom, 25px);
+      @include vw(height, 80px);
+    }
+
+    @media screen and ($min1920) {
+      padding-bottom: 25px;
+      height: 80px;
+    }
+    */
+  }
+
+  /*
+  .retail-svg {
+    @media screen and ($mobile_sm) {
+      @include vw(width, 73px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      width: 73px;
+    }
+    @media screen and ($min1024) {
+      @include vw(width, 73px);
+    }
+
+    @media screen and ($min1920) {
+      width: 73px;
+    }
+  }
+
+  .health-wellness-svg {
+    width: 75px;
+    @media screen and ($mobile_sm) {
+      @include vw(width, 75px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      width: 75px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 75px);
+    }
+
+    @media screen and ($min1920) {
+      width: 75px;
+    }
+  }
+
+  .beauty-salons-svg {
+    width: 85px;
+    @media screen and ($mobile_sm) {
+      @include vw(width, 85px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      width: 85px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 85px);
+    }
+
+    @media screen and ($min1920) {
+      width: 85px;
+    }
+  }
+
+  .non-profit-svg {
+    width: 120px;
+    @media screen and ($mobile_sm) {
+      @include vw(width, 120px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      width: 120px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 120px);
+    }
+
+    @media screen and ($min1920) {
+      width: 120px;
+    }
+  }
+
+  .hardware-svg {
+    width: 75px;
+    @media screen and ($mobile_sm) {
+      @include vw(width, 75px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      width: 75px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 75px);
+    }
+
+    @media screen and ($min1920) {
+      width: 75px;
+    }
+  }
+
+  .grocery-svg {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: 50% 35%;
+    width: 75px;
+    &.svg-top {
+      z-index: 2;
+    }
+    @media screen and ($mobile_sm) {
+      @include vw(width, 75px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      width: 75px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 75px);
+    }
+
+    @media screen and ($min1920) {
+      width: 75px;
+    }
+  }
+
+  .ecommerce-svg {
+    width: 90px;
+    @media screen and ($mobile_sm) {
+      @include vw(width, 90px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      width: 90px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 90px);
+    }
+
+    @media screen and ($min1920) {
+      width: 90px;
+    }
+  }
+
+  .restaurant-svg {
+    @media screen and ($mobile_sm) {
+      @include vw(width, 125px, 500);
+      @include vw(margin-top, -20px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      width: 125px;
+      margin-top: -20px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 125px);
+      @include vw(margin-top, -20px);
+    }
+
+    @media screen and ($min1920) {
+      width: 125px;
+      margin-top: -20px;
+    }
+  }
+
+  .hospitality-svg {
+    width: 82px;
+    @media screen and ($mobile_sm) {
+      @include vw(width, 82px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      width: 82px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 82px);
+    }
+
+    @media screen and ($min1920) {
+      width: 82px;
+    }
+  }
+
+  .fashion-boutiques-svg {
+    width: 75px;
+    @media screen and ($mobile_sm) {
+      @include vw(width, 75px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      width: 75px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 75px);
+    }
+
+    @media screen and ($min1920) {
+      width: 75px;
+    }
+  }
+
+  .homeware-store-svg {
+    width: 73px;
+    @media screen and ($mobile_sm) {
+      @include vw(width, 73px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      width: 73px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 73px);
+    }
+
+    @media screen and ($min1920) {
+      width: 73px;
+    }
+  }
+
+  .professional-services-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75px;
+
+    &.svg-circle {
+      transform-origin: 50% 20%;
+    }
+
+    &.svg-bottom {
+      transform-origin: 50% 68%;
+    }
+    @media screen and ($mobile_sm) {
+      @include vw(width, 75px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      width: 75px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 75px);
+    }
+
+    @media screen and ($min1920) {
+      width: 75px;
+    }
+  }
+
+  .wholesale-icon-svg {
+    width: 75px;
+    @media screen and ($mobile_sm) {
+      @include vw(width, 75px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      width: 75px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 75px);
+    }
+
+    @media screen and ($min1920) {
+      width: 75px;
+    }
+  }
+
+  .wellness-icon-svg {
+    width: 75px;
+    @media screen and ($mobile_sm) {
+      @include vw(width, 75px, 500);
+    }
+    @media screen and ($mobile_lg) {
+      width: 75px;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 75px);
+    }
+
+    @media screen and ($min1920) {
+      width: 75px;
+    }
+  }
+  */
+}

@@ -1,0 +1,254 @@
+.contact-section-home {
+  padding-top: $sk-block-padding;
+  padding-bottom: $sk-block-padding;
+
+  @media screen and ($max500){
+    padding-top: $sk-block-padding-mobile;
+    padding-bottom: $sk-block-padding-mobile;
+  }
+
+  .txt-content {
+    .quote-by-txt {
+      @media screen and ($mobile_sm) {
+        @include vw(padding-left, 22px, 500);
+      }
+      @media screen and ($mobile_lg) {
+        padding-left: 22px;
+      }
+
+      @media screen and ($min1024) {
+        @include vw(padding-left, 23px);
+      }
+
+      @media screen and ($min1920) {
+        padding-left: 23px;
+      }
+
+      &::before {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        backface-visibility: hidden;
+        transform: translateY(-50%);
+        background-color: $blue-1;
+        width: 11px;
+        height: 2px;
+      }
+    }
+  }
+
+  .circle-filler-el {
+    stroke: $green-7;
+    stroke-width: 0.5px;
+  }
+
+  .circle-filler-canvas {
+    pointer-events: none;
+    backface-visibility: hidden;
+    z-index: 1;
+
+    @media screen and ($mobile_all) {
+      display: none;
+    }
+
+    &.circle-1 {
+      top: 0;
+      left: 72.5%;
+    }
+
+    &.circle-2 {
+      top: 69%;
+      left: 0;
+    }
+
+    &.circle-3 {
+      top: 69%;
+      left: 72.2%;
+    }
+  }
+
+  .img-hold {
+    overflow: hidden;
+    // border-radius: 50%;
+  }
+
+  .blocks-wrap {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+
+  .single-block {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    box-sizing: content-box;
+    overflow: hidden;
+    @media screen and ($mobile_all) {
+      flex-flow: column nowrap;
+      justify-content: center;
+      text-align: center;
+    }
+
+    @media screen and ($min1024) {
+      flex-direction:column;
+      gap:10px;
+      //@include vw(padding-top, 20px);
+      //@include vw(padding-bottom, 20px);
+      //width: fit-content;
+    }
+
+    @media screen and ($min1920) {
+      //padding-top:20px;
+      //padding-bottom:20px;
+      //width: fit-content;
+    }
+    &.twilio-chat-btn {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .svg-icon-wrap {
+    border-radius: 50%;
+    background-color: $green-1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    @media screen and ($mobile) {
+      height: 50px;
+      width: 50px;
+      margin-bottom: 25px;
+    }
+    @media screen and ($tablet) {
+      margin-bottom: 25px;
+    }
+    @media screen and ($min1024) {
+      //@include vw(margin-right, 23px);
+    }
+    @media screen and ($min1920) {
+      margin-right: 23px;
+    }
+
+    &.triangle-element::before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-color: $green-1 transparent transparent transparent;
+      @media screen and ($mobile_sm) {
+        @include vw(bottom, -13px, 500);
+        @include vw(right, 15px, 500);
+        border-width: 17px 16px 0 0;
+      }
+      @media screen and ($mobile_lg) {
+        bottom: -13px;
+        right: 15px;
+        border-width: 17px 16px 0 0;
+      }
+      @media screen and ($min1024) {
+        @include vw(bottom, -13px);
+        @include vw(right, 15px);
+        border-width: 17px 16px 0 0;
+      }
+      @media screen and ($min1920) {
+        bottom: -13px;
+        right: 15px;
+        border-width: 17px 16px 0 0;
+      }
+    }
+  }
+
+  .contact-icon {
+    flex: 0 0 auto;
+
+    path,
+    circle {
+      fill: $white;
+    }
+  }
+
+  .msg-icon {
+    width: 51px;
+    height: 51px;
+    padding: 5px 10px;
+    @media screen and ($mobile) {
+      width: 45px;
+      height: 45px;
+    }
+
+    .st0 {
+      opacity: 1;
+    }
+  }
+
+  .email-btn {
+    .cls-1-top {
+      transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    &:hover {
+      .cls-1-top {
+        transform: translate(0, 52%) rotateX(130deg);
+      }
+    }
+  }
+
+  .email-icon {
+    // position: absolute;
+    // top: 50%;
+    // left: 54.5%;
+    // transform: translate(-50%, -50%);
+    // transform-origin: 50% 29%;
+    width: 51px;
+    height: 51px;
+    @media screen and ($mobile) {
+      width: 45px;
+      height: 45px;
+    }
+    // padding: 15px;
+    email-btn &.bottom-email-icon {
+      left: 6px;
+      bottom: 0;
+      transform: none;
+      top: 10px;
+      transform-origin: unset;
+      width: 45px;
+      height: 45px;
+    }
+    &.top-part-svg {
+      left: 28px;
+      top: 30px;
+    }
+  }
+
+  .phone-icon {
+    width: 51px;
+    height: 51px;
+    padding: 11px 5px 13px 9px;
+
+    @media screen and ($mobile) {
+      width: 45px;
+      height: 45px;
+    }
+
+    .signal-path {
+      opacity: 0;
+    }
+  }
+
+  .msg-icon {
+    .st0 {
+      fill-rule: evenodd;
+      clip-rule: evenodd;
+    }
+  }
+}

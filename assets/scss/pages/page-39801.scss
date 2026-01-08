@@ -1,0 +1,199 @@
+@use "pages";
+@use "../blocks/savings-calculator.scss";
+
+.calculator-page-circle-info-section {
+
+    .breadcrumb-wrap li:after {
+        border-color:$blue-1;
+    }
+
+    .info-white-section-img {
+        position: relative;
+        z-index: 2;
+    }
+
+    .background-pattern-svg {
+        position: absolute;
+        opacity:0.2;
+
+        @media ($mobile_all) {
+            display: none;
+        }
+
+        @media ($min1024) {
+            @include vw(top, -370px);
+            @include vw(right, -288px);
+            @include vw(width, 761px);
+        }
+
+        @media ($min1920) {
+            top: -370px;
+            right: -288px;
+            width: 761px;
+        }
+    }
+
+    .calculator-circle-el {
+        border-radius: 50%;
+        @include abs-cover-el;
+        backface-visibility: hidden;
+
+        @media ($mobile_all) {
+            display: none;
+        }
+    }
+
+    .calculator-circle-gray-border {
+        border: 1px solid $gray-25;
+        z-index: 3;
+        transform: translateY(74%);
+    }
+
+    .calculator-circle-blue {
+        background-color: $blue-24;
+        z-index: 3;
+        transform: translateX(-68%);
+    }
+
+    .calculator-circle-gray {
+        background-color: $gray-23;
+        z-index: 2;
+        transform: translate(-68%, 74%);
+    }
+
+    .img-width-wrap {
+        position: relative;
+        z-index: 4;
+
+        @media ($mobile_all) {
+            width: 100%;
+            height: 0;
+            padding-bottom: 100%;
+        }
+    }
+}
+
+.page-id-39801 {
+    .calculator-section {
+        .calculator-graphic-wrap {
+            @media screen and ($min1024){
+                right:2vw;
+            }
+            @media screen and (min-width:1580px){
+                right:0;
+            }
+        }
+
+        .results-col {
+            width:100%
+        }
+        .calculator-results-wrap {
+            padding-bottom:0 !important;
+        }
+        .graphic-el-wrap {
+            position: absolute;
+            left: 0;
+            overflow: hidden;
+            @include vw(top, -9px, 1024);
+            width:80vw;
+            @include vw(height, 572px, 1024);
+
+            @media screen and ($mobile){
+                width:70vw;
+            }
+
+            @media screen and ($min1024) {
+                @include vw(top, -7px, 1660);
+                @include vw(width, 757px, 1660);
+                @include vw(height, 469px, 1660);
+            }
+
+            @media screen and ($min1660) {
+                top: -7px;
+                width: 757px;
+                height: 469px;
+            }
+
+            &.stcde {
+                @media screen and ($mobile_all) {
+                left: 15px;
+                }
+            }
+        }
+        .graphic-info-side {
+            position:absolute;
+            top:0;
+            right:-20px;
+
+            @media screen and ($max1024){
+                right:auto;
+                left:0;
+            }
+        }
+    }
+}
+
+.bgr-circle-info-section {
+    &::before {
+        content: "";
+        display: inline-block;
+        @include abs-cover-el;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 2;
+
+        @media ($mobile_all) {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    .bg-image {
+        background-size: cover;
+        background-position: 50% 0%;
+        z-index: 1;
+    }
+
+    .container {
+        z-index: 3;
+    }
+
+    .bgr-circle-svg {
+        @media ($mobile_all) {
+            display: none;
+        }
+
+        @media ($min1024) {
+            position: absolute;
+            height: 169%;
+            top: 46%;
+            left: 44%;
+            transform: translate(-50%, -50%);
+
+            circle {
+                fill: $blue-1;
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .txt-content {
+        width: 100%;
+
+        @media ($mobile_all) {
+            max-width: 450px;
+        }
+
+        @media ($min1024) {
+            @include vw(width, 360px);
+            padding-left:2vw;
+
+            & > *:not(.bgr-circle-svg) {
+                z-index: 2;
+                position: relative;
+            }
+        }
+
+        @media ($min1920) {
+            width: 360px;
+        }
+    }
+}

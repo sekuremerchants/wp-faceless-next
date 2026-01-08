@@ -1,0 +1,286 @@
+.hbspt-form .hs-form-field label.hs-form-booleancheckbox-display {
+  position: relative;
+  top: auto;
+  left: auto;
+  padding: 0;
+  margin-bottom: 5px;
+}
+.hbspt-form .inputs-list {
+  padding-left: 0;
+}
+.hbspt-form .hs-fieldtype-checkbox .inputs-list {
+  padding-left: 20px;
+}
+.hbspt-form .hs-fieldtype-checkbox .inputs-list li {
+  margin-bottom: 15px;
+}
+.hbspt-form .hs-fieldtype-checkbox .inputs-list .check-desc {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.25px;
+}
+.hbspt-form .hs-fieldtype-checkbox .hs-form-checkbox-display {
+  display: flex;
+  letter-spacing: 0;
+}
+.hbspt-form .hs-error-msgs {
+  margin-bottom: 0 !important;
+  padding-left: 0;
+  list-style: none;
+}
+.hbspt-form .hs-error-msgs li {
+  list-style: none;
+}
+.hbspt-form .hs-error-msgs li::before,
+.hs-form-booleancheckbox::before {
+  content: none !important;
+}
+.hbspt-form .input .hs-form-booleancheckbox-display a {
+  color: #fff;
+}
+.hs-form-booleancheckbox-display {
+  display: flex;
+  padding-left: 0 !important;
+}
+.hs-form-booleancheckbox {
+  list-style-type: none;
+}
+.hbspt-form .hs-button {
+  width: auto !important;
+  padding: 20px 35px !important;
+  font-family: 'Red Hat Display';
+  color: #002ea6;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  background: #17fcc4;
+  border: none;
+  border-radius: 40px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.hbspt-form .hs-button:focus,
+.hbspt-form .hs-button:hover {
+  background: #fff !important;
+  border: 1px solid #17fcc4;
+}
+#ui-datepicker-div {
+  display: none;
+  width: 240px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 2px 2px 4px 0 rgb(0 0 0 / 30%);
+}
+#ui-datepicker-div .ui-datepicker-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+#ui-datepicker-div .ui-datepicker-header a {
+  text-decoration: none;
+  cursor: pointer;
+}
+#ui-datepicker-div .ui-datepicker-title {
+  display: flex;
+  width: 100%;
+}
+#ui-datepicker-div .ui-datepicker-title select {
+  flex: 1;
+}
+#ui-datepicker-div .ui-datepicker-calendar {
+  width: 100%;
+}
+#ui-datepicker-div .ui-datepicker-calendar td,
+#ui-datepicker-div .ui-datepicker-calendar th {
+  text-align: center;
+}
+.landing-page-form .hbspt-form .hs-error-msgs {
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.firefox .hbspt-form .hs-fieldtype-file label {
+  position: relative;
+  top: auto;
+  left: auto;
+  padding: 0;
+  background: 0 0;
+}
+.firefox .hbspt-form fieldset .hs-input[type='file'] {
+  padding: 0;
+  line-height: unset;
+  border: none;
+}
+@media (max-width: 880px) {
+  .hbspt-form
+    .hs-form-field
+    label#label-how_has_partnering_with_sekure_helped_to_improve_your_business_and_what_challenges_did_you_face_bef-8da3bd32-0a4b-430a-bc8e-6ee0c9f08f38 {
+    top: -30px;
+  }
+  .hbspt-form .hs-button {
+    padding: 0.99rem 2.125rem !important;
+  }
+}
+@media (max-width: 640px) {
+  .hbspt-form {
+    padding: 45px 30px;
+  }
+}
+@media (max-width: 1024px) {
+  .hbspt-form
+    .hs-form-field
+    label#label-how_has_partnering_with_sekure_helped_to_improve_your_business_and_what_challenges_did_you_face_bef-8da3bd32-0a4b-430a-bc8e-6ee0c9f08f38 {
+    top: auto;
+  }
+  .hbspt-form fieldset {
+    margin-bottom: 0 !important;
+  }
+  .hbspt-form .hs-form-field {
+    margin-bottom: 20px !important;
+  }
+  .hbspt-form .hs-form-field label {
+    display: inline-block;
+    position: relative;
+    top: auto;
+    left: auto;
+    padding: 0;
+    margin-bottom: 10px;
+    letter-spacing: 0;
+    background: 0 0;
+  }
+  .hbspt-form fieldset .input {
+    margin-right: 0 !important;
+  }
+  .hbspt-form fieldset .hs-input {
+    width: 100% !important;
+  }
+  .hs-fieldtype-file .input {
+    display: flex;
+    align-items: center;
+  }
+}
+.firefox .hs-fieldtype-file .hs-input {
+  background-color: transparent !important;
+  font-size: 0.9rem;
+}
+.firefox .hs-fieldtype-file input[type='file']::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #17fcc4;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 20px;
+  color: #002ea6;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+.firefox .hs-fieldtype-file input[type='file']::file-selector-button:active,
+.firefox .hs-fieldtype-file input[type='file']::file-selector-button:hover {
+  background: #fff;
+}
+@media (max-width: 1200px) {
+  .hbspt-form fieldset.form-columns-2 .hs-form-field {
+    width: 100% !important;
+  }
+}
+.page-id-1526 .contacts-tab-form .hbspt-form .hs-input:not(input[type='checkbox']),
+.page-id-32709 .contacts-tab-form .hbspt-form .hs-input:not(input[type='checkbox']),
+.page-id-28057 .contacts-tab-form .hbspt-form .hs-input:not(input[type='checkbox']) {
+  color: #002ea6;
+  border-color: #002ea6;
+}
+.page-id-1526 .contacts-tab-form .hbspt-form .hs-form-field label,
+.page-id-32709 .contacts-tab-form .hbspt-form .hs-form-field label,
+.page-id-28057 .contacts-tab-form .hbspt-form .hs-form-field label {
+  color: #002ea6;
+  background: #fff;
+}
+.page-id-1526 .contacts-tab-form .hbspt-form input[type='file'],
+.page-id-32709 .contacts-tab-form .hbspt-form input[type='file'],
+.page-id-28057 .contacts-tab-form .hbspt-form input[type='file'] {
+  cursor: pointer;
+}
+@media (min-width: 1025px) {
+  .home-page-form .hbspt-form input[type='submit'] {
+    height: 11.875vw;
+    width: 11.875vw !important;
+    padding: 0 !important;
+  }
+}
+@media (min-width: 501px) and (max-width: 1024px) {
+  .home-page-form .hbspt-form input[type='submit'] {
+    height: 228px;
+    width: 228px !important;
+  }
+}
+@media (max-width: 500px) {
+  .home-page-form .hbspt-form input[type='submit'] {
+    height: 45.6vw;
+    width: 45.6vw !important;
+  }
+}
+
+.subscribe-newsletter-form .hbspt-form form,
+.two-columns-flex .row {
+  align-items: center;
+}
+.subscribe-newsletter-form .hbspt-form .hs-email.hs-form-field {
+  margin-right: 20px;
+}
+.subscribe-newsletter-form .hbspt-form .hs-recaptcha.hs-form-field {
+  order: 1;
+}
+.subscribe-newsletter-form .hbspt-form .hs-button {
+  margin-top: 0 !important;
+}
+.subscribe-newsletter-form .hbspt-form .hs-error-msgs {
+  position: absolute;
+}
+.subscribe-newsletter-form .hbspt-form .hs-input:not(input[type='checkbox']) {
+  padding: 0 15px !important;
+  height: 55px !important;
+  line-height: 27px !important;
+}
+.contact-col .hbspt-form .hs-input:not(input[type='checkbox'])::placeholder,
+.newsletter-form-wrap
+  .hbspt-form
+  .hs-input:not(input[type='checkbox'])::placeholder {
+  font-size: 12px;
+}
+@media (max-width: 880px) {
+  .subscribe-newsletter-form .hbspt-form .hs-input:not(input[type='checkbox']) {
+    padding: 0 15px !important;
+    height: 60px !important;
+    line-height: 60px !important;
+  }
+}
+.hbspt-form .submitted-message.hs-main-font-element,
+.hbspt-form .submitted-message.hs-main-font-element *,
+.hbspt-form .submitted-message.hs-main-font-element p {
+  font-size: 18px;
+}
+/* download guide */
+.contact-block .hbspt-form form, .section-download-guide .hbspt-form form, .talk-us-block .hbspt-form form {
+  flex-direction: column;
+}
+.section-download-guide .hbspt-form .hs-form-field, .talk-us-block .hbspt-form .hs-form-field {
+  margin-bottom: 20px !important;
+}
+.contact-block .hbspt-form input[type=email], .section-download-guide .hbspt-form input[type=email], .sk-lander .section-download-guide .hbspt-form input[type=email], .sk-lander .talk-us-block .hbspt-form input[type=email], .talk-us-block .hbspt-form input[type=email] {
+  height: auto !important;
+  line-height: 30px !important;
+  padding: .938vw .781vw !important;
+  border: 1px solid hsla(0, 0%, 100%, .5) !important;
+}
+.contact-block .hbspt-form .hs-error-msgs.inputs-list, .hero.inner-pages-landing-section .btn-default, .hero.inner-pages-landing-section .scroll-to-section-btn, .section-download-guide .hbspt-form .hs-error-msgs.inputs-list, .single-rates .gform_wrapper, .talk-us-block .hbspt-form .hs-error-msgs.inputs-list {
+  margin-top: 0;
+}
+.contact-block .hbspt-form .hs-error-msg, .section-download-guide .hbspt-form .hs-error-msg, .talk-us-block .hbspt-form .hs-error-msg {
+  background: 0 0;
+  color: #17fcc4 !important;
+}
+.contact-block .hbspt-form .hs-submit .hs-button, .section-download-guide .hbspt-form .hs-submit .hs-button, .talk-us-block .hbspt-form .hs-submit .hs-button {
+  width: 100% !important;
+}

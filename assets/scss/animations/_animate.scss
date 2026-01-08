@@ -1,0 +1,137 @@
+@use '_vars';
+@use '_base';
+
+// .animated {
+//   opacity: 0;
+// }
+.in-view {
+  transition: opacity 0.5s ease;
+  /* Attention seekers  */
+  // @use 'attention_seekers/bounce';
+  // @use 'attention_seekers/flash';
+  // @use 'attention_seekers/pulse';
+  // @use 'attention_seekers/rubberBand';
+  // @use 'attention_seekers/shakeX';
+  // @use 'attention_seekers/shakeY';
+  // @use 'attention_seekers/headShake';
+  // @use 'attention_seekers/swing';
+  // @use 'attention_seekers/tada';
+  // @use 'attention_seekers/wobble';
+  // @use 'attention_seekers/jello';
+  // @use 'attention_seekers/heartBeat';
+
+  // /* Back entrances */
+  // @use 'back_entrances/backInDown';
+  // @use 'back_entrances/backInLeft';
+  // @use 'back_entrances/backInRight';
+  // @use 'back_entrances/backInUp';
+
+  // /* Back exits */
+  // @use 'back_exits/backOutDown';
+  // @use 'back_exits/backOutLeft';
+  // @use 'back_exits/backOutRight';
+  // @use 'back_exits/backOutUp';
+
+  // /* Bouncing entrances  */
+  // @use 'bouncing_entrances/bounceIn';
+  // @use 'bouncing_entrances/bounceInDown';
+  // @use 'bouncing_entrances/bounceInLeft';
+  // @use 'bouncing_entrances/bounceInRight';
+  // @use 'bouncing_entrances/bounceInUp';
+
+  // /* Bouncing exits  */
+  // @use 'bouncing_exits/bounceOut';
+  // @use 'bouncing_exits/bounceOutDown';
+  // @use 'bouncing_exits/bounceOutLeft';
+  // @use 'bouncing_exits/bounceOutRight';
+  // @use 'bouncing_exits/bounceOutUp';
+
+  // /* Fading entrances  */
+  @use 'fading_entrances/fadeIn';
+  // @use 'fading_entrances/fadeInDown';
+  // @use 'fading_entrances/fadeInDownBig';
+  // @use 'fading_entrances/fadeInLeft';
+  // @use 'fading_entrances/fadeInLeftBig';
+  // @use 'fading_entrances/fadeInRight';
+  // @use 'fading_entrances/fadeInRightBig';
+  // @use 'fading_entrances/fadeInUp';
+  // @use 'fading_entrances/fadeInUpBig';
+  // @use 'fading_entrances/fadeInTopLeft';
+  // @use 'fading_entrances/fadeInTopRight';
+  // @use 'fading_entrances/fadeInBottomLeft';
+  // @use 'fading_entrances/fadeInBottomRight';
+
+  // /* Fading exits */
+  // @use 'fading_exits/fadeOut';
+  // @use 'fading_exits/fadeOutDown';
+  // @use 'fading_exits/fadeOutDownBig';
+  // @use 'fading_exits/fadeOutLeft';
+  // @use 'fading_exits/fadeOutLeftBig';
+  // @use 'fading_exits/fadeOutRight';
+  // @use 'fading_exits/fadeOutRightBig';
+  // @use 'fading_exits/fadeOutUp';
+  // @use 'fading_exits/fadeOutUpBig';
+  // @use 'fading_exits/fadeOutTopLeft';
+  // @use 'fading_exits/fadeOutTopRight';
+  // @use 'fading_exits/fadeOutBottomRight';
+  // @use 'fading_exits/fadeOutBottomLeft';
+
+  // /* Flippers */
+  // @use 'flippers/flip';
+  // @use 'flippers/flipInX';
+  // @use 'flippers/flipInY';
+  // @use 'flippers/flipOutX';
+  // @use 'flippers/flipOutY';
+
+  // /* Lightspeed */
+  // @use 'lightspeed/lightSpeedInRight';
+  // @use 'lightspeed/lightSpeedInLeft';
+  // @use 'lightspeed/lightSpeedOutRight';
+  // @use 'lightspeed/lightSpeedOutLeft';
+
+  // /* Rotating entrances */
+  // @use 'rotating_entrances/rotateIn';
+  // @use 'rotating_entrances/rotateInDownLeft';
+  // @use 'rotating_entrances/rotateInDownRight';
+  // @use 'rotating_entrances/rotateInUpLeft';
+  // @use 'rotating_entrances/rotateInUpRight';
+
+  // /* Rotating exits */
+  // @use 'rotating_exits/rotateOut';
+  // @use 'rotating_exits/rotateOutDownLeft';
+  // @use 'rotating_exits/rotateOutDownRight';
+  // @use 'rotating_exits/rotateOutUpLeft';
+  // @use 'rotating_exits/rotateOutUpRight';
+
+  // /* Specials */
+  // @use 'specials/hinge';
+  // @use 'specials/jackInTheBox';
+  // @use 'specials/rollIn';
+  // @use 'specials/rollOut';
+
+  /* Zooming entrances */
+  @use 'zooming_entrances/zoomIn';
+  // @use 'zooming_entrances/zoomInDown';
+  // @use 'zooming_entrances/zoomInLeft';
+  // @use 'zooming_entrances/zoomInRight';
+  // @use 'zooming_entrances/zoomInUp';
+
+  // /* Zooming exits */
+  // @use 'zooming_exits/zoomOut';
+  // @use 'zooming_exits/zoomOutDown';
+  // @use 'zooming_exits/zoomOutLeft';
+  // @use 'zooming_exits/zoomOutRight';
+  // @use 'zooming_exits/zoomOutUp';
+
+  // /* Sliding entrances */
+  // @use 'sliding_entrances/slideInDown';
+  // @use 'sliding_entrances/slideInLeft';
+  // @use 'sliding_entrances/slideInRight';
+  // @use 'sliding_entrances/slideInUp';
+
+  // /* Sliding exits */
+  // @use 'sliding_exits/slideOutDown';
+  // @use 'sliding_exits/slideOutLeft';
+  // @use 'sliding_exits/slideOutRight';
+  // @use 'sliding_exits/slideOutUp';
+}
