@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   /* config options here */
+  //output: 'export', // <=== enables static exports
+  //basePath: '/sekuremerchants/wp-faceless-next',
   matcher: [
     "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.[^/]+$).*)"
   ],
