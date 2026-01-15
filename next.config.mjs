@@ -12,7 +12,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: process.env.WP_IMAGES_URL,
+        hostname: "wordpress-dev-appsvc.azurewebsites.net",
         port: "",
         pathname: "/wp-content/uploads/**"
       },
