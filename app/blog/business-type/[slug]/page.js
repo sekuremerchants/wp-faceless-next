@@ -1,29 +1,30 @@
 const query = `
-	query blogPostQuery($uri: String!) {
-		nodeByUri(uri: $uri) {
-			... on Post {
-				id
-				postId
-				title
-				uri
-				blocks(postTemplate: false)
-			}
-		}
-	}
+  query GetPostsByBusinessType($uri: String!) {
+    posts(first: 9, where: {taxQuery: {taxArray: {taxonomy: BUSINESSTYPE, field: SLUG, operator: IN, terms: [$uri,]}}}) {
+      nodes {
+        date
+        id
+        slug
+        title
+        businessTypes {
+          nodes {
+            name
+          }
+        }
+      }
+    }
+  }
 `;
 
 const blogPostsQuery = `
-query blogPostsQuery {
-  posts(first: 400) {
-    nodes {
-      id
-      postId
-      slug
-      title
-      blocks(postTemplate: false)
+  query GetBusinessTypes {
+    businessTypes {
+      nodes {
+        name
+        slug
+      }
     }
   }
-}
 `;
 
 export async function generateStaticParams(){
@@ -38,7 +39,7 @@ export async function generateStaticParams(){
   });
   const { data } = await res.json();
 
-	return data.posts.nodes.map((post) => ({
+	return data.businessTypes.nodes.map((post) => ({
     slug: post.slug,
   }));
 }
@@ -46,7 +47,7 @@ export async function generateStaticParams(){
 export default async function BlogPost({params}) {
 	const slug = await params;
 	const queryVariables = {
-  		uri: "blog/" + slug.slug,
+  		uri: slug.slug,
 	};
   const res = await fetch(process.env.WP_GRAPHQL_URL, {
     method: 'POST',
@@ -59,14 +60,15 @@ export default async function BlogPost({params}) {
     }),
   });
   const { data } = await res.json();
-  const nodeData = data.nodeByUri;
-
-	console.log("BLOG POST PARAMS: ", slug);
-	console.log("BLOG POST DATA: ", data);
 
 	return (
 		<main>
-			<h1>dynamic blog post file - {nodeData.title}</h1>
+			<h1>dynamic blog post business type archive file - {data.posts.nodes[0].businessTypes.nodes[0].name}</h1>
+      <ul>
+        {data.posts.nodes.map((post) => (
+          <li key={post.id}>{post.title} - {post.date}</li>
+        ))}
+      </ul>
 		</main>  
 	);
 }

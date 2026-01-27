@@ -1,38 +1,18 @@
-const allPagesAndLandersQuery = `
+const AllLandersQuery = `
 	query AllPagesAndLandersQuery {
-		pages(first: 50) {
-			nodes {
-				id
-				pageId
-				title
-				slug
-			}
-		}
-		landings(first: 200) {
+		landings(where: { search: "mega" }) {
 			nodes {
 				id
 				landingId
-				title
 				slug
+				title
+				uri
 			}
 		}
 	}
 `;
 
 const query = `
-	query PageQuery($uri: String!) {
-		nodeByUri(uri: $uri) {
-			... on Page {
-				id
-				pageId
-				title
-				blocks(postTemplate: false)
-			}
-		}
-	}
-`;
-
-const landingQuery = `
 	query LandingPageQuery($uri: String!) {
 		nodeByUri(uri: $uri) {
 			... on Landing {
@@ -52,27 +32,20 @@ export async function generateStaticParams(){
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			query: allPagesAndLandersQuery,
+			query: AllLandersQuery,
 		}),
 	});
 	const { data } = await res.json();
-	return [
-		data.pages.nodes.map((post) => ({
-			slug: post.slug,
-		})),
-		data.landings.nodes.map((post) => ({
-			slug: post.slug,
-		})),
-	];
+	return data.landings.nodes.map((post) => ({
+		slug: post.slug,
+	}));
 }
 
 export default async function Page({params}) {
 	const { slug } = await params;
+	console.log("LANDINGS RESOURCES GUIDES SLUG: ", slug);
 	const queryVariables = {
-  		uri: slug,
-	};
-	const landingQueryVariables = {
-		uri: "landings/" + slug,
+  	uri: "landings/resources/guides/" + slug,
 	};
 	const res = await fetch(process.env.WP_GRAPHQL_URL, {
     method: 'POST',
@@ -84,21 +57,9 @@ export default async function Page({params}) {
 			variables: queryVariables,
     }),
   });
-	var { data } = await res.json();
+	const { data } = await res.json();
 
-	if(!data.nodeByUri){
-		const resLander = await fetch(process.env.WP_GRAPHQL_URL, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				query: landingQuery,
-				variables: landingQueryVariables,
-			}),
-		});
-		var { data } = await resLander.json();
-	}
+	console.log("GUIDES DATA: ", data)
 
 	return (
 		<main>

@@ -1,9 +1,8 @@
 const query = `
-	query RateQuery($uri: String!) {
+	query CaseStudyQuery($uri: String!) {
 		nodeByUri(uri: $uri) {
-			... on Rate {
+			... on Casestudy {
 				id
-				rateId
 				title
 				uri
 				blocks(postTemplate: false)
@@ -12,14 +11,14 @@ const query = `
 	}
 `;
 
-const ratesQuery = `
-query RatesQuery {
-  rates {
+const caseStudiesQuery = `
+query caseStudiesQuery {
+  casestudies {
     nodes {
       id
-      rateId
-      title
+      casestudyId
       slug
+      title
     }
   }
 }
@@ -32,20 +31,20 @@ export async function generateStaticParams(){
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      query: ratesQuery,
+      query: caseStudiesQuery,
     }),
   });
   const { data } = await res.json();
 
-	return data.rates.nodes.map((post) => ({
+	return data.casestudies.nodes.map((post) => ({
     slug: post.slug,
   }));
 }
 
 export default async function Page({params}) {
-	const { slug } = await params;
+	const slug = await params;
 	const queryVariables = {
-  		uri: "rates/" + slug,
+  		uri: "case-studies/" + slug.slug,
 	};
   const res = await fetch(process.env.WP_GRAPHQL_URL, {
     method: 'POST',
@@ -62,7 +61,7 @@ export default async function Page({params}) {
 
 	return (
 		<main>
-			<h1>dynamic rates single page file - {nodeData.title}</h1>
+			<h1>dynamic case study single page file - {nodeData.title}</h1>
 		</main>  
 	);
 }

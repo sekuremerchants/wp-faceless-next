@@ -3,9 +3,9 @@ const nextConfig = {
   /* config options here */
   //output: 'export', // <=== enables static exports
   //basePath: '/sekuremerchants/wp-faceless-next',
-  matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.[^/]+$).*)"
-  ],
+  //matcher: [
+  //  "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.[^/]+$).*)"
+  //],
   images: {
     unoptimized: true,
     formats: ["image/avif", "image/webp"],

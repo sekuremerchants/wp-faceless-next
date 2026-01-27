@@ -72,7 +72,7 @@ export default async function Page({params}) {
   		uri: slug,
 	};
 	const landingQueryVariables = {
-		uri: "landings/" + slug,
+		uri: "landings/es/" + slug,
 	};
 	const res = await fetch(process.env.WP_GRAPHQL_URL, {
     method: 'POST',

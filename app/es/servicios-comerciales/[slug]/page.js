@@ -1,13 +1,5 @@
-const allPagesAndLandersQuery = `
-	query AllPagesAndLandersQuery {
-		pages(first: 50) {
-			nodes {
-				id
-				pageId
-				title
-				slug
-			}
-		}
+const AllLandersQuery = `
+	query AllLandersQuery {
 		landings(first: 200) {
 			nodes {
 				id
@@ -20,19 +12,6 @@ const allPagesAndLandersQuery = `
 `;
 
 const query = `
-	query PageQuery($uri: String!) {
-		nodeByUri(uri: $uri) {
-			... on Page {
-				id
-				pageId
-				title
-				blocks(postTemplate: false)
-			}
-		}
-	}
-`;
-
-const landingQuery = `
 	query LandingPageQuery($uri: String!) {
 		nodeByUri(uri: $uri) {
 			... on Landing {
@@ -52,27 +31,19 @@ export async function generateStaticParams(){
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			query: allPagesAndLandersQuery,
+			query: AllLandersQuery,
 		}),
 	});
 	const { data } = await res.json();
-	return [
-		data.pages.nodes.map((post) => ({
-			slug: post.slug,
-		})),
-		data.landings.nodes.map((post) => ({
-			slug: post.slug,
-		})),
-	];
+	return data.landings.nodes.map((post) => ({
+		slug: post.slug,
+	}));
 }
 
 export default async function Page({params}) {
 	const { slug } = await params;
 	const queryVariables = {
-  		uri: slug,
-	};
-	const landingQueryVariables = {
-		uri: "landings/" + slug,
+  	uri: "landings/es/servicios-comerciales/" + slug,
 	};
 	const res = await fetch(process.env.WP_GRAPHQL_URL, {
     method: 'POST',
@@ -84,21 +55,7 @@ export default async function Page({params}) {
 			variables: queryVariables,
     }),
   });
-	var { data } = await res.json();
-
-	if(!data.nodeByUri){
-		const resLander = await fetch(process.env.WP_GRAPHQL_URL, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				query: landingQuery,
-				variables: landingQueryVariables,
-			}),
-		});
-		var { data } = await resLander.json();
-	}
+	const { data } = await res.json();
 
 	return (
 		<main>

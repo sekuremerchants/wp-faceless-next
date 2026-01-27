@@ -28,7 +28,7 @@ export const Footer = async () => {
 		}),
 	})
 	const { data } = await res.json()
-	console.log("Footer: ", data.menus.nodes);
+	//console.log("Footer: ", data.menus.nodes);
 
 	const currentYear = new Date().getFullYear();
 

@@ -1,8 +1,6 @@
 const query = `
-	query RateQuery($uri: String!) {
+	query IndustryQuery($uri: String!) {
 		nodeByUri(uri: $uri) {
-			id
-			uri
 			... on Industry {
 				id
 				industryId
@@ -14,33 +12,59 @@ const query = `
 	}
 `;
 
-const getPageContent = async (queryVariables) => {
+const industriesQuery = `
+query IndustriesQuery {
+  industries(first: 30) {
+    nodes {
+      id
+      industryId
+      title
+      slug
+    }
+  }
+}
+`;
+
+export async function generateStaticParams(){
   const res = await fetch(process.env.WP_GRAPHQL_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      query: query,
-	  variables: queryVariables,
+      query: industriesQuery,
     }),
   });
   const { data } = await res.json();
-  return data.nodeByUri;
-};
 
-export default async function Page(props) {
-	const { slug } = await props.params;
+	return data.industries.nodes.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+export default async function Industry({params}) {
+	const slug = await params;
 	const queryVariables = {
-  		uri: "industry/" + slug,
+  		uri: "industry/" + slug.slug,
 	};
-	const content = await getPageContent(queryVariables);
-	console.log('SLUG: ', slug);
-	console.log('CONTENT: ', content);
+	const res = await fetch(process.env.WP_GRAPHQL_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: query,
+			variables: queryVariables,
+    }),
+  });
+  const { data } = await res.json();
+	const nodeData = data.nodeByUri;
+
+	console.log("INDUSTRY DATA: ", data);
 
 	return (
 		<main>
-			<h1>dynamic industry single page file - {content.title}</h1>
+			<h1>dynamic industry single page file - {nodeData.title}</h1>
 		</main>  
 	);
 }

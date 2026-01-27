@@ -1,8 +1,6 @@
 const query = `
-	query RateQuery($uri: String!) {
+	query EquipmentQuery($uri: String!) {
 		nodeByUri(uri: $uri) {
-			id
-			uri
 			... on Equipment {
 				id
 				equipmentId
@@ -14,33 +12,102 @@ const query = `
 	}
 `;
 
-const getPageContent = async (queryVariables) => {
+const queryLander = `
+	query PaymentsLanderQuery($uri: String!) {
+		nodeByUri(uri: $uri) {
+			... on Landing {
+				id
+				landingId
+				title
+				blocks(postTemplate: false)
+			}
+		}
+	}
+`;
+
+const equipmentsQuery = `
+query EquipmentsQuery {
+  equipments(first: 40) {
+    nodes {
+      id
+      equipmentId
+      title
+      slug
+    }
+  }
+  landings(where: { search: "payments" }) {
+    nodes {
+      id
+      landingId
+      slug
+      title
+      uri
+    }
+  }
+}
+`;
+
+export async function generateStaticParams(){
   const res = await fetch(process.env.WP_GRAPHQL_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      query: query,
-	  variables: queryVariables,
+      query: equipmentsQuery,
     }),
   });
   const { data } = await res.json();
-  return data.nodeByUri;
-};
 
-export default async function Page(props) {
-	const { slug } = await props.params;
+  return [
+    data.equipments.nodes.map((post) => ({
+      slug: post.slug,
+    })),
+    data.landings.nodes.map((post) => ({
+      slug: post.slug,
+    })),
+  ];
+}
+
+export default async function Payment({params}) {
+	const { slug } = await params;
+  console.log("SLUG: ", slug);
 	const queryVariables = {
   		uri: "payments/" + slug,
 	};
-	const content = await getPageContent(queryVariables);
-	console.log('SLUG: ', slug);
-	console.log('CONTENT: ', content);
+	const res = await fetch(process.env.WP_GRAPHQL_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: query,
+			variables: queryVariables,
+    }),
+  });
+	const queryLanderVariables = {
+  		uri: "landings/" + slug,
+	};
+	const resLander = await fetch(process.env.WP_GRAPHQL_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: queryLander,
+			variables: queryLanderVariables,
+    }),
+  });
+  var { data } = await res.json();
+  if(!data.nodeByUri){
+    var { data } = await resLander.json();
+  }
+
+  console.log("PAYMENTS DATA: ", data);
 
 	return (
 		<main>
-			<h1>dynamic payments single page file - {content.title}</h1>
+			<h1>dynamic payments single page file - {data.nodeByUri.title}</h1>
 		</main>  
 	);
 }
