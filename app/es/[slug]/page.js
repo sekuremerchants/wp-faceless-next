@@ -46,7 +46,7 @@ const landingQuery = `
 `;
 
 export async function generateStaticParams(){
-	const res = await fetch(process.env.WP_GRAPHQL_URL, {
+	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export default async function Page({params}) {
 	const landingQueryVariables = {
 		uri: "landings/es/" + slug,
 	};
-	const res = await fetch(process.env.WP_GRAPHQL_URL, {
+	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ export default async function Page({params}) {
 	var { data } = await res.json();
 
 	if(!data.nodeByUri){
-		const resLander = await fetch(process.env.WP_GRAPHQL_URL, {
+		const resLander = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

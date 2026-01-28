@@ -48,7 +48,7 @@ query EquipmentsQuery {
 `;
 
 export async function generateStaticParams(){
-  const res = await fetch(process.env.WP_GRAPHQL_URL, {
+  const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ export default async function Payment({params}) {
 	const queryVariables = {
   		uri: "payments/" + slug,
 	};
-	const res = await fetch(process.env.WP_GRAPHQL_URL, {
+	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export default async function Payment({params}) {
 	const queryLanderVariables = {
   		uri: "landings/" + slug,
 	};
-	const resLander = await fetch(process.env.WP_GRAPHQL_URL, {
+	const resLander = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -25,7 +25,7 @@ query caseStudiesQuery {
 `;
 
 export async function generateStaticParams(){
-  const res = await fetch(process.env.WP_GRAPHQL_URL, {
+  const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export default async function Page({params}) {
 	const queryVariables = {
   		uri: "case-studies/" + slug.slug,
 	};
-  const res = await fetch(process.env.WP_GRAPHQL_URL, {
+  const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
