@@ -61,8 +61,8 @@ export default async function BlogPost({params}) {
   const { data } = await res.json();
   const nodeData = data.nodeByUri;
 
-	console.log("BLOG POST PARAMS: ", slug);
-	console.log("BLOG POST DATA: ", data);
+	//console.log("BLOG POST PARAMS: ", slug);
+	//console.log("BLOG POST DATA: ", data);
 
 	return (
 		<main>
