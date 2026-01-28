@@ -57,6 +57,8 @@ export async function generateStaticParams(){
 	});
 	const { data } = await res.json();
 
+	console.log(data);
+
 	if(!data || data.length === 0){
 		return [{ slug: 'data-empty' }];
 	}
