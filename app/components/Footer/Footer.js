@@ -3,7 +3,7 @@ import Link from "next/link"
 import Script from "next/script"
 
 export const Footer = async () => {
-	const res = await fetch(process.env.WP_GRAPHQL_URL, {
+	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
 		method: 'POST',
 		headers: {
 		'Content-Type': 'application/json',
