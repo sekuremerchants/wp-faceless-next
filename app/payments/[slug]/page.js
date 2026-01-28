@@ -59,6 +59,11 @@ export async function generateStaticParams(){
   });
   const { data } = await res.json();
 
+  return data.equipments.nodes.map((post) => ({
+    slug: post.slug,
+  }));
+
+  /*
   return [
     data.equipments.nodes.map((post) => ({
       slug: post.slug,
@@ -67,6 +72,7 @@ export async function generateStaticParams(){
       slug: post.slug,
     })),
   ];
+  */
 }
 
 export default async function Payment({params}) {
