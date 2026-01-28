@@ -8,6 +8,7 @@ import { Footer } from "./components/Footer";
 // styles
 import "../assets/css/styles/bootstrap.css";
 import "../assets/css/styles/style.css";
+import "/assets/js/header.js";
 
 const redHatDisplay = Red_Hat_Display({
   variable: "--font-red-hat-display",
