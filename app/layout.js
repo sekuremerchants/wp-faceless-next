@@ -8,7 +8,6 @@ import { Footer } from "./components/Footer";
 // styles
 import "../assets/css/styles/bootstrap.css";
 import "../assets/css/styles/style.css";
-import "../public/assets/js/header.js";
 
 const redHatDisplay = Red_Hat_Display({
   variable: "--font-red-hat-display",
@@ -28,7 +27,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${redHatDisplay.variable} ${libreFranklin.variable}`}>
+      <body style="padding-top:200px;" className={`${redHatDisplay.variable} ${libreFranklin.variable}`}>
         {/* 
         <Script
           src="https://js.hsforms.net/forms/embed/v2.js"
