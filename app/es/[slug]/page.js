@@ -56,6 +56,12 @@ export async function generateStaticParams(){
 		}),
 	});
 	const { data } = await res.json();
+
+	return data.pages.nodes.map((post) => ({
+		slug: post.slug,
+	}));
+
+	/*
 	return [
 		data.pages.nodes.map((post) => ({
 			slug: post.slug,
@@ -64,6 +70,7 @@ export async function generateStaticParams(){
 			slug: post.slug,
 		})),
 	];
+	*/
 }
 
 export default async function Page({params}) {
