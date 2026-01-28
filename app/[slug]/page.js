@@ -56,6 +56,11 @@ export async function generateStaticParams(){
 		}),
 	});
 	const { data } = await res.json();
+
+	if(!data || data.length === 0){
+		return [{ slug: 'data-empty' }];
+	}
+
 	return [
 		data.pages.nodes.map((post) => ({
 			slug: post.slug,
