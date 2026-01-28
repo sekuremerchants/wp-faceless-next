@@ -3,7 +3,7 @@ import Image from "next/image"
 import Script from "next/script"
 
 export const Header = async () => {
-	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+	const res = await fetch(process.env.WP_GRAPHQL_URL, {
 		method: 'POST',
 		headers: {
 		'Content-Type': 'application/json',
