@@ -74,7 +74,7 @@ export const Header = async () => {
 			<style>{styleCode}</style>
 			<div className="container full">
 				<div className="content-wrap">
-					<Link href="/" className="header-logo-link prel"><Image src="/logo/en/logo-white-descriptor-tagline.webp" alt="Sekure Payment Experts logo" width="245" height="138" className="header-logo" /></Link>
+					<Link href="/" className="header-logo-link prel"><Image src="/logo/en/logo-white-descriptor-tagline.webp" alt="Sekure Payment Experts logo" width={245} height={138} className="header-logo" unoptimized /></Link>
 
 					<nav role="navigation">
 						<button aria-label="Toggle mobile menu button" className="mobile-menu-btn" aria-controls="menu" aria-expanded="false">
