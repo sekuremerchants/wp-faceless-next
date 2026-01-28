@@ -1,6 +1,6 @@
 const allPagesAndLandersQuery = `
 	query AllPagesAndLandersQuery {
-		pages(first: 50) {
+		pages(first: 20, where: {parent: 30211}) {
 			nodes {
 				id
 				pageId
@@ -8,7 +8,7 @@ const allPagesAndLandersQuery = `
 				slug
 			}
 		}
-		landings(first: 200) {
+		landings(first: 30, where: {parent: 5593}) {
 			nodes {
 				id
 				landingId
@@ -57,7 +57,7 @@ export async function generateStaticParams(){
 	});
 	const { data } = await res.json();
 
-	return data.pages.nodes.map((post) => ({
+	return data.landings.nodes.map((post) => ({
 		slug: post.slug,
 	}));
 
@@ -75,11 +75,9 @@ export async function generateStaticParams(){
 
 export default async function Page({params}) {
 	const { slug } = await params;
+	/*
 	const queryVariables = {
   		uri: slug,
-	};
-	const landingQueryVariables = {
-		uri: "landings/es/" + slug,
 	};
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
@@ -91,10 +89,27 @@ export default async function Page({params}) {
 			variables: queryVariables,
     }),
   });
+	*/
+	const landingQueryVariables = {
+		uri: "landings/es/" + slug,
+	};
+	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			query: landingQuery,
+			variables: landingQueryVariables,
+		}),
+	});
 	const { data } = await res.json();
 
 	/*
 	if(!data.nodeByUri){
+		const landingQueryVariables = {
+			uri: "landings/es/" + slug,
+		};
 		const resLander = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
 			method: 'POST',
 			headers: {

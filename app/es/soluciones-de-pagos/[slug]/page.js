@@ -1,6 +1,6 @@
-const AllLandersQuery = `
-	query AllLandersQuery {
-		landings(first: 50, where: { search: "pagos" }) {
+const AllLandersSolucionesPagosQuery = `
+	query AllLandersSolucionesPagos {
+		landings(first: 30, where: {parent: 6029}) {
 			nodes {
 				id
 				landingId
@@ -32,7 +32,7 @@ export async function generateStaticParams(){
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			query: AllLandersQuery,
+			query: AllLandersSolucionesPagosQuery,
 		}),
 	});
 	const { data } = await res.json();

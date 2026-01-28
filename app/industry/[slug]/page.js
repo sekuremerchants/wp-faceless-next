@@ -60,7 +60,7 @@ export default async function Industry({params}) {
   const { data } = await res.json();
 	const nodeData = data.nodeByUri;
 
-	console.log("INDUSTRY DATA: ", data);
+	//console.log("INDUSTRY DATA: ", data);
 
 	return (
 		<main>

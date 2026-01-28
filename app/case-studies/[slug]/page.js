@@ -12,7 +12,7 @@ const query = `
 `;
 
 const caseStudiesQuery = `
-query caseStudiesQuery {
+query caseStudies {
   casestudies {
     nodes {
       id

@@ -1,6 +1,6 @@
-const AllLandersQuery = `
-	query AllPagesAndLandersQuery {
-		landings(first: 50, where: { search: "merchant" }) {
+const AllLandersMerchantServicesQuery = `
+	query AllLandersMerchantServices {
+		landings(first: 50, where: {parent: 5943}) {
 			nodes {
 				id
 				landingId
@@ -32,7 +32,7 @@ export async function generateStaticParams(){
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			query: AllLandersQuery,
+			query: AllLandersMerchantServicesQuery,
 		}),
 	});
 	const { data } = await res.json();
@@ -43,7 +43,6 @@ export async function generateStaticParams(){
 
 export default async function Page({params}) {
 	const { slug } = await params;
-	console.log("LANDINGS MERCHANT SERVICS SLUG: ", slug);
 	const queryVariables = {
   	uri: "landings/merchant-services/" + slug,
 	};
@@ -58,8 +57,6 @@ export default async function Page({params}) {
     }),
   });
 	const { data } = await res.json();
-
-	console.log("MERCHANT SERVICS DATA: ", data)
 
 	return (
 		<main>

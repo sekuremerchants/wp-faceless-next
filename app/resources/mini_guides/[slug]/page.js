@@ -1,6 +1,6 @@
-const AllLandersQuery = `
-	query AllPagesAndLandersQuery {
-		landings(where: { search: "mini" }) {
+const AllLandersMiniGuidesQuery = `
+	query AllLandersMiniGuides {
+		landings(where: {parent: 20730}) {
 			nodes {
 				id
 				landingId
@@ -32,7 +32,7 @@ export async function generateStaticParams(){
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			query: AllLandersQuery,
+			query: AllLandersMiniGuidesQuery,
 		}),
 	});
 	const { data } = await res.json();
@@ -59,7 +59,7 @@ export default async function Page({params}) {
   });
 	const { data } = await res.json();
 
-	console.log("MINI GUIDES DATA: ", data)
+	//console.log("MINI GUIDES DATA: ", data)
 
 	return (
 		<main>

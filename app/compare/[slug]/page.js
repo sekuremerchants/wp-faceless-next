@@ -1,6 +1,6 @@
-const AllLandersQuery = `
-	query AllPagesAndLandersQuery {
-		landings(first: 50, where: { search: "compare" }) {
+const AllLandersCompareQuery = `
+	query AllLandersCompare {
+		landings(where: {parent: 5788}) {
 			nodes {
 				id
 				landingId
@@ -32,7 +32,7 @@ export async function generateStaticParams(){
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			query: AllLandersQuery,
+			query: AllLandersCompareQuery,
 		}),
 	});
 	const { data } = await res.json();
@@ -43,7 +43,6 @@ export async function generateStaticParams(){
 
 export default async function Page({params}) {
 	const { slug } = await params;
-	console.log("LANDINGS MERCHANT SERVICS SLUG: ", slug);
 	const queryVariables = {
   	uri: "landings/compare/" + slug,
 	};
@@ -59,7 +58,7 @@ export default async function Page({params}) {
   });
 	const { data } = await res.json();
 
-	console.log("MERCHANT SERVICS DATA: ", data)
+	//console.log("MERCHANT SERVICS DATA: ", data)
 
 	return (
 		<main>

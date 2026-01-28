@@ -1,6 +1,6 @@
-const AllLandersQuery = `
-	query AllPagesAndLandersQuery {
-		landings(where: { search: "mega" }) {
+const AllLandersGuidesQuery = `
+	query AllLandersGuides {
+		landings(where: {parent: 20618}) {
 			nodes {
 				id
 				landingId
@@ -32,7 +32,7 @@ export async function generateStaticParams(){
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			query: AllLandersQuery,
+			query: AllLandersGuidesQuery,
 		}),
 	});
 	const { data } = await res.json();
@@ -59,7 +59,7 @@ export default async function Page({params}) {
   });
 	const { data } = await res.json();
 
-	console.log("GUIDES DATA: ", data)
+	//console.log("GUIDES DATA: ", data)
 
 	return (
 		<main>

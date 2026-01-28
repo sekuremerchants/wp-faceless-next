@@ -1,6 +1,6 @@
 const allPagesAndLandersQuery = `
 	query AllPagesAndLandersQuery {
-		pages(first: 30) {
+		pages(first: 30, where: {parent: 0}) {
 			nodes {
 				id
 				pageId
@@ -8,7 +8,7 @@ const allPagesAndLandersQuery = `
 				slug
 			}
 		}
-		landings(first: 170) {
+		landings(first: 170, where: {parent: 0}) {
 			nodes {
 				id
 				landingId

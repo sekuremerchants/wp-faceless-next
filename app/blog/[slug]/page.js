@@ -13,7 +13,7 @@ const query = `
 `;
 
 const blogPostsQuery = `
-query blogPostsQuery {
+query blogPosts {
   posts(first: 400) {
     nodes {
       id

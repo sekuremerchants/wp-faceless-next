@@ -77,7 +77,6 @@ export async function generateStaticParams(){
 
 export default async function Payment({params}) {
 	const { slug } = await params;
-  console.log("SLUG: ", slug);
 	const queryVariables = {
   		uri: "payments/" + slug,
 	};
@@ -91,13 +90,13 @@ export default async function Payment({params}) {
 			variables: queryVariables,
     }),
   });
-	const queryLanderVariables = {
-  		uri: "landings/" + slug,
-	};
   const { data } = await res.json();
 
   /*
   if(!data.nodeByUri){
+  	const queryLanderVariables = {
+  		uri: "landings/" + slug,
+	  };
     const resLander = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
       method: 'POST',
       headers: {
