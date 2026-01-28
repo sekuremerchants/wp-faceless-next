@@ -96,8 +96,9 @@ export default async function Page({params}) {
 			variables: queryVariables,
     }),
   });
-	var { data } = await res.json();
+	const { data } = await res.json();
 
+	/*
 	if(!data.nodeByUri){
 		const resLander = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
 			method: 'POST',
@@ -111,6 +112,7 @@ export default async function Page({params}) {
 		});
 		var { data } = await resLander.json();
 	}
+	*/
 
 	return (
 		<main>

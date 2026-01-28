@@ -94,22 +94,25 @@ export default async function Payment({params}) {
 	const queryLanderVariables = {
   		uri: "landings/" + slug,
 	};
-	const resLander = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: queryLander,
-			variables: queryLanderVariables,
-    }),
-  });
-  var { data } = await res.json();
+  const { data } = await res.json();
+
+  /*
   if(!data.nodeByUri){
+    const resLander = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: queryLander,
+        variables: queryLanderVariables,
+      }),
+    });
     var { data } = await resLander.json();
   }
+  */
 
-  console.log("PAYMENTS DATA: ", data);
+  //console.log("PAYMENTS DATA: ", data);
 
 	return (
 		<main>
