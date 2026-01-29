@@ -121,7 +121,7 @@ export default async function Page({params}) {
 		var { data } = await resLander.json();
 	}
 
-	console.log("PAGE OR LANDER DATA: ", data);
+	//console.log("PAGE OR LANDER DATA: ", data);
 
 	return (
 		<main>
