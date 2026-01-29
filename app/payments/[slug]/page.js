@@ -102,7 +102,7 @@ export default async function Payment({params}) {
 
   if(!data.nodeByUri){
   	const queryLanderVariables = {
-  		uri: "landings/" + slug,
+  		uri: "landings/payments/" + slug,
 	  };
     const resLander = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
       method: 'POST',
