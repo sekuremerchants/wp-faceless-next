@@ -35,7 +35,7 @@ query EquipmentsQuery {
       slug
     }
   }
-  landings(where: { search: "payments" }) {
+  landings(where: {parent: 42053}) {
     nodes {
       id
       landingId
