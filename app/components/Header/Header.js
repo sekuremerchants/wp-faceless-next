@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import Script from "next/script"
-import getConfig from "next/config";
+import nextConfig from "next/config";
 
 export const Header = async () => {
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
@@ -69,7 +69,7 @@ export const Header = async () => {
 		}
   `;
 
-	const { publicRuntimeConfig } = getConfig();
+	const { publicRuntimeConfig } = nextConfig();
 	const basePath = publicRuntimeConfig?.assetPrefix || '';
 
 	return (
