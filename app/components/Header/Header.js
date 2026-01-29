@@ -1,7 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
 import Script from "next/script"
-import nextConfig from "next/config";
 
 export const Header = async () => {
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
@@ -69,8 +68,7 @@ export const Header = async () => {
 		}
   `;
 
-	const { publicRuntimeConfig } = nextConfig();
-	const basePath = publicRuntimeConfig?.assetPrefix || '';
+	const basePath = (process.env.NODE_ENV == 'production' ? '/wp-faceless-next' : '');
 
 	return (
 		<header id="header" className="header main-header">
