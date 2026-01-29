@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import Script from "next/script"
+import getConfig from "next/config";
 
 export const Header = async () => {
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
@@ -68,13 +69,16 @@ export const Header = async () => {
 		}
   `;
 
+	const { publicRuntimeConfig } = getConfig();
+	const basePath = publicRuntimeConfig?.assetPrefix || '';
+
 	return (
 		<header id="header" className="header main-header">
 			<Script src="/assets/js/header.js"/>
 			<style>{styleCode}</style>
 			<div className="container full">
 				<div className="content-wrap">
-					<Link href="/" className="header-logo-link prel"><Image src="/logo/en/logo-white-descriptor-tagline.webp" alt="Sekure Payment Experts logo" width={245} height={138} className="header-logo" unoptimized /></Link>
+					<Link href="/" className="header-logo-link prel"><Image src={`${basePath}/logo/en/logo-white-descriptor-tagline.webp`} alt="Sekure Payment Experts logo" width={245} height={138} className="header-logo" unoptimized /></Link>
 
 					<nav role="navigation">
 						<button aria-label="Toggle mobile menu button" className="mobile-menu-btn" aria-controls="menu" aria-expanded="false">
