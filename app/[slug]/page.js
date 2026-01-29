@@ -57,15 +57,24 @@ export async function generateStaticParams(){
 	});
 	const { data } = await res.json();
 
-	console.log(data.pages.nodes);
-
 	if(!data || data.length === 0){
 		return [{ slug: 'data-empty' }];
 	}
 
-	return data.pages.nodes.map((post) => ({
+	const pageSlugs = data.pages.nodes.map((post) => ({
 		slug: post.slug,
 	}));
+
+	const landerSlugs = data.landings.nodes.map((post) => ({
+		slug: post.slug,
+	}));
+
+	const allSlugs = [...pageSlugs, ...landerSlugs];
+
+	//console.log(allSlugs);
+
+	return allSlugs;
+
 	/*
 	return [
 		data.pages.nodes.map((post) => ({
@@ -96,9 +105,8 @@ export default async function Page({params}) {
 			variables: queryVariables,
     }),
   });
-	const { data } = await res.json();
+	var { data } = await res.json();
 
-	/*
 	if(!data.nodeByUri){
 		const resLander = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
 			method: 'POST',
@@ -112,7 +120,8 @@ export default async function Page({params}) {
 		});
 		var { data } = await resLander.json();
 	}
-	*/
+
+	console.log("PAGE OR LANDER DATA: ", data);
 
 	return (
 		<main>

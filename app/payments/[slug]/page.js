@@ -59,9 +59,17 @@ export async function generateStaticParams(){
   });
   const { data } = await res.json();
 
-  return data.equipments.nodes.map((post) => ({
-    slug: post.slug,
-  }));
+  const equipmentSlugs = data.equipments.nodes.map((post) => ({
+		slug: post.slug,
+	}));
+
+	const landerSlugs = data.landings.nodes.map((post) => ({
+		slug: post.slug,
+	}));
+
+	const allSlugs = [...equipmentSlugs, ...landerSlugs];
+
+  return allSlugs;
 
   /*
   return [
@@ -90,9 +98,8 @@ export default async function Payment({params}) {
 			variables: queryVariables,
     }),
   });
-  const { data } = await res.json();
+  var { data } = await res.json();
 
-  /*
   if(!data.nodeByUri){
   	const queryLanderVariables = {
   		uri: "landings/" + slug,
@@ -109,9 +116,8 @@ export default async function Payment({params}) {
     });
     var { data } = await resLander.json();
   }
-  */
 
-  //console.log("PAYMENTS DATA: ", data);
+  console.log("PAYMENTS DATA: ", data);
 
 	return (
 		<main>
