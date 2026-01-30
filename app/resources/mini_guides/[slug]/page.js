@@ -43,7 +43,6 @@ export async function generateStaticParams(){
 
 export default async function Page({params}) {
 	const { slug } = await params;
-	console.log("LANDINGS RESOURCES MINI GUIDES SLUG: ", slug);
 	const queryVariables = {
   	uri: "landings/resources/mini_guides/" + slug,
 	};
