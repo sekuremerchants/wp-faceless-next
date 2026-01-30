@@ -27,13 +27,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body style={{ paddingTop: '200px'}} className={`${redHatDisplay.variable} ${libreFranklin.variable}`}>
-        {/* 
-        <Script
-          src="https://js.hsforms.net/forms/embed/v2.js"
-          strategy="beforeInteractive"
-        />
-        */}
+      <body className={`${redHatDisplay.variable} ${libreFranklin.variable}`}>
         <Header />
         {children}
         <Footer />
