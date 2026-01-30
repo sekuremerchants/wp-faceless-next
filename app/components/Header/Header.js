@@ -1,10 +1,9 @@
 import Link from "next/link"
 import Image from "next/image"
 import Script from "next/script"
-import { assetSourceLocal, assetSourceWP } from "../../paths"
+import { assetSourceLocal } from "../../paths"
 
 const basePathLocal = assetSourceLocal();
-const basePathWP = assetSourceWP();
 
 export const Header = async () => {
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
@@ -135,10 +134,10 @@ export const Header = async () => {
 																					<Link href={columnItem.uri} className="dropdown-items-link c-blue-1">
 																						{columnItem.label}
 																						{columnItem.menuItems.linkArrow && (
-																							<Image src={`${basePathWP}/media/svgs/arrow.svg`} alt="arrow icon" height="16" width="16" className="arrow-img"/>
+																							<Image src={`${basePathLocal}/media/svgs/arrow.svg`} alt="arrow icon" height="16" width="16" className="arrow-img"/>
 																						) || 
 																						columnItem.menuItems.linkIcon != null && (
-																							<Image src={`${basePathWP}/media/svgs/header/${columnItem.menuItems.icon[0]}.svg`} alt={`${columnItem.menuItems.icon[0]} icon`}  height="16" width="16" />
+																							<Image src={`${basePathLocal}/media/svgs/header/${columnItem.menuItems.icon[0]}.svg`} alt={`${columnItem.menuItems.icon[0]} icon`}  height="16" width="16" />
 																						)}
 																					</Link>
 																					<p className="column-desc c-blue-1">{columnItem.description}</p>
