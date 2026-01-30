@@ -9,6 +9,7 @@ const nextConfig = {
   //],
   images: {
     unoptimized: true,
+    domains: ['wordpress-dev-appsvc.azurewebsites.net'],
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
