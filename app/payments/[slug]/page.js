@@ -117,7 +117,7 @@ export default async function Payment({params}) {
     var { data } = await resLander.json();
   }
 
-  console.log("PAYMENTS DATA: ", data);
+  //console.log("PAYMENTS DATA: ", data);
 
 	return (
 		<main>

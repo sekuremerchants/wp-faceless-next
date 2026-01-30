@@ -1,6 +1,6 @@
 const query = `
   query GetPostsByBusinessType($uri: String!) {
-    posts(first: 9, where: {taxQuery: {taxArray: {taxonomy: BUSINESSTYPE, field: SLUG, operator: IN, terms: [$uri,]}}}) {
+    posts(first: 9, where: {taxQuery: {taxArray: {taxonomy: BUSINESSTYPE, field: SLUG, operator: IN, terms: [$uri]}}}) {
       nodes {
         date
         id
@@ -39,6 +39,8 @@ export async function generateStaticParams(){
   });
   const { data } = await res.json();
 
+  console.log("BUSINESS TYPE SLUGS: ", data);
+
 	return data.businessTypes.nodes.map((post) => ({
     slug: post.slug,
   }));
@@ -47,7 +49,7 @@ export async function generateStaticParams(){
 export default async function BlogPost({params}) {
 	const slug = await params;
 	const queryVariables = {
-  		uri: 'blog/business-type/' + slug.slug,
+  		uri: slug.slug,
 	};
   const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
@@ -61,9 +63,11 @@ export default async function BlogPost({params}) {
   });
   const { data } = await res.json();
 
+  console.log("BUSINESS TYPE DATA: ", data);
+
 	return (
 		<main>
-			<h1>dynamic blog post business type archive file - {data.posts.nodes[0].businessTypes.nodes[0].name}</h1>
+			<h1>dynamic blog post business type archive file - {/*data.posts.nodes[0].businessTypes.nodes[0].name*/}</h1>
       <ul>
         {data.posts.nodes.map((post) => (
           <li key={post.id}>{post.title} - {post.date}</li>
