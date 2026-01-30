@@ -1,6 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import Script from "next/script"
+import { assetSourceWP } from "../../paths"
+
+const basePathWP = assetSourceWP();
 
 export const Footer = async () => {
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
@@ -59,8 +62,6 @@ export const Footer = async () => {
 		}
   `;
 
-	const basePath = (process.env.NODE_ENV == 'production' ? 'https://wordpress-dev-appsvc.azurewebsites.net' : process.env.NEXT_PUBLIC_WP_URL);
-
 	return (
 		<footer id="footer" className="footer footer-default">
 			<div className="container full prel">
@@ -68,7 +69,7 @@ export const Footer = async () => {
 
 					<div className="logo-col col-sm-12 col-md-12 col-lg-3">
 						<Link href="/" className="footer-logo-link inline_block prel">
-							<Image src={`${basePath}/wp-content/uploads/2022/07/Sekure-TM_White.svg`} width="216" height="72" alt="Sekure Payment Experts logo" className="footer-logo-img" />
+							<Image src={`${basePathWP}/wp-content/uploads/2022/07/Sekure-TM_White.svg`} width="216" height="72" alt="Sekure Payment Experts logo" className="footer-logo-img" />
 						</Link>
 
 						<div className="footer-info-col contact-col">
