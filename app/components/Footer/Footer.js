@@ -59,7 +59,7 @@ export const Footer = async () => {
 		}
   `;
 
-	const basePath = (process.env.NODE_ENV == 'production' ? secrets.NEXT_PUBLIC_WP_URL : process.env.NEXT_PUBLIC_WP_URL);
+	const basePath = (process.env.NODE_ENV == 'production' ? 'https://wordpress-dev-appsvc.azurewebsites.net' : process.env.NEXT_PUBLIC_WP_URL);
 
 	return (
 		<footer id="footer" className="footer footer-default">
