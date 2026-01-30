@@ -59,6 +59,8 @@ export const Footer = async () => {
 		}
   `;
 
+	const basePath = (process.env.NODE_ENV == 'production' ? secrets.NEXT_PUBLIC_WP_URL : process.env.NEXT_PUBLIC_WP_URL);
+
 	return (
 		<footer id="footer" className="footer footer-default">
 			<div className="container full prel">
@@ -66,7 +68,7 @@ export const Footer = async () => {
 
 					<div className="logo-col col-sm-12 col-md-12 col-lg-3">
 						<Link href="/" className="footer-logo-link inline_block prel">
-							<Image src={`${process.env.NEXT_PUBLIC_WP_URL}/wp-content/uploads/2022/07/Sekure-TM_White.svg`} width="216" height="72" alt="Sekure Payment Experts logo" className="footer-logo-img" />
+							<Image src={`${basePath}/wp-content/uploads/2022/07/Sekure-TM_White.svg`} width="216" height="72" alt="Sekure Payment Experts logo" className="footer-logo-img" />
 						</Link>
 
 						<div className="footer-info-col contact-col">
