@@ -1,7 +1,7 @@
 // fixed header outer height adjustment
 const header = document.getElementById('header')
 const mainElement = document.getElementsByTagName('main')
-mainElement[0].style.paddingTop = header.offsetHeight + "px"
+//mainElement[0].style.paddingTop = header.offsetHeight + "px"
 
 // main nav hover functionality
 const headerLinks = document.getElementsByClassName('header-link-item')

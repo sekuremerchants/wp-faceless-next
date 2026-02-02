@@ -69,6 +69,11 @@ export const Header = async () => {
 			opacity:1;
 			visibility:visible;
 		}
+		@media screen and (min-width:1025px){
+			main {
+				padding-top:11vw;
+			}
+		}
   `;
 
 	return (
