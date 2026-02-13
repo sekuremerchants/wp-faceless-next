@@ -309,7 +309,7 @@ export default async function BlogPost({params}) {
         </section>
 
         <section className='newsletter-signup-wrap prel single-article-newsletter ov-hidden'>
-          <Image src="/media/images/blog/newsletter-signup.webp" alt="newsletter signup background photo" height="150" width="1080" className="bg-image object-cover newsletter-background-img"/>
+          <Image src={`${basePathLocal}/media/images/blog/newsletter-signup.webp`} alt="newsletter signup background photo" height="150" width="1080" className="bg-image object-cover newsletter-background-img"/>
           <div className='newsletter-inner-holder'>
             <p className='txt-size-24 c-white fw-700'>Want more business insights?</p>
             <p className='txt-size-18 c-white newsletter-description'>Subscribe now to our monthly newsletter, and join over 40,000 business owners to gain access to exclusive content and insights.</p>
