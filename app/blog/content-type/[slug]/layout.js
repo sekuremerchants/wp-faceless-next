@@ -2,14 +2,13 @@ import Script from 'next/script';
 import { Red_Hat_Display, Libre_Franklin } from "next/font/google";
 
 // components
-import { Header } from "../../components/Header";
-import { Footer } from "../../components/Footer";
+import { Header } from "../../../components/Header";
+import { Footer } from "../../../components/Footer";
 
 // styles
-import "../../../assets/css/styles/bootstrap.css";
-import "../../../assets/css/styles/style.css";
-import "../../../assets/css/styles/blogs.css";
-import "../../../assets/css/styles/blocks/blocks.css";
+import "../../../../assets/css/styles/bootstrap.css";
+import "../../../../assets/css/styles/style.css";
+import "../../../../assets/css/styles/blogs.css";
 
 const redHatDisplay = Red_Hat_Display({
   variable: "--font-red-hat-display",
