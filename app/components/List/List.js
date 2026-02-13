@@ -7,7 +7,7 @@ export const List = ({attributes, listItems}) => {
 
 	return (
 		<ListTag className="wp-block-list">
-			{listItems.length > 0 && (
+			{listItems && listItems.length > 0 && (
 				listItems.map((item, index) => (
 					<li key={index} dangerouslySetInnerHTML={{__html: item.attributes.content}}></li>
 				))

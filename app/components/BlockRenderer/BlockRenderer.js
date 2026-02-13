@@ -14,6 +14,7 @@ export const BlockRenderer = ({blocks}) => {
 				return <Paragraph key={index} content={block.attributes.content}/>
 			}
 			case 'core/list': {
+				console.log("LIST BLOCK DATA: ", block)
 				return (
 					<List key={index} attributes={block.attributes} listItems={block.innerBlocks}/>
 				)

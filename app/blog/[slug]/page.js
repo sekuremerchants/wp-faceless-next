@@ -206,7 +206,7 @@ export default async function BlogPost({params}) {
   const modifiedDateFormatted = modifiedDate.toLocaleDateString(undefined, options);
   const timeToRead = readingTime(nodeData.content);
 
-  //console.log("SINGLE POST DATA", nodeData);
+  console.log("SINGLE POST DATA", nodeData);
 
 	return (
     <>
