@@ -206,7 +206,7 @@ export default async function BlogPost({params}) {
   const modifiedDateFormatted = modifiedDate.toLocaleDateString(undefined, options);
   const timeToRead = readingTime(nodeData.content);
 
-  console.log("SINGLE POST DATA", nodeData);
+  //console.log("SINGLE POST DATA", nodeData);
 
 	return (
     <>
@@ -359,7 +359,7 @@ export default async function BlogPost({params}) {
       </article>
 
       <section className='inner-pages-contact-section contact-block prel sk-page-block block--s talk-us-block blog-social-media'>
-        <Image className='bg-image object-cover b-lazy b-loaded' src='/media/images/inner/contact-section-bgr.webp' alt="blog prefooter background image" width="1280" height="768"/>
+        <Image className='bg-image object-cover b-lazy b-loaded' src={`${basePathLocal}/media/images/inner/contact-section-bgr.webp`} alt="blog prefooter background image" width="1280" height="768"/>
 
         <div className='background-flower-path-patterns'>
           <svg viewBox='0 0 451.3 451.3' className='background-flower-path-svg'>
@@ -399,23 +399,23 @@ export default async function BlogPost({params}) {
                 
                 <div className="buttons-wrap">
                   <a href="https://www.facebook.com/SekurePaymentExperts" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="Facebook Logo" width="60" height="60" src="/media/socials/Facebook-green.svg"/>
+                    <Image className="contact-btn-icon" alt="Facebook Logo" width="60" height="60" src={`${basePathLocal}/media/socials/Facebook-green.svg`}/>
                     <span className="btn-txt">Facebook</span>
                   </a>
                   <a href="https://twitter.com/SekureExperts" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="X Logo" width="60" height="60" src="/media/socials/X-green.svg"/>
+                    <Image className="contact-btn-icon" alt="X Logo" width="60" height="60" src={`${basePathLocal}/media/socials/X-green.svg`}/>
                     <span className="btn-txt">X</span>
                   </a>
                   <a href="https://www.instagram.com/SekurePaymentExperts/" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="Instagram Logo" width="60" height="60" src="/media/socials/Instagram-green.svg"/>
+                    <Image className="contact-btn-icon" alt="Instagram Logo" width="60" height="60" src={`${basePathLocal}/media/socials/Instagram-green.svg`}/>
                     <span className="btn-txt">Instagram</span>
                   </a>
                   <a href="https://www.youtube.com/channel/UCMkp6Tm70C3cQBZ_gS0G-Ow" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="YouTube Logo" width="60" height="60" src="/media/socials/YouTube-green.svg"/>
+                    <Image className="contact-btn-icon" alt="YouTube Logo" width="60" height="60" src={`${basePathLocal}/media/socials/YouTube-green.svg`}/>
                     <span className="btn-txt">YouTube</span>
                   </a>
                   <a href="https://www.linkedin.com/company/sekurepaymentexperts/" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="LinkedIn Logo" width="60" height="60" src="/media/socials/LinkedIn-green.svg"/>
+                    <Image className="contact-btn-icon" alt="LinkedIn Logo" width="60" height="60" src={`${basePathLocal}/media/socials/LinkedIn-green.svg`}/>
                     <span className="btn-txt">LinkedIn</span>
                   </a>
                 </div>
@@ -434,7 +434,7 @@ export default async function BlogPost({params}) {
                   <div className="blog-contact-item">
                     <a className="c-blue-1" href="https://sekuremerchants.com/blog/content-type/guides">
                       <div className="icon">
-                        <Image className="contact-btn-icon" alt="Guides icon" width="60" height="60" src="/media/images/blog/guides.webp"/>
+                        <Image className="contact-btn-icon" alt="Guides icon" width="60" height="60" src={`${basePathLocal}/media/images/blog/guides.webp`}/>
                       </div>
                       <p className="txt-size-30 c-blue-1 fw-700 lh-1_25">Guides</p>
                     </a>
@@ -442,7 +442,7 @@ export default async function BlogPost({params}) {
                   <div className="blog-contact-item">
                     <a className="c-blue-1" href="https://sekuremerchants.com/blog/content-type/research">
                       <div className="icon">
-                        <Image className="contact-btn-icon" alt="Research icon" width="60" height="60" src="/media/images/blog/cs-hub.webp"/>
+                        <Image className="contact-btn-icon" alt="Research icon" width="60" height="60" src={`${basePathLocal}/media/images/blog/cs-hub.webp`}/>
                       </div>
                       <p className="txt-size-30 c-blue-1 fw-700 lh-1_25">Research</p>
                     </a>
@@ -450,7 +450,7 @@ export default async function BlogPost({params}) {
                   <div className="blog-contact-item">
                     <a className="c-blue-1" href="https://sekuremerchants.com/resources/case-studies">
                       <div className="icon">
-                        <Image className="contact-btn-icon" alt="Case studies icon" width="60" height="60" src="/media/images/blog/case-studies.webp"/>
+                        <Image className="contact-btn-icon" alt="Case studies icon" width="60" height="60" src={`${basePathLocal}/media/images/blog/case-studies.webp`}/>
                       </div>
                       <p className="txt-size-30 c-blue-1 fw-700 lh-1_25">Case studies</p>
                     </a>

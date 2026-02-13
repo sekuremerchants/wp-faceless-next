@@ -1,5 +1,5 @@
 export const MultiColumnTable = ({block}) => {
-	console.log("MULTI COLUMN TABLE BLOCK DATA: ", block)
+	//console.log("MULTI COLUMN TABLE BLOCK DATA: ", block)
 
 	const bgColour = block.full_width_with_background == "1" ? "full-width-bg" : "";
 
