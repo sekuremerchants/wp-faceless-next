@@ -39,8 +39,6 @@ export async function generateStaticParams(){
   });
   const { data } = await res.json();
 
-  console.log("BUSINESS TYPE SLUGS: ", data);
-
 	return data.businessTypes.nodes.map((post) => ({
     slug: post.slug,
   }));

@@ -206,6 +206,8 @@ export default async function BlogPost({params}) {
   const modifiedDateFormatted = modifiedDate.toLocaleDateString(undefined, options);
   const timeToRead = readingTime(nodeData.content);
 
+  console.log("SINGLE POST DATA", nodeData);
+
 	return (
     <>
       <article className="sk-blog-content container prel" itemScope="" itemType="https://schema.org/BlogPosting" itemID={nodeData.uri}>
@@ -258,10 +260,12 @@ export default async function BlogPost({params}) {
             </div>
 
             <Social/>
-
-            <div className='featured-img-holder'>
-              <Image src={nodeData.featuredImage.node.sourceUrl} alt={nodeData.featuredImage.node.altText} className='article-featured-img wp-post-image' width='1085' height='550'/>
-            </div>
+            
+            {nodeData.featuredImage && (
+              <div className='featured-img-holder'>
+                <Image src={nodeData.featuredImage.node.sourceUrl} alt={nodeData.featuredImage.node.altText} className='article-featured-img wp-post-image' width='1085' height='550'/>
+              </div>
+            )}
 
             <div className='article-main-content row'>
               <div className='table-of-contents col-sm-12 col-lg-3'>
