@@ -61,7 +61,7 @@ export default async function BlogPost({params}) {
   });
   const { data } = await res.json();
 
-  console.log("BUSINESS TYPE DATA: ", data);
+  //console.log("BUSINESS TYPE DATA: ", data);
 
 	return (
 		<>
