@@ -2,10 +2,83 @@ import Link from "next/link"
 import Image from "next/image"
 import Script from "next/script"
 import { assetSourceLocal } from "../../paths"
+import { LanguageSelect } from './LanguageSelect'
+import { Beauty, Ecommerce, Equipment, Fashion, Grocery, Hardware, Health, Services, Hospitality, Nonprofit, Restaurants, Retail, Wholesale, Wellness, Info, Career, Reviews, TalkToUs } from './Icons'
+
+const componentMap = {
+  beauty: Beauty,
+  ecommerce: Ecommerce,
+  equipment: Equipment,
+  fashion: Fashion,
+  grocery: Grocery,
+  hardware: Hardware,
+  health: Health,
+  services: Services,
+  hospitality: Hospitality,
+  nonprofit: Nonprofit,
+  restaurants: Restaurants,
+  retail: Retail,
+  wholesale: Wholesale,
+  wellness: Wellness,
+	info: Info,
+	reviews: Reviews,
+	talktous: TalkToUs,
+	career: Career,
+};
+
+const DynamicRenderer = (type) => {
+  const TargetComponent = componentMap[type];
+
+  // Return the component if found, otherwise return null or a fallback
+  return TargetComponent ? <TargetComponent /> : null;
+};
 
 const basePathLocal = assetSourceLocal();
 
-export const Header = async () => {
+const langQuery = `
+	query LangQuery($uri: String!) {
+		nodeByUri(uri: $uri) {
+			... on Page {
+				id
+				contentLanguage {
+					language
+					englishTranslationUrl {
+						url
+					}
+					frenchTranslationUrl {
+						url
+					}
+					spanishTranslationUrl {
+						url
+					}
+				}
+			}
+		}
+	}
+`;
+
+export const Header = async ({ pageParams }) => {
+	
+	/*
+	const params = await pageParams;
+	const queryVariables = {
+  	uri: '/' + params.slug,
+	};
+	const resLang = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: langQuery,
+			variables: queryVariables,
+    }),
+  });
+	const { dataLang } = await resLang.json();
+
+	console.log("DATA LANG: ", dataLang);
+	*/
+
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
 		method: 'POST',
 		headers: {
@@ -69,9 +142,19 @@ export const Header = async () => {
 			opacity:1;
 			visibility:visible;
 		}
+		.header .industry-row .dropdown-link-wrap a,
+		.header .contact-icons .dropdown-link-wrap a {
+			display: flex;
+			flex-direction: row-reverse;
+			justify-content: flex-end;
+		}
 		@media screen and (min-width:1025px){
 			main {
 				padding-top:11vw;
+			}
+			.header .contact-icons .dropdown-link-wrap a img {
+				margin-left:0;
+				margin-right:8px;
 			}
 		}
   `;
@@ -95,6 +178,8 @@ export const Header = async () => {
 
 							{/* language switch and careers link */}
 							<div className="nav-extras">
+								<LanguageSelect/>
+								{/*
 								<div className="lang-wrap prel">
 									<Link href="#" className="lang-current">EN</Link>
 									<ul id="lang_toggle" className="ul-reset prel">
@@ -103,6 +188,7 @@ export const Header = async () => {
 										<li><Link href="#" className="block c-white" lang="fr">FR</Link></li>
 									</ul>
 								</div>
+								*/}
 
 								<Link href="/careers" className="careers-link">Careers</Link>
 							</div>
@@ -120,6 +206,8 @@ export const Header = async () => {
 													{menuItem.label}
 													<button aria-hidden="true" className="dropdown-arrow-btn js-header-dropdown-btn"></button>
 												</Link>
+
+												{/* <Image src={`${basePathLocal}/media/svgs/header/${columnItem.menuItems.icon[0]}.svg`} alt={`${columnItem.menuItems.icon[0]} icon`}  height="16" width="16" />  DynamicRenderer(columnItem.menuItems.icon[0]) */}
 
 												<div className="dropdown-item-links">
 													<div className="dropdown-items-links-hold dropdown-content prel">
@@ -142,7 +230,7 @@ export const Header = async () => {
 																							<Image src={`${basePathLocal}/media/svgs/arrow.svg`} alt="arrow icon" height="16" width="16" className="arrow-img"/>
 																						) || 
 																						columnItem.menuItems.linkIcon != null && (
-																							<Image src={`${basePathLocal}/media/svgs/header/${columnItem.menuItems.icon[0]}.svg`} alt={`${columnItem.menuItems.icon[0]} icon`}  height="16" width="16" />
+																							DynamicRenderer(columnItem.menuItems.icon[0].replaceAll('-', ''))
 																						)}
 																					</Link>
 																					<p className="column-desc c-blue-1">{columnItem.description}</p>

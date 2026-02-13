@@ -65,13 +65,13 @@ export default async function BlogPost({params}) {
 	//console.log("BLOG POST DATA: ", data.posts.nodes[0].categories.nodes[0].name);
 
 	return (
-		<main>
+		<>
 			<h1>dynamic blog post category archive file - {data.posts.nodes[0].categories.nodes[0].name}</h1>
       <ul>
         {data.posts.nodes.map((post) => (
           <li key={post.id}>{post.title}</li>
         ))}
       </ul>
-		</main>  
+		</>  
 	);
 }

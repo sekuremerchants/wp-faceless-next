@@ -7,6 +7,10 @@ const query = `
 				title
 				uri
 				blocks(postTemplate: false)
+        seo {
+          title
+          metaDesc
+        }
 			}
 		}
 	}
@@ -20,6 +24,10 @@ const queryLander = `
 				landingId
 				title
 				blocks(postTemplate: false)
+        seo {
+          title
+          metaDesc
+        }
 			}
 		}
 	}
@@ -81,6 +89,47 @@ export async function generateStaticParams(){
     })),
   ];
   */
+}
+
+export async function generateMetadata({ params, searchParams }, parent) {
+  const pageParams = await params;
+
+	const queryVariables = {
+  		uri: "payments/" + pageParams.slug,
+	};
+	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: query,
+			variables: queryVariables,
+    }),
+  });
+  var { data } = await res.json();
+
+  if(!data.nodeByUri){
+  	const queryLanderVariables = {
+  		uri: "landings/payments/" + pageParams.slug,
+	  };
+    const resLander = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: queryLander,
+        variables: queryLanderVariables,
+      }),
+    });
+    var { data } = await resLander.json();
+  }
+
+  return {
+    title: data.nodeByUri.seo.title,
+    description: data.nodeByUri.seo.metaDesc,
+  }
 }
 
 export default async function Payment({params}) {

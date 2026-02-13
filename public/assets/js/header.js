@@ -9,6 +9,11 @@ const htmlElement = document.getElementsByTagName('html')
 
 Array.from(headerLinks).forEach(element => {
   element.addEventListener('mouseover', () => {
+		const headerLinks2 = document.getElementsByClassName('header-link-item')
+		Array.from(headerLinks2).forEach(element2 => {
+			element2.classList.remove('opened-dropdown');
+			element2.nextElementSibling.classList.remove('opened-dropdown')
+		})
 		htmlElement[0].classList.add('header-opened-dropdown')
     element.classList.add('opened-dropdown')
 		element.nextElementSibling.classList.add('opened-dropdown')

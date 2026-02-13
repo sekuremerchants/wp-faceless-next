@@ -1,3 +1,5 @@
+import { queryByUri } from '../queryByUri';
+
 const allPagesAndLandersQuery = `
 	query AllPagesAndLandersQuery {
 		pages(first: 30, where: {parent: 0}) {
@@ -27,6 +29,13 @@ const query = `
 				pageId
 				title
 				blocks(postTemplate: false)
+				postLanguage {
+					contentLanguage
+				}
+				seo {
+					title
+					metaDesc
+				}
 			}
 		}
 	}
@@ -40,6 +49,13 @@ const landingQuery = `
 				landingId
 				title
 				blocks(postTemplate: false)
+				postLanguage {
+					contentLanguage
+				}
+				seo {
+					title
+					metaDesc
+				}
 			}
 		}
 	}
@@ -87,13 +103,11 @@ export async function generateStaticParams(){
 	*/
 }
 
-export default async function Page({params}) {
-	const { slug } = await params;
+export async function generateMetadata({ params, searchParams }, parent) {
+  const pageParams = await params;
+
 	const queryVariables = {
-  		uri: slug,
-	};
-	const landingQueryVariables = {
-		uri: "landings/" + slug,
+  		uri: "/" + pageParams.slug,
 	};
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
@@ -105,27 +119,43 @@ export default async function Page({params}) {
 			variables: queryVariables,
     }),
   });
-	var { data } = await res.json();
+  var { data } = await res.json();
 
 	if(!data.nodeByUri){
-		const resLander = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+		console.log('PAGE NOT FOUND, LOOKING FOR LANDERS');
+		const newQueryVars = {
+				uri: 'landings/' + pageParams.slug,
+		};
+		const resTwo = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
 				query: landingQuery,
-				variables: landingQueryVariables,
+				variables: newQueryVars,
 			}),
 		});
-		var { data } = await resLander.json();
+		var { data } = await resTwo.json();
 	}
 
-	//console.log("PAGE OR LANDER DATA: ", data);
+	//console.log('[SLUG] PAGE DATA: ', data);
+
+  return {
+    title: data.nodeByUri.seo.title,
+    description: data.nodeByUri.seo.metaDesc,
+  }
+}
+
+export default async function Page({params}) {
+	const { slug } = await params;
+	const pageData = await queryByUri(slug);
+
+	//console.log('PAGE DATA: ', pageData);
 
 	return (
 		<main>
-			<h1>dynamic page file - {data.nodeByUri.title}</h1>
+			<h1>dynamic page file - {pageData.nodeByUri.title}</h1>
 		</main>  
 	);
 }

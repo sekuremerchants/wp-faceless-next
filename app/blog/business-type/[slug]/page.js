@@ -66,13 +66,13 @@ export default async function BlogPost({params}) {
   console.log("BUSINESS TYPE DATA: ", data);
 
 	return (
-		<main>
+		<>
 			<h1>dynamic blog post business type archive file - {/*data.posts.nodes[0].businessTypes.nodes[0].name*/}</h1>
       <ul>
         {data.posts.nodes.map((post) => (
           <li key={post.id}>{post.title} - {post.date}</li>
         ))}
       </ul>
-		</main>  
+		</>  
 	);
 }

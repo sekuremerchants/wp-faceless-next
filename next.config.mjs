@@ -19,6 +19,45 @@ const nextConfig = {
       },
     ],
   },
+  turbopack(config){
+    config.module.rules.push({
+      images: {
+        unoptimized: true,
+        formats: ["image/avif", "image/webp"],
+        remotePatterns: [
+          {
+            protocol: "https",
+            hostname: "wordpress-dev-appsvc.azurewebsites.net",
+            port: "",
+            pathname: "/wp-content/uploads/**"
+          },
+        ],
+      },
+    });
+
+    return config;
+  },
+  webpack(config) {
+    // Grab the existing rule that handles SVG imports
+    const fileLoaderRule = config.module.rules.find((rule) =>
+      rule.test?.test?.('.svg')
+    );
+
+    // Exclude SVG from the default file loader rule
+    if (fileLoaderRule) {
+      fileLoaderRule.exclude = /\.svg$/i;
+    }
+
+    // Add a new rule for SVGR
+    config.module.rules.push({
+      test: /\.svg$/i,
+      issuer: fileLoaderRule.issuer,
+      resourceQuery: { not: [/url/] }, // Exclude if imported as a URL (e.g. ?url)
+      use: ['@svgr/webpack'],
+    });
+
+    return config;
+  },
 };
 
 export default nextConfig;

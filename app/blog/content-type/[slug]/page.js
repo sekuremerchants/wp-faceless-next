@@ -62,13 +62,13 @@ export default async function BlogPost({params}) {
   const { data } = await res.json();
 
 	return (
-		<main>
+    <>
 			<h1>dynamic blog post content type archive file - {/*data.posts.nodes[0].contentTypes.nodes[0].name*/}</h1>
       <ul>
         {data.posts.nodes.map((post) => (
           <li key={post.id}>{post.title} - {post.date}</li>
         ))}
       </ul>
-		</main>  
+    </>
 	);
 }

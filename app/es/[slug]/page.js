@@ -27,6 +27,13 @@ const query = `
 				pageId
 				title
 				blocks(postTemplate: false)
+				postLanguage {
+					contentLanguage
+				}
+				seo {
+					title
+					metaDesc
+				}
 			}
 		}
 	}
@@ -40,6 +47,13 @@ const landingQuery = `
 				landingId
 				title
 				blocks(postTemplate: false)
+				postLanguage {
+					contentLanguage
+				}
+				seo {
+					title
+					metaDesc
+				}
 			}
 		}
 	}
@@ -60,24 +74,12 @@ export async function generateStaticParams(){
 	return data.landings.nodes.map((post) => ({
 		slug: post.slug,
 	}));
-
-	/*
-	return [
-		data.pages.nodes.map((post) => ({
-			slug: post.slug,
-		})),
-		data.landings.nodes.map((post) => ({
-			slug: post.slug,
-		})),
-	];
-	*/
 }
 
-export default async function Page({params}) {
-	const { slug } = await params;
-	/*
+export async function generateMetadata({ params, searchParams }, parent) {
+  const pageParams = await params;
 	const queryVariables = {
-  		uri: slug,
+  		uri: 'es/' + pageParams.slug,
 	};
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
@@ -89,23 +91,48 @@ export default async function Page({params}) {
 			variables: queryVariables,
     }),
   });
-	*/
-	const landingQueryVariables = {
-		uri: "landings/es/" + slug,
+  var { data } = await res.json();
+
+	if(!data.nodeByUri){
+		const newQueryVars = {
+				uri: 'landings/es/' + pageParams.slug,
+		};
+		const resTwo = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				query: landingQuery,
+				variables: newQueryVars,
+			}),
+		});
+		var { data } = await resTwo.json();
+	}
+  
+  return {
+    title: data.nodeByUri.seo.title,
+    description: data.nodeByUri.seo.metaDesc,
+  }
+}
+
+export default async function Page({params}) {
+	const { slug } = await params;
+	const queryVariables = {
+  		uri: 'es/' + slug,
 	};
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({
-			query: landingQuery,
-			variables: landingQueryVariables,
-		}),
-	});
-	const { data } = await res.json();
-
-	/*
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: query,
+			variables: queryVariables,
+    }),
+  });
+	var { data } = await res.json();
+	
 	if(!data.nodeByUri){
 		const landingQueryVariables = {
 			uri: "landings/es/" + slug,
@@ -122,11 +149,11 @@ export default async function Page({params}) {
 		});
 		var { data } = await resLander.json();
 	}
-	*/
+	
 
 	return (
 		<main>
-			<h1>dynamic page file - {data.nodeByUri.title}</h1>
+			<h1>dynamic ES page file - {data.nodeByUri.title}</h1>
 		</main>  
 	);
 }

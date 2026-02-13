@@ -19,6 +19,10 @@ const query = `
 				landingId
 				title
 				blocks(postTemplate: false)
+				seo {
+					title
+					metaDesc
+				}
 			}
 		}
 	}
@@ -38,6 +42,29 @@ export async function generateStaticParams(){
 	return data.landings.nodes.map((post) => ({
 		slug: post.slug,
 	}));
+}
+
+export async function generateMetadata({ params, searchParams }, parent) {
+  const pageParams = await params;
+	const queryVariables = {
+  		uri: "landings/es/servicios-comerciales/" + pageParams.slug,
+	};
+	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: query,
+			variables: queryVariables,
+    }),
+  });
+  const { data } = await res.json();
+  
+  return {
+    title: data.nodeByUri.seo.title,
+    description: data.nodeByUri.seo.metaDesc,
+  }
 }
 
 export default async function Page({params}) {
