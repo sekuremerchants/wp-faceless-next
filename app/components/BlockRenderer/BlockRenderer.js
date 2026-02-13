@@ -28,6 +28,11 @@ export const BlockRenderer = ({blocks}) => {
 					<MultiColumnTable key={index} block={block.attributes.data}/>
 				)
 			}
+			default: {
+				return (
+					<h2 key={index}>{block.name}</h2>
+				)
+			}
 		}
 	})
 }

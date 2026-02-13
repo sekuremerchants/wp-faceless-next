@@ -157,6 +157,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
   return {
     title: data.nodeByUri.seo.title,
     description: data.nodeByUri.seo.metaDesc,
+    robots: {
+			index: false,
+			follow: false,
+		},
   }
 }
 
@@ -206,42 +210,42 @@ export default async function BlogPost({params}) {
   const modifiedDateFormatted = modifiedDate.toLocaleDateString(undefined, options);
   const timeToRead = readingTime(nodeData.content);
 
-  //console.log("SINGLE POST DATA", nodeData);
+  console.log("SINGLE POST DATA", nodeData);
 
 	return (
     <>
-      <article className="sk-blog-content container prel" itemScope="" itemType="https://schema.org/BlogPosting" itemID={nodeData.uri}>
-        <div className="breadcrumb-wrap prel single-article-breadcrumb">
-          <ul className="disclaimer pl-0 d-flex gap-10">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/blog">Blog</Link></li>
+      <article className='sk-blog-content container prel' itemScope='' itemType='https://schema.org/BlogPosting' itemID={nodeData.uri}>
+        <div className='breadcrumb-wrap prel single-article-breadcrumb'>
+          <ul className='disclaimer pl-0 d-flex gap-10'>
+            <li><Link href='/'>Home</Link></li>
+            <li><Link href='/blog'>Blog</Link></li>
           </ul>
-          <p className="txt-size-12 upper letter-spacing">{nodeData.title}</p>
-          <div className="back-to-all">
-            <Image src="https://wordpress-dev-appsvc.azurewebsites.net/wp-content/themes/sekure/assets/media/icons/green-arrow.svg" width="21" height="16" alt="Back arrow" className="prel" />
-            <a className="disclaimer" href="https://wordpress-dev-appsvc.azurewebsites.net/blog">Back to all posts</a>
+          <p className='txt-size-12 upper letter-spacing'>{nodeData.title}</p>
+          <div className='back-to-all'>
+            <Image src='https://wordpress-dev-appsvc.azurewebsites.net/wp-content/themes/sekure/assets/media/icons/green-arrow.svg' width='21' height='16' alt='Back arrow' className='prel' />
+            <Link href='/blog' className='disclaimer'>Back to all posts</Link>
           </div>
         </div>
 
-        <div className="article-body row">
-          <div className="article-content col-sm-12 col-lg-10">
+        <div className='article-body row'>
+          <div className='article-content col-sm-12 col-lg-10'>
             <h1>{nodeData.title}</h1>
 
-            <div className="article-cats mb-3">
-              <ul className="ul-reset px-0 mb-0 d-flex flex-wrap gap-10">
+            <div className='article-cats mb-3'>
+              <ul className='ul-reset px-0 mb-0 d-flex flex-wrap gap-10'>
                 {nodeData.categories.nodes.length > 0 && (
                   nodeData.categories.nodes.map((item, index) => (
-                    <li key={index}><Link href={item.uri} className="post-single-category">{item.name}</Link></li>
+                    <li key={index}><Link href={item.uri} className='post-single-category'>{item.name}</Link></li>
                   ))
                 )}
                 {nodeData.businessTypes.nodes.length > 0 && (
                   nodeData.businessTypes.nodes.map((item, index) => (
-                    <li key={index}><Link href={item.uri} className="post-single-category">{item.name}</Link></li>
+                    <li key={index}><Link href={item.uri} className='post-single-category'>{item.name}</Link></li>
                   ))
                 )}
                 {nodeData.contentTypes.nodes.length > 0 && (
                   nodeData.contentTypes.nodes.map((item, index) => (
-                    <li key={index}><Link href={item.uri} className="post-single-category">{item.name}</Link></li>
+                    <li key={index}><Link href={item.uri} className='post-single-category'>{item.name}</Link></li>
                   ))
                 )}
               </ul>
@@ -363,28 +367,28 @@ export default async function BlogPost({params}) {
 
         <div className='background-flower-path-patterns'>
           <svg viewBox='0 0 451.3 451.3' className='background-flower-path-svg'>
-            <path className="st0" d="M225.7 225.7c124.4 0 225.1 100.8 225.1 225.2-124.3-.1-225.1-100.9-225.1-225.2z"></path>
-            <path className="st0" d="M450.8.5c0 124.4-100.8 225.2-225.1 225.2C225.7 101.3 326.5.5 450.8.5z"></path>
-            <path className="st0" d="M225.7 225.7c0 124.4-100.8 225.2-225.2 225.2 0-124.4 100.8-225.2 225.2-225.2z"></path>
-            <path className="st0" d="M.5.5c124.4 0 225.2 100.8 225.2 225.2C101.3 225.7.5 124.9.5.5z"></path>
+            <path className='st0' d='M225.7 225.7c124.4 0 225.1 100.8 225.1 225.2-124.3-.1-225.1-100.9-225.1-225.2z'></path>
+            <path className='st0' d='M450.8.5c0 124.4-100.8 225.2-225.1 225.2C225.7 101.3 326.5.5 450.8.5z'></path>
+            <path className='st0' d='M225.7 225.7c0 124.4-100.8 225.2-225.2 225.2 0-124.4 100.8-225.2 225.2-225.2z'></path>
+            <path className='st0' d='M.5.5c124.4 0 225.2 100.8 225.2 225.2C101.3 225.7.5 124.9.5.5z'></path>
           </svg>
           <svg viewBox='0 0 451.3 451.3' className='background-flower-path-svg'>
-            <path className="st0" d="M225.7 225.7c124.4 0 225.1 100.8 225.1 225.2-124.3-.1-225.1-100.9-225.1-225.2z"></path>
-            <path className="st0" d="M450.8.5c0 124.4-100.8 225.2-225.1 225.2C225.7 101.3 326.5.5 450.8.5z"></path>
-            <path className="st0" d="M225.7 225.7c0 124.4-100.8 225.2-225.2 225.2 0-124.4 100.8-225.2 225.2-225.2z"></path>
-            <path className="st0" d="M.5.5c124.4 0 225.2 100.8 225.2 225.2C101.3 225.7.5 124.9.5.5z"></path>
+            <path className='st0' d='M225.7 225.7c124.4 0 225.1 100.8 225.1 225.2-124.3-.1-225.1-100.9-225.1-225.2z'></path>
+            <path className='st0' d='M450.8.5c0 124.4-100.8 225.2-225.1 225.2C225.7 101.3 326.5.5 450.8.5z'></path>
+            <path className='st0' d='M225.7 225.7c0 124.4-100.8 225.2-225.2 225.2 0-124.4 100.8-225.2 225.2-225.2z'></path>
+            <path className='st0' d='M.5.5c124.4 0 225.2 100.8 225.2 225.2C101.3 225.7.5 124.9.5.5z'></path>
           </svg>
           <svg viewBox='0 0 451.3 451.3' className='background-flower-path-svg'>
-            <path className="st0" d="M225.7 225.7c124.4 0 225.1 100.8 225.1 225.2-124.3-.1-225.1-100.9-225.1-225.2z"></path>
-            <path className="st0" d="M450.8.5c0 124.4-100.8 225.2-225.1 225.2C225.7 101.3 326.5.5 450.8.5z"></path>
-            <path className="st0" d="M225.7 225.7c0 124.4-100.8 225.2-225.2 225.2 0-124.4 100.8-225.2 225.2-225.2z"></path>
-            <path className="st0" d="M.5.5c124.4 0 225.2 100.8 225.2 225.2C101.3 225.7.5 124.9.5.5z"></path>
+            <path className='st0' d='M225.7 225.7c124.4 0 225.1 100.8 225.1 225.2-124.3-.1-225.1-100.9-225.1-225.2z'></path>
+            <path className='st0' d='M450.8.5c0 124.4-100.8 225.2-225.1 225.2C225.7 101.3 326.5.5 450.8.5z'></path>
+            <path className='st0' d='M225.7 225.7c0 124.4-100.8 225.2-225.2 225.2 0-124.4 100.8-225.2 225.2-225.2z'></path>
+            <path className='st0' d='M.5.5c124.4 0 225.2 100.8 225.2 225.2C101.3 225.7.5 124.9.5.5z'></path>
           </svg>
           <svg viewBox='0 0 451.3 451.3' className='background-flower-path-svg'>
-            <path className="st0" d="M225.7 225.7c124.4 0 225.1 100.8 225.1 225.2-124.3-.1-225.1-100.9-225.1-225.2z"></path>
-            <path className="st0" d="M450.8.5c0 124.4-100.8 225.2-225.1 225.2C225.7 101.3 326.5.5 450.8.5z"></path>
-            <path className="st0" d="M225.7 225.7c0 124.4-100.8 225.2-225.2 225.2 0-124.4 100.8-225.2 225.2-225.2z"></path>
-            <path className="st0" d="M.5.5c124.4 0 225.2 100.8 225.2 225.2C101.3 225.7.5 124.9.5.5z"></path>
+            <path className='st0' d='M225.7 225.7c124.4 0 225.1 100.8 225.1 225.2-124.3-.1-225.1-100.9-225.1-225.2z'></path>
+            <path className='st0' d='M450.8.5c0 124.4-100.8 225.2-225.1 225.2C225.7 101.3 326.5.5 450.8.5z'></path>
+            <path className='st0' d='M225.7 225.7c0 124.4-100.8 225.2-225.2 225.2 0-124.4 100.8-225.2 225.2-225.2z'></path>
+            <path className='st0' d='M.5.5c124.4 0 225.2 100.8 225.2 225.2C101.3 225.7.5 124.9.5.5z'></path>
           </svg>
         </div>
 
@@ -397,26 +401,26 @@ export default async function BlogPost({params}) {
                 <p className='txt-size-12 letter-spacing upper c-white talk-left-subheading'>Social feed</p>
                 <h2 className='c-white fw-700 ltr-spc-pos-0_5 talk-left-heading heading-anim'>Follow us on social media</h2>
                 
-                <div className="buttons-wrap">
-                  <a href="https://www.facebook.com/SekurePaymentExperts" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="Facebook Logo" width="60" height="60" src={`${basePathLocal}/media/socials/facebook-green.svg`}/>
-                    <span className="btn-txt">Facebook</span>
+                <div className='buttons-wrap'>
+                  <a href='https://www.facebook.com/SekurePaymentExperts' className='contact-section-btn txt-size-24 lh-1_25 c-white fw-700' target='_blank' rel='noopener noreferrer'>
+                    <Image className='contact-btn-icon' alt='Facebook Logo' width='60' height='60' src={`${basePathLocal}/media/socials/facebook-green.svg`}/>
+                    <span className='btn-txt'>Facebook</span>
                   </a>
-                  <a href="https://twitter.com/SekureExperts" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="X Logo" width="60" height="60" src={`${basePathLocal}/media/socials/x-green.svg`}/>
-                    <span className="btn-txt">X</span>
+                  <a href='https://twitter.com/SekureExperts' className='contact-section-btn txt-size-24 lh-1_25 c-white fw-700' target='_blank' rel='noopener noreferrer'>
+                    <Image className='contact-btn-icon' alt='X Logo' width='60' height='60' src={`${basePathLocal}/media/socials/x-green.svg`}/>
+                    <span className='btn-txt'>X</span>
                   </a>
-                  <a href="https://www.instagram.com/SekurePaymentExperts/" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="Instagram Logo" width="60" height="60" src={`${basePathLocal}/media/socials/instagram-green.svg`}/>
-                    <span className="btn-txt">Instagram</span>
+                  <a href='https://www.instagram.com/SekurePaymentExperts/' className='contact-section-btn txt-size-24 lh-1_25 c-white fw-700' target='_blank' rel='noopener noreferrer'>
+                    <Image className='contact-btn-icon' alt='Instagram Logo' width='60' height='60' src={`${basePathLocal}/media/socials/instagram-green.svg`}/>
+                    <span className='btn-txt'>Instagram</span>
                   </a>
-                  <a href="https://www.youtube.com/channel/UCMkp6Tm70C3cQBZ_gS0G-Ow" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="YouTube Logo" width="60" height="60" src={`${basePathLocal}/media/socials/youtube-green.svg`}/>
-                    <span className="btn-txt">YouTube</span>
+                  <a href='https://www.youtube.com/channel/UCMkp6Tm70C3cQBZ_gS0G-Ow' className='contact-section-btn txt-size-24 lh-1_25 c-white fw-700' target='_blank' rel='noopener noreferrer'>
+                    <Image className='contact-btn-icon' alt='YouTube Logo' width='60' height='60' src={`${basePathLocal}/media/socials/youtube-green.svg`}/>
+                    <span className='btn-txt'>YouTube</span>
                   </a>
-                  <a href="https://www.linkedin.com/company/sekurepaymentexperts/" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="LinkedIn Logo" width="60" height="60" src={`${basePathLocal}/media/socials/linkedin-green.svg`}/>
-                    <span className="btn-txt">LinkedIn</span>
+                  <a href='https://www.linkedin.com/company/sekurepaymentexperts/' className='contact-section-btn txt-size-24 lh-1_25 c-white fw-700' target='_blank' rel='noopener noreferrer'>
+                    <Image className='contact-btn-icon' alt='LinkedIn Logo' width='60' height='60' src={`${basePathLocal}/media/socials/linkedin-green.svg`}/>
+                    <span className='btn-txt'>LinkedIn</span>
                   </a>
                 </div>
 
@@ -428,31 +432,31 @@ export default async function BlogPost({params}) {
               <div className='content-wrap'>
                 <p className='txt-size-12 letter-spacing talk-right-subheading c-blue-1'>Resources</p>
                 <h2 className='c-blue-1 fw-700 ltr-spc-pos-0_5 talk-right-heading heading-anim'>Get set up for success</h2>
-                <p className="text-highlight">Free access to our industry leading information to help you make informed decisions for your business.</p>
+                <p className='text-highlight'>Free access to our industry leading information to help you make informed decisions for your business.</p>
 
-                <div className="blog-external-links">
-                  <div className="blog-contact-item">
-                    <a className="c-blue-1" href="https://sekuremerchants.com/blog/content-type/guides">
-                      <div className="icon">
-                        <Image className="contact-btn-icon" alt="Guides icon" width="60" height="60" src={`${basePathLocal}/media/images/blog/guides.webp`}/>
+                <div className='blog-external-links'>
+                  <div className='blog-contact-item'>
+                    <a className='c-blue-1' href='https://sekuremerchants.com/blog/content-type/guides'>
+                      <div className='icon'>
+                        <Image className='contact-btn-icon' alt='Guides icon' width='60' height='60' src={`${basePathLocal}/media/images/blog/guides.webp`}/>
                       </div>
-                      <p className="txt-size-30 c-blue-1 fw-700 lh-1_25">Guides</p>
+                      <p className='txt-size-30 c-blue-1 fw-700 lh-1_25'>Guides</p>
                     </a>
                   </div>
-                  <div className="blog-contact-item">
-                    <a className="c-blue-1" href="https://sekuremerchants.com/blog/content-type/research">
-                      <div className="icon">
-                        <Image className="contact-btn-icon" alt="Research icon" width="60" height="60" src={`${basePathLocal}/media/images/blog/cs-hub.webp`}/>
+                  <div className='blog-contact-item'>
+                    <a className='c-blue-1' href='https://sekuremerchants.com/blog/content-type/research'>
+                      <div className='icon'>
+                        <Image className='contact-btn-icon' alt='Research icon' width='60' height='60' src={`${basePathLocal}/media/images/blog/cs-hub.webp`}/>
                       </div>
-                      <p className="txt-size-30 c-blue-1 fw-700 lh-1_25">Research</p>
+                      <p className='txt-size-30 c-blue-1 fw-700 lh-1_25'>Research</p>
                     </a>
                   </div>
-                  <div className="blog-contact-item">
-                    <a className="c-blue-1" href="https://sekuremerchants.com/resources/case-studies">
-                      <div className="icon">
-                        <Image className="contact-btn-icon" alt="Case studies icon" width="60" height="60" src={`${basePathLocal}/media/images/blog/case-studies.webp`}/>
+                  <div className='blog-contact-item'>
+                    <a className='c-blue-1' href='https://sekuremerchants.com/resources/case-studies'>
+                      <div className='icon'>
+                        <Image className='contact-btn-icon' alt='Case studies icon' width='60' height='60' src={`${basePathLocal}/media/images/blog/case-studies.webp`}/>
                       </div>
-                      <p className="txt-size-30 c-blue-1 fw-700 lh-1_25">Case studies</p>
+                      <p className='txt-size-30 c-blue-1 fw-700 lh-1_25'>Case studies</p>
                     </a>
                   </div>
                 </div>

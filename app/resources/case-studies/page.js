@@ -43,6 +43,10 @@ const getBlogContent = async () => {
 export const metadata = {
   title: 'Case Studies - Sekure Payment Experts',
   description: '',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default async function Blog() {

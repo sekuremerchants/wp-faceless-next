@@ -48,6 +48,10 @@ const getBlogContent = async () => {
 export const metadata = {
   title: 'Blog - Sekure Payment Experts',
   description: 'Follow the Sekure blog to learn about company updates, new product features, latest in payment processing technology & business initiatives.',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default async function Blog() {

@@ -102,6 +102,10 @@ const getHomeContent = async () => {
 export const metadata = {
   title: 'Sekure Payment Experts',
   description: '',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default async function Home() {

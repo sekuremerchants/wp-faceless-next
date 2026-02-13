@@ -66,6 +66,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
   return {
     title: data.nodeByUri.seo.title,
     description: data.nodeByUri.seo.metaDesc,
+    robots: {
+			index: false,
+			follow: false,
+		},
   }
 }
 

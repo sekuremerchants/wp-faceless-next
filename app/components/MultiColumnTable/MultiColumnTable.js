@@ -6,6 +6,9 @@ export const MultiColumnTable = ({block}) => {
 	return (
 		<section id={block.section_id} className={`content-block-holder sk-block multi-columns-table block--m ${bgColour} ${block.section_classNamees}`}>
 			<div className="container prel slider-arrows">
+
+				<h2>Multi Columns Block [M]</h2>
+				
 				<div className="table-multi-block content-block multi-column-table col-xs-12 mt-1">
 					<div className="table-responsive">
 
