@@ -399,23 +399,23 @@ export default async function BlogPost({params}) {
                 
                 <div className="buttons-wrap">
                   <a href="https://www.facebook.com/SekurePaymentExperts" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="Facebook Logo" width="60" height="60" src={`${basePathLocal}/media/socials/Facebook-green.svg`}/>
+                    <Image className="contact-btn-icon" alt="Facebook Logo" width="60" height="60" src={`${basePathLocal}/media/socials/facebook-green.svg`}/>
                     <span className="btn-txt">Facebook</span>
                   </a>
                   <a href="https://twitter.com/SekureExperts" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="X Logo" width="60" height="60" src={`${basePathLocal}/media/socials/X-green.svg`}/>
+                    <Image className="contact-btn-icon" alt="X Logo" width="60" height="60" src={`${basePathLocal}/media/socials/x-green.svg`}/>
                     <span className="btn-txt">X</span>
                   </a>
                   <a href="https://www.instagram.com/SekurePaymentExperts/" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="Instagram Logo" width="60" height="60" src={`${basePathLocal}/media/socials/Instagram-green.svg`}/>
+                    <Image className="contact-btn-icon" alt="Instagram Logo" width="60" height="60" src={`${basePathLocal}/media/socials/instagram-green.svg`}/>
                     <span className="btn-txt">Instagram</span>
                   </a>
                   <a href="https://www.youtube.com/channel/UCMkp6Tm70C3cQBZ_gS0G-Ow" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="YouTube Logo" width="60" height="60" src={`${basePathLocal}/media/socials/YouTube-green.svg`}/>
+                    <Image className="contact-btn-icon" alt="YouTube Logo" width="60" height="60" src={`${basePathLocal}/media/socials/youtube-green.svg`}/>
                     <span className="btn-txt">YouTube</span>
                   </a>
                   <a href="https://www.linkedin.com/company/sekurepaymentexperts/" className="contact-section-btn txt-size-24 lh-1_25 c-white fw-700" target="_blank" rel="noopener noreferrer">
-                    <Image className="contact-btn-icon" alt="LinkedIn Logo" width="60" height="60" src={`${basePathLocal}/media/socials/LinkedIn-green.svg`}/>
+                    <Image className="contact-btn-icon" alt="LinkedIn Logo" width="60" height="60" src={`${basePathLocal}/media/socials/linkedin-green.svg`}/>
                     <span className="btn-txt">LinkedIn</span>
                   </a>
                 </div>
