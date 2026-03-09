@@ -40,33 +40,6 @@
         padding: 24px 16px;
       }
 
-      h2 {
-        font-family: $redhat;
-        margin-bottom: 0.85rem;
-        font-weight: 700;
-        @media screen and ($min768) {
-          font-size: 32px;
-          line-height: 40px;
-        }
-
-        @media screen and ($max768) {
-          font-size: 24px;
-          line-height: 36px;
-        }
-      }
-
-      *,
-      p {
-        margin-bottom: 0.85rem;
-        font-family: $libre;
-        font-size: 18px;
-        line-height: 30px;
-        font-weight: 400;
-
-        :empty {
-          display: none !important;
-        }
-      }
       .btn {
         margin-bottom: 0;
         width: fit-content;
@@ -96,7 +69,7 @@
     &::before {
       content: '';
       display: block;
-      background-image: url($ROOT_PATH + 'media/svgs/blog-cta.svg');
+      background-image: url('/media/svgs/blog-cta.svg');
       background-position: bottom right;
       background-repeat: no-repeat;
       background-size: contain;
@@ -153,7 +126,7 @@
         width: 35%;
         height: 100%;
         right: -1px;
-        mask: url($ROOT_PATH + 'media/svgs/blog-cta-bg.svg') no-repeat;
+        mask: url('/media/svgs/blog-cta-bg.svg') no-repeat;
         position: absolute;
         mask-position: left;
         mask-size: cover !important;
@@ -185,7 +158,7 @@
       }
 
       @media screen and ($max768) {
-        mask: url($ROOT_PATH + 'media/svgs/blog-cta-bg-mobile.svg') no-repeat;
+        mask: url('/media/svgs/blog-cta-bg-mobile.svg') no-repeat;
         mask-position: top;
         max-height: 180px;
         height: 195px;
@@ -273,7 +246,7 @@
           font-weight: 700;
 
           &:before {
-            background-image: url($ROOT_PATH + 'media/icons/blue-arrow.svg');
+            background-image: url('/media/icons/blue-arrow.svg');
           }
 
           &:hover,
@@ -285,7 +258,7 @@
               color: $white !important;
             }
             &:before {
-              background-image: url($ROOT_PATH + 'media/icons/green-arrow.svg');
+              background-image: url('/media/icons/green-arrow.svg');
             }
           }
 

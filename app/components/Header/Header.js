@@ -36,8 +36,8 @@ const DynamicRenderer = (type) => {
 const basePathLocal = assetSourceLocal();
 
 const langQuery = `
-	query LangQuery($uri: String!) {
-		nodeByUri(uri: $uri) {
+	query NewQuery {
+		nodeByUri(uri: "/about-us") {
 			... on Page {
 				id
 				contentLanguage {
@@ -58,9 +58,10 @@ const langQuery = `
 `;
 
 export const Header = async ({ pageParams }) => {
-	
 	/*
 	const params = await pageParams;
+	console.log("DATA params: ", params);
+	
 	const queryVariables = {
   	uri: '/' + params.slug,
 	};
@@ -71,7 +72,7 @@ export const Header = async ({ pageParams }) => {
     },
     body: JSON.stringify({
       query: langQuery,
-			variables: queryVariables,
+			//variables: queryVariables,
     }),
   });
 	const { dataLang } = await resLang.json();
@@ -148,6 +149,23 @@ export const Header = async ({ pageParams }) => {
 			flex-direction: row-reverse;
 			justify-content: flex-end;
 		}
+		.header .industry-row.payments-row .dropdown-link-wrap a {
+			flex-direction:row;
+			justify-content: flex-start;
+		}
+		#logo {
+			view-transition-name: logo
+		}
+		html.mobile-menu-opened header .line-el:first-of-type {
+			transform:translate(0px, 6px) rotate(-45deg);
+		}
+		html.mobile-menu-opened header .line-el:nth-of-type(2){
+			opacity:0;
+			visibility:hidden;
+		}
+		html.mobile-menu-opened header .line-el:last-of-type {
+			transform:translate(0px, -6px) rotate(45deg);
+		}
 		@media screen and (min-width:1025px){
 			main {
 				padding-top:11vw;
@@ -155,6 +173,20 @@ export const Header = async ({ pageParams }) => {
 			.header .contact-icons .dropdown-link-wrap a img {
 				margin-left:0;
 				margin-right:8px;
+			}
+		}
+		@media screen and (max-width:1024px){
+			main {
+				padding-top:160px;
+			}
+			.dropdown-item-wrap.open .dropdown-item-links {
+				opacity: 1;
+				visibility: visible;
+				height: auto;
+				transition:all 0.3s ease;
+			}
+			.dropdown-item-wrap.open .dropdown-items-links-hold {
+				left:0;
 			}
 		}
   `;
@@ -165,10 +197,10 @@ export const Header = async ({ pageParams }) => {
 			<style>{styleCode}</style>
 			<div className="container full">
 				<div className="content-wrap">
-					<Link href="/" className="header-logo-link prel"><Image src={`${basePathLocal}/logo/en/logo-white-descriptor-tagline.webp`} alt="Sekure Payment Experts logo" width={245} height={138} className="header-logo" unoptimized /></Link>
+					<Link href="/" className="header-logo-link prel"><Image src={`${basePathLocal}/logo/en/logo-white-descriptor-tagline.webp`} alt="Sekure Payment Experts logo" width={245} height={138} id="logo" className="header-logo" unoptimized /></Link>
 
 					<nav role="navigation">
-						<button aria-label="Toggle mobile menu button" className="mobile-menu-btn" aria-controls="menu" aria-expanded="false">
+						<button aria-label="Toggle mobile menu button" id='mobile-menu-btn' className="mobile-menu-btn" aria-controls="menu" aria-expanded="false">
 							<span className="line-el"></span>
 							<span className="line-el"></span>
 							<span className="line-el"></span>
@@ -178,8 +210,7 @@ export const Header = async ({ pageParams }) => {
 
 							{/* language switch and careers link */}
 							<div className="nav-extras">
-								<LanguageSelect/>
-								{/*
+								{/*<LanguageSelect/>
 								<div className="lang-wrap prel">
 									<Link href="#" className="lang-current">EN</Link>
 									<ul id="lang_toggle" className="ul-reset prel">

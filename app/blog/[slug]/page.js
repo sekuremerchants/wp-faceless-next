@@ -210,7 +210,8 @@ export default async function BlogPost({params}) {
   const modifiedDateFormatted = modifiedDate.toLocaleDateString(undefined, options);
   const timeToRead = readingTime(nodeData.content);
 
-  console.log("SINGLE POST DATA", nodeData);
+  //console.log("SINGLE POST DATA", nodeData);
+
 
 	return (
     <>
@@ -279,7 +280,7 @@ export default async function BlogPost({params}) {
                     <ol>
                       {nodeData.blocks.length > 0 && (
                         nodeData.blocks.map((item, index) => (
-                          item.name == 'core/heading' && (
+                          item.name == 'core/heading' && item.attributes.level == '2' && (
                             <li key={index} className=''><Link href={`#${item.attributes.content.toLowerCase().replaceAll(' ','-')}`} className='c-blue-1 anchor-link d-flex' dangerouslySetInnerHTML={{__html: item.attributes.content}}></Link></li>
                           )
                         ))

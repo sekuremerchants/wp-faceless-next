@@ -12,20 +12,20 @@
 // $theme-colors: map-remove($theme-colors, "info", "light", "dark");
 
 // 5. Include remainder of required parts
-@use 'bootstrap/scss/maps';
+//@use '../../../../node_modules/bootstrap/scss/maps';
 // @use "bootstrap/scss/mixins";
-@use 'bootstrap/scss/root';
+//@use '../../../../node_modules/bootstrap/scss/root';
 
 // 6. Optionally include any other parts as needed
-@use 'bootstrap/scss/utilities';
+//@use '../../../../node_modules/bootstrap/scss/utilities';
 // @use "bootstrap/scss/reboot";
 // @use "bootstrap/scss/type";
 // @use "bootstrap/scss/images";
-@use 'bootstrap/scss/containers';
-@use 'bootstrap/scss/placeholders';
-@use 'bootstrap/scss/alert';
-@use 'bootstrap/scss/grid';
-@use 'bootstrap/scss/helpers';
+//@use '../../../../node_modules/bootstrap/scss/containers';
+//@use '../../../../node_modules/bootstrap/scss/placeholders';
+//@use '../../../../node_modules/bootstrap/scss/alert';
+@use '../../../../node_modules/bootstrap/scss/grid';
+//@use '../../../../node_modules/bootstrap/scss/helpers';
 
 // 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
-@use 'bootstrap/scss/utilities/api';
+//@use '../../../../node_modules/bootstrap/scss/utilities/api';

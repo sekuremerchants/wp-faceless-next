@@ -1,3 +1,4 @@
-@use 'variables';
+@forward 'variables';
 @use 'common/bootstrap/base';
-@use 'blocks/_*.scss';
+@use 'blocks/block-base';
+@use 'blocks/blocks';

@@ -24,7 +24,7 @@ export const LanguageSelect = ({label}) => {
 				<li><Link href="#" className="block c-white" lang="fr">FR</Link></li>
 			</ul>
 		</div>
-  );
+  )
 }
 
 export default LanguageSelect

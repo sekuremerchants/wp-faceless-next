@@ -1,16 +1,10 @@
-/*
-.article-content,
-.sk-lander {
-
-}
-*/
 .hbspt-form {
   padding: 45px;
   background: $blue-1;
   border-radius: 50px;
 
   input, textarea {
-    &:auto-fill {
+    &:autofill {
       color: $white;
     }
   }

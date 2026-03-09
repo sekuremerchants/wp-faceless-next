@@ -1,3 +1,29 @@
+@forward 'base/base';
+@forward 'base/block';
+@forward 'base/choices';
+@forward 'base/popup';
+@forward 'base/table';
+@forward 'base/typography';
+@forward 'base/utils';
+
+@forward 'components/archive';
+@forward 'components/back-to-blog';
+@forward 'components/banner';
+@forward 'components/blog-cta';
+@forward 'components/blog';
+@forward 'components/breadcrumbs';
+@forward 'components/featured';
+@forward 'components/filters';
+@forward 'components/form';
+@forward 'components/new-filter';
+@forward 'components/news-letter';
+@forward 'components/quote';
+@forward 'components/related-post';
+@forward 'components/search';
+@forward 'components/share';
+@forward 'components/table';
+@forward 'components/thumbnail';
+
 // Single article
 .post-single-category {
   border: 1px solid $blue-1;
@@ -542,9 +568,6 @@
         }
 
         ul, ol {
-          line-height: 1.55em;
-          font-size: 18px;
-
           li:not(:last-child){
             margin-bottom:10px;
           }
@@ -554,16 +577,11 @@
     
     .table-of-contents {
       .toc-title {
-        font-family: $libre !important;
         font-size: 24px !important;
         font-weight: 600 !important;
         line-height: 36px !important;
       }
       .anchor-link {
-        font-family: $libre !important;
-        font-size: 18px !important;
-        font-weight: 400 !important;
-        line-height: 30px !important;
         transition: all 100ms ease-in !important;
 
         &:hover,

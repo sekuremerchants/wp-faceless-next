@@ -57,6 +57,10 @@
       display:flex;
       position: relative;
 
+      @media screen and ($max500){
+        flex-direction:column;
+      }
+
       picture {
         @media screen and (min-width:1024px){
           display:flex;

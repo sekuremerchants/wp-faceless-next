@@ -1,2 +1,2 @@
-@use 'variables';
-@use 'common/bootstrap/base';
+@forward '../variables';
+@use '../common/bootstrap/base';

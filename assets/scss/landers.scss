@@ -1,4 +1,4 @@
 // Child theme variables and overrides
-@use 'variables';
+@forward 'variables';
 @use 'common/bootstrap/base';
-@use 'lander/**/*.scss';
+@use 'lander/index';

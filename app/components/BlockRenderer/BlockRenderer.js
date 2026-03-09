@@ -1,21 +1,37 @@
-import { Heading } from '../Heading';
-import { Paragraph } from '../Paragraph';
-import { List } from '../List';
-import { BlogCTA } from '../../components/BlogCTA'
-import { MultiColumnTable } from '../../components/MultiColumnTable'
+import { Heading } from '@/components/Heading'
+import { Paragraph } from '@/components/Paragraph'
+import { List } from '@/components/List'
+import { BlogCTA } from '@/components/BlogCTA'
+import { MultiColumnTable } from '@/components/MultiColumnTable'
+import { Embed } from '@/components/Embed'
+import { CustomHTML } from '@/components/CustomHTML'
+import { BlogQuote } from '@/components/BlogQuote'
+import { FAQ } from '@/components/FAQ'
+import { ComparisonTable } from '@/components/ComparisonTable'
+import Image from 'next/image'
 
 export const BlockRenderer = ({blocks}) => {
 	return blocks.map((block, index) => {
 		switch(block.name){
 			case 'core/heading': {
-				return <Heading key={index} content={block.attributes.content} level={block.attributes.level}/>
+				return (<Heading key={index} content={block.attributes.content} level={block.attributes.level}/>)
 			}
 			case 'core/paragraph' : {
-				return <Paragraph key={index} content={block.attributes.content}/>
+				return (<Paragraph key={index} content={block.attributes.content}/>)
 			}
 			case 'core/list': {
 				return (
 					<List key={index} attributes={block.attributes} listItems={block.innerBlocks}/>
+				)
+			}
+			case 'core/embed': {
+				return (
+					<Embed key={index} block={block.attributes} />
+				)
+			}
+			case 'core/image': {
+				return (
+					<Image key={index} src={block.attributes.url} alt={block.attributes.alt} width='1024' height='768' />
 				)
 			}
 			case 'acf/blog-cta': {
@@ -28,9 +44,30 @@ export const BlockRenderer = ({blocks}) => {
 					<MultiColumnTable key={index} block={block.attributes.data}/>
 				)
 			}
-			default: {
+			case 'acf/custom-html': {
 				return (
-					<h2 key={index}>{block.name}</h2>
+					<CustomHTML key={index} block={block.attributes.data} />
+				)
+			}
+			case 'acf/blog-quote': {
+				return (
+					<BlogQuote key={index} block={block.attributes.data} />
+				)
+			}
+			case 'acf/faq': {
+				return (
+					<FAQ key={index} block={block.attributes.data} />
+				)
+			}
+			case 'acf/comparison-table': {
+				return (
+					<ComparisonTable key={index} block={block.attributes.data} />
+				)
+			}
+			default: {
+				console.log("BLOCK DATA: ", block)
+				return (
+					<h2 key={index} className='c-red-2'>{block.name}</h2>
 				)
 			}
 		}

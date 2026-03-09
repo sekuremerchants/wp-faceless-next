@@ -286,12 +286,12 @@
 }
 
 .mb-button-holder {
-  position: absolute;
-  top: 50%;
-  transform:translateY(-50%);
-  left: 0;
-  width: 100%;
-
+    position: absolute;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
   &.static {
     display: flex;
     justify-content: center;

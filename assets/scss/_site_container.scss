@@ -6,26 +6,6 @@
   --xxxl-offset: calc(148px * 2);
 }
 
-/*
-@mixin ContainerSizes($breakpoint) {
-  @if $breakpoint == xl {
-    max-width: calc(100% - var(--xl-offset));
-  } @else if $breakpoint == xxl {
-    max-width: calc(100% - var(--xxl-offset));
-  } @else if $breakpoint == xxml {
-    max-width: calc(1500px - var(--xxml-offset));
-  } @else if $breakpoint == xxxl {
-    max-width: calc(1800px - var(--xxxl-offset));
-  } @else {
-    max-width: 100%;
-  }
-}
-
-if $breakpoint == lg {
-    max-width: calc(100% - var(--lg-offset));
-  } @else 
-*/
-
 .container {
   max-width:1440px;
   width:100%;
@@ -67,15 +47,6 @@ if $breakpoint == lg {
     padding:0;
   }
 }
-
-/*
-@media screen and ($max500){
-  .row > * {
-    padding-left:16px !important;
-    padding-right:16px !important;
-  }
-}
-*/
 
 .max-w-container{margin:0 auto;width:100%}
 .max-w-container.w-1850{max-width:1850px}

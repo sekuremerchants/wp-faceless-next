@@ -6,16 +6,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "gulp-watch": "gulp watch"
   },
   "dependencies": {
     "@apollo/client": "^4.1.4",
     "@svgr/webpack": "^8.1.0",
+    "autoprefixer": "^10.4.24",
+    "blaze-slider": "^1.9.3",
     "blazy": "^1.8.2",
+    "bootstrap": "^5.3.8",
+    "cssnano": "^7.1.2",
     "graphql": "^16.12.0",
     "graphql-request": "^7.4.0",
     "gsap": "^3.14.2",
     "gulp": "^5.0.1",
+    "gulp-cssimport": "^7.0.0",
+    "gulp-postcss": "^10.0.0",
+    "gulp-sass": "^6.0.1",
+    "gulp-sass-glob": "^1.1.0",
+    "gulp-sourcemaps": "^2.6.5",
     "jquery": "^3.7.1",
     "next": "^16.1.6",
     "next-hubspot": "^2.0.1",
@@ -26,7 +36,7 @@
     "swr": "^2.4.0"
   },
   "devDependencies": {
-    "eslint": "^9",
-    "eslint-config-next": "16.1.1"
+    "eslint": "^10.0.0",
+    "eslint-config-next": "^0.2.4"
   }
 }

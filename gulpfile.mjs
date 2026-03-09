@@ -1,4 +1,3 @@
-// const fs = require('fs');
 import gulp from 'gulp';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
@@ -7,6 +6,7 @@ import sassCompiler from 'sass';
 import sassGlob from 'gulp-sass-glob';
 import postcss from 'gulp-postcss';
 import sourcemaps from 'gulp-sourcemaps';
+import cssimport from 'gulp-cssimport';
 
 const { dest, series, parallel } = gulp;
 
@@ -52,7 +52,6 @@ const paths = {
         'assets/scss/common/**/*.scss',
         'assets/scss/animations/**/*.scss',
         'assets/scss/case-studies.scss',
-        'assets/scss/admin/**/*.scss',
         'assets/scss/case-studies/**/*.scss',
       ],
       dest: 'assets/css/styles/',
@@ -77,6 +76,10 @@ const includePaths = [
   './assets/scss/',
 ];
 
+const importOptions = {
+  matchPattern: '*.css',
+};
+
 // Enable production mode
 function enableProduction(cb) {
   isProduction = true;
@@ -92,15 +95,18 @@ function scssTask($glob) {
   const compiledStream = gulp
     .src($glob.src)
     .pipe(sourcemaps.init())
+    // .pipe(gulpif(doCache, cache(cacheName)))
     .pipe(sassGlob())
+    .pipe(cssimport(importOptions))
     .pipe(sass({ includePaths }).on('error', sass.logError))
     .pipe(postcss(postCssPlugins))
     .pipe(sourcemaps.write('.'))
+    // .pipe(gulpif(doCache, remember(cacheName)))
     .pipe(dest($glob.dest))
+    //.pipe(gulpif(!isProduction, bsInstance.stream({ match: '**/*.css' })));
 
   return compiledStream;
 }
-
 // Watch task: watch SCSS and JS files for changes
 const scssGlob = paths.scss;
 function watchTask() {

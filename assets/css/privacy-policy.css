@@ -5,11 +5,51 @@
   right: 0 !important;
   bottom: 0 !important;
   max-width: none !important;
-  width: 100% !important;
+  width: 100vw !important;
+  height: 100vh !important;
   background-color: rgb(0 0 0 / 38%) !important;
   padding: 0 !important;
   border: none !important;
   box-shadow: none !important;
+  margin-top:42px !important;
+  overflow: visible;
+}
+#ensModalWrapper::before {
+    content: "";
+    position: absolute;
+    top: -42px;
+    height: 42px;
+    left: 0;
+    right: 0;
+    background: rgb(0 0 0 / 38%) !important;
+}
+#ensModalWrapper::backdrop {
+  display:none;
+}
+
+@media screen and (max-width:600px){
+  #ensNotifyBanner {
+    flex-direction:column;
+  }
+}
+
+.sk-lander .theBanner.show:not(.saved) {
+  position: absolute;
+  z-index: 9999;
+      top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.sk-lander section.theBanner.show:not(.saved)::before {
+    content: "";
+    position: absolute;
+    offset: 0;
+    background: hsl(0deg 0% 0% / 85%);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
 .ensModal {
@@ -68,6 +108,11 @@
   background-color: transparent !important;
   border-bottom: solid 1px #008FC5;
   border-radius: 0 !important;
+}
+@media screen and (max-width:600px){
+  .ensToggleLabel {
+    padding-right:70px;
+  }
 }
 .ensToggleLabel::first-letter {
   text-transform: capitalize;
@@ -300,4 +345,5 @@
   line-height:20px !important;
   font-weight:700 !important;
   color:#002ea6 !important;
+  margin-top:10px;
 }

@@ -160,6 +160,11 @@ html {
           @include vw(height, 70px);
         }
 
+        @media screen and ($min1920) {
+          width: 180px;
+          height: 140px;
+        }
+
         .header-logo {
           bottom: 0;
         }
@@ -688,7 +693,7 @@ html {
       transform: translateY(-50%);
       height: 16px;
       width: 16px;
-      background: url($ROOT_PATH + 'media/svgs/web.svg') no-repeat center center;
+      background: url('/media/svgs/web.svg') no-repeat center center;
     }
     &::after {
       top:12px;
@@ -1567,6 +1572,12 @@ html {
   }
 
   .payments-row {
+    .column-desc {
+      @media screen and (max-height:800px){
+        display:none;
+      }
+    }
+
     .links-column.industry-icons {
       .dropdown-link-wrap {
         @media screen and ($min1024) {
@@ -1584,25 +1595,6 @@ html {
 
     a {
       position:relative;
-
-      /*
-      .arrow-img {
-        display:none;
-      }
-
-      &::after {
-        content:'';
-        position:absolute;
-        top:50%;
-        transform:translateY(-50%);
-        height:15px;
-        width:15px;
-        margin-left:8px;
-        background-image:url('https://wordpress-dev-appsvc.azurewebsites.net/wp-content/themes/sekure/assets/media/svgs/arrow.svg');
-        background-repeat:no-repeat;
-        background-position:center center;
-      }
-      */
     }
 
     @media screen and ($min1024){

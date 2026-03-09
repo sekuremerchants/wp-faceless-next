@@ -54,7 +54,7 @@ export const BlogCTA = async ({sectionID, sectionClasses, title, content, image,
 							<Heading content={title} level='2'/>
 						)}
 						{content && (
-							<p className="text-white" style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{__html: content}}></p>
+							<div className="text-white" style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{__html: content}}></div>
 						)}
 						{ctaText && (
 							<a href={ctaLink.url} className="btn btn-download">{ctaText}</a>
