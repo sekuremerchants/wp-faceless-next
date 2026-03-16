@@ -295,7 +295,7 @@ export const Footer = async () => {
 				<div className="footer-bottom-wrap">
 					<div className="link-suggs"></div>
 
-					<p className="disclaimer c-gray-8 mb-0">&copy; {currentYear} Sekure Payment Experts. All rights reserved. <Link href="/privacy-policy" className="prel c-gray-8">Terms &amp; Privacy Policy</Link></p>
+					<p className="disclaimer c-gray-8 mb-0">&copy; {currentYear} Sekure Payment Experts. All rights reserved. <Link href="/privacy-policy" className="prel c-gray-8 fw-700 text-decoration-underline hover-text-col-green">Terms &amp; Privacy Policy</Link></p>
 				</div>
 
 			</div>

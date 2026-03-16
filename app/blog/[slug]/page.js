@@ -339,7 +339,7 @@ export default async function BlogPost({params}) {
                 </div>
                 <div className='related-content'>
                   <h3 className="post-title"><Link href={post.relatedPost.uri} className='text-decoration-none hover-text-decoration-underline'>{post.relatedPost.title}</Link></h3>
-                  <p>{post.relatedPost.excerpt}</p>
+                  <p dangerouslySetInnerHTML={{__html: post.relatedPost.excerpt}}></p>
 
                   <div className='row w-100 align-items-center'>
                     <div className='col-sm-12 mb-3'>
