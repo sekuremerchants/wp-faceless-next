@@ -1,4 +1,4 @@
-@use 'block-base';
+@import 'block-base';
 .content-col-img {
   @media screen and ($min720) {
     &.image-right {

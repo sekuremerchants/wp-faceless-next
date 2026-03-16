@@ -1,76 +1,26 @@
-//'use client'
-//import { useEffect, useState } from 'react'
+'use client';
+
+import { useEffect, useRef } from 'react'
+import BlazeSlider from 'blaze-slider'
+
 import '@/styles/blocks/comparison-table.css'
-import '@/styles/blocks/blocks.css'
+//import '@/styles/blocks/blocks.css'
 import Image from 'next/image'
 import { assetSourceLocal } from "../../paths"
 
 const basePathLocal = assetSourceLocal();
 
-const mediaItemQuery = `
-query NewQuery($id: Int!) {
-  mediaItem(id: $id, idType: DATABASE_ID) {
-    id
-    altText
-    sourceUrl
-  }
-}
-`;
+export const ComparisonTable = ({block, logoOne, logoTwo}) => {
 
-const mediaItemQueryNoVariable = `
-query NewQuery {
-  mediaItem(id: "43285", idType: DATABASE_ID) {
-    id
-    altText
-    sourceUrl
-  }
-}
-`;
-
-async function getMediaItemData(id){
-	const queryVariables = {
-		id: id,
-	};
-  const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: mediaItemQuery,
-			variables: queryVariables,
-    }),
-  });
-  const data = await res.json();
-	return data;
-}
-
-export async function ComparisonTable({block}) {
-
-	const queryVariables = {
-		id: block.comparison_table_logo_one,
-	};
-  const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: mediaItemQuery,
-			variables: queryVariables,
-    }),
-  });
-  const { data } = await res.json();
-
-	const { logoOne } = await getMediaItemData(block.comparison_table_logo_one)
-	console.log("LOGO ONE: ", block.comparison_table_logo_one)
-	console.log("LOGO ONE DATA: ", data)
-	console.log("LOGO ONE DATA THRU FUNCTION: ", logoOne)
+	console.log("COMPARISON TABLE BLOCK DATA: ", block)
 
 	const columnClass = block.left_side_content && block.comparison_table_rows > 0 ? 'col-sm-12 col-lg-6' : 'col-sm-12'
 	const bgColour = block.full_width_with_background == 'Yes' ? 'full-width-bg' : ''
 	const maxTableRows = block.comparison_table_rows - 1;
 	let count = 0;
+
+	const logoOneData = block.comparison_table_logo_one ? logoOne : '';
+	const logoTwoData = block.comparison_table_logo_two ? logoTwo : '';
 	
 	//const [list, setList] = useState([]);
 	let tableRows = [];
@@ -91,6 +41,47 @@ export async function ComparisonTable({block}) {
 			
 		count++;
 	}
+
+	const sliderRef = useRef(null)
+
+	useEffect(() => {
+		// Initialize Blaze Slider
+		const slider = new BlazeSlider(sliderRef.current, {
+			all: {
+				loop: true,
+				slideGap: '0px',
+				enableAutoplay: false,
+				autoplayInterval: 3000,
+				draggable: false,
+				stopAutoplayOnInteraction: true,
+				slidesToShow: 1,
+			},
+			'(max-width: 1024px)': {
+				slidesToShow: 5,
+			},
+			'(max-width: 992px)': {
+				slidesToShow: 4,
+			},
+			'(max-width: 940px)': {
+				slidesToShow: 3,
+			},
+			'(max-width: 820px)': {
+				slidesToShow: 2,
+			},
+			'(max-width: 767px)': {
+				slidesToShow: 1,
+			},
+			'(max-width: 580px)': {
+				draggable: true,
+				slidesToShow: 1,
+			},
+		})
+
+		// Cleanup
+		return () => {
+			slider.destroy();
+		}
+	}, [])
 
 	return (
 		<section className={`content-block-holder sk-block comparison-table block--g table-comparison-simple ${bgColour}`}>
@@ -114,10 +105,14 @@ export async function ComparisonTable({block}) {
 												<th className='table-logo'></th>
 												<th className='table-logo'>
 													{block.comparison_table_logo_one && (
-														"image goes here"
+														<Image src={logoOneData.sourceUrl} alt={logoOneData.altText} height="200" width="200" className='logo_one'/>
 													)}
 												</th>
-												<th className='table-logo'></th>
+												<th className='table-logo'>
+													{block.comparison_table_logo_two && (
+														<Image src={logoTwoData.sourceUrl} alt={logoTwoData.altText} height="200" width="200" className='logo_two'/>
+													)}
+												</th>
 											</tr>
 										</thead>
 
@@ -154,6 +149,81 @@ export async function ComparisonTable({block}) {
 										</tbody>
 									</table>
 								</div>
+
+								<div className='d-none d-tablet-block d-mobile-block'>
+									<div className='mb-table-container'>
+										<div className='mb-table mb-table-compare'>
+											<div className='fixed-column'>
+												<div className='fixed-column-inner' style={{display: 'grid', gridTemplateRows: `repeat(3, 1fr)`}}>
+													
+													<div className='mt-header'>Company</div>
+													
+													<div className='mt-box mt-logo mt-primary'>
+														{block.comparison_table_logo_one && (
+															<Image src={logoOneData.sourceUrl} alt={logoOneData.altText} height="200" width="200" className='logo-one'/>
+														)}
+													</div>
+													<div className='mt-box mt-logo mt-second'>
+														{block.comparison_table_logo_two && (
+															<Image src={logoTwoData.sourceUrl} alt={logoTwoData.altText} height="200" width="200" className='logo-two'/>
+														)}
+													</div>
+												</div>
+											</div>
+											<div className='scrolling-column'>
+												<div ref={sliderRef} className='scrolling-column-inner blaze-container blaze-slider'>
+													<div className='blaze-track-container'>
+														<div className='blaze-track'>
+															
+															{tableRows.map((row, index) => (
+																<div key={index} className='mt-box-inner' style={{display: 'grid', gridTemplateRows: `repeat(3, 1fr)`}}>
+																	<div className='mt-header'><p>{row.columnOne}</p></div>
+
+																	<div className='mt-box mt-ctn mt-primary'>
+																		<p>
+																			{row.columnTwo == '[yes]' && (
+																				<Image src={`${basePathLocal}/media/icons/sk-check.svg`} alt='checkmark icon' height='25' width='25'/>
+																			) || 
+																			row.columnTwo == '[no]' && (
+																				<Image src={`${basePathLocal}/media/icons/sk-cross.svg`} alt='x icon' height='25' width='25'/>
+																			) ||
+																			row.columnTwo && row.columnTwo != '[yes]' && row.columnTwo != '[no]' && (
+																				row.columnTwo
+																			)}
+																		</p>
+																	</div>
+
+																	<div className='mt-box mt-ctn mt-second'>
+																		<p>
+																			{row.columnThree == '[yes]' && (
+																				<Image src={`${basePathLocal}/media/icons/sk-check.svg`} alt='checkmark icon' height='25' width='25'/>
+																			) || 
+																			row.columnThree == '[no]' && (
+																				<Image src={`${basePathLocal}/media/icons/sk-cross.svg`} alt='x icon' height='25' width='25'/>
+																			) ||
+																			row.columnThree && row.columnThree != '[yes]' && row.columnThree != '[no]' && (
+																				row.columnThree
+																			)}
+																		</p>
+																	</div>
+																</div>
+															))}
+
+														</div>
+													</div>
+
+													<button className='slider-control blaze-prev d-none d-tablet-block d-mobile-block' data-btn-for=''>prev</button>
+													<button className='slider-control blaze-next d-none d-tablet-block d-mobile-block' data-btn-for=''>next</button>
+
+													<div className='pagination-wrapper'>
+														<div className='blaze-pagination'></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+            		</div>
+
 							</div>
 						)}
 

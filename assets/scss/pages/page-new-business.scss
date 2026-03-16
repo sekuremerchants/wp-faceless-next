@@ -1,10 +1,4 @@
-@use 'pages';
-
-.page-block {
-  .op-0 {
-    opacity: 1;
-  }
-}
+@import 'pages';
 
 .info-slider-section-home .content-wrap {
   padding-bottom: $sk-block-padding;

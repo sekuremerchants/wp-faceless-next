@@ -1,4 +1,5 @@
-@use 'block-base';
+@import 'block-base';
+@import 'components/mobile-tables';
 
 .block--m {
   .mobile-compare {

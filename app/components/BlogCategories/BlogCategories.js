@@ -31,11 +31,11 @@ export const BlogCategories = async () => {
 	return (
 		<div className="sk-sticky">
 			<p className="txt-size-12 letter-spacing upper">Categories</p>
-			<div className="posts-categories">
+			<ul className="posts-categories ul-reset">
 				{data.categories.nodes.map((item, index) => (
-					<li key={index} className=""><Link href={item.uri} className="fw-700 c-blue-1" dangerouslySetInnerHTML={{__html: `${item.name} (${item.posts.nodes.length})`}}></Link></li>
+					<li key={index} className=""><Link href={item.uri} className="d-block mb-20 text-decoration-none hover-text-decoration-underline hover-text-col-blue-2 fw-700 c-blue-1" dangerouslySetInnerHTML={{__html: `${item.name} (${item.posts.nodes.length})`}}></Link></li>
 				))}
-			</div>
+			</ul>
 		</div>
 	)
 }

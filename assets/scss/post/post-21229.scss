@@ -1,5 +1,5 @@
-@forward '../variables';
-@use '../blocks/components/tables';
+@import '../variables';
+@import '../blocks/components/tables';
 .block--g {
   padding-top: 0;
   padding-bottom: 35px;

@@ -1,4 +1,5 @@
 .hero, .sk-page-hero {
+  /*
   .txt-content {
     max-width: 65%;
 
@@ -9,6 +10,7 @@
       max-width:95%;
     }
   }
+  */
 
   &.inner-pages-landing-section .single-txt-block {
     margin-left: 0;
@@ -1021,6 +1023,7 @@
     }
   }
 
+  /*
   .txt-post-rtf {
     a[href^='tel:']:not(.btn-default) {
       color: $red-12;
@@ -1038,6 +1041,7 @@
       color: #17fcc4 !important;
     }
   }
+  
 
   .txt-block-title {
     margin-bottom: 25px;
@@ -1117,6 +1121,7 @@
       }
     }
   }
+  */
 
   .images-block {
     &.reviews-images-block {
@@ -1673,6 +1678,7 @@ html.show-embed-popup-wrap {
   }
 }
 
+/*
 .block-builded-page {
   .w-1523 {
     @media screen and ($mobile_sm) {
@@ -1704,6 +1710,7 @@ html.show-embed-popup-wrap {
     }
   }
 }
+*/
 
 .comparison-table-fine-print {
   font-size: 14px;

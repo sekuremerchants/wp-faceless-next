@@ -2,7 +2,7 @@
   &-light {
     background-color: $gray-21;
   }
-  &-blue {
+  &-blue, &-primary {
     background-color: $blue-1;
   }
   &-blue-6 {
@@ -11,69 +11,31 @@
   &-blue-12 {
     background-color: $blue-12;
   }
-  &-blue, &-blue-12, &-blue-6 {
+  &-primary, &-blue, &-blue-12, &-blue-6 {
     @include WhiteText;
 
     a:not(button, .btn, .btn-primary, .btn-default, .btn-txt, .single-block) {
       color: $green-1 !important;
-      text-decoration: none !important;
+      text-decoration: underline !important;
       font-weight: 600;
-      &:hover {
-        text-decoration: underline !important;
+      &:hover, &:focus {
+        color: $red-1 !important;
       }
     }
   }
   &-green {
     background-color: $green-1;
-    //@include BlueText;
+    @include BlueText;
 
     a[href^='tel:']:not(.btn-default):not(.contact-section-btn):not(.btn):not([type='submit']) {
     color: $blue-1 !important;
     }
   }
-}
-
-/*
-.bg-light {
-  background-color: $gray-21;
-}
-
-.bg-blue, .hero-section {
-  background-color: $blue-1;
-  @include WhiteText;
-
-  a:not(button, .btn, .btn-primary, .btn-default, .btn-txt) {
-    color: $green-1 !important;
-    text-decoration: none !important;
-    font-weight: 600;
-    &:hover {
-      text-decoration: underline !important;
-    }
+  &-green-6 {
+    background-color: $green-6;
   }
 }
 
-.bg-blue-12 {
-  background-color: $blue-12;
-  @include WhiteText;
-
-  a:not(button, .btn, .btn-primary, .btn-default, .btn-txt) {
-    color: $green-1 !important;
-    text-decoration: none !important;
-    font-weight: 600;
-    &:hover {
-      text-decoration: underline !important;
-    }
-  }
+.full-width-bg {
+  background-color: $fw-bg;
 }
-
-.bg-green {
-  background-color: $green-1;
-  @include BlueText;
-
-  a[href^='tel:']:not(.btn-default):not(.contact-section-btn):not(.btn):not(
-      [type='submit']
-    ) {
-    color: $blue-1 !important;
-  }
-}
-*/

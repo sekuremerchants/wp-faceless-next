@@ -100,26 +100,26 @@ export const Header = async ({ pageParams }) => {
 					linkRelationship
 					cssClasses
 					menuItems {
-					buttonLink {
-            edges {
-              node {
-                uri
-                link
-              }
-            }
+						buttonLink {
+							edges {
+								node {
+									uri
+									link
+								}
+							}
+						}
+						buttonType
+						buttonText
+						ctaContent
+						form
+						icon
+						linkArrow
+						linkIcon
+						linkType
+						buttonClasses
+						rowMaxColumns
+						}
 					}
-					buttonType
-					buttonText
-					ctaContent
-					form
-					icon
-					linkArrow
-					linkIcon
-					linkType
-					buttonClasses
-					rowMaxColumns
-					}
-				}
 				}
 			}
 			}
@@ -193,7 +193,6 @@ export const Header = async ({ pageParams }) => {
 
 	return (
 		<header id="header" className="header main-header">
-			<Script src={`${basePathLocal}/assets/js/header.js`}/>
 			<style>{styleCode}</style>
 			<div className="container full">
 				<div className="content-wrap">

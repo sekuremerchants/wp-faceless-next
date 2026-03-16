@@ -5,7 +5,7 @@ import BlazeSlider from 'blaze-slider'
 
 import Image from 'next/image'
 import '@/styles/blocks/multi-columns-table.css'
-import '@/styles/blocks/blocks.css'
+//import '@/styles/blocks/blocks.css'
 
 export const MultiColumnTable = ({block}) => {
 

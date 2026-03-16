@@ -1,18 +1,4 @@
 .statement-analysis-section-home {
-  /*
-  .offset-x-desktop-426 {
-    @media screen and ($min1024) {
-      @include vw(padding-left, 426px);
-      @include vw(padding-right, 426px);
-    }
-
-    @media screen and ($min1920) {
-      padding-left: 426px;
-      padding-right: 426px;
-    }
-  }
-  */
-
   @media screen and ($max1024){
     padding-top: $sk-block-padding;
     padding-bottom: $sk-block-padding;   
@@ -77,27 +63,6 @@
     }
   }
 
-  /*
-  .txt-content {
-    z-index: 2;
-
-    @media screen and ($mobile_sm) {
-      @include vw(max-width, 320px, 500);
-    }
-    @media screen and ($mobile_lg) {
-      max-width: 660px;
-      max-width: 450px;
-      max-width: 60%;
-    }
-    @media screen and ($min1024) {
-      @include vw(width, 600px);
-    }
-    @media screen and ($min1920) {
-      width: 600px;
-    }
-  }
-  */
-
   .inner-img-wrap {
     position: relative;
     z-index: 2;
@@ -142,15 +107,6 @@
       width: 280px;
       height: 280px;
     }
-
-    /*
-    &.inner-left-circle {
-      right: 100%;
-    }
-    &.inner-right-circle {
-      left: 100%;
-    }
-    */
   }
 
   .circle-full {
@@ -260,8 +216,6 @@
     }
 
     @media screen and ($mobile_sm) {
-      //@include vw(top, 244px, 500);
-      //@include vw(right, -125px, 500);
       .inner-img-wrap {
         width: 250px;
         height: 250px;
@@ -269,10 +223,6 @@
     }
 
     @media screen and ($mobile_lg) {
-      //top: 170px;
-      //left: unset;
-      //right: -150px;
-      //@include vw(right, -70px);
       .inner-img-wrap {
         width: 500px;
         height: 500px;
@@ -283,11 +233,6 @@
       right:0;
       top:50%;
       transform:translateY(-50%);
-    }
-
-    @media screen and ($min1920) {
-      //right: 453px;
-      //top: 332px;
     }
   }
 
@@ -301,12 +246,6 @@
 
     @media screen and ($min1024) {
       @include vw(right, 280px);
-      //@include vw(top, 332px);
-    }
-
-    @media screen and ($min1920) {
-      //right: -256px;
-      //top: 332px;
     }
   }
 
@@ -314,15 +253,6 @@
     strong,
     b {
       color: $green-1;
-    }
-  }
-
-  .btn-default {
-    @media screen and ($mobile_sm) {
-      //@include vw(padding, 24px 48px, 500);
-    }
-    @media screen and ($mobile_lg) {
-      //padding: 24px 48px;
     }
   }
 }

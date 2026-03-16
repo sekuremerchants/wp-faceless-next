@@ -1,29 +1,7 @@
-@use 'pages';
+@import 'pages';
 
 .page-id-30212,
 .single-rates {
-  .txt-btn-info-blue-section {
-    padding-bottom: 100px;
-    padding-top: 100px;
-    &.sk-page-section-circles {
-      padding-top: 50px;
-      padding-bottom: 50px;
-
-      .content-wrap.prel {
-        @media screen and ($max1024) {
-          .txt-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            .mobile-image {
-              position: relative;
-            }
-          }
-        }
-      }
-    }
-  }
   @media screen and ($max1024) {
     .circle-info-white-section .img-txt-content {
       border-radius: 25px;

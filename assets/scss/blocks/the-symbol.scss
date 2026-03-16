@@ -1,4 +1,4 @@
-@use 'block-base';
+@import 'block-base';
 .symbol-section {
   &.about-page-section {
     @media screen and ($min1024) {

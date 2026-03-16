@@ -54,32 +54,3 @@
     @include vw(margin-top, 50px);
   }
 }
-
-/*
-.sk-chat {
-  z-index: 999;
-  position: relative;
-
-  .btn-chat-close {
-    display: none;
-    position: fixed;
-    right: 58px;
-    bottom: 130px;
-    z-index: 99;
-    font-size: 12px;
-    font-weight: 600;
-    color: #333;
-    cursor: pointer;
-
-    @media screen and ($min720) {
-      &.show {
-        display: block;
-      }
-    }
-  }
-}
-
-#sekure-connect-chat.hide-chat .chat-info-welcome {
-  display: none !important;
-}
-*/

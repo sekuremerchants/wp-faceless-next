@@ -1,3 +1,4 @@
+/*
 .sk-form-hbsp {
   .hs-form-field {
     display: flex;
@@ -64,6 +65,7 @@
   }
   // }
 }
+*/
 
 .sk-lander {
   .form-cta {
@@ -115,8 +117,8 @@
     }
   }
 }
-.hbspt-form .hs-recaptcha.hs-form-field,
-.sk-form-hbsp .hs-recaptcha.hs-form-field {
+
+.hbspt-form .hs-recaptcha.hs-form-field {
   border: 0;
   margin: 0;
   overflow: hidden;

@@ -1,4 +1,6 @@
-@use 'block-base';
+@import 'block-base';
+@import 'components/tables';
+@import 'components/mobile-tables';
 
 .block--g {
   &.table-full-width {

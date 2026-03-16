@@ -1,6 +1,6 @@
-@forward 'variables';
-@use 'common/bootstrap/base';
-@use 'common/bootstrap/general';
-@use 'common/utils/utils';
-@use 'site_container';
-//@use 'animations/animate';
+@import 'variables';
+@import 'common/bootstrap/base';
+@import 'common/bootstrap/general';
+@import 'common/utils/**/*.scss';
+@import 'site_container';
+@import 'animations/animate';

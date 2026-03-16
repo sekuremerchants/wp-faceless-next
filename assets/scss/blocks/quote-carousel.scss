@@ -1,6 +1,7 @@
-@use 'block-base';
-// @use "lightslider/src/css/lightslider.css";
-// @use 'lightslider';
+@import 'block-base';
+@import 'components/blaze-slider';
+// @import "lightslider/src/css/lightslider.css";
+// @import 'lightslider';
 
 .block--u {
   .quote-carousel {

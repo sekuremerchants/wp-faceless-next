@@ -82,18 +82,44 @@ p {
   list-style-type:none;
 }
 
-.sk-block {
-  a {
-    font-weight:600;
-  }
-
-  ul, ol {
+#main-content {
+  ul:not(.disclaimer), ol {
     li {
+      font-size:18px;
       line-height:1.55em;
   
       &:not(:last-of-type) {
         margin-bottom: 10px;
       }
+
+      a {
+        text-decoration:underline;
+
+        &:hover, &:focus {
+          color:$blue-2;
+        }
+      }
+    }
+  }
+
+  /*
+  p a:not(.btn-default) {
+    font-weight:700;
+    text-decoration:underline;
+    transition:all 0.3s ease;
+
+    &:hover, &:focus {
+      color:$blue-2;
+    }
+  }
+  */
+
+  a:not(.btn-default):not(.btn) {
+    font-weight:700;
+    text-decoration:underline;
+
+    &:hover, &:focus {
+      color:$blue-2;
     }
   }
 }
@@ -101,52 +127,6 @@ p {
 ul.wp-block-list {
   line-height:1.55em;
 }
-
-/* Font sizes */
-/*
-.txt-size-36, .txt-size-36 p {
-  font-size:36px;
-  line-height:42px;
-}
-
-.txt-size-24, .txt-size-24 p {
-  font-size:24px;
-}
-
-.txt-size-14,
-.txt-size-14 p {
-  font-size:14px;
-}
-
-.txt-size-12,
-.txt-size-12 p,
-.overline p,
-.overline {
-  font-size:12px;
-}
-
-.txt-size-10,
-.txt-size-10 p {
-  font-size: 10px;
-}
-
-.list-title,
-.list-title h3 {
-  font-family: $libre;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 600;
-}
-  
-.text-headline {
-  text-transform: uppercase;
-  font-family: $libre;
-  font-size: 14px;
-  font-weight: 250;
-  letter-spacing: 7px;
-  text-align: left;
-}
-*/
 
 .title-highlight,
 .text-highlight {
@@ -193,8 +173,12 @@ ul.wp-block-list {
     font-size:16px;
     line-height:24px;
   }
-  ul, ol {
-    font-size:16px;
+  #main-content {
+    ul:not(.disclaimer), ol {
+      li {
+        font-size:16px;
+      }
+    }
   }
 }
 @media screen and ($max500){
@@ -223,27 +207,27 @@ ul.wp-block-list {
 
 .fw {
   &-300 {
-    font-weight: 300;
+    font-weight: 300 !important;
   }
 
   &-400 {
-    font-weight: 400;
+    font-weight: 400 !important;
   }
 
   &-500 {
-    font-weight: 500;
+    font-weight: 500 !important;
   }
 
   &-600 {
-    font-weight: 600;
+    font-weight: 600 !important;
   }
 
   &-700 {
-    font-weight: 700;
+    font-weight: 700 !important;
   }
 
   &-800 {
-    font-weight: 800;
+    font-weight: 800 !important;
   }
 }
 
@@ -253,12 +237,17 @@ ul.wp-block-list {
 
 // text color classes
 .text-white, .text-white {
+  color: $white;
   *:not(.btn-default):not(.btn-txt) {
     color: $white;
   }
   p a:not(.btn):not(.button) {
     color: $green-1;
     text-decoration: underline;
+
+    &:hover, &:focus {
+      color: $red-1;
+    }
   }
 }
 .text-blue, .text-blue *:not(.btn-default):not(.btn-txt) {
@@ -424,4 +413,19 @@ ol.numbered-list-styled {
     position: absolute;
     right: -25px;
   }
+}
+
+.call-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  color: #ff034a;
+}
+.call-link svg path {
+  color: #ff034a;
+}
+.call-link:hover svg path,
+.call-link:focus svg path {
+  color: #008fc5;
 }

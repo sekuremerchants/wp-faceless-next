@@ -218,17 +218,17 @@ export default async function BlogPost({params}) {
       <article className='sk-blog-content container prel' itemScope='' itemType='https://schema.org/BlogPosting' itemID={nodeData.uri}>
         <div className='breadcrumb-wrap prel single-article-breadcrumb'>
           <ul className='disclaimer pl-0 d-flex gap-10'>
-            <li><Link href='/'>Home</Link></li>
-            <li><Link href='/blog'>Blog</Link></li>
+            <li><Link href='/' className='text-decoration-underline hover-text-col-blue-2'>Home</Link></li>
+            <li><Link href='/blog' className='text-decoration-underline hover-text-col-blue-2'>Blog</Link></li>
           </ul>
           <p className='txt-size-12 upper letter-spacing'>{nodeData.title}</p>
           <div className='back-to-all'>
-            <Image src='https://wordpress-dev-appsvc.azurewebsites.net/wp-content/themes/sekure/assets/media/icons/green-arrow.svg' width='21' height='16' alt='Back arrow' className='prel' />
+            <Image src={`${basePathLocal}/media/icons/green-arrow.svg`} width='21' height='16' alt='Back arrow' className='prel' />
             <Link href='/blog' className='disclaimer'>Back to all posts</Link>
           </div>
         </div>
 
-        <div className='article-body row'>
+        <div className='article-body mb-50 row'>
           <div className='article-content col-sm-12 col-lg-10'>
             <h1>{nodeData.title}</h1>
 
@@ -272,16 +272,16 @@ export default async function BlogPost({params}) {
               </div>
             )}
 
-            <div className='article-main-content row'>
+            <div className='article-main-content mt-50 row'>
               <div className='table-of-contents col-sm-12 col-lg-3'>
                 <div className='sk-sticky'>
-                  <p className='toc-title'>Jump to:</p>
+                  <p className='toc-title title-highlight'>Jump to:</p>
                   <div className='content-bullets'>
                     <ol>
                       {nodeData.blocks.length > 0 && (
                         nodeData.blocks.map((item, index) => (
                           item.name == 'core/heading' && item.attributes.level == '2' && (
-                            <li key={index} className=''><Link href={`#${item.attributes.content.toLowerCase().replaceAll(' ','-')}`} className='c-blue-1 anchor-link d-flex' dangerouslySetInnerHTML={{__html: item.attributes.content}}></Link></li>
+                            <li key={index} className=''><Link href={`#${item.attributes.content.toLowerCase().replaceAll(' ','-')}`} className='c-blue-1 fw-400 anchor-link text-decoration-none hover-text-decoration-underline d-flex' dangerouslySetInnerHTML={{__html: item.attributes.content}}></Link></li>
                           )
                         ))
                       )}
@@ -335,11 +335,11 @@ export default async function BlogPost({params}) {
                   <Image src={post.relatedPost.image.node.sourceUrl} alt="" width="500" height="263" className="article-featured-img"/>
                 </div>
                 <div className='related-meta mb-3'>
-                  <p className='reading-time'><Link href={nodeData.categories.nodes[0].uri} className='post-single-category'>{nodeData.categories.nodes[0].name}</Link></p>
+                  <p className='reading-time'><Link href={nodeData.categories.nodes[0].uri} className='post-single-category text-decoration-underline hover-text-col-blue'>{nodeData.categories.nodes[0].name}</Link></p>
                   <p className='post-date'>{post.relatedPost.date}</p>
                 </div>
                 <div className='related-content'>
-                  <h3 className="post-title"><Link href={post.relatedPost.uri} className='text-decoration-none'>{post.relatedPost.title}</Link></h3>
+                  <h3 className="post-title"><Link href={post.relatedPost.uri} className='text-decoration-none hover-text-decoration-underline'>{post.relatedPost.title}</Link></h3>
                   <p>{post.relatedPost.excerpt}</p>
 
                   <div className='row w-100 align-items-center'>
@@ -402,27 +402,27 @@ export default async function BlogPost({params}) {
                 <p className='txt-size-12 letter-spacing upper c-white talk-left-subheading'>Social feed</p>
                 <h2 className='c-white fw-700 ltr-spc-pos-0_5 talk-left-heading heading-anim'>Follow us on social media</h2>
                 
-                <div className='buttons-wrap'>
-                  <a href='https://www.facebook.com/SekurePaymentExperts' className='contact-section-btn txt-size-24 lh-1_25 c-white fw-700' target='_blank' rel='noopener noreferrer'>
+                <div className='d-flex flex-column gap-20'>
+                  <Link href='https://www.facebook.com/SekurePaymentExperts' className='contact-section-btn c-white fw-700 hover-text-col-green' target='_blank' rel='noopener noreferrer'>
                     <Image className='contact-btn-icon' alt='Facebook Logo' width='60' height='60' src={`${basePathLocal}/media/socials/facebook-green.svg`}/>
                     <span className='btn-txt'>Facebook</span>
-                  </a>
-                  <a href='https://twitter.com/SekureExperts' className='contact-section-btn txt-size-24 lh-1_25 c-white fw-700' target='_blank' rel='noopener noreferrer'>
+                  </Link>
+                  <Link href='https://twitter.com/SekureExperts' className='contact-section-btn c-white fw-700 hover-text-col-green' target='_blank' rel='noopener noreferrer'>
                     <Image className='contact-btn-icon' alt='X Logo' width='60' height='60' src={`${basePathLocal}/media/socials/x-green.svg`}/>
                     <span className='btn-txt'>X</span>
-                  </a>
-                  <a href='https://www.instagram.com/SekurePaymentExperts/' className='contact-section-btn txt-size-24 lh-1_25 c-white fw-700' target='_blank' rel='noopener noreferrer'>
+                  </Link>
+                  <Link href='https://www.instagram.com/SekurePaymentExperts/' className='contact-section-btn c-white fw-700 hover-text-col-green' target='_blank' rel='noopener noreferrer'>
                     <Image className='contact-btn-icon' alt='Instagram Logo' width='60' height='60' src={`${basePathLocal}/media/socials/instagram-green.svg`}/>
                     <span className='btn-txt'>Instagram</span>
-                  </a>
-                  <a href='https://www.youtube.com/channel/UCMkp6Tm70C3cQBZ_gS0G-Ow' className='contact-section-btn txt-size-24 lh-1_25 c-white fw-700' target='_blank' rel='noopener noreferrer'>
+                  </Link>
+                  <Link href='https://www.youtube.com/channel/UCMkp6Tm70C3cQBZ_gS0G-Ow' className='contact-section-btn c-white fw-700 hover-text-col-green' target='_blank' rel='noopener noreferrer'>
                     <Image className='contact-btn-icon' alt='YouTube Logo' width='60' height='60' src={`${basePathLocal}/media/socials/youtube-green.svg`}/>
                     <span className='btn-txt'>YouTube</span>
-                  </a>
-                  <a href='https://www.linkedin.com/company/sekurepaymentexperts/' className='contact-section-btn txt-size-24 lh-1_25 c-white fw-700' target='_blank' rel='noopener noreferrer'>
+                  </Link>
+                  <Link href='https://www.linkedin.com/company/sekurepaymentexperts/' className='contact-section-btn c-white fw-700 hover-text-col-green' target='_blank' rel='noopener noreferrer'>
                     <Image className='contact-btn-icon' alt='LinkedIn Logo' width='60' height='60' src={`${basePathLocal}/media/socials/linkedin-green.svg`}/>
                     <span className='btn-txt'>LinkedIn</span>
-                  </a>
+                  </Link>
                 </div>
 
               </div>
@@ -437,28 +437,28 @@ export default async function BlogPost({params}) {
 
                 <div className='blog-external-links'>
                   <div className='blog-contact-item'>
-                    <a className='c-blue-1' href='https://sekuremerchants.com/blog/content-type/guides'>
+                    <Link className='c-blue-1 fw-700 hover-text-decoration-underline' href='https://sekuremerchants.com/blog/content-type/guides'>
                       <div className='icon'>
                         <Image className='contact-btn-icon' alt='Guides icon' width='60' height='60' src={`${basePathLocal}/media/images/blog/guides.webp`}/>
                       </div>
                       <p className='txt-size-30 c-blue-1 fw-700 lh-1_25'>Guides</p>
-                    </a>
+                    </Link>
                   </div>
                   <div className='blog-contact-item'>
-                    <a className='c-blue-1' href='https://sekuremerchants.com/blog/content-type/research'>
+                    <Link className='c-blue-1 fw-700 hover-text-decoration-underline' href='https://sekuremerchants.com/blog/content-type/research'>
                       <div className='icon'>
                         <Image className='contact-btn-icon' alt='Research icon' width='60' height='60' src={`${basePathLocal}/media/images/blog/cs-hub.webp`}/>
                       </div>
                       <p className='txt-size-30 c-blue-1 fw-700 lh-1_25'>Research</p>
-                    </a>
+                    </Link>
                   </div>
                   <div className='blog-contact-item'>
-                    <a className='c-blue-1' href='https://sekuremerchants.com/resources/case-studies'>
+                    <Link className='c-blue-1 fw-700 hover-text-decoration-underline' href='https://sekuremerchants.com/resources/case-studies'>
                       <div className='icon'>
                         <Image className='contact-btn-icon' alt='Case studies icon' width='60' height='60' src={`${basePathLocal}/media/images/blog/case-studies.webp`}/>
                       </div>
                       <p className='txt-size-30 c-blue-1 fw-700 lh-1_25'>Case studies</p>
-                    </a>
+                    </Link>
                   </div>
                 </div>
 

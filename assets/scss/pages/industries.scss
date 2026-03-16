@@ -1,4 +1,61 @@
-@use 'pages';
+@import 'pages';
+
+.inner-txt-section-type-2 {
+  .background-flower-path-patterns {
+    pointer-events: none;
+    @include pabs;
+    // @include fit;
+    top: 0;
+    display: flex;
+    flex-flow: row wrap;
+    z-index: 1;
+
+    @media screen and ($mobile_all) {
+      display: none;
+    }
+
+    @media screen and ($min1024) {
+      @include vw(left, -80px);
+      @include vw(height, 1448px);
+      @include vw(width, 2172px);
+    }
+  }
+
+  .background-flower-path-svg {
+    flex: 0 0 auto;
+    height: 50%;
+    width: 33.33%;
+    opacity: 0.5;
+
+    path {
+      fill: transparent;
+      stroke: $white;
+    }
+  }
+}
+
+.inner-txt-section-type-3 {
+  .color-overlay {
+    background-color: $blue-9;
+  }
+
+  @media screen and ($min1024) {
+    .row {
+      & > *:first-of-type {
+          &::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            right: 24px;
+            width: 1px;
+            height: 100%;
+            background-color: $gray-11;
+          }
+      }
+    }
+  }
+}
 
 .single-txt-block-no-title.industry-icon-1 > picture,
 .single-txt-block-no-title.industry-icon-1 .industry-icon {
@@ -857,14 +914,6 @@
   }
   .question .choices label::before {
     border-radius: 0.521vw;
-    //height: 1.979vw;
-    //width: 1.979vw;
-  }
-  .question .choices label::after {
-    //height: 0.313vw;
-    //left: 0.781vw;
-    //width: 0.625vw;
-    //top: 0.9895vw;
   }
 }
 @media screen and (max-width: 1024px) {
@@ -882,30 +931,7 @@
     width: auto;
     margin-top: 20px;
   }
-  /*
-  .choices .choice .tool-tip::before {
-    content: '';
-    position: absolute;
-    top: -30px;
-    left: 13px;
-    height: 20px;
-    width: 20px;
-    background: #333;
-    box-shadow: 1px 1px 2px 0 rgb(0 0 0 / 20%);
-    transform: translateX(-50%) rotate(45deg);
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s;
-  }
-  .choices .choice .tool-tip:focus::before,
-  .choices .choice .tool-tip:hover::before {
-    opacity: 1;
-    visibility: visible;
-  }
-    */
   .choices .choice .tool-tip-desc {
-    //right: -10px;
-    //left: auto;
     width: 150px;
   }
   .choices .choice .tool-tip-desc::before {

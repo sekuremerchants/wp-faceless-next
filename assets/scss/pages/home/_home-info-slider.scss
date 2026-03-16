@@ -47,21 +47,6 @@
     @media screen and ($mobile) {
       bottom:64px;
     }
-
-    /*
-    @media screen and ($mobile_sm) {
-      @include vw(bottom, 125px, 500);
-    }
-    @media screen and ($mobile_lg) {
-      bottom: 125px;
-    }
-    @media screen and ($min1024) {
-      @include vw(top, 709px);
-    }
-    @media screen and ($min1920) {
-      top: 709px;
-    }
-    */
   }
   
   .swiper-nav-btn-wrap-prev {
@@ -71,43 +56,12 @@
     @media screen and ($min1024) {
 
     }
-    /*
-    left: calc(50% - 50px);
-    @media screen and ($min1920) {
-      left: 1504px;
-    }
-    */
   }
 
   .swiper-nav-btn-wrap-next {
-    //left: calc(50% + 50px);
     transform: translateX(-50%) rotate(-90deg);
     transform: rotate(-90deg);
-
-    @media screen and ($min1024) {
-      
-      //@include vw(left, 1620px);
-    }
-    /*
-    @media screen and ($min1920) {
-      left: 1620px;
-    }
-    */
   }
-
-  /*
-  .txt-content {
-    width: 100%;
-
-    @media screen and ($min1024) {
-      @include vw(width, 800px);
-    }
-
-    @media screen and ($min1920) {
-      width: 690px;
-    }
-  }
-  */
 
   .container {
     z-index: 3;
@@ -122,25 +76,6 @@
       padding-top:$sk-block-padding-mobile;
       padding-bottom:$sk-block-padding-mobile;
     }
-    /*
-    @media screen and ($mobile_sm) {
-      @include vw(padding-top, 328px, 500);
-      @include vw(padding-bottom, 227px, 500);
-    }
-    @media screen and ($mobile_lg) {
-      padding-top: 328px;
-      padding-bottom: 227px;
-    }
-    @media screen and ($min1024) {
-      @include vw(padding-top, 227px);
-      @include vw(padding-bottom, 206px);
-    }
-
-    @media screen and ($min1920) {
-      padding-top: 227px;
-      padding-bottom: 206px;
-    }
-    */
   }
 
   .quotes-img-wrap {

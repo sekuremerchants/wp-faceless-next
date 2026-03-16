@@ -7,67 +7,6 @@
     padding-bottom: $sk-block-padding-mobile;
   }
 
-  /*
-  .content-wrap {
-    @media screen and ($min1024) {
-      display: flex;
-      align-items: flex-start;
-    }
-  }
-  */
-
-  /*
-  .txt-content {
-    flex: 0 0 auto;
-    margin-right:$sk-gutter;
-
-    @media screen and ($mobile){
-      margin-right:$sk-gutter-mobile;
-    }
-    @media screen and ($mobile_lg) {
-      margin-bottom:$sk-gutter-mobile;
-    }
-    @media screen and ($min1024) {
-      padding-left: 10vw;
-      width:35vw;
-    }
-    @media screen and ($min1920) {
-      padding-left: 0;
-      width: 516px;
-    }
-  }
-  */
-
-  /*
-  .form-content {
-    width: 100%;
-
-    @media screen and ($min1024) {
-      @include vw(margin-top, -14px);
-      width: calc(100% - 35vw);
-    }
-
-    @media screen and ($min1920) {
-      margin-top: -14px;
-      width: calc(100% - 516px);
-    }
-  }
-  */  
-
-  /*
-  .button-row {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 25px;
-
-    @media screen and ($min1024) {
-      padding-top: 28px;
-      justify-content: flex-end;
-    }
-  }
-  */  
-
   .inner-circles-wrap {
     pointer-events: none;
     position: absolute;

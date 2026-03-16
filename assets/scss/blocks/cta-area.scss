@@ -1,6 +1,6 @@
-@use 'block-base';
+@import 'block-base';
 .block--t {
-  // @use 'components/media-block';
+  // @import 'components/media-block';
   background-color: $blue-1;
   &.sk-block .media-block {
     .h1,

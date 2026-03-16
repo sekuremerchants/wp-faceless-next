@@ -290,14 +290,8 @@
     }
 
     a {
-      display:flex;
-      align-items:flex-start;
-
-      &:hover,
-      &:focus {
-        text-decoration:none;
-      }
-
+      color:#fff !important;
+      
       @media screen and ($max1024){
         justify-content:space-between;
         align-items:center;
@@ -308,7 +302,6 @@
     &:focus {
       a {
         color:#fff !important;
-        text-decoration:none;
 
         span {
           color:#fff !important;

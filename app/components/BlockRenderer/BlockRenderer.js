@@ -10,8 +10,42 @@ import { FAQ } from '@/components/FAQ'
 import { ComparisonTable } from '@/components/ComparisonTable'
 import Image from 'next/image'
 
+const mediaItemQuery = `
+	query getImageData($imageID: Int!) {
+		mediaItems(where: {id: $imageID}) {
+			nodes {
+				altText
+				sourceUrl
+			}
+		}
+	}
+`;
+
+async function getMediaItemData(id){
+	const queryVariables = {
+		imageID: id,
+	};
+  const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: mediaItemQuery,
+			variables: queryVariables,
+    }),
+  });
+  const { data } = await res.json();
+
+	if(data){
+		return data.mediaItems.nodes[0]
+	} else {
+		return null
+	}
+}
+
 export const BlockRenderer = ({blocks}) => {
-	return blocks.map((block, index) => {
+	return blocks.map(async (block, index) => {
 		switch(block.name){
 			case 'core/heading': {
 				return (<Heading key={index} content={block.attributes.content} level={block.attributes.level}/>)
@@ -60,8 +94,10 @@ export const BlockRenderer = ({blocks}) => {
 				)
 			}
 			case 'acf/comparison-table': {
+				const logoOne = block.attributes.data.comparison_table_logo_one ? await getMediaItemData(block.attributes.data.comparison_table_logo_one) : '';
+				const logoTwo = block.attributes.data.comparison_table_logo_two ? await getMediaItemData(block.attributes.data.comparison_table_logo_two) : '';
 				return (
-					<ComparisonTable key={index} block={block.attributes.data} />
+					<ComparisonTable key={index} block={block.attributes.data} logoOne={logoOne} logoTwo={logoTwo} />
 				)
 			}
 			default: {

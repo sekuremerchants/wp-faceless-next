@@ -1,6 +1,6 @@
-@use 'block-base';
+@import 'block-base';
 .block--r {
-  // @use 'components/media-block';
+  // @import 'components/media-block';
 
   .txt-content {
     margin-top: 0 !important;

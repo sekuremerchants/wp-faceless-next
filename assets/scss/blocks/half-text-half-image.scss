@@ -1,11 +1,11 @@
-@use 'block-base';
+@import 'block-base';
 .block--p {
   /*
   .media-block {
     align-items: center;
   }
   */
-  // @use 'components/media-block';
+  // @import 'components/media-block';
   .txt-content {
     margin-top: 0 !important;
   }

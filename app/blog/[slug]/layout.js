@@ -1,16 +1,17 @@
-import Script from 'next/script';
-import { Red_Hat_Display, Libre_Franklin } from "next/font/google";
-import { assetSourceLocal } from "../../paths"
+import Head from 'next/head'
+import Script from 'next/script'
+import { Red_Hat_Display, Libre_Franklin } from "next/font/google"
 
 // components
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header"
+import { HeaderEvents } from "@/components/HeaderEvents"
+import { BlogEvents } from "@/components/BlogEvents"
+import { Footer } from "@/components/Footer"
 
 // styles
-import "@/styles/bootstrap.css";
-import "@/styles/style.css";
-import "@/styles/blogs.css";
-//import "@/styles/blocks/blocks.css";
+import "@/styles/bootstrap.css"
+import "@/styles/style.css"
+import "@/styles/blogs.css"
 
 const redHatDisplay = Red_Hat_Display({
   variable: "--font-red-hat-display",
@@ -22,16 +23,18 @@ const libreFranklin = Libre_Franklin({
   subsets: ["latin"],
 });
 
-const basePathLocal = assetSourceLocal();
-
 export default async function RootLayout({ children, params }) {
   return (
-    <html lang="en-US">
-      <body className={`${redHatDisplay.variable} ${libreFranklin.variable}`}>
+    <html lang="en-US" className='this-layout'>
+      <body className={`${redHatDisplay.variable} ${libreFranklin.variable} single-post`}>
         <Header pageParams={params}/>
-        <main>{children}</main>
+       
+        <main id='main-content'>{children}</main>
+
         <Footer />
-        <Script src={`${basePathLocal}/assets/js/blogs.js`}/>
+        
+        <HeaderEvents/>
+        <BlogEvents/>
       </body>
     </html>
   );

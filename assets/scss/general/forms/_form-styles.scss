@@ -60,6 +60,16 @@
       }
     }
   }
+
+  .disclaimer {
+    a {
+      color:$green-1 !important;
+
+      &:hover, &:focus {
+        color:$blue-2 !important;
+      }
+    }
+  }
 }
 
 .popup, .talk-us-block, .sk-block.one-column {
@@ -328,10 +338,6 @@
       background: #fff;
     }
   }
-
-  .hs-button {
-    line-height:1;
-  }
 }
 
 .contact-col .hbspt-form,
@@ -441,7 +447,6 @@
       margin-top: 0 !important;
       font-size: 16px;
       font-weight: 700;
-      line-height: 1;
       color: transparent !important;
       background: url(/wp-content/uploads/2022/07/green-arrow-right.png) center
         center no-repeat !important;

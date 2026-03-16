@@ -21,10 +21,6 @@ html {
   @include background-contrast-fix;
 }
 
-// body {
-//   opacity: 0.2;
-// }
-
 html,
 body {
   width: 100%;
@@ -90,8 +86,10 @@ img {
 }
 
 a {
-  text-decoration: none;
+  color:inherit;
+  text-decoration:none;
   -webkit-text-decoration-skip: objects;
+  transition:all 0.3s ease;
 }
 
 .animated-in {
@@ -258,77 +256,6 @@ button {
   border: 0;
   background: transparent;
   padding: 0;
-}
-
-/////////////// Text ///////////////
-
-.pe-none {
-  pointer-events: none;
-}
-
-.center {
-  text-align: center;
-}
-
-.upper {
-  text-transform: uppercase;
-}
-
-.lower {
-  text-transform: lowercase;
-}
-
-.case {
-  text-transform: normal;
-}
-
-.nocase {
-  text-transform: none;
-}
-
-.italic {
-  font-style: italic;
-}
-
-.hyphenate {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  hyphens: auto;
-}
-
-/////////////// Positions ///////////////
-.prel {
-  position: relative;
-}
-
-.pabs {
-  position: absolute;
-}
-
-.pfix {
-  position: fixed;
-}
-
-.valign {
-  position: relative;
-  display: table;
-
-  &.fit {
-    width: 100%;
-    height: 100%;
-  }
-
-  .middle {
-    display: table-cell;
-    vertical-align: middle;
-  }
-}
-
-.middle {
-  vertical-align: middle;
 }
 
 /////////////// Backgrouds ///////////////

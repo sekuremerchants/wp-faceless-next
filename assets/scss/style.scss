@@ -1,4 +1,6 @@
 // Child theme variables and overrides
-@forward 'variables';
-@use 'common/bootstrap/base';
-@use 'general';
+@import 'variables';
+@import 'common/functions/round';
+@import 'common/mixins/vw';
+@import 'common/mixins/utils';
+@import 'general/**/*.scss';

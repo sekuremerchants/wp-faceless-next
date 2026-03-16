@@ -1,4 +1,6 @@
 // Child theme variables and overrides
-@use 'admin/admin';
-@use 'admin/content';
-@use 'admin/range';
+// @import 'variables';
+// @import 'common/bootstrap/base';
+@import 'common/functions/**/*.scss';
+@import 'common/mixins/**/*.scss';
+@import 'admin/**/*.scss';

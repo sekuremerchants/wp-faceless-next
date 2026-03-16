@@ -2,6 +2,7 @@ import { Red_Hat_Display, Libre_Franklin } from "next/font/google";
 import "../assets/css/styles/bootstrap.css";
 import "../assets/css/styles/style.css";
 import "../assets/css/styles/pages/page-home.css";
+import Script from 'next/script'
 
 // components
 import { Header } from "./components/Header";
@@ -141,6 +142,7 @@ export default async function Home() {
           </section>
         </main>  
         <Footer />
+        <Script src={`${basePathLocal}/assets/js/header.js`}/>
       </body>
     </html>
   );

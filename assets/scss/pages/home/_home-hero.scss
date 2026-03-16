@@ -27,34 +27,6 @@
     }
   }
 
-  /*
-  @media screen and ($min1024) {
-    @include vw(padding-top, 88px);
-    @include vw(padding-bottom, 157px);
-  }
-
-  @media screen and ($min1920) {
-    padding-top: 88px;
-    padding-bottom: 157px;
-  }
-  */
-
-  /*
-  h1 {
-    font-size:80px;
-    line-height:90px;
-
-    @media screen and ($min1440){
-      font-size:100px;
-      line-height: 110px;
-    }
-    @media screen and ($max1024) {
-      font-size:56px;
-      line-height: 52px;
-    }
-  }
-  */
-
   .bg-el-wrap {
     @include abs-cover-el;
     

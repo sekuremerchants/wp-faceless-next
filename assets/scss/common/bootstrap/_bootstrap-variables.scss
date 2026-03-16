@@ -2,7 +2,6 @@ $prefix: 'sk-';
 
 // scss-docs-start theme-color-variables
 $primary: #002ea6;
-$white: #ffffff;
 // $secondary: $gray-600 ;
 // $success: $green ;
 // $info: $cyan ;
@@ -83,7 +82,7 @@ $font-family-heading:
 $headings-font-family: $font-family-heading;
 $headings-color: $primary;
 $headings-font-weight: bold;
-//$headings-margin-bottom: $contentPadding;
+$headings-margin-bottom: $contentPadding;
 
 $line-height-base: 1.8;
 $line-height-sm: 1.3333;
@@ -109,6 +108,7 @@ $blockquote-font-size: 1rem;
 $list-group-item-padding-x: 35px;
 
 $grid-gutter-width: 48px;
+$gutters: 48px;
 
 // Spacers
 //$spacer: 1rem;

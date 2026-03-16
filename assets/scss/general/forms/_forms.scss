@@ -815,5 +815,8 @@ form:not(.guide-form):not(.form-styles) {
 
 .sk-form-hbsp .hs-recaptcha.hs-form-field,
 .hbspt-form .hs-recaptcha.hs-form-field {
-  @extend .visually-hidden;
+  display:none;
+  visibility:hidden;
+  opacity:0;
+  pointer-events:none;
 }

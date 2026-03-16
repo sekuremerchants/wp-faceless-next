@@ -127,7 +127,25 @@
     }
   }
   .column-content {
-    @include WhiteText;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    span:not(.btn-txt),
+    a:not(button, .btn, .btn-primary, .btn-default, .btn-txt),
+    .title-highlight,
+    li,
+    p {
+      color: $white;
+    }
 
     a[href^='tel:']:not(.btn-default) {
       color: $green-1 !important;

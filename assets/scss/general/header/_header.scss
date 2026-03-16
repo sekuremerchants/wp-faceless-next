@@ -484,31 +484,9 @@ html {
       }
     }
 
-    /*
     @media screen and ($mobile_sm) {
-      @include vw(width, 197px, 500);
-      @include vw(height, 66px, 500);
-    }
-
-    @media screen and ($mobile_lg) {
-      width: 197px;
-      height: 66px;
-    }
-
-    @media screen and ($min1024) {
-      @include vw(width, 217px);
-      @include vw(height, 73px);
-    }
-
-    @media screen and ($min1920) {
-      width: 217px;
-      height: 73px;
-    }
-    */
-
-    @media screen and ($mobile_sm) {
-      @include vw(width, 200px, 500);
-      @include vw(height, 80px, 500);
+      height: 16vw;
+      width: 40vw;
     }
 
     @media screen and ($mobile_lg) {
@@ -627,6 +605,10 @@ html {
       }
     }
 
+    .careers-link:hover, .careers-link:focus {
+      color:$green-1;
+    }
+
     .search-icon {
       display: inline-block;
       height: 30px;
@@ -693,7 +675,7 @@ html {
       transform: translateY(-50%);
       height: 16px;
       width: 16px;
-      background: url('/media/svgs/web.svg') no-repeat center center;
+      background: url($ROOT_PATH + 'media/svgs/web.svg') no-repeat center center;
     }
     &::after {
       top:12px;
@@ -1595,6 +1577,25 @@ html {
 
     a {
       position:relative;
+
+      /*
+      .arrow-img {
+        display:none;
+      }
+
+      &::after {
+        content:'';
+        position:absolute;
+        top:50%;
+        transform:translateY(-50%);
+        height:15px;
+        width:15px;
+        margin-left:8px;
+        background-image:url('https://wordpress-dev-appsvc.azurewebsites.net/wp-content/themes/sekure/assets/media/svgs/arrow.svg');
+        background-repeat:no-repeat;
+        background-position:center center;
+      }
+      */
     }
 
     @media screen and ($min1024){

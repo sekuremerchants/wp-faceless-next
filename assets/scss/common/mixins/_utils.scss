@@ -1,3 +1,47 @@
+@mixin WhiteText {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6,
+  span:not(.btn-txt),
+  a:not(button, .btn, .btn-primary, .btn-default, .btn-txt),
+  .title-highlight,
+  li,
+  p {
+    color: $white;
+  }
+}
+
+@mixin BlueText {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6,
+  span:not(.btn-txt),
+  a:not(button, .btn, .btn-primary, .btn-default, .btn-txt),
+  .title-highlight,
+  li,
+  p {
+    color: $blue-1;
+  }
+}
+
 @mixin abs-cover-el {
   position: absolute;
   width: 100%;
@@ -32,6 +76,9 @@
 }
 
 @mixin responsive-display {
+  .d-none {
+    display:none !important;
+  }
   @media screen and (#{$desktop}) {
     .d-desktop,
     .d-none.d-desktop {

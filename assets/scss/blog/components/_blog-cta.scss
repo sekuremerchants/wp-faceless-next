@@ -92,7 +92,7 @@
     &::before {
       content: '';
       display: block;
-      background-image: url('/media/svgs/blog-cta.svg');
+      background-image: url($ROOT_PATH + 'media/svgs/blog-cta.svg');
       background-position: bottom right;
       background-repeat: no-repeat;
       background-size: contain;
@@ -156,7 +156,7 @@
         width: 35%;
         height: 100%;
         right: -1px;
-        mask: url('/media/svgs/blog-cta-bg.svg') no-repeat;
+        mask: url($ROOT_PATH + 'media/svgs/blog-cta-bg.svg') no-repeat;
         position: absolute;
         mask-position: left;
         mask-size: cover !important;
@@ -265,7 +265,7 @@
           font-weight: 700;
 
           &:before {
-            background-image: url('/media/icons/blue-arrow.svg');
+            background-image: url($ROOT_PATH + 'media/icons/blue-arrow.svg');
           }
 
           &:hover,
@@ -277,7 +277,7 @@
               color: $white !important;
             }
             &:before {
-              background-image: url('/media/icons/green-arrow.svg');
+              background-image: url($ROOT_PATH + 'media/icons/green-arrow.svg');
             }
 
             .btn-txt {

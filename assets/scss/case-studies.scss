@@ -1,6 +1,3 @@
-@forward 'variables';
-@use 'common/bootstrap/base';
-@use 'case-studies/base' as base2;
-@use 'case-studies/block';
-@use 'case-studies/featured-image';
-@use 'case-studies/home';
+@import 'variables';
+@import 'common/bootstrap/base';
+@import 'case-studies/**/*.scss';
