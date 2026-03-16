@@ -212,7 +212,6 @@ export default async function BlogPost({params}) {
 
   //console.log("SINGLE POST DATA", nodeData);
 
-
 	return (
     <>
       <article className='sk-blog-content container prel' itemScope='' itemType='https://schema.org/BlogPosting' itemID={nodeData.uri}>

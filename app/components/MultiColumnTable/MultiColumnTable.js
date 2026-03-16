@@ -9,8 +9,6 @@ import '@/styles/blocks/multi-columns-table.css'
 
 export const MultiColumnTable = ({block}) => {
 
-	console.log("MULTI COLUMN TABLE DATA: ", block)
-
 	const bgColour = block.full_width_with_background == "1" ? "full-width-bg" : "";
 	const formatContent = block.content.split('\r\n').map(content => {
 		if(content.match(/<h[1-6]>.*?<\/h[1-6]>/gi)) {

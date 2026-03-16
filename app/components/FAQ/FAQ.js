@@ -34,15 +34,12 @@ export const FAQ = ({block}) => {
 		let opened = block[openedLabel] == 'Yes' ? 'preopened-item' : ''
 		let contentString = '';
 		const paragraphs = block[answerLabel].split(/(\r\n|\n){2,}/g)
-		console.log("PARAGRAPHS: ", paragraphs)
 
 		paragraphs.map((string, index) => (
 			string != '\r\n' && (
 				contentString += '<p>' + string + '</p>'
 			)
 		))
-
-		console.log("contentString: ", contentString)
 
 		let FAQ = {
 			opened: opened,
@@ -54,8 +51,6 @@ export const FAQ = ({block}) => {
 			
 		count++;
 	}
-
-	console.log("FAQs array: ", FAQs);
 
 	return (
 		<section className={`sk-block sk-faq block--c content-block-holder ${bgColour} ${block.section_classes}`}>

@@ -12,8 +12,6 @@ const basePathLocal = assetSourceLocal();
 
 export const ComparisonTable = ({block, logoOne, logoTwo}) => {
 
-	console.log("COMPARISON TABLE BLOCK DATA: ", block)
-
 	const columnClass = block.left_side_content && block.comparison_table_rows > 0 ? 'col-sm-12 col-lg-6' : 'col-sm-12'
 	const bgColour = block.full_width_with_background == 'Yes' ? 'full-width-bg' : ''
 	const maxTableRows = block.comparison_table_rows - 1;

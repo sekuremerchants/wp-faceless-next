@@ -7,6 +7,7 @@ import Script from 'next/script'
 // components
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { HeaderEvents } from "./components/HeaderEvents";
 
 const redHatDisplay = Red_Hat_Display({
   variable: "--font-red-hat-display",
@@ -142,7 +143,7 @@ export default async function Home() {
           </section>
         </main>  
         <Footer />
-        <Script src={`${basePathLocal}/assets/js/header.js`}/>
+        <HeaderEvents />
       </body>
     </html>
   );
