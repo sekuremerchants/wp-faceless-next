@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Heading } from '../Heading'
 import '@/styles/blocks/blog-cta.css'
 
-export const BlogCTA = async ({sectionID, sectionClasses, title, content, image, imageStyle, showNewsletter, ctaText, ctaType, ctaLink, newsletterSubmitText, newsletterAlternateForm}) => {
+export const BlogCTA = async ({block, sectionID, sectionClasses, title, content, image, imageStyle, showNewsletter, ctaText, ctaType, ctaLink, newsletterSubmitText, newsletterAlternateForm}) => {
 	var data;
 
 	if(image){
@@ -66,7 +66,12 @@ export const BlogCTA = async ({sectionID, sectionClasses, title, content, image,
 							<div className="text-white" dangerouslySetInnerHTML={{__html: formattedContent}}></div>
 						)}
 						{ctaText && (
-							<Link href={ctaLink.url} className="btn btn-download">{ctaText}</Link>
+							ctaType != 'form' && (
+								<Link href={ctaLink.url} className="btn btn-download">{ctaText}</Link>
+							) ||
+							ctaType == 'form' && (
+								<Link href='#' data-popup-id={block.popup} className='btn btn-download'>{ctaText}</Link>
+							)
 						)}
 					</div>
 					{showNewsletter != 0 && (
