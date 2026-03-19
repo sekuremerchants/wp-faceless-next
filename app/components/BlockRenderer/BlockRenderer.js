@@ -65,7 +65,7 @@ export const BlockRenderer = ({blocks}) => {
 			}
 			case 'core/image': {
 				return (
-					<Image key={index} src={block.attributes.url} alt={block.attributes.alt} width='1024' height='768' />
+					<Image key={index} src={block.attributes.url} alt={block.attributes.alt} width='1024' height='768' className='mb-2'/>
 				)
 			}
 			case 'acf/blog-cta': {
