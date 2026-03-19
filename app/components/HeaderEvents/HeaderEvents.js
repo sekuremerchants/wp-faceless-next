@@ -43,7 +43,7 @@ export function HeaderEvents() {
 					element.removeEventListener('mouseover', desktopNavMouseOverEvent)
 				})
 				Array.from(dropdownMenus).forEach(element => {
-					element.removeEventListener('mouseleave', () => desktopNavMouseLeaveEvent)
+					element.removeEventListener('mouseleave', desktopNavMouseLeaveEvent)
 				})
 			}
 		})
@@ -127,7 +127,7 @@ export function HeaderEvents() {
 				// move dropdown menus to header height
 				element.style.top = header.offsetHeight + "px"
 
-				element.addEventListener('mouseleave', () => desktopNavMouseLeaveEvent)
+				element.addEventListener('mouseleave', desktopNavMouseLeaveEvent)
 			})
 		}
 
