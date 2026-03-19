@@ -20,24 +20,38 @@ export function HeaderEvents() {
 		const dropdownMenus = document.getElementsByClassName('dropdown-item-links')
 		const columnHeadings = document.getElementsByClassName('column-heading')
 
-		var windowWidth = window.innerWidth
-
 		// main nav hover functionality
-		if(windowWidth >= 1025){
+		if(window.innerWidth >= 1025){
 			desktopNav()
 		} else {
 			mobileNav()
 		}
 
 		window.addEventListener('resize', () => {
-			windowWidth = window.innerWidth
-			console.log('WINDOW WIDTH ON RESIZE: ', windowWidth)
-			if(windowWidth >= 1025){
+			if(window.innerWidth >= 1025){
+				if(htmlElement[0].classList.contains('mobile-menu-opened')){
+					htmlElement[0].classList.remove('mobile-menu-opened')
+					if(htmlElement[0].classList.contains('header-toggled-state')){
+						logo.src = `${basePathLocal}/logo/en/logo-white-descriptor.webp`
+					} else {
+						logo.src = `${basePathLocal}/logo/en/logo-white-descriptor-tagline.webp`
+					}
+					resetMobileDropdownItemWraps()
+				}
 				desktopNav()
 				Array.from(headerLinks).forEach(element => {
 					element.removeEventListener('click', mobileNavEvents)
 				})
 			} else {
+				if(htmlElement[0].classList.contains('header-opened-dropdown')){
+					htmlElement[0].classList.remove('header-opened-dropdown')
+					Array.from(headerLinks).forEach(element => {
+						if(element.classList.contains('opened-dropdown')){
+							element.classList.remove('opened-dropdown')
+							element.nextSibling.classList.remove('opened-dropdown')
+						}
+					})
+				}
 				mobileNav()
 				Array.from(headerLinks).forEach(element => {
 					element.removeEventListener('mouseover', desktopNavMouseOverEvent)
@@ -65,28 +79,7 @@ export function HeaderEvents() {
 					logo.src = `${basePathLocal}/logo/en/logo-white-descriptor-tagline.webp`
 				}
 
-				const dropdownItemWraps = document.getElementsByClassName('dropdown-item-wrap')
-				Array.from(dropdownItemWraps).forEach(element => {
-					element.setAttribute('style', 'display:block')
-					if(element.classList.contains('opened')){
-						element.classList.remove('opened')
-					}
-				})
-
-				const linksColumns = header.querySelectorAll('.links-column')
-				Array.from(linksColumns).forEach(element => {
-					if(element.classList.contains('open-submenu')){
-						element.classList.remove('open-submenu')
-					}
-				})
-
-				const clonedCTAparent = header.querySelectorAll('.cta-parent')
-				const clonedCTA = header.querySelectorAll('.clone')
-				if(clonedCTAparent.length && clonedCTA.length){
-					clonedCTAparent[0].append(clonedCTA[0])
-					clonedCTAparent[0].classList.remove('cta-parent')
-					clonedCTA[0].classList.remove('clone')
-				}
+				resetMobileDropdownItemWraps()
 			}
 		})
 
@@ -136,11 +129,7 @@ export function HeaderEvents() {
 
 			if(this.parentElement.classList.contains('opened')){
 				this.parentElement.classList.remove('opened')
-
-				const dropdownItemWraps = document.getElementsByClassName('dropdown-item-wrap')
-				Array.from(dropdownItemWraps).forEach(element => {
-					element.setAttribute('style', 'display:block')
-				})
+				resetMobileDropdownItemWraps()
 			} else {
 				this.parentElement.classList.add('opened')
 
@@ -159,6 +148,31 @@ export function HeaderEvents() {
 						header.querySelectorAll('.content-wrap')[0].append(ctaBtn[0])
 					}
 				}
+			}
+		}
+
+		function resetMobileDropdownItemWraps(){
+			const dropdownItemWraps = document.getElementsByClassName('dropdown-item-wrap')
+			Array.from(dropdownItemWraps).forEach(element => {
+				element.setAttribute('style', 'display:block')
+				if(element.classList.contains('opened')){
+					element.classList.remove('opened')
+				}
+			})
+
+			const linksColumns = header.querySelectorAll('.links-column')
+			Array.from(linksColumns).forEach(element => {
+				if(element.classList.contains('open-submenu')){
+					element.classList.remove('open-submenu')
+				}
+			})
+
+			const clonedCTAparent = header.querySelectorAll('.cta-parent')
+			const clonedCTA = header.querySelectorAll('.clone')
+			if(clonedCTAparent.length && clonedCTA.length){
+				clonedCTAparent[0].append(clonedCTA[0])
+				clonedCTAparent[0].classList.remove('cta-parent')
+				clonedCTA[0].classList.remove('clone')
 			}
 		}
 
