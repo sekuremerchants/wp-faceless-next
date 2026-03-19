@@ -24,7 +24,7 @@ const libreFranklin = Libre_Franklin({
 
 export default async function RootLayout({ children, params }) {
   return (
-    <html lang="en-US" className='this-layout'>
+    <html lang="en-US">
       <body className={`${redHatDisplay.variable} ${libreFranklin.variable} single-post`}>
         <Header pageParams={params}/>
        

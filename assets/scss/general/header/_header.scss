@@ -975,6 +975,8 @@ html {
 
       .dropdown-item-links {
         height: auto !important;
+        opacity: 1;
+        visibility: visible;
       }
     }
 
@@ -1480,6 +1482,9 @@ html {
             border-color: #fc4a6b;
             transform: translateY(-50%) rotate(-225deg);
           }
+        }
+        .dropdown-link-wrap {
+          display:block;
         }
       }
     }
