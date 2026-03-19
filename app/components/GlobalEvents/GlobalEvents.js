@@ -15,11 +15,13 @@ export function GlobalEvents() {
 		}
 
 		window.addEventListener('load', () => {
-			window.scrollTo(0, 0);
+			const top = 0 - document.getElementById('header').offsetHeight
+			window.scrollTo(top, 0);
 		})
 
 		window.onbeforeunload = function() {
-			window.scrollTo(0, 0);
+			const top = 0 - document.getElementById('header').offsetHeight
+			window.scrollTo(top, 0);
 		}
 
 		window.addEventListener('scroll', () => {
