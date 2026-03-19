@@ -37,6 +37,21 @@ export function GlobalEvents() {
 			})
 		})
 
+		const anchorLinks = document.querySelectorAll('a[href*="#"]')
+		Array.from(anchorLinks).forEach(element => {
+			element.addEventListener('click', (event) => {
+				var targetID = element.hash.replace('#', '')
+				const targetElement = document.getElementById(targetID)
+				if(targetElement){
+					event.preventDefault()
+					const yOffset = -200;
+					const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+					window.scrollTo({ top: y, behavior: 'smooth' });
+					console.log(targetElement)
+				}
+			})
+		})
+
 	}, [pathname])
 
 	return null

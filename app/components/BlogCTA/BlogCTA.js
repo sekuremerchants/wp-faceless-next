@@ -36,10 +36,14 @@ export const BlogCTA = async ({block, sectionID, sectionClasses, title, content,
 	}
 
 	const formattedContent = content.split('\r\n').map(content => {
-		if(content != ''){
+		const hasHTML = (str) => /<[^>]*>/i.test(str);
+		if(content != '' && !hasHTML(content)){
 			return `<p>${content}</p>`
+		} else {
+			return content.trim()
 		}
 	}).join('')
+
 	let imageClass = image ? 'w-image': 'w-svg'
 	imageClass = showNewsletter ? imageClass + ' w-form' : imageClass
 	const customSubmitText = newsletterSubmitText ? 'btn-custom-text' : ''
