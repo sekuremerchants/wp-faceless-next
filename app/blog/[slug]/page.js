@@ -235,17 +235,17 @@ export default async function BlogPost({params}) {
               <ul className='ul-reset px-0 mb-0 d-flex flex-wrap gap-10'>
                 {nodeData.categories.nodes.length > 0 && (
                   nodeData.categories.nodes.map((item, index) => (
-                    <li key={index}><Link href={item.uri} className='post-single-category'>{item.name}</Link></li>
+                    <li key={index}><Link href={item.uri} className='post-single-category text-decoration-underline hover-text-col-blue'>{item.name}</Link></li>
                   ))
                 )}
                 {nodeData.businessTypes.nodes.length > 0 && (
                   nodeData.businessTypes.nodes.map((item, index) => (
-                    <li key={index}><Link href={item.uri} className='post-single-category'>{item.name}</Link></li>
+                    <li key={index}><Link href={item.uri} className='post-single-category text-decoration-underline hover-text-col-blue'>{item.name}</Link></li>
                   ))
                 )}
                 {nodeData.contentTypes.nodes.length > 0 && (
                   nodeData.contentTypes.nodes.map((item, index) => (
-                    <li key={index}><Link href={item.uri} className='post-single-category'>{item.name}</Link></li>
+                    <li key={index}><Link href={item.uri} className='post-single-category text-decoration-underline hover-text-col-blue'>{item.name}</Link></li>
                   ))
                 )}
               </ul>
