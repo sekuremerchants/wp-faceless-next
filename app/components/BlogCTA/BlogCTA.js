@@ -50,7 +50,7 @@ export const BlogCTA = async ({block, sectionID, sectionClasses, title, content,
 										});`
 
 	return (
-		<section id={sectionID} className={`content-block-holder sk-block blog-cta block--bsk8 py-0 ${sectionClasses}`}>
+		<section id={sectionID} className={`content-block-holder sk-block blog-cta block--bsk8 py-0 op-0 ${sectionClasses}`}>
 			<div className={`sk-blog-block blog-cta col-xs-12 bg-blue d-inline-block w-100 ${imageClass} ${imageStyle}`}>
 				{image && (
 					<div className='image-block'>

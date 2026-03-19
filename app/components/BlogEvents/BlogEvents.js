@@ -29,8 +29,6 @@ export function BlogEvents(){
 
 			let activeHeading = null
 			let negatives = []
-			const mainHeader = document.getElementById('header')
-			const headerHeight = mainHeader.offsetHeight
 			const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop
 
 			Array.from(blogH2s).forEach(function (current, index) {

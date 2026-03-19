@@ -54,7 +54,7 @@ export const FAQ = ({block}) => {
 	}
 
 	return (
-		<section className={`sk-block sk-faq block--c content-block-holder ${bgColour} ${block.section_classes}`}>
+		<section className={`sk-block sk-faq block--c content-block-holder op-0 ${bgColour} ${block.section_classes}`}>
 			<FAQevents/>
 			<div className='container'>
 				<div className='faq-block content-block'>

@@ -63,7 +63,7 @@ export const Footer = async () => {
   `;
 
 	return (
-		<footer id="footer" className="footer footer-default">
+		<footer id="footer" className="footer footer-default op-0">
 			<div className="container full prel">
 				<div className="footer-top-wrap row">
 

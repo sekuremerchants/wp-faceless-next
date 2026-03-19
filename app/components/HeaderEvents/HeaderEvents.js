@@ -1,12 +1,12 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { usePathname } from 'next/navigation'
+import { useEffect } from 'react'
 import { assetSourceLocal } from "@/app/paths"
 
 export function HeaderEvents() {
-  const pathname = usePathname();
-	const basePathLocal = assetSourceLocal();
+  const pathname = usePathname()
+	const basePathLocal = assetSourceLocal()
 
   useEffect(() => {
 
@@ -210,7 +210,7 @@ export function HeaderEvents() {
 		window.addEventListener("scroll", addClassOnScroll)
 
 
-  }, [pathname]);
+  }, [pathname])
 
-  return null; // This component doesn't render anything
+  return null
 }

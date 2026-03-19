@@ -1,24 +1,43 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { usePathname } from 'next/navigation'
+import { useEffect } from 'react'
 import { assetSourceLocal } from "@/app/paths"
 
 export function GlobalEvents() {
-	const pathname = usePathname();
-	const basePathLocal = assetSourceLocal();
+	const pathname = usePathname()
+	const basePathLocal = assetSourceLocal()
 
 	useEffect(() => {
 
-		window.onload = function() {
-				window.scroll({
-						top: 0, 
-						left: 0, 
-						behavior: 'smooth' 
-				})
+		if ('scrollRestoration' in history) {
+			history.scrollRestoration = 'manual';
 		}
 
-	}, [pathname]);
+		window.addEventListener('load', () => {
+			window.scrollTo(0, 0);
+		})
 
-	return null; // This component doesn't render anything
+		window.onbeforeunload = function() {
+			window.scrollTo(0, 0);
+		}
+
+		window.addEventListener('scroll', () => {
+			const elements = document.querySelectorAll('.op-0')
+			Array.from(elements).forEach(element => {
+				const position = element.getBoundingClientRect()
+				const headerPosition = document.getElementById('header').getBoundingClientRect()
+
+				// Checking if any part of the element is visible
+				if (position.top < (window.innerHeight - 200) && position.bottom >= -200 && position.bottom > (headerPosition.bottom + 100)) {
+					element.setAttribute('style', 'opacity:1;')
+				} else {
+					element.setAttribute('style', 'opacity:0;')
+				}
+			})
+		})
+
+	}, [pathname])
+
+	return null
 }

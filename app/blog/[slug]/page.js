@@ -271,7 +271,7 @@ export default async function BlogPost({params}) {
               </div>
             )}
 
-            <div className='article-main-content mt-50 row'>
+            <div className='article-main-content mt-50 row op-0'>
               <div className='table-of-contents col-sm-12 col-lg-3'>
                 <div className='sk-sticky'>
                   <p className='toc-title title-highlight'>Jump to:</p>
@@ -297,12 +297,12 @@ export default async function BlogPost({params}) {
             </div>
           </div>
 
-          <div className='article-aside col-sm-12 col-lg-2 in-view'>
+          <div className='article-aside col-sm-12 col-lg-2'>
             <BlogCategories/>
           </div>
         </div>
 
-        <section className='article-author row w-100' itemProp='author' itemScope itemType='https://schema.org/Person'>
+        <section className='article-author row w-100 op-0' itemProp='author' itemScope itemType='https://schema.org/Person'>
           <div className='author-image col-sm-12 col-md-2'>
             <Image src={nodeData.author.node.userImage.authorImage.node.sourceUrl} alt={`${nodeData.author.node.name} profile pic`} height="130" width="130" className="author-image"/>
           </div>
@@ -312,7 +312,7 @@ export default async function BlogPost({params}) {
           </div>
         </section>
 
-        <section className='newsletter-signup-wrap prel single-article-newsletter ov-hidden'>
+        <section className='newsletter-signup-wrap prel single-article-newsletter ov-hidden op-0'>
           <Image src={`${basePathLocal}/media/images/blog/newsletter-signup.webp`} alt="newsletter signup background photo" height="150" width="1080" className="bg-image object-cover newsletter-background-img"/>
           <div className='newsletter-inner-holder'>
             <p className='txt-size-24 c-white fw-700'>Want more business insights?</p>
@@ -323,7 +323,7 @@ export default async function BlogPost({params}) {
           </div>
         </section>
 
-        <section className='related-articles'>
+        <section className='related-articles op-0'>
           <h2 className='fw-700 heading-anim'>Related posts</h2>
           <div className='related-articles-wrap row gap-rows'>
 
@@ -362,7 +362,7 @@ export default async function BlogPost({params}) {
 
       </article>
 
-      <section className='inner-pages-contact-section contact-block prel sk-page-block block--s talk-us-block blog-social-media'>
+      <section className='inner-pages-contact-section contact-block prel sk-page-block block--s talk-us-block blog-social-media op-0'>
         <Image className='bg-image object-cover b-lazy b-loaded' src={`${basePathLocal}/media/images/inner/contact-section-bgr.webp`} alt="blog prefooter background image" width="1280" height="768"/>
 
         <div className='background-flower-path-patterns'>
