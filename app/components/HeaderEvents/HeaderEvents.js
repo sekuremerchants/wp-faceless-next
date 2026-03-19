@@ -182,7 +182,7 @@ export function HeaderEvents() {
 				element.addEventListener('click', mobileNavEvents)
 			})
 			Array.from(columnHeadings).forEach(element => {
-				element.addEventListener('click', function(){
+				element.addEventListener('click', () => {
 					element.parentElement.classList.toggle('open-submenu')
 				})
 			})
