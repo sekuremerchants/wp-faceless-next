@@ -137,25 +137,10 @@ export function HeaderEvents() {
 			if(this.parentElement.classList.contains('opened')){
 				this.parentElement.classList.remove('opened')
 
-				const linksColumns = this.nextElementSibling.querySelectorAll('.links-column')
-				Array.from(linksColumns).forEach(element => {
-					if(element.classList.contains('open-submenu')){
-						element.classList.remove('open-submenu')
-					}
-				})
-
 				const dropdownItemWraps = document.getElementsByClassName('dropdown-item-wrap')
 				Array.from(dropdownItemWraps).forEach(element => {
 					element.setAttribute('style', 'display:block')
 				})
-
-				const clonedCTAparent = header.querySelectorAll('.cta-parent')
-				const clonedCTA = header.querySelectorAll('.clone')
-				if(clonedCTAparent.length && clonedCTA.length){
-					clonedCTAparent[0].append(clonedCTA[0])
-					clonedCTAparent[0].classList.remove('cta-parent')
-					clonedCTA[0].classList.remove('clone')
-				}
 			} else {
 				this.parentElement.classList.add('opened')
 
