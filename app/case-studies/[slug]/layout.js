@@ -3,6 +3,7 @@ import { Red_Hat_Display, Libre_Franklin } from "next/font/google";
 
 // components
 import { Header } from "../../components/Header";
+import { HeaderEvents } from "../../components/HeaderEvents";
 import { Footer } from "../../components/Footer";
 
 // styles
@@ -24,7 +25,7 @@ export default async function RootLayout({ children, params }) {
     <html lang="en-US">
       <body className={`${redHatDisplay.variable} ${libreFranklin.variable}`}>
         <Header />
-        {children}
+        <main id='main-content'>{children}</main>
         <Footer />
       </body>
     </html>

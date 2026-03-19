@@ -3,6 +3,7 @@ import Image from "next/image"
 import Script from "next/script"
 import { assetSourceLocal } from "../../paths"
 import { LanguageSelect } from './LanguageSelect'
+import { HeaderEvents } from "@/components/HeaderEvents"
 import { Beauty, Ecommerce, Equipment, Fashion, Grocery, Hardware, Health, Services, Hospitality, Nonprofit, Restaurants, Retail, Wholesale, Wellness, Info, Career, Reviews, TalkToUs } from './Icons'
 
 const componentMap = {
@@ -193,6 +194,7 @@ export const Header = async ({ pageParams }) => {
 
 	return (
 		<header id="header" className="header main-header">
+			<HeaderEvents/>
 			<style>{styleCode}</style>
 			<div className="container full">
 				<div className="content-wrap">

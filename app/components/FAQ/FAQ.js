@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import "@/styles/blocks/faq.css"
+import { FAQevents } from '@/components/FAQ/FAQevents'
 
 function textToParagraphs(text) {
   // Split the text by single or double newlines to separate paragraphs
@@ -54,6 +55,7 @@ export const FAQ = ({block}) => {
 
 	return (
 		<section className={`sk-block sk-faq block--c content-block-holder ${bgColour} ${block.section_classes}`}>
+			<FAQevents/>
 			<div className='container'>
 				<div className='faq-block content-block'>
 					{block.faq_title_heading_text && (

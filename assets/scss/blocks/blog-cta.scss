@@ -41,8 +41,6 @@
       }
 
       h2 {
-        font-family: $redhat;
-        margin-bottom: 0.85rem;
         font-weight: 700;
         @media screen and ($min768) {
           font-size: 32px;
@@ -57,12 +55,6 @@
 
       *,
       p {
-        margin-bottom: 0.85rem;
-        font-family: $libre;
-        font-size: 18px;
-        line-height: 30px;
-        font-weight: 400;
-
         :empty {
           display: none !important;
         }
@@ -367,7 +359,7 @@
 
       img {
         object-fit:contain;
-        object-position:center !important;
+        object-position:center bottom !important;
 
         @media screen and (min-width:1025px) and (max-width:1200px) {
           object-position:right !important;

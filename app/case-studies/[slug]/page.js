@@ -92,8 +92,6 @@ export default async function Page({params}) {
   const nodeData = data.nodeByUri;
 
 	return (
-		<main>
-			<h1>dynamic case study single page file - {nodeData.title}</h1>
-		</main>  
+		<h1>dynamic case study single page file - {nodeData.title}</h1> 
 	);
 }

@@ -4,7 +4,6 @@ import { Red_Hat_Display, Libre_Franklin } from "next/font/google"
 
 // components
 import { Header } from "@/components/Header"
-import { HeaderEvents } from "@/components/HeaderEvents"
 import { BlogEvents } from "@/components/BlogEvents"
 import { Footer } from "@/components/Footer"
 
@@ -32,8 +31,6 @@ export default async function RootLayout({ children, params }) {
         <main id='main-content'>{children}</main>
 
         <Footer />
-        
-        <HeaderEvents/>
         <BlogEvents/>
       </body>
     </html>

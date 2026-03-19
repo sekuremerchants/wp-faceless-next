@@ -280,7 +280,7 @@ export default async function BlogPost({params}) {
                       {nodeData.blocks.length > 0 && (
                         nodeData.blocks.map((item, index) => (
                           item.name == 'core/heading' && item.attributes.level == '2' && (
-                            <li key={index} className=''><Link href={`#${item.attributes.content.toLowerCase().replaceAll(' ','-')}`} className='c-blue-1 fw-400 anchor-link text-decoration-none hover-text-decoration-underline d-flex' dangerouslySetInnerHTML={{__html: item.attributes.content}}></Link></li>
+                            <li key={index} className=''><Link href={`#${item.attributes.content.toLowerCase().replaceAll(' ','-')}`} className='c-blue-1 fw-400 anchor-link text-decoration-none hover-text-decoration-underline d-flex'>{item.attributes.content}</Link></li>
                           )
                         ))
                       )}
