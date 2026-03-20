@@ -6,7 +6,7 @@ export const BlogQuote = ({block}) => {
 	const textMode = block.background ? 'text-white' : 'text-blue';
 
 	return (
-		<section className='content-block-holder sk-block blog-quote block--bcq'>
+		<section className='content-block-holder sk-block blog-quote block--bcq op-0'>
 			<div className={`case-quote ${bgMode}`}>
 				<div className={`inner-quote ${textMode}`}>
 					<div className='quote-content'>

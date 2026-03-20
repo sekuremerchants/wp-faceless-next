@@ -10,6 +10,7 @@ export function GlobalEvents() {
 
 	useEffect(() => {
 
+		// load pages at the top
 		if ('scrollRestoration' in history) {
 			history.scrollRestoration = 'manual';
 		}
@@ -24,6 +25,7 @@ export function GlobalEvents() {
 			window.scrollTo(top, 0);
 		}
 
+		// fade in/out sections/blocks using class op-0
 		window.addEventListener('scroll', () => {
 			const elements = document.querySelectorAll('.op-0')
 			Array.from(elements).forEach(element => {
@@ -39,9 +41,11 @@ export function GlobalEvents() {
 			})
 		})
 
+		// anchor links scrolling
 		const anchorLinks = document.querySelectorAll('a[href*="#"]')
 		Array.from(anchorLinks).forEach(element => {
 			element.addEventListener('click', (event) => {
+				element.blur()
 				var targetID = element.hash.replace('#', '')
 				const targetElement = document.getElementById(targetID)
 				if(targetElement){
@@ -49,7 +53,7 @@ export function GlobalEvents() {
 					const yOffset = -200;
 					const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
 					window.scrollTo({ top: y, behavior: 'smooth' });
-					console.log(targetElement)
+					
 				}
 			})
 		})

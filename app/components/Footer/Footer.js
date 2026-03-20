@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import Script from "next/script"
 import { assetSourceWP } from "../../paths"
+import { HubspotForm } from '@/components/HubspotForm'
 
 const basePathWP = assetSourceWP();
 
@@ -104,6 +105,8 @@ export const Footer = async () => {
 								</Link>
 							</div>
 						</div>
+
+						<HubspotForm formID={`18baf56a-8969-4644-8354-a4e6f086de71`} formContainer={`footernewsletter`} />
 
 					</div>
 

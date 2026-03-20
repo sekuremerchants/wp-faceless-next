@@ -4,6 +4,7 @@ import Script from "next/script"
 import { assetSourceLocal } from "../../paths"
 import { LanguageSelect } from './LanguageSelect'
 import { HeaderEvents } from "@/components/HeaderEvents"
+import { HubspotForm } from "@/components/HubspotForm"
 import { Beauty, Ecommerce, Equipment, Fashion, Grocery, Hardware, Health, Services, Hospitality, Nonprofit, Restaurants, Retail, Wholesale, Wellness, Info, Career, Reviews, TalkToUs } from './Icons'
 
 const componentMap = {
@@ -113,6 +114,7 @@ export const Header = async ({ pageParams }) => {
 						buttonText
 						ctaContent
 						form
+						formID
 						icon
 						linkArrow
 						linkIcon
@@ -198,7 +200,7 @@ export const Header = async ({ pageParams }) => {
 			<style>{styleCode}</style>
 			<div className="container full">
 				<div className="content-wrap">
-					<Link href="/" className="header-logo-link prel"><Image src={`${basePathLocal}/logo/en/logo-white-descriptor-tagline.webp`} alt="Sekure Payment Experts logo" width={245} height={138} id="logo" className="header-logo" unoptimized /></Link>
+					<Link href="/" className="header-logo-link prel"><Image src={`${basePathLocal}/logo/en/logo-white-descriptor-tagline.webp`} alt="Sekure Payment Experts logo" width={245} height={138} id="logo" className="header-logo" unoptimized loading="eager"/></Link>
 
 					<nav role="navigation">
 						<button aria-label="Toggle mobile menu button" id='mobile-menu-btn' className="mobile-menu-btn" aria-controls="menu" aria-expanded="false">
@@ -277,6 +279,9 @@ export const Header = async ({ pageParams }) => {
 																							<span className="btn-bg-el"></span>
 																							<span className="btn-txt">{columnItem.menuItems.buttonText}</span>
 																						</Link>
+																					)}
+																					{columnItem.menuItems.formID && (
+																						<HubspotForm formID={columnItem.menuItems.formID} formContainer={columnItemIndex} />
 																					)}
 																				</div>
 																			)

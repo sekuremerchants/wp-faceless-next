@@ -82,7 +82,7 @@ export const ComparisonTable = ({block, logoOne, logoTwo}) => {
 	}, [])
 
 	return (
-		<section className={`content-block-holder sk-block comparison-table block--g table-comparison-simple ${bgColour}`}>
+		<section className={`content-block-holder sk-block comparison-table block--g table-comparison-simple op-0 ${bgColour}`}>
 			<div className='content-block comparison-table compare'>
 				<div className='container prel slider-arrows'>
 					<div className='row justify-content-between'>
