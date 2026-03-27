@@ -8,6 +8,8 @@ import { CustomHTML } from '@/components/CustomHTML'
 import { BlogQuote } from '@/components/BlogQuote'
 import { FAQ } from '@/components/FAQ'
 import { ComparisonTable } from '@/components/ComparisonTable'
+import { BlogIcons } from '@/components/BlogIcons'
+import { SKbutton } from '@/components/SKbutton'
 import Image from 'next/image'
 
 const mediaItemQuery = `
@@ -70,7 +72,7 @@ export const BlockRenderer = ({blocks}) => {
 			}
 			case 'acf/blog-cta': {
 				return (
-					<BlogCTA key={index} block={block.attributes.data} sectionID={block.attributes.data.section_id} sectionClasses={block.attributes.data.section_classes} title={block.attributes.data.title} content={block.attributes.data.content} image={block.attributes.data.image ? block.attributes.data.image : false} imageStyle={block.attributes.data.image_style} showNewsletter={block.attributes.data.show_newsletter_form} newsletterSubmitText={block.attributes.data.newsletter_submit_text ? block.attributes.data.newsletter_submit_text : false} newsletterAlternateForm={block.attributes.data.alternate_newsletter_form ? block.attributes.data.alternate_newsletter_form : false} ctaText={block.attributes.data.cta_text} ctaType={block.attributes.data.external_link} ctaLink={block.attributes.data.cta_link}/>
+					<BlogCTA key={index} uid={index} block={block.attributes.data} sectionID={block.attributes.data.section_id} sectionClasses={block.attributes.data.section_classes} title={block.attributes.data.title} content={block.attributes.data.content} image={block.attributes.data.image ? block.attributes.data.image : false} imageStyle={block.attributes.data.image_style} showNewsletter={block.attributes.data.show_newsletter_form} newsletterSubmitText={block.attributes.data.newsletter_submit_text ? block.attributes.data.newsletter_submit_text : false} newsletterAlternateForm={block.attributes.data.alternate_newsletter_form ? block.attributes.data.alternate_newsletter_form : false} ctaText={block.attributes.data.cta_text} ctaType={block.attributes.data.external_link} ctaLink={block.attributes.data.cta_link}/>
 				)
 			}
 			case 'acf/multi-columns-table': {
@@ -99,6 +101,19 @@ export const BlockRenderer = ({blocks}) => {
 				return (
 					<ComparisonTable key={index} block={block.attributes.data} logoOne={logoOne} logoTwo={logoTwo} />
 				)
+			}
+			case 'acf/blog-icons': {
+				return (
+					<BlogIcons block={block.attributes.data} />
+				)
+			}
+			case 'acf/sk-button': {
+				return (
+					<SKbutton block={block.attributes.data} />
+				)
+			}
+			case 'core/more': {
+				return null
 			}
 			default: {
 				console.log("BLOCK DATA: ", block)

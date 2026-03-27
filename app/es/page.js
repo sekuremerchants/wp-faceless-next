@@ -1,4 +1,4 @@
-import "../../assets/css/styles/pages/page-home.css";
+import "@/styles/pages/page-home.css"
 
 const getHomeContent = async () => {
   const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
@@ -19,22 +19,21 @@ const getHomeContent = async () => {
         }
       `,
     }),
-  });
-  const { data } = await res.json();
-  return data.nodeByUri;
-};
+  })
+  const { data } = await res.json()
+  return data.nodeByUri
+}
 
 export default async function Home() {
-  const content = await getHomeContent();
-  console.log("CONTENT: ", content);
+  const content = await getHomeContent()
 
   return (
-    <main>
+    <main id='main-content'>
       <section className="sk-block ov-hidden">
         <div className="container prel">
           <div className="col-sm-12"><h1>{content.title}</h1></div>
         </div>
       </section>
     </main>  
-  );
+  )
 }

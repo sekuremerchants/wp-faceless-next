@@ -2,8 +2,8 @@ import "@/styles/blocks/blog-quote.css";
 
 export const BlogQuote = ({block}) => {
 
-	const bgMode = block.background ? 'bg-blue' : 'bg-white';
-	const textMode = block.background ? 'text-white' : 'text-blue';
+	const bgMode = block.background == 1 ? 'bg-blue' : 'bg-white';
+	const textMode = block.background == 1 ? 'text-white' : 'text-blue';
 
 	return (
 		<section className='content-block-holder sk-block blog-quote block--bcq op-0'>

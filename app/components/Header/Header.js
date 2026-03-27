@@ -1,10 +1,13 @@
-import Link from "next/link"
-import Image from "next/image"
-import Script from "next/script"
-import { assetSourceLocal } from "../../paths"
+
+import { headers } from 'next/headers'
+import Link from 'next/link'
+import Image from 'next/image'
+import Script from 'next/script'
+import { assetSourceLocal } from '../../paths'
+import { getLangByUri } from '@/app/getLangByUri'
 import { LanguageSelect } from './LanguageSelect'
-import { HeaderEvents } from "@/components/HeaderEvents"
-import { HubspotForm } from "@/components/HubspotForm"
+import { HeaderEvents } from '@/components/HeaderEvents'
+import { HubspotForm } from '@/components/HubspotForm'
 import { Beauty, Ecommerce, Equipment, Fashion, Grocery, Hardware, Health, Services, Hospitality, Nonprofit, Restaurants, Retail, Wholesale, Wellness, Info, Career, Reviews, TalkToUs } from './Icons'
 
 const componentMap = {
@@ -26,61 +29,21 @@ const componentMap = {
 	reviews: Reviews,
 	talktous: TalkToUs,
 	career: Career,
-};
+}
 
 const DynamicRenderer = (type) => {
   const TargetComponent = componentMap[type];
 
   // Return the component if found, otherwise return null or a fallback
   return TargetComponent ? <TargetComponent /> : null;
-};
+}
 
-const basePathLocal = assetSourceLocal();
+const basePathLocal = assetSourceLocal()
 
-const langQuery = `
-	query NewQuery {
-		nodeByUri(uri: "/about-us") {
-			... on Page {
-				id
-				contentLanguage {
-					language
-					englishTranslationUrl {
-						url
-					}
-					frenchTranslationUrl {
-						url
-					}
-					spanishTranslationUrl {
-						url
-					}
-				}
-			}
-		}
-	}
-`;
-
-export const Header = async ({ pageParams }) => {
-	/*
-	const params = await pageParams;
-	console.log("DATA params: ", params);
-	
-	const queryVariables = {
-  	uri: '/' + params.slug,
-	};
-	const resLang = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: langQuery,
-			//variables: queryVariables,
-    }),
-  });
-	const { dataLang } = await resLang.json();
-
-	console.log("DATA LANG: ", dataLang);
-	*/
+export const Header = async ({params}) => {
+  const headersList = await headers()
+  const urlPath = headersList.get('x-pathname')
+	const langData = await getLangByUri(urlPath)
 
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
 		method: 'POST',
@@ -129,7 +92,7 @@ export const Header = async ({ pageParams }) => {
 		`,
 		}),
 	});
-	const { data } = await res.json();
+	const { data } = await res.json()
 
 	const styleCode = `
 		.header .dropdown-item-links {
@@ -213,16 +176,11 @@ export const Header = async ({ pageParams }) => {
 
 							{/* language switch and careers link */}
 							<div className="nav-extras">
-								{/*<LanguageSelect/>
-								<div className="lang-wrap prel">
-									<Link href="#" className="lang-current">EN</Link>
-									<ul id="lang_toggle" className="ul-reset prel">
-										<li><Link href="#" className="block c-white current" lang="en">EN</Link></li>
-										<li><Link href="#" className="block c-white" lang="es">ES</Link></li>
-										<li><Link href="#" className="block c-white" lang="fr">FR</Link></li>
-									</ul>
-								</div>
-								*/}
+								{langData != null && Object.keys(langData).length > 0  && (
+									(langData.skLanguage.englishTranslationUrl || langData.skLanguage.spanishTranslationUrl || langData.skLanguage.frenchTranslationUrl) && (
+										<LanguageSelect langData={langData}/>
+									)
+								)}
 
 								<Link href="/careers" className="careers-link">Careers</Link>
 							</div>
@@ -281,7 +239,7 @@ export const Header = async ({ pageParams }) => {
 																						</Link>
 																					)}
 																					{columnItem.menuItems.formID && (
-																						<HubspotForm formID={columnItem.menuItems.formID} formContainer={columnItemIndex} />
+																						<HubspotForm formID={columnItem.menuItems.formID} formContainer={columnItemIndex} uid={columnItemIndex} />
 																					)}
 																				</div>
 																			)

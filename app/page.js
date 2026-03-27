@@ -7,7 +7,6 @@ import Script from 'next/script'
 // components
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { HeaderEvents } from "./components/HeaderEvents";
 
 const redHatDisplay = Red_Hat_Display({
   variable: "--font-red-hat-display",
@@ -119,7 +118,7 @@ export default async function Home() {
     <html lang='en-US'>
       <body className={`${redHatDisplay.variable} ${libreFranklin.variable}`}>
         <Header />
-        <main>
+        <main id='main-content'>
           <section className="bg-blue prel">
             <div className="container">
               <div className="prel z-2 col-sm-8 col-md-6 col-lg-7 col-xl-6 mb-3">
@@ -143,7 +142,6 @@ export default async function Home() {
           </section>
         </main>  
         <Footer />
-        <HeaderEvents />
       </body>
     </html>
   );

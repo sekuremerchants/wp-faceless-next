@@ -2,7 +2,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { CaseStudyContent } from '@/components/CaseStudyContent'
 import { BlogPrefooter } from '@/components/BlogPrefooter'
-import { assetSourceLocal } from '../../paths'
+import { BlogEvents } from "@/components/BlogEvents";
+import { assetSourceLocal } from '@/app/paths'
+
+import "@/styles/bootstrap.css"
+import "@/styles/style.css"
+import "@/styles/blogs.css"
+import "@/styles/case-studies.css"
 
 const basePathLocal = assetSourceLocal();
 
@@ -153,10 +159,9 @@ export default async function Page({params}) {
     link: nodeData.contentTypes.nodes[0].uri
   }
 
-  //console.log('CASE STUDIES DATA: ', nodeData)
-
 	return (
-    <>
+    <main id='main-content' className='single-case-studies'>
+      <BlogEvents />
       <article className='prel single-article-section sk-case-study sk-blog-content'>
         <div className='container'>
           <div className='article-body row'>
@@ -165,13 +170,13 @@ export default async function Page({params}) {
             <div className='col-sm-12'>
               <div className='breadcrumb-wrap prel single-article-breadcrumb'>
                 <ul className='breadcrumb-list disclaimer'>
-                  <li><Link href='/'>Home</Link></li>
-                  <li><Link href='/resources/case-studies'>Case studies</Link></li>
+                  <li><Link href='/es'>Inicio</Link></li>
+                  <li><Link href='/resources/case-studies'>Estudios de caso</Link></li>
                 </ul>
 
                 <p className='txt-size-12 upper letter-spacing current-page-breadcrumb-title'>{nodeData.title}</p>
 
-                <Link href='/resources/case-studies' className='disclaimer'><Image src={`${basePathLocal}/media/icons/green-arrow.svg`} alt='Back arrow' width='21' height='16' className='prel'/> Back to all case studies</Link>
+                <Link href='/resources/case-studies' className='disclaimer'><Image src={`${basePathLocal}/media/icons/green-arrow.svg`} alt='Back arrow' width='21' height='16' className='prel'/> Volver a todos los estudios de caso</Link>
               </div>
             </div>
 
@@ -215,7 +220,7 @@ export default async function Page({params}) {
       </article>
 
       <BlogPrefooter />
-    </>
+    </main>
     
 	)
 }

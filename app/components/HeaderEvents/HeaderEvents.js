@@ -11,6 +11,7 @@ export function HeaderEvents() {
   useEffect(() => {
 
 		const htmlElement = document.getElementsByTagName('html')
+		const bodyElement = document.getElementsByTagName('body')
 		const header = document.getElementById('header')
 		const logo = document.getElementById('logo')
 		const mobileNavBtn = document.getElementById('mobile-menu-btn')
@@ -184,6 +185,30 @@ export function HeaderEvents() {
 				element.addEventListener('click', () => {
 					element.parentElement.classList.toggle('open-submenu')
 				})
+			})
+		}
+
+		// language selector
+		const langSelect = document.getElementById('lang-current')
+		const langToggle = document.getElementById('lang_toggle')
+		if(langSelect){
+			langSelect.addEventListener('click', function() {
+				const toggleHeight = langToggle.firstChild.offsetHeight * langToggle.childElementCount
+				//langToggle.childElementCount, langToggle.firstChild.offsetHeight
+				if(this.classList.contains('open')){
+					this.classList.remove('open')
+					langToggle.setAttribute('style', 'height:0px;visibility:hidden;')
+				} else {
+					this.classList.add('open')
+					langToggle.setAttribute('style', 'height:' + toggleHeight + 'px;visibility:visible;')
+				}			
+			})
+			bodyElement[0].addEventListener('click', function(event){
+				console.log('BODY CLICK EVENT: ', event)
+				if(event.target.id != 'lang-current'){
+					langSelect.classList.remove('open')
+					langToggle.setAttribute('style', 'height:0px;visibility:hidden;')
+				}
 			})
 		}
 

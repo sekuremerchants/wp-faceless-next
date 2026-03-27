@@ -83,31 +83,30 @@ export const Footer = async () => {
 								<Link href="mailto:careers@sekuremerchants.com">careers@sekuremerchants.com</Link><br />
 							</p>
 							<p className="disclaimer c-white">* All calls are recorded and monitored for training purposes.</p>
-						</div>
 
-						<div className="socials-wrap">
-							<p className="fw-700 c-white">Follow us at</p>
-							<div className="social-items-hold">
-								<Link href="https://twitter.com/SekureExperts" target="_blank" rel="noopener noreferrer" className="social-item">
-									<Image src="https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2023/04/X.svg" width="50" height="50" alt="social media icon" className="twitter-icon"/>
-								</Link>
-								<Link href="https://www.facebook.com/SekurePaymentExperts" target="_blank" rel="noopener noreferrer" className="social-item">
-									<Image src="https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2023/04/Facebook.svg" width="50" height="50" alt="social media icon" className="facebook-icon"/>
-								</Link>
-								<Link href="https://www.linkedin.com/company/sekurepaymentexperts/" target="_blank" rel="noopener noreferrer" className="social-item">
-									<Image src="https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2023/04/Linkedin.svg" width="50" height="50" alt="social media icon" className="linkedin-icon"/>
-								</Link>
-								<Link href="https://www.instagram.com/SekurePaymentExperts/" target="_blank" rel="noopener noreferrer" className="social-item">
-									<Image src="https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2023/04/Instagram.svg" width="50" height="50" alt="social media icon" className="instagram-icon"/>
-								</Link>
-								<Link href="https://www.youtube.com/channel/UCMkp6Tm70C3cQBZ_gS0G-Ow/" target="_blank" rel="noopener noreferrer" className="social-item">
-									<Image src="https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2023/04/Youtube.svg" width="50" height="50" alt="social media icon" className="youtube-icon"/>
-								</Link>
+							<div className="socials-wrap">
+								<p className="fw-700 c-white">Follow us at</p>
+								<div className="social-items-hold">
+									<Link href="https://twitter.com/SekureExperts" target="_blank" rel="noopener noreferrer" className="social-item">
+										<Image src="https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2023/04/X.svg" width="50" height="50" alt="social media icon" className="twitter-icon"/>
+									</Link>
+									<Link href="https://www.facebook.com/SekurePaymentExperts" target="_blank" rel="noopener noreferrer" className="social-item">
+										<Image src="https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2023/04/Facebook.svg" width="50" height="50" alt="social media icon" className="facebook-icon"/>
+									</Link>
+									<Link href="https://www.linkedin.com/company/sekurepaymentexperts/" target="_blank" rel="noopener noreferrer" className="social-item">
+										<Image src="https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2023/04/Linkedin.svg" width="50" height="50" alt="social media icon" className="linkedin-icon"/>
+									</Link>
+									<Link href="https://www.instagram.com/SekurePaymentExperts/" target="_blank" rel="noopener noreferrer" className="social-item">
+										<Image src="https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2023/04/Instagram.svg" width="50" height="50" alt="social media icon" className="instagram-icon"/>
+									</Link>
+									<Link href="https://www.youtube.com/channel/UCMkp6Tm70C3cQBZ_gS0G-Ow/" target="_blank" rel="noopener noreferrer" className="social-item">
+										<Image src="https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2023/04/Youtube.svg" width="50" height="50" alt="social media icon" className="youtube-icon"/>
+									</Link>
+								</div>
 							</div>
+
+							<HubspotForm formID={`18baf56a-8969-4644-8354-a4e6f086de71`} formContainer={`footernewsletter`} uid='19'/>
 						</div>
-
-						<HubspotForm formID={`18baf56a-8969-4644-8354-a4e6f086de71`} formContainer={`footernewsletter`} />
-
 					</div>
 
 					<div className="footer-links-wrap col-sm-12 col-md-12 col-lg-6">

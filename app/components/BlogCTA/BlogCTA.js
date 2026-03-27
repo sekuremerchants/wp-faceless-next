@@ -5,7 +5,7 @@ import { Heading } from '../Heading'
 import '@/styles/blocks/blog-cta.css'
 import { HubspotForm } from '@/components/HubspotForm'
 
-export const BlogCTA = async ({block, sectionID, sectionClasses, title, content, image, imageStyle, showNewsletter, ctaText, ctaType, ctaLink, newsletterSubmitText, newsletterAlternateForm}) => {
+export const BlogCTA = async ({uid, block, sectionID, sectionClasses, title, content, image, imageStyle, showNewsletter, ctaText, ctaType, ctaLink, newsletterSubmitText, newsletterAlternateForm}) => {
 	var data;
 
 	if(image){
@@ -45,8 +45,8 @@ export const BlogCTA = async ({block, sectionID, sectionClasses, title, content,
 		}
 	}).join('')
 
-	let imageClass = image ? 'w-image': 'w-svg'
-	imageClass = showNewsletter ? imageClass + ' w-form' : imageClass
+	let imageClass = image != false ? 'w-image': 'w-svg'
+	imageClass = showNewsletter > 0 ? imageClass + ' w-form' : imageClass
 	const customSubmitText = newsletterSubmitText ? 'btn-custom-text' : ''
 	const scriptHTML = `hbspt.forms.create({
 											region: 'na3',
@@ -83,10 +83,10 @@ export const BlogCTA = async ({block, sectionID, sectionClasses, title, content,
 						<div className={`col-xs-12 col-md-10 col-lg-8 cta-form ${customSubmitText}`} data-custom-text={newsletterSubmitText}>
 							<div className="newsletter-form">
 								{newsletterAlternateForm == false && (
-									<HubspotForm formID={`af53f05c-0de7-4d0e-84e7-3808b18819d0`} formContainer={`blogcta`}/>
+									<HubspotForm formID={`af53f05c-0de7-4d0e-84e7-3808b18819d0`} formContainer={`blogcta-${uid}`} uid={uid}/>
 								)} 
 								{newsletterAlternateForm && (
-									newsletterAlternateForm
+									<HubspotForm formID={block.alternate_newsletter_form_id} formContainer={`blogcta-${uid}`} uid={uid}/>
 								)}
 							</div>
 						</div>

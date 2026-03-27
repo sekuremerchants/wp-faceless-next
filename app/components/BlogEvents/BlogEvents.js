@@ -8,14 +8,16 @@ export function BlogEvents(){
 
   useEffect(() => {
 
-    console.log('blog functionality loaded');
-
 		const blogContent = document.getElementsByClassName('blog-content')
 		const childElements = blogContent[0].children
 		let blogH2s = []
 
 		const blogTOC = document.getElementsByClassName('content-bullets')
-		const blogTOCs = blogTOC[0].children[0].children
+		var blogTOCs = false;
+
+		if(blogTOC.length){
+			blogTOCs = blogTOC[0].children[0].children
+		}
 
 		for (let i = 0; i < childElements.length; i++) {
 			if(childElements[i].tagName == "H2") {
@@ -55,7 +57,7 @@ export function BlogEvents(){
 						let negsLength = negatives.length - 1
 						let negsID = negatives[negsLength] ? negatives[negsLength].id : null
 
-						if(negsID){
+						if(negsID && blogTOCs){
 							Array.from(blogTOCs).forEach(function (current, index) {
 								current.children[0].classList.remove("active")
 								if((current.children[0].hash.replace('#','') == negsID) && !current.children[0].classList.contains('active')){
@@ -66,7 +68,7 @@ export function BlogEvents(){
 					}
 				}
 
-				if (activeHeading) {
+				if (activeHeading && blogTOCs) {
 					Array.from(blogTOCs).forEach(function (current, index) {
 						current.children[0].classList.remove("active")
 						if((current.children[0].hash.replace('#','') == activeHeading.id) && !current.children[0].classList.contains('active')){

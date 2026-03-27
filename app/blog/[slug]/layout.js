@@ -9,9 +9,9 @@ import { BlogEvents } from "@/components/BlogEvents"
 import { Footer } from "@/components/Footer"
 
 // styles
+import "@/styles/blogs.css"
 import "@/styles/bootstrap.css"
 import "@/styles/style.css"
-import "@/styles/blogs.css"
 
 const redHatDisplay = Red_Hat_Display({
   variable: "--font-red-hat-display",
@@ -27,6 +27,11 @@ export default async function RootLayout({ children, params }) {
   return (
     <html lang="en-US">
       <body className={`${redHatDisplay.variable} ${libreFranklin.variable} single-post`}>
+        <Script 
+          src='https://js-na3.hsforms.net/forms/embed/v2.js'
+          strategy="afterInteractive"
+          id="hs-script-loader"
+        />
         <Header pageParams={params}/>
        
         <main id='main-content'>{children}</main>

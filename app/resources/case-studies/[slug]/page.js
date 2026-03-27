@@ -2,7 +2,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { CaseStudyContent } from '@/components/CaseStudyContent'
 import { BlogPrefooter } from '@/components/BlogPrefooter'
-import { assetSourceLocal } from '../../paths'
+import { assetSourceLocal } from '@/app/paths'
+
+import "@/styles/bootstrap.css"
+import "@/styles/style.css"
+import "@/styles/blogs.css"
+import "@/styles/case-studies.css"
 
 const basePathLocal = assetSourceLocal();
 
@@ -156,7 +161,7 @@ export default async function Page({params}) {
   //console.log('CASE STUDIES DATA: ', nodeData)
 
 	return (
-    <>
+    <main id='main-content' className='single-case-studies'>
       <article className='prel single-article-section sk-case-study sk-blog-content'>
         <div className='container'>
           <div className='article-body row'>
@@ -215,7 +220,7 @@ export default async function Page({params}) {
       </article>
 
       <BlogPrefooter />
-    </>
+    </main>
     
 	)
 }

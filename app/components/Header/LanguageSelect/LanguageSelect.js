@@ -1,30 +1,23 @@
-'use client'
-import { ApolloProvider, ApolloClient, HttpLink, InMemoryCache, gql, useQuery } from "@apollo/client";
-import { useState, useEffect } from 'react'
-import { useParams } from 'next/navigation';
-import Link from "next/link"
+import Link from 'next/link'
  
-export const LanguageSelect = ({label}) => {
-	const params = useParams();
-	const slug = Object.keys(params).length != 0 ? params.slug : false;
-	console.log('LANG SELECT SLUG: ', slug);
+export const LanguageSelect = async ({langData}) => {
+	console.log(langData)
+	const langCurrent = langData.skLanguage.language
 
-  const [isActive, setIsActive] = useState(false);
-
-  const toggleClass = () => {
-    setIsActive(!isActive);
-  };
- 
   return (
-    <div className="lang-wrap prel">
-			<Link href="#" onClick={toggleClass} className={isActive ? 'lang-current open' : 'lang-current'}>EN</Link>
-			<ul id="lang_toggle" className="ul-reset prel" style={{height: isActive ? 'auto' : '0', visibility: isActive ? 'visible' : 'hidden'}}>
-				<li><Link href="#" className="block c-white current" lang="en">EN</Link></li>
-				<li><Link href="#" className="block c-white" lang="es">ES</Link></li>
-				<li><Link href="#" className="block c-white" lang="fr">FR</Link></li>
+    <div className='lang-wrap prel'>
+			<Link href='#' id='lang-current' className='lang-current' style={{ textTransform: 'uppercase' }}>{langCurrent}</Link>
+			<ul id='lang_toggle' className='ul-reset prel'>
+				{langData.skLanguage.englishTranslationUrl && (
+					<li><Link href={langData.skLanguage.englishTranslationUrl.url} className='block c-white' lang='es'>EN</Link></li>
+				)}
+				{langData.skLanguage.spanishTranslationUrl && (
+					<li><Link href={langData.skLanguage.spanishTranslationUrl.url} className='block c-white' lang='es'>ES</Link></li>
+				)}
+				{langData.skLanguage.frenchTranslationUrl && (
+					<li><Link href={`https://sekuremerchants.ca${langData.skLanguage.frenchTranslationUrl.url}`} className='block c-white' lang='es'>FR</Link></li>
+				)}
 			</ul>
 		</div>
   )
 }
-
-export default LanguageSelect
