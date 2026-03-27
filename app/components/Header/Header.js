@@ -1,10 +1,7 @@
-
-import { headers } from 'next/headers'
 import Link from 'next/link'
 import Image from 'next/image'
 import Script from 'next/script'
 import { assetSourceLocal } from '../../paths'
-import { getLangByUri } from '@/app/getLangByUri'
 import { LanguageSelect } from './LanguageSelect'
 import { HeaderEvents } from '@/components/HeaderEvents'
 import { HubspotForm } from '@/components/HubspotForm'
@@ -41,9 +38,6 @@ const DynamicRenderer = (type) => {
 const basePathLocal = assetSourceLocal()
 
 export const Header = async ({params}) => {
-  const headersList = await headers()
-  const urlPath = headersList.get('x-pathname')
-	const langData = await getLangByUri(urlPath)
 
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
 		method: 'POST',
@@ -176,11 +170,7 @@ export const Header = async ({params}) => {
 
 							{/* language switch and careers link */}
 							<div className="nav-extras">
-								{langData != null && Object.keys(langData).length > 0  && (
-									(langData.skLanguage.englishTranslationUrl || langData.skLanguage.spanishTranslationUrl || langData.skLanguage.frenchTranslationUrl) && (
-										<LanguageSelect langData={langData}/>
-									)
-								)}
+								{/* <LanguageSelect/> */}
 
 								<Link href="/careers" className="careers-link">Careers</Link>
 							</div>
