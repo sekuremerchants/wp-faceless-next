@@ -1,8 +1,10 @@
 'use client';
 
+import { createRoot } from 'react-dom/client'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 import { assetSourceLocal } from "@/app/paths"
+import { HubspotForm } from '@/components/HubspotForm'
 
 export function GlobalEvents() {
 	const pathname = usePathname()
@@ -24,6 +26,10 @@ export function GlobalEvents() {
 			const top = 0 - document.getElementById('header').offsetHeight
 			window.scrollTo(top, 0);
 		}
+
+		const header = document.getElementById('header')
+		const main = document.getElementById('main-content')
+		Object.assign(main.style, {paddingTop: header.offsetHeight + 'px'})
 
 		// fade in/out sections/blocks using class op-0
 		window.addEventListener('scroll', () => {
@@ -56,6 +62,34 @@ export function GlobalEvents() {
 					
 				}
 			})
+		})
+
+		// popup functionality
+		const popupBtns = document.querySelectorAll('[data-popup-id]')
+		Array.from(popupBtns).forEach(element => {
+			element.addEventListener('click', (event) => {
+				event.preventDefault()
+
+				const formattedContent = element.dataset.popupContent.split('\n').map(content => {
+					const hasHTML = (str) => /<[^>]*>/i.test(str);
+					if(content != '' && !hasHTML(content)){
+						return `<p>${content}</p>`
+					} else {
+						return content.trim()
+					}
+				}).join('')
+
+				const popupContent = document.getElementById('popup-content')
+				popupContent.replaceChildren()
+				const root = createRoot(popupContent)
+				root.render(<HubspotForm formID={`57d660f5-3628-48e3-bffe-715805ebede5`} formContainer={`testformwrap`} uid='1759935145' formContent={formattedContent} bgColour='blue' />)
+				document.getElementsByTagName('html')[0].classList.add('open-popup')
+			})
+		})
+
+		document.getElementById('popup-close-btn').addEventListener('click', (event) => {
+			document.getElementsByTagName('html')[0].classList.remove('open-popup')
+			 document.getElementById('popup-content').replaceChildren()
 		})
 
 	}, [pathname])

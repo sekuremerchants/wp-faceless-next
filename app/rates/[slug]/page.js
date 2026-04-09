@@ -1,3 +1,6 @@
+import { BlockRenderer } from "@/components/BlockRenderer"
+import { LanguageSelect } from "@/components/Header/LanguageSelect"
+
 const query = `
 	query RateQuery($uri: String!) {
 		nodeByUri(uri: $uri) {
@@ -6,10 +9,25 @@ const query = `
 				rateId
 				title
 				uri
+        skLanguage {
+					language
+					englishTranslationUrl {
+						url
+					}
+					frenchTranslationUrl {
+						url
+					}
+					spanishTranslationUrl {
+						url
+					}
+				}
 				blocks(postTemplate: false)
         seo {
           title
           metaDesc
+        }
+        customCSS {
+          customCss
         }
 			}
 		}
@@ -92,9 +110,12 @@ export default async function Page({params}) {
   const { data } = await res.json();
   const nodeData = data.nodeByUri;
 
+  //console.log('RATES SINGLE DATA: ', nodeData)
+
 	return (
-		<main>
-			<h1>dynamic rates single page file - {nodeData.title}</h1>
-		</main>  
+		<>
+      <style dangerouslySetInnerHTML={{__html: nodeData.customCSS.customCss}}></style>
+      <BlockRenderer blocks={nodeData.blocks}/>
+    </>
 	);
 }

@@ -12,7 +12,14 @@ const basePathLocal = assetSourceLocal();
 
 export const ComparisonTable = ({block, logoOne, logoTwo}) => {
 
-	const columnClass = block.left_side_content && block.comparison_table_rows > 0 ? 'col-sm-12 col-lg-6' : 'col-sm-12'
+	//console.log('COMPARISON TABLE BLOCK DATA: ', block)
+
+	let columnClass = block.left_side_content != '' && block.comparison_table_rows > 0 ? 'col-sm-12 col-lg-6' : 'col-sm-12'
+	if(block.table_full_width){
+		columnClass = 'col-sm-12 col-lg-8'
+	}
+	const tableFullWidth = block.table_full_width ? 'table-full-width' : ''
+	const tableClass = block.table_full_width ? 'col-sm-12' : 'col-sm-12 col-lg-6'
 	const bgColour = block.full_width_with_background == 'Yes' ? 'full-width-bg' : ''
 	const maxTableRows = block.comparison_table_rows - 1;
 	let count = 0;
@@ -81,36 +88,53 @@ export const ComparisonTable = ({block, logoOne, logoTwo}) => {
 		}
 	}, [])
 
+	const formattedContent = block.left_side_content.split('\r\n').map(content => {
+		const hasHTML = (str) => /<[^>]*>/i.test(str);
+		if(content != '' && !hasHTML(content)){
+			return `<p>${content}</p>`
+		} else {
+			return content.trim()
+		}
+	}).join('')
+
 	return (
-		<section className={`content-block-holder sk-block comparison-table block--g table-comparison-simple op-0 ${bgColour}`}>
-			<div className='content-block comparison-table compare'>
+		<section className={`content-block-holder sk-block comparison-table block--g op-0 ${bgColour} ${block.section_classes}`}>
+			<div className={`content-block comparison-table compare ${tableFullWidth}`}>
 				<div className='container prel slider-arrows'>
 					<div className='row justify-content-between'>
 
 						{block.left_side_content && (
-							<div className={columnClass}>
-								{block.left_side_content}
-							</div>
+							<div className={columnClass} dangerouslySetInnerHTML={{__html: formattedContent}}></div>
 						)}
 
 						{block.comparison_table_rows > 0 && (
-							<div className={columnClass}>
+							<div className={tableClass}>
 								<div className='table-responsives'>
 									<table className='table-comparison table d-none d-desktop-table'>
 
 										<thead>
 											<tr>
-												<th className='table-logo'></th>
-												<th className='table-logo'>
-													{block.comparison_table_logo_one && (
-														<Image src={logoOneData.sourceUrl} alt={logoOneData.altText} height="200" width="200" className='logo_one'/>
-													)}
-												</th>
-												<th className='table-logo'>
-													{block.comparison_table_logo_two && (
-														<Image src={logoTwoData.sourceUrl} alt={logoTwoData.altText} height="200" width="200" className='logo_two'/>
-													)}
-												</th>
+												{(block.comparison_table_column_one_heading || block.comparison_table_column_two_heading || block.comparison_table_column_three_heading) && (
+													<>
+														<th className='table-logo'>{block.comparison_table_column_one_heading == 'Feature' ? '' : block.comparison_table_column_one_heading}</th>
+														<th className='table-logo'>{block.comparison_table_column_two_heading}</th>
+														<th className='table-logo'>{block.comparison_table_column_three_heading}</th>
+													</>
+												) || (block.comparison_table_logo_one || block.comparison_table_logo_two) && (
+													<>
+														<th className='table-logo'></th>
+														<th className='table-logo'>
+															{block.comparison_table_logo_one && (
+																<Image src={logoOneData.sourceUrl} alt={logoOneData.altText} height="200" width="200" className='logo_one'/>
+															)}
+														</th>
+														<th className='table-logo'>
+															{block.comparison_table_logo_two && (
+																<Image src={logoTwoData.sourceUrl} alt={logoTwoData.altText} height="200" width="200" className='logo_two'/>
+															)}
+														</th>
+													</>
+												)}
 											</tr>
 										</thead>
 

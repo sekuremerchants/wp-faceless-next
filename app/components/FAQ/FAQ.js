@@ -1,5 +1,3 @@
-'use client'
-import { useState } from 'react'
 import "@/styles/blocks/faq.css"
 import { FAQevents } from '@/components/FAQ/FAQevents'
 
@@ -24,7 +22,6 @@ export const FAQ = ({block}) => {
 	const bgColour = block.full_width_with_background == 'Yes' ? 'full-width-bg' : '';
 	const FAQcount = block.faq_body - 1;
 	let count = 0;
-	const [list, setList] = useState([]);
 	let FAQs = [];
 
 	while(count <= FAQcount){
@@ -69,10 +66,10 @@ export const FAQ = ({block}) => {
 					{FAQcount >= 0 && (
 						<div className='faq-questions-wrap' itemScope itemType='https://schema.org/FAQPage'>
 							{FAQs.map((singleFAQ, index) => (
-								<div key={index} className={`faq-question ${singleFAQ.opened}`} itemScope itemProp='mainEntity' itemType='https://schema.org/Question'>
+								<div id={`faq-${index}`} key={index} className={`faq-question ${singleFAQ.opened}`} itemScope itemProp='mainEntity' itemType='https://schema.org/Question'>
 									<h3 className='faq-question-title' itemProp='name'>{singleFAQ.question} <button className='dropdown-arrow-btn js-faq-dropdown-btn'></button></h3>
 									<div className='dropdown-content-wrap' itemScope itemProp='acceptedAnswer' itemType='https://schema.org/Answer'>
-										<div className='dropdown-content' itemProp='text' style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{__html: singleFAQ.answer}}></div>
+										<div className='dropdown-content' itemProp='text' dangerouslySetInnerHTML={{__html: singleFAQ.answer}}></div>
 									</div>
 								</div>
 							))}

@@ -189,9 +189,11 @@ export function HeaderEvents() {
 		}
 
 		// language selector
+		const langWrap = document.getElementById('lang-wrap')
 		const langSelect = document.getElementById('lang-current')
 		const langToggle = document.getElementById('lang_toggle')
-		if(langSelect){
+		if(langWrap){
+			document.getElementById('nav-extras').prepend(langWrap)
 			langSelect.addEventListener('click', function() {
 				const toggleHeight = langToggle.firstChild.offsetHeight * langToggle.childElementCount
 				//langToggle.childElementCount, langToggle.firstChild.offsetHeight

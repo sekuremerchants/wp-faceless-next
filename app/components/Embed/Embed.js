@@ -2,7 +2,7 @@ export const Embed = ({block}) => {
 	var embedSRC = '';
 	var embedCode = '';
 
-	console.log('EMBED BLOCK DATA: ', block)
+	//console.log('EMBED BLOCK DATA: ', block)
 
 	if(block.providerNameSlug == 'youtube' || block.providerNameSlug == 'embed-handler') {
 		embedSRC = 'https://www.youtube.com/embed/';

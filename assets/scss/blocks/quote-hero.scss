@@ -19,13 +19,6 @@
     object-fit: cover;
   }
 
-  .quote-content,
-  .quote-content p {
-    font-family: $redhat;
-    font-weight: 700;
-    font-size: 26px;
-    line-height: 36px;
-  }
   .quote {
     &-content {
       margin-bottom:20px;
@@ -42,17 +35,7 @@
       }
     }
 
-    &-person {
-      font-family: $libre;
-      font-weight: 600;
-      font-size: 18px;
-      line-height: 30px;
-    }
     &-title {
-      font-family: $libre;
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 30px;
       margin-left: 5px;
     }
   }

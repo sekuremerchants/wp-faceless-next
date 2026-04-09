@@ -73,7 +73,7 @@
           transform 200ms ease,
           background-color 300ms ease;
         &.active {
-          background: $black;
+          background: #000000;
           // transform: scale(1.3);
         }
       }

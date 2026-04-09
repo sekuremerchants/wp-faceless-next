@@ -122,14 +122,13 @@
 		flex:0 !important;
 	}
 
-	@media screen and (max-width:1024px){
-		.blocks-grid-3 {
+	@media screen and (max-width:1280px){
+		.blocks-grid-4, &.blocks-full .blocks-grid-4 {
 			grid-template-columns:1fr 1fr;
 		}
-		.blocks-grid-4 {
-			grid-template-columns:1fr 1fr 1fr;
-		}
-		&.blocks-full .blocks-grid-4 {
+	}
+	@media screen and (max-width:1024px){
+		.blocks-grid-3 {
 			grid-template-columns:1fr 1fr;
 		}
 	}

@@ -17,6 +17,35 @@
     margin-top: 15px;
   }
 
+  .comparison-table.table-full-width {
+    .sk-sticky .mt-5 p {
+      display:flex;
+      justify-content:flex-end;
+    }
+    .disclaimer {
+      display:block;
+      text-align:right;
+
+      @media screen and ($min1024) {
+        width:65%;
+      }
+    }
+    @media screen and (min-width:950px){
+      .table-comparison thead th.table-logo {
+        img {
+          flex:0 !important;
+          padding:0;
+          width:auto;
+          max-height:50px;
+        }
+        picture {
+          justify-content:center;
+          align-items:center;
+        }
+      }
+    }
+  }
+
   @media screen and ($max1024) {
     .col-lg-6 {
       width: 100%;

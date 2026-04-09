@@ -1,11 +1,11 @@
 import Link from 'next/link'
  
 export const LanguageSelect = async ({langData}) => {
-	console.log(langData)
+	//console.log(langData)
 	const langCurrent = langData.skLanguage.language
 
   return (
-    <div className='lang-wrap prel'>
+    <div id='lang-wrap' className='lang-wrap prel'>
 			<Link href='#' id='lang-current' className='lang-current' style={{ textTransform: 'uppercase' }}>{langCurrent}</Link>
 			<ul id='lang_toggle' className='ul-reset prel'>
 				{langData.skLanguage.englishTranslationUrl && (

@@ -33,7 +33,7 @@
         transform: rotate(-180deg) translateY(50%);
       }
       .dropdown-content-wrap {
-        max-height:50vh;
+        //max-height:50vh;
       }
     }
   }
@@ -54,7 +54,8 @@
   }
 
   .dropdown-content-wrap {
-    max-height: 0;
+    //max-height: 0;
+    height: 0;
     overflow: hidden;
     transition:all 0.3s ease;
   }

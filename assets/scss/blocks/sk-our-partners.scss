@@ -1,3 +1,5 @@
+@import 'components/blaze-slider';
+
 .partners-section-home {
   .img-partner-hold .img-wrapper,
   .img-partner-hold img {
@@ -11,7 +13,7 @@
   }
 
   .mb-table {
-    box-shadow: none;
+    box-shadow: none !important;
     .mt-box-inner,
     .fixed-column-inner > div:not(.mt-header):nth-of-type(2n + 1),
     .mt-box-inner > div:not(.mt-header):nth-of-type(2n + 1),
@@ -26,4 +28,95 @@
 
     .row{align-items:center!important}
   }
+}
+.slider-arrows .blaze-next,
+.slider-arrows .blaze-prev {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='none'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23008FC4' transform='matrix(0 1 1 0 0 0)'/%3E%3Cpath stroke='%23fff' d='m13.376 10.075 5.955 5.955M13.376 21.31l5.955-5.955'/%3E%3C/svg%3E");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 32px;
+  position: absolute;
+  top: 50%;
+  transform:translateY(-50%);
+  -webkit-transition:
+    all 0.3s ease-in-out,
+    top 0.6s ease-in-out;
+  transition:
+    all 0.3s ease-in-out,
+    top 0.6s ease-in-out;
+  width: 32px;
+  z-index: 10;
+}
+.slider-arrows .blaze-next[disabled],
+.slider-arrows .blaze-prev[disabled] {
+  cursor: not-allowed;
+  display: none !important;
+  opacity: 0.5;
+}
+.slider-arrows .blaze-prev {
+  left: -30px;
+  transform: translateY(-50%) rotate(180deg);
+}
+@media screen and (max-width: 576px) {
+  .slider-arrows .blaze-prev {
+    left: -5px;
+  }
+}
+.slider-arrows .blaze-next {
+  right: -30px;
+}
+@media screen and (max-width: 576px) {
+  .slider-arrows .blaze-next {
+    right: -5px;
+  }
+}
+
+.mb-table .blaze-slider .pagination-wrapper {
+  align-items: center;
+  bottom: -35px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  width: 100%;
+
+  @media screen and (max-width:580px){
+    position:relative;
+    bottom:0;
+  }
+}
+.mb-table .blaze-slider .blaze-pagination {
+  display: flex;
+  gap: 12px;
+}
+.mb-table .blaze-slider .blaze-pagination button {
+  background: #d9d9d9;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0;
+  height: 10px;
+  outline: none;
+  -webkit-transition:
+    background-color 0.3s ease,
+    -webkit-transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    -webkit-transform 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background-color 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    background-color 0.3s ease,
+    -webkit-transform 0.2s ease;
+  width: 10px;
+}
+.mb-table .blaze-slider .blaze-pagination button.active {
+  background: #000;
 }

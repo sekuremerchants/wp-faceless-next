@@ -127,18 +127,12 @@ export const Header = async ({params}) => {
 			transform:translate(0px, -6px) rotate(45deg);
 		}
 		@media screen and (min-width:1025px){
-			main {
-				padding-top:11vw;
-			}
 			.header .contact-icons .dropdown-link-wrap a img {
 				margin-left:0;
 				margin-right:8px;
 			}
 		}
 		@media screen and (max-width:1024px){
-			main {
-				padding-top:160px;
-			}
 			.dropdown-item-wrap.open .dropdown-item-links {
 				opacity: 1;
 				visibility: visible;
@@ -169,7 +163,7 @@ export const Header = async ({params}) => {
 						<div className="nav-wrap">
 
 							{/* language switch and careers link */}
-							<div className="nav-extras">
+							<div id='nav-extras' className="nav-extras">
 								{/* <LanguageSelect/> */}
 
 								<Link href="/careers" className="careers-link">Careers</Link>

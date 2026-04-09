@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { CaseStudyContent } from '@/components/CaseStudyContent'
 import { BlogPrefooter } from '@/components/BlogPrefooter'
 import { BlogEvents } from "@/components/BlogEvents";
+import { LanguageSelect } from "@/components/Header/LanguageSelect";
 import { assetSourceLocal } from '@/app/paths'
 
 import "@/styles/bootstrap.css"
@@ -21,6 +22,18 @@ const query = `
         uri
         date
         modified
+        skLanguage {
+					language
+					englishTranslationUrl {
+						url
+					}
+					frenchTranslationUrl {
+						url
+					}
+					spanishTranslationUrl {
+						url
+					}
+				}
         postSummary {
           postSummary
         }
@@ -161,6 +174,7 @@ export default async function Page({params}) {
 
 	return (
     <main id='main-content' className='single-case-studies'>
+      <LanguageSelect langData={nodeData}/>
       <BlogEvents />
       <article className='prel single-article-section sk-case-study sk-blog-content'>
         <div className='container'>

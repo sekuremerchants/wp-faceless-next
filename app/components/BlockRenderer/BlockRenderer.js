@@ -10,6 +10,16 @@ import { FAQ } from '@/components/FAQ'
 import { ComparisonTable } from '@/components/ComparisonTable'
 import { BlogIcons } from '@/components/BlogIcons'
 import { SKbutton } from '@/components/SKbutton'
+import { Hero } from '@/components/Hero'
+import { HalfTextHalfImage } from '@/components/HalfTextHalfImage'
+import { BlocksGeneral } from '@/components/BlocksGeneral'
+import { RateGuarantee } from '@/components/RateGuarantee'
+import { ContactLightBlue } from '@/components/ContactLightBlue'
+import { EdgeCalculator } from '@/components/EdgeCalculator'
+import { TwoColumnImageWithCircles } from '@/components/TwoColumnImageWithCircles'
+import { QuoteHero } from '@/components/QuoteHero'
+import { OurPartners } from '@/components/OurPartners'
+import { TestimonialsSlider } from '@/components/TestimonialsSlider'
 import Image from 'next/image'
 
 const mediaItemQuery = `
@@ -112,11 +122,65 @@ export const BlockRenderer = ({blocks}) => {
 					<SKbutton block={block.attributes.data} />
 				)
 			}
+			case 'acf/sk-page-hero': {
+				const bgImage = block.attributes.data.hero_background_image ? await getMediaItemData(block.attributes.data.hero_background_image) : '';
+				const industryIcon = block.attributes.data.industry_icon ? await getMediaItemData(block.attributes.data.industry_icon) : '';
+				const transparentIcon = block.attributes.data.transparent_icon ? await getMediaItemData(block.attributes.data.transparent_icon) : '';
+				return (
+					<Hero block={block.attributes.data} bgImage={bgImage} industryIcon={industryIcon} transparentIcon={transparentIcon} />
+				)
+			}
+			case 'acf/half-text-half-image': {
+				const image = block.attributes.data.image != '' ? await getMediaItemData(block.attributes.data.image) : ''
+				return (
+					<HalfTextHalfImage block={block.attributes.data} image={image}/>
+				)
+			}
+			case 'acf/blocks-general': {
+				return (
+					<BlocksGeneral block={block.attributes.data} />
+				)
+			}
+			case 'acf/rate-guarantee': {
+				return (
+					<RateGuarantee block={block.attributes.data} />
+				)
+			}
+			case 'acf/contact-section-light-blue': {
+				return (
+					<ContactLightBlue block={block.attributes.data} />
+				)
+			}
+			case 'acf/edge-calculator': {
+				return (
+					<EdgeCalculator block={block.attributes.data} />
+				)
+			}
+			case 'acf/two-column-image-left': {
+				return (
+					<TwoColumnImageWithCircles block={block.attributes.data} />
+				)
+			}
+			case 'acf/quote-hero': {
+				return (
+					<QuoteHero block={block.attributes.data} />
+				)
+			}
+			case 'acf/sk-our-partners': {
+				return (
+					<OurPartners block={block.attributes.data} />
+				)
+			}
+			case 'acf/sk-content-testimonials': {
+				return (
+					<TestimonialsSlider block={block.attributes.data} />
+				)
+			}
 			case 'core/more': {
 				return null
 			}
 			default: {
-				console.log("BLOCK DATA: ", block)
+				//console.log("BLOCK DATA: ", block)
 				return (
 					<h2 key={index} className='c-red-2'>{block.name}</h2>
 				)

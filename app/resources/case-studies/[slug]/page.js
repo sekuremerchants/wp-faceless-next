@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { CaseStudyContent } from '@/components/CaseStudyContent'
 import { BlogPrefooter } from '@/components/BlogPrefooter'
+import { LanguageSelect } from '@/components/Header/LanguageSelect'
 import { assetSourceLocal } from '@/app/paths'
 
 import "@/styles/bootstrap.css"
@@ -20,6 +21,18 @@ const query = `
         uri
         date
         modified
+        skLanguage {
+					language
+					englishTranslationUrl {
+						url
+					}
+					frenchTranslationUrl {
+						url
+					}
+					spanishTranslationUrl {
+						url
+					}
+				}
         postSummary {
           postSummary
         }
@@ -162,6 +175,9 @@ export default async function Page({params}) {
 
 	return (
     <main id='main-content' className='single-case-studies'>
+      {nodeData.skLanguage.englishTranslationUrl || nodeData.skLanguage.frenchTranslationUrl || nodeData.skLanguage.spanishTranslationUrl && (
+        <LanguageSelect langData={nodeData}/>
+      )}
       <article className='prel single-article-section sk-case-study sk-blog-content'>
         <div className='container'>
           <div className='article-body row'>

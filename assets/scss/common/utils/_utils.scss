@@ -95,6 +95,12 @@
   &-rows {
     row-gap:48px;
 
+    @media screen and ($max1024){
+      &-10 {
+        row-gap:10px;
+      }
+    }
+
     @media screen and ($max500){
       row-gap:32px;
     }
@@ -191,6 +197,11 @@
   &.blue::before {
     background:#002ea6;
     opacity:0.8;
+  }
+
+  &.white::before {
+    background:#D4ECFFB2;
+    opacity:0.9;
   }
 
   &.gradient.dark::before {

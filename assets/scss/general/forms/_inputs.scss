@@ -258,28 +258,8 @@
   }
 }
 
-.hsForm_97f7b5a5-d133-4b59-8d6e-8bac13ebce66,
-.hsForm_b326454f-bfac-493a-a150-e350a093ec64,
-.hsForm_901cd0db-667a-4cae-a3a3-d3f2fc3a166f,
-.hsForm_c40aa767-76d5-44b2-a35d-9df6b69bd63b,
-.hs-form {
-  input,
-  textarea {
-    &::placeholder {
-      opacity: 0;
-    }
-  }
-}
-
 //////// HOME PAGE FORM //////////
 .home-page-form {
-  input,
-  textarea {
-    &::placeholder {
-      opacity: 0 !important;
-    }
-  }
-
   form {
     display: flex;
   }
@@ -706,19 +686,12 @@
       color: $blue-1;
       border-radius: 50px;
       font-weight: 700;
+      line-height:16px;
       border: none;
       padding: 20px 20px;
       transition:
         background-color 0.2s $easeOutSine,
         color 0.2s $easeOutSine;
-
-      @media screen and ($mobile_sm) {
-        // @include vw(font-size, 18px, 500);
-      }
-
-      @media screen and ($mobile_lg) {
-        font-size: 18px;
-      }
 
       @media screen and ($min1024) {
         // @include vw(font-size, 18px);
@@ -731,7 +704,6 @@
       }
 
       @media screen and ($min1920) {
-        font-size: 18px;
         padding: 20px 25px;
       }
 

@@ -25,6 +25,11 @@ export default async function RootLayout({ children, params }) {
   return (
     <html lang="en-US">
       <body className={`${redHatDisplay.variable} ${libreFranklin.variable}`}>
+        <Script 
+          src='https://js-na3.hsforms.net/forms/embed/v2.js'
+          strategy="afterInteractive"
+          id="hs-script-loader"
+        />
         <Header />
         {children}
         <Footer />

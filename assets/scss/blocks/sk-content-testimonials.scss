@@ -137,4 +137,48 @@
       }
     }
   }
+
+  &.no-slider {
+    @media screen and ($min1024){
+      .left-content,
+      .slider-holder,
+      .pagination-wrapper {
+        display:none;
+      }
+
+      .col-lg-6 {
+        width:100%;
+      }
+
+      .blaze-track-container {
+        overflow:visible;
+      }
+
+      .testimonial-carousel {
+        max-width:100%;
+
+        .blaze-track {
+          gap:48px;
+          padding-bottom:0;
+
+          .slide {
+            flex:1;
+            max-width:unset;
+            
+            .shadow {
+              background-color: #F2F4FA;
+              box-shadow:none !important;
+            }
+            .person-img-wrap {
+              justify-content:flex-start;
+
+              img {
+                border: solid 3px #17FCC4;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

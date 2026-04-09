@@ -127,11 +127,11 @@
     background-size: 100%;
     background-repeat: no-repeat;
 
-    background-image: url($ROOT_PATH + 'media/icons/slider.svg');
+    background-image: url('/wp-content/themes/sekure/assets/media/icons/slider.svg');
 
     &:hover,
     &:focus {
-      background-image: url($ROOT_PATH + 'media/icons/slider-blue.svg');
+      background-image: url('/wp-content/themes/sekure/assets/media/icons/slider-blue.svg');
     }
   }
 

@@ -230,6 +230,11 @@
 
       // Article aside
       .article-aside {
+        ul.posts-categories {
+          li {
+            line-height:22px;
+          }
+        }
         .sk-sticky {
           z-index: 1;
         }
