@@ -171,11 +171,11 @@ export default async function Page({params}) {
     link: nodeData.contentTypes.nodes[0].uri
   }
 
-  //console.log('CASE STUDIES DATA: ', nodeData)
+  console.log('CASE STUDIES DATA: ', nodeData)
 
 	return (
     <main id='main-content' className='single-case-studies'>
-      {nodeData.skLanguage.englishTranslationUrl || nodeData.skLanguage.frenchTranslationUrl || nodeData.skLanguage.spanishTranslationUrl && (
+      {(nodeData.skLanguage.englishTranslationUrl !== null || nodeData.skLanguage.frenchTranslationUrl !== null || nodeData.skLanguage.spanishTranslationUrl !== null) && (
         <LanguageSelect langData={nodeData}/>
       )}
       <article className='prel single-article-section sk-case-study sk-blog-content'>

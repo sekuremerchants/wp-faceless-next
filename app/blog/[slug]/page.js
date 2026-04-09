@@ -226,8 +226,6 @@ export default async function BlogPost({params}) {
 
   const mainContentColClass = h2Count > 2 ? 'col-lg-9' : ''
 
-  console.log("SINGLE POST DATA", h2Count);
-
 	return (
     <>
       <article className='sk-blog-content container prel' itemScope='' itemType='https://schema.org/BlogPosting' itemID={nodeData.uri}>

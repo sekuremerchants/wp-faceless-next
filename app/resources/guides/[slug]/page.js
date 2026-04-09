@@ -75,7 +75,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 export default async function Page({params}) {
 	const { slug } = await params;
-	console.log("LANDINGS RESOURCES GUIDES SLUG: ", slug);
+	//console.log("LANDINGS RESOURCES GUIDES SLUG: ", slug);
 	const queryVariables = {
   	uri: "landings/resources/guides/" + slug,
 	};

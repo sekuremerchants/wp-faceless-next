@@ -3,7 +3,7 @@ import { HubspotForm } from '@/components/HubspotForm'
 import Image from 'next/image'
 
 export const HalfTextHalfImage = ({block, image}) => {
-	console.log('HALF TEXT HALF IMAGE BLOCK DATA: ', block)
+	//console.log('HALF TEXT HALF IMAGE BLOCK DATA: ', block)
 
 	const bgColour = block.full_width_with_background != '0' ? 'full-width-bg' : ''
 	const imagePosition = block.image_position == 'right' ? '' : 'flex-row-reverse'
