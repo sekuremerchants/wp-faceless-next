@@ -24,7 +24,7 @@ export const Hero = async ({block, bgImage, industryIcon, transparentIcon}) => {
 	}
 
 	return (
-		<section id={block.section_id} className={`page-block-holder sk-page-block sk-page-hero block--psk1 sk-block inner-pages-landing-section prel ov-hidden ${block.section_classes}`}>
+		<section id={block.section_id} className={`sk-page-block sk-page-hero block--psk1 sk-block inner-pages-landing-section prel ov-hidden ${block.section_classes}`}>
 			
 			{block.background_image_url != '' && block.background_image_url != false && (
 				<Image src={block.background_image_url} alt={block.background_image_alt} width='1440' height='860' className='bg-image object-cover' />
