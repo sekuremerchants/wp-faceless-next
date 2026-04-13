@@ -18,6 +18,9 @@
   }
 
   .comparison-table.table-full-width {
+    .footer-content {
+      justify-self:flex-end;
+    }
     .sk-sticky .mt-5 p {
       display:flex;
       justify-content:flex-end;
@@ -25,10 +28,6 @@
     .disclaimer {
       display:block;
       text-align:right;
-
-      @media screen and ($min1024) {
-        width:65%;
-      }
     }
     @media screen and (min-width:950px){
       .table-comparison thead th.table-logo {

@@ -11,7 +11,7 @@ export const HalfTextHalfImage = ({block, image}) => {
 	const randomNum = Math.floor(Math.random() * 73)
 
 	const formattedContent = block.text_content.split('\r\n').map(content => {
-		const hasHTML = (str) => /<(?!(\/?(strong|span)\b))[^>]+>/i.test(str);
+		const hasHTML = (str) => /<(?!(\/?(strong|span|a|b)\b))[^>]+>/i.test(str);
 		if(content != '' && !hasHTML(content)){
 			return `<p>${content}</p>`
 		} else {
@@ -48,7 +48,7 @@ export const HalfTextHalfImage = ({block, image}) => {
 						)}
 					</div>
 
-					{block.section_image_url != '' && (
+					{block.section_image_url && (
 						<div className='img-wrap col-sm-12 col-md-8 col-lg-5 offset-md-2 offset-lg-0 d-flex justify-content-center sk-sticky'>
 							<div className='img-content'>
 								<Image src={block.section_image_url} alt={block.section_image_alt} height='450' width='450' className='animated zoomIn'/>

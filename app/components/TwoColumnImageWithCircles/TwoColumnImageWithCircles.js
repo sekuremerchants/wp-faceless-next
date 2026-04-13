@@ -7,7 +7,7 @@ export const TwoColumnImageWithCircles = ({block}) => {
 
 	function formatContent(content) {
 		const formatted = content.split('\r\n').map(content => {
-			const hasHTML = (str) => /<(?!(\/?(strong|span)\b))[^>]+>/i.test(str);
+			const hasHTML = (str) => /<(?!(\/?(strong|span|a|b)\b))[^>]+>/i.test(str);
 			if(content.includes('[sekure_icon ')){
 				const shortcodeData = content.split(' ')
 				const url = shortcodeData[1].replace('icon-url="', 'https://wordpress-dev-appsvc.azurewebsites.net').replace('"', '')

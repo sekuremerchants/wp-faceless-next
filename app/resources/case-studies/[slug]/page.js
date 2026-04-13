@@ -171,7 +171,7 @@ export default async function Page({params}) {
     link: nodeData.contentTypes.nodes[0].uri
   }
 
-  console.log('CASE STUDIES DATA: ', nodeData)
+  //console.log('CASE STUDIES DATA: ', nodeData)
 
 	return (
     <main id='main-content' className='single-case-studies'>
