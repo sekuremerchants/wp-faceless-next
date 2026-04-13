@@ -89,6 +89,9 @@ export const Header = async ({params}) => {
 	const { data } = await res.json()
 
 	const styleCode = `
+		#main-content {
+			transition:all 0.3s ease;
+		}
 		.header .dropdown-item-links {
 			background:#fff;
 			border-radius:30px;
