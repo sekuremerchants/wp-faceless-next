@@ -1,5 +1,5 @@
 import { HubspotForm } from '@/components/HubspotForm'
-import { FormEvents } from './FormEvents'
+//import { FormEvents } from './FormEvents'
 import '@/styles/blocks/contact-section-light-blue.css'
 
 export const ContactLightBlue = ({block}) => {
@@ -8,7 +8,6 @@ export const ContactLightBlue = ({block}) => {
 
 	return (
 		<section id={block.section_id} className={`sk-block block-cta-lb form-contact-section-home bg-blue-6 prel ov-hidden op-0 ${block.section_classes}`}>
-			<FormEvents/>
 			<div aria-hidden='true' className='inner-circles-wrap circle-full translate-100 pabs pointer-events-none border-radius-50'>
 				<div className='inner-circle-base pabs z-1 border-radius-50 bg-green-6'></div>
 				<div className='inner-circle-outer pabs z-2 bg-blue-6 border-radius-50'></div>
