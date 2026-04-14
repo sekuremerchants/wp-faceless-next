@@ -46,9 +46,9 @@ export const Hero = async ({block, bgImage, industryIcon, transparentIcon}) => {
 							<li><Link href='/'>Home</Link></li>
 						</ul>
 
-						{block.make_pre_heading_h1 == true && (
+						{block.make_pre_heading_h1 == '1' && (
 							<h1 className='txt-size-12 fw-400 ff-libre upper letter-spacing current-page-breadcrumb-title'>{block.pre_heading}</h1>
-						) || block.make_pre_heading_h1 == false && (
+						) || block.make_pre_heading_h1 == '0' && (
 							<p className='txt-size-12 upper letter-spacing current-page-breadcrumb-title'>{block.pre_heading}</p>
 						)}
 					</div>
@@ -56,9 +56,9 @@ export const Hero = async ({block, bgImage, industryIcon, transparentIcon}) => {
 
 				<div className='content-wrap prel col-sm-12 col-md-8 col-lg-7'>
 					<div className='txt-wrap'>
-						{block.make_pre_heading_h1 == true && (
+						{block.make_pre_heading_h1 == '1' && (
 							<h2 className='h1 c-white heading-anim' dangerouslySetInnerHTML={{__html:block.hero_heading}}></h2>
-						) || block.make_pre_heading_h1 == false && (
+						) || block.make_pre_heading_h1 == '0' && (
 							<h1 className='c-white heading-anim' dangerouslySetInnerHTML={{__html:block.hero_heading}}></h1>
 						)}
 
