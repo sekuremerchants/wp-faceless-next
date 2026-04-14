@@ -135,7 +135,6 @@ export const HubspotForm = ({formID, formContainer, uid, formContent, bgColour})
 							const contactLightBlue = document.querySelectorAll('.home-page-form')
 							if(contactLightBlue.length){
 								const formInputs = document.querySelectorAll('.home-page-form .hs-input')
-								console.log('FORM INPUTS: ', formInputs)
 								Array.from(formInputs).forEach(element => {
 									element.addEventListener('input', (event) => {
 										if(element.value != ''){
