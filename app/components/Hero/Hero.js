@@ -54,7 +54,7 @@ export const Hero = async ({block, bgImage, industryIcon, transparentIcon}) => {
 					</div>
 				)}
 
-				<div className='content-wrap prel col-sm-12 col-md-8 col-lg-7'>
+				<div className='content-wrap prel col-sm-12 col-md-8 col-lg-7 heading-balance'>
 					<div className='txt-wrap'>
 						{block.make_pre_heading_h1 == '1' && (
 							<h2 className='h1 c-white heading-anim' dangerouslySetInnerHTML={{__html:block.hero_heading}}></h2>
@@ -62,14 +62,14 @@ export const Hero = async ({block, bgImage, industryIcon, transparentIcon}) => {
 							<h1 className='c-white heading-anim' dangerouslySetInnerHTML={{__html:block.hero_heading}}></h1>
 						)}
 
-						{block.hero_subheading && (
+						{block.hero_subheading && block.industry_image_url && (
+							<div className='text-white industry-icon-1 d-flex align-items-start gap-cols gap-rows'>
+								<Image src={block.industry_image_url} alt={`icon`} height='300' width='300' className='industry-icon' />
+								<div className='txt-wrap' dangerouslySetInnerHTML={{__html:formatContent(block.hero_subheading)}}></div>
+							</div>
+						) || block.hero_subheading && (
 							<div className='text-white'>
 								<div dangerouslySetInnerHTML={{__html:formatContent(block.hero_subheading)}}></div>
-							</div>
-						) || block.hero_subheading && block.industry_icon != '' && (
-							<div className='text-white industry-icon-1 d-flex gap-cols gap-rows'>
-								<Image src={industryIcon.sourceUrl} alt={industryIcon.altText} height='300' width='300' className='industry-icon' />
-								<div className='txt-wrap'><p dangerouslySetInnerHTML={{__html:formatContent(block.hero_subheading)}}></p></div>
 							</div>
 						)}
 					</div>

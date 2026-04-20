@@ -1,3 +1,6 @@
+import { BlockRenderer } from "@/components/BlockRenderer"
+import { TalkToUs } from "@/components/TalkToUs"
+
 const query = `
 	query EquipmentQuery($uri: String!) {
 		nodeByUri(uri: $uri) {
@@ -10,6 +13,9 @@ const query = `
         seo {
           title
           metaDesc
+        }
+        customCSS {
+          customCss
         }
 			}
 		}
@@ -27,6 +33,9 @@ const queryLander = `
         seo {
           title
           metaDesc
+        }
+        customCSS {
+          customCss
         }
 			}
 		}
@@ -170,11 +179,13 @@ export default async function Payment({params}) {
     var { data } = await resLander.json();
   }
 
-  //console.log("PAYMENTS DATA: ", data);
+  //console.log("PAYMENTS DATA: ", data.nodeByUri);
 
 	return (
-		<main>
-			<h1>dynamic payments single page file - {data.nodeByUri.title}</h1>
-		</main>  
+    <>
+      <style dangerouslySetInnerHTML={{__html: data.nodeByUri.customCSS.customCss}}></style>
+      <BlockRenderer blocks={data.nodeByUri.blocks}/> 
+      <TalkToUs />
+    </>
 	);
 }

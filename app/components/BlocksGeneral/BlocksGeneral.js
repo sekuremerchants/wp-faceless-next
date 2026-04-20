@@ -72,7 +72,7 @@ export const BlocksGeneral = ({block}) => {
 				<div className='row'>
 
 					{block.content != '' && (
-						<div className='col-sm-12 col-lg-8 mb-5' dangerouslySetInnerHTML={{__html: formattedContent}}></div>
+						<div className='col-sm-12 col-lg-8 heading-balance mb-5' dangerouslySetInnerHTML={{__html: formattedContent}}></div>
 					)}
 
 					{block.blocks && block.blocks > 0 && (

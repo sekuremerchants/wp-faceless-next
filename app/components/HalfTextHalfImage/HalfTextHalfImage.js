@@ -7,12 +7,61 @@ export const HalfTextHalfImage = ({block, image}) => {
 
 	const bgColour = block.full_width_with_background != '0' ? 'full-width-bg' : ''
 	const imagePosition = block.image_position == 'right' ? '' : 'flex-row-reverse'
-	const contentColSize = block.column_sizing == 'image-small-column-fill' ? 'col-lg-8' : 'col-lg-6'
+	const contentColSize = block.column_sizing == 'image-small-column-fill' ? 'col-lg-7' : 'col-lg-6'
 	const randomNum = Math.floor(Math.random() * 73)
 
 	const formattedContent = block.text_content.split('\r\n').map(content => {
 		const hasHTML = (str) => /<(?!(\/?(strong|span|a|b)\b))[^>]+>/i.test(str);
-		if(content != '' && !hasHTML(content)){
+		if(content.includes('[template-output')){
+			const regex = /content='(.*?)'/g
+			const matches = [...content.matchAll(regex)]
+			const shortcodeContent = JSON.parse(matches[0][0].replace("content='", '').replace("}'", "}"))
+			const contentCount = Object.keys(shortcodeContent).length / 2
+			let count = 1
+			
+			let html = `
+				<style>
+					.numbered-content {
+						gap:40px;
+					}
+					.numbered-wrap .num {
+						flex-shrink: 0;
+						display:flex;
+						align-items:center;
+						justify-content:center;
+						text-align:center;
+						height:60px;
+						width:60px;
+						font-size: 28px;
+						color: #fff;
+						background-color: #FF034A;
+						border-radius: 50%;
+					}
+				</style>
+				<div class='numbered-content d-flex flex-column'>
+			`
+
+			while(count <= contentCount){
+				let heading = shortcodeContent[`heading_${count}`]
+				let content = shortcodeContent[`text_${count}`]
+
+				html += `
+					<div class="numbered-wrap prel d-flex gap-30">
+            <span class="num fw-600">${count}</span><p></p>
+						<div class="content-wrap">
+							<h3>${heading}</h3>
+							<p>${content}</p>
+						</div>
+					</div>
+				`
+
+				count++
+			}
+
+			html += `</div>`
+
+			return html
+		} else if(content != '' && !hasHTML(content)){
 			return `<p>${content}</p>`
 		} else {
 			return content.trim()
@@ -49,9 +98,9 @@ export const HalfTextHalfImage = ({block, image}) => {
 					</div>
 
 					{block.section_image_url && (
-						<div className='img-wrap col-sm-12 col-md-8 col-lg-5 offset-md-2 offset-lg-0 d-flex justify-content-center sk-sticky'>
+						<div className='img-wrap col-sm-12 col-lg-5 d-flex justify-content-center sk-sticky'>
 							<div className='img-content'>
-								<Image src={block.section_image_url} alt={block.section_image_alt} height='450' width='450' className='animated zoomIn'/>
+								<picture><Image src={block.section_image_url} alt={block.section_image_alt} height='450' width='450' className='animated zoomIn'/></picture>
 							</div>
 						</div>
 					)}

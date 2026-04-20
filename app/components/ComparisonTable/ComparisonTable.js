@@ -16,7 +16,7 @@ export const ComparisonTable = ({block, logoOne, logoTwo}) => {
 
 	let columnClass = block.left_side_content != '' && block.comparison_table_rows > 0 ? 'col-sm-12 col-lg-6' : 'col-sm-12'
 	if(block.table_full_width){
-		columnClass = 'col-sm-12 col-lg-8'
+		columnClass = 'col-sm-12 col-lg-8 heading-balance'
 	}
 	const tableFullWidth = block.table_full_width ? 'table-full-width' : ''
 	const tableClass = block.table_full_width ? 'col-sm-12' : 'col-sm-12 col-lg-6'

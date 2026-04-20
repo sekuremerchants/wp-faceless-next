@@ -1,3 +1,5 @@
+import { BlockRenderer } from "@/components/BlockRenderer"
+
 const query = `
 	query IndustryQuery($uri: String!) {
 		nodeByUri(uri: $uri) {
@@ -10,6 +12,9 @@ const query = `
         seo {
           title
           metaDesc
+        }
+        customCSS {
+          customCss
         }
 			}
 		}
@@ -82,7 +87,7 @@ export default async function Industry({params}) {
 	const slug = await params;
 	const queryVariables = {
   		uri: "industry/" + slug.slug,
-	};
+	}
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
     headers: {
@@ -92,15 +97,16 @@ export default async function Industry({params}) {
       query: query,
 			variables: queryVariables,
     }),
-  });
-  const { data } = await res.json();
-	const nodeData = data.nodeByUri;
+  })
+  const { data } = await res.json()
+	const nodeData = data.nodeByUri
 
-	//console.log("INDUSTRY DATA: ", data);
+	//console.log("INDUSTRY DATA: ", nodeData);
 
 	return (
-		<main>
-			<h1>dynamic industry single page file - {nodeData.title}</h1>
-		</main>  
-	);
+    <>
+      <style dangerouslySetInnerHTML={{__html: nodeData.customCSS.customCss}}></style>
+      <BlockRenderer postID={nodeData.industryId} blocks={nodeData.blocks}/>  
+    </>
+	)
 }

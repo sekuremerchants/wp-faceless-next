@@ -20,6 +20,10 @@ import { TwoColumnImageWithCircles } from '@/components/TwoColumnImageWithCircle
 import { QuoteHero } from '@/components/QuoteHero'
 import { OurPartners } from '@/components/OurPartners'
 import { TestimonialsSlider } from '@/components/TestimonialsSlider'
+import { FullWidthText } from '@/components/FullWidthText'
+import { Products } from '@/components/Products'
+import { Expert } from '@/components/Expert'
+import { Survey } from '@/components/Survey'
 import Image from 'next/image'
 
 const mediaItemQuery = `
@@ -56,7 +60,7 @@ async function getMediaItemData(id){
 	}
 }
 
-export const BlockRenderer = ({blocks}) => {
+export const BlockRenderer = ({postID, blocks}) => {
 	return blocks.map(async (block, index) => {
 		switch(block.name){
 			case 'core/heading': {
@@ -174,6 +178,26 @@ export const BlockRenderer = ({blocks}) => {
 			case 'acf/sk-content-testimonials': {
 				return (
 					<TestimonialsSlider block={block.attributes.data} />
+				)
+			}
+			case 'acf/full-width-txt-content': {
+				return (
+					<FullWidthText block={block.attributes.data} />
+				)
+			}
+			case 'acf/products': {
+				return (
+					<Products block={block.attributes.data} />
+				)
+			}
+			case 'acf/expert': {
+				return (
+					<Expert block={block.attributes.data} />
+				)
+			}
+			case 'acf/sk-page-survey': {
+				return (
+					<Survey postID={postID} block={block.attributes.data} />
 				)
 			}
 			case 'core/more': {

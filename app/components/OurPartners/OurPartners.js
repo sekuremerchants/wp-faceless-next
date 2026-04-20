@@ -106,7 +106,7 @@ export const OurPartners = ({block}) => {
 			<div className='partners-section-home prel slider-arrows prel'>
 				<div className='container'>
 					<div className='row'>
-						<div id='txt-content' className='col-sm-12 col-lg-8'>
+						<div className='col-sm-12 col-lg-8 heading-balance'>
 
 							{block.top_heading && (
 								<p className='pre-title' dangerouslySetInnerHTML={{__html: block.top_heading}}></p>

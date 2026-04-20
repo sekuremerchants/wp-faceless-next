@@ -309,7 +309,7 @@ export const Footer = async () => {
 							<button aria-label="Close video popup" id='embed-popup-close-btn' className="popup-close-btn embed-popup-close-btn">
 								<span className="x-icon"></span>
 							</button>
-							<div className="iframe-container"></div>
+							<div id='embed-iframe-container' className="iframe-container"></div>
 					</div>
 			</div>
 

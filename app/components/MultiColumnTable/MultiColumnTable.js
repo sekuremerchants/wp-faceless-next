@@ -158,7 +158,7 @@ export const MultiColumnTable = ({block}) => {
 				<div className='row'>
 
 					{(block.heading || block.content) && (
-						<div className='col-sm-12 col-lg-8'>
+						<div className='col-sm-12 col-lg-8 heading-balance'>
 							{block.heading && (
 								<h2>{block.heading}</h2>
 							)}
