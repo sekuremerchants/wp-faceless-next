@@ -4,8 +4,6 @@ import '@/styles/blocks/blocks-general.css'
 
 export const BlocksGeneral = ({block}) => {
 
-	//console.log('BLOCKS GENERAL BLOCK DATA: ', block)
-
 	const bgColour = block.full_width_with_background == 'Yes' ? 'full-width-bg' : ''
 	const blocksCount = block.blocks - 1
 	let x = 0
