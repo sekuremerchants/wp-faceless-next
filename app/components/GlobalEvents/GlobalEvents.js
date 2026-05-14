@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 import { assetSourceLocal } from "@/app/paths"
 import { HubspotForm } from '@/components/HubspotForm'
+import { Embed } from '@/components/Embed'
 
 export function GlobalEvents() {
 	const pathname = usePathname()
@@ -105,6 +106,10 @@ export function GlobalEvents() {
 		// video popup functionality
 		const videoPopupBtns = document.querySelectorAll('[data-video-embed-id]')
 		Array.from(videoPopupBtns).forEach(element => {
+			const block = {
+				providerNameSlug: 'youtube',
+			}
+
 			element.addEventListener('click', (event) => {
 				event.preventDefault()
 				const videoPopupWrap = document.getElementById('embed-iframe-container')
@@ -114,8 +119,10 @@ export function GlobalEvents() {
 				let iframe = `
 					<iframe src="https://www.youtube.com/embed/${element.dataset.videoEmbedId}?rel=0&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				`
+
 				const root = createRoot(videoPopupWrap)
-				root.render(videoIframe)
+				//root.render(videoIframe)
+				root.render(<Embed block={block} embedURL={`https://www.youtube.com/embed/${element.dataset.videoEmbedId}?rel=0&autoplay=1`} />)
 				document.getElementsByTagName('html')[0].classList.add('show-embed-popup-wrap')
 			})
 		})

@@ -37,6 +37,22 @@ export const Expert = ({block}) => {
 							<div dangerouslySetInnerHTML={{__html:formatContent(block.left_side_text_content)}}></div>
 						)}
 
+						{block.block_style == 'b' && block.expert_image_url && (
+							<div className="analysis-person-wrap d-flex flex-column-1024 gap-20 mt-3">
+								<div className="img-wrap fade-in-last">
+									<Image src={block.expert_image_url} alt={block.expert_image_alt} height='243' width='243' />
+								</div>
+								<div className="fade-in-last">
+									<h3 className="analysis-person-title">{block.expert_name}</h3>
+									<p className="analysis-person-subtitle c-blue-5">{block.expert_experience}</p>
+									<p className="analysis-person-position">{block.expert_title}</p>
+									<p className="analysis-person-txt ff-redhat fw-700">
+										{block.expert_bio}
+									</p>
+								</div>
+							</div>
+						)}
+
 						{block.cta_text && (
 							<div className='mt-default fade-in-last'>
 								<Link href='#survey' className="btn-default c-blue-1 btn-green-1 section-color-white">
@@ -57,10 +73,10 @@ export const Expert = ({block}) => {
 								)}
 								
 								<div className="analysis-person-wrap-txt-content fade-in-last">
-										<h3 className="analysis-person-title">{block.expert_name}</h3>
-										<p className="analysis-person-subtitle c-blue-5">{block.expert_experience}</p>
-										<p className="analysis-person-position">{block.expert_title}</p>
-										<p className="analysis-person-txt txt-post-rtf">{block.expert_bio}</p>
+									<h3 className="analysis-person-title">{block.expert_name}</h3>
+									<p className="analysis-person-subtitle c-blue-5">{block.expert_experience}</p>
+									<p className="analysis-person-position">{block.expert_title}</p>
+									<p className="analysis-person-txt ff-redhat fw-700">{block.expert_bio}</p>
 								</div>
 
 								{block.video_text && (
@@ -72,6 +88,10 @@ export const Expert = ({block}) => {
 									</div>
 								)}
 							</>
+						) || block.block_style == 'b' && (
+							<div className="video-wrap fade-in-last">
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/xw2o9SuhytU?si=stO7yur9S3ay6vCe" data-src="https://www.youtube.com/embed/xw2o9SuhytU?si=stO7yur9S3ay6vCe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+							</div>
 						)}
 					</div>
 				</div>

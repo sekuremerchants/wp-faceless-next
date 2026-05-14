@@ -1,23 +1,30 @@
-export const Embed = ({block}) => {
-	var embedSRC = '';
-	var embedCode = '';
+export const Embed = ({block, embedURL}) => {
+	let embedSRC = ''
+	let embedCode = ''
+	let embed = ''
 
 	//console.log('EMBED BLOCK DATA: ', block)
 
 	if(block.providerNameSlug == 'youtube' || block.providerNameSlug == 'embed-handler') {
 		embedSRC = 'https://www.youtube.com/embed/';
 	}
-	
-	if(block.providerNameSlug == 'vimeo'){
-		embedSRC = block.url
+
+	if(embedURL){
+		embed = embedURL
+	} else {
+		if(block.providerNameSlug == 'vimeo'){
+			embedSRC = block.url
+		}
+
+		const lastSlash = block.url.lastIndexOf('/');
+		if(lastSlash !== -1){
+			embedCode = block.url.slice(lastSlash + 1).replace('watch?v=', '')
+		}
+
+		embed = embedSRC + embedCode
 	}
 
-	const lastSlash = block.url.lastIndexOf('/');
-	if(lastSlash !== -1){
-		embedCode = block.url.slice(lastSlash + 1).replace('watch?v=', '')
-	}
-
-	const embed = embedSRC + embedCode;
+	//https://www.youtube.com/embed/xw2o9SuhytU?rel=0&autoplay=1
 
 	return (
 		<figure className={`wp-block-embed is-type-video is-provider-${block.providerNameSlug} wp-block-embed-${block.providerNameSlug} wp-embed-aspect-16-9 wp-has-aspect-ratio`}>

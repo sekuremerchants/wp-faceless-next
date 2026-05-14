@@ -16,7 +16,7 @@ const popupDataQuery = `
 	}
 `;
 
-export const Button = async ({type, text, link, popupID, popupHeading, popupDesc, phone, sectionBgColour, classes}) => {
+export const Button = async ({id, type, text, link, popupID, popupHeading, popupDesc, phone, sectionBgColour, classes}) => {
 
 	let popupData
 
@@ -54,7 +54,7 @@ export const Button = async ({type, text, link, popupID, popupHeading, popupDesc
 	switch(type){
 		case 'same': {
 			return (
-				<Link href={ctaLink} className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`}>
+				<Link id={id} href={ctaLink} className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`}>
 					<span className='btn-bg-el'></span>
 					<span className='btn-txt' dangerouslySetInnerHTML={{__html: ctaText}}></span>
 				</Link>
@@ -62,7 +62,7 @@ export const Button = async ({type, text, link, popupID, popupHeading, popupDesc
 		}
 		case 'yes': {
 			return (
-				<Link href={ctaLink} target='_blank' className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`}>
+				<Link id={id} href={ctaLink} target='_blank' className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`}>
 					<span className='btn-bg-el'></span>
 					<span className='btn-txt' dangerouslySetInnerHTML={{__html: ctaText}}></span>
 				</Link>
@@ -70,7 +70,7 @@ export const Button = async ({type, text, link, popupID, popupHeading, popupDesc
 		}
 		case 'modal': {
 			return (
-				<Link href='#' className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`} data-popup-id={popupID} data-popup-heading={popupHeading} data-popup-desc={popupDesc} data-popup-form-id={popupData.cptPopups.formId} data-popup-content={popupData.content}>
+				<Link id={id} href='#' className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`} data-popup-id={popupID} data-popup-heading={popupHeading} data-popup-desc={popupDesc} data-popup-form-id={popupData.cptPopups.formId} data-popup-content={popupData.content}>
 					<span className='btn-bg-el'></span>
 					<span className='btn-txt' dangerouslySetInnerHTML={{__html: ctaText}}></span>
 				</Link>
@@ -78,7 +78,7 @@ export const Button = async ({type, text, link, popupID, popupHeading, popupDesc
 		}
 		case 'video': {
 			return (
-				<Link href='#' className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`} data-video-embed-id=''>
+				<Link id={id} href='#' className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`} data-video-embed-id=''>
 					<span className='btn-bg-el'></span>
 					<span className='btn-txt' dangerouslySetInnerHTML={{__html: ctaText}}></span>
 				</Link>
@@ -86,7 +86,7 @@ export const Button = async ({type, text, link, popupID, popupHeading, popupDesc
 		}
 		case 'call': {
 			return (
-				<Link href={`tel:${phone}`} className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`}>
+				<Link id={id} href={`tel:${phone}`} className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`}>
 					<span className='btn-bg-el'></span>
 					<span className='btn-txt' dangerouslySetInnerHTML={{__html: ctaText}}></span>
 				</Link>
@@ -94,9 +94,9 @@ export const Button = async ({type, text, link, popupID, popupHeading, popupDesc
 		}
 		case 'survey_call': {
 			return (
-				<Link href='tel:8667107382' className={`side-menu-quiz-btn fw-600 ${classes}`}>
+				<Link id={id} href='tel:8667107382' className={`side-menu-quiz-btn fw-600 ${classes}`}>
 					<span className='btn-txt'>Talk to us<br/> now</span>
-					<svg className='side-menu-quiz-btn-svg' viewbox='0 0 59.8 60'>
+					<svg className='side-menu-quiz-btn-svg' viewBox='0 0 59.8 60'>
 						<path d="M29.9 0C13.5 0 .1 13.4 0 29.8c-.1 8 3 15.6 8.6 21.3 5.6 5.7 13.1 8.9 21.1 8.9h.2c16.4 0 29.8-13.4 29.9-29.8C59.9 13.7 46.6.1 29.9 0zm14.5 40-1.3 1.3-.1.1c-2.2 2.2-4.1 2.7-7 1.9-3.1-.9-5.8-2.6-8.2-4.6-3.5-2.9-7.3-6.6-9.8-10.5-2.5-4-3.3-8.2.2-11.7l.1-.1 1.3-1.3c.9-.9 2.5-.9 3.5 0L27 19c.9.9.9 2.5 0 3.5l-2.3 2.3.1.1c2.6 3.9 6 7.3 9.9 9.9l.1.1 2.3-2.3c.9-.9 2.5-.9 3.5 0l3.9 3.9c.9 1 .9 2.6-.1 3.5z"/>
 					</svg>
 				</Link>
@@ -104,7 +104,7 @@ export const Button = async ({type, text, link, popupID, popupHeading, popupDesc
 		}
 		case 'survey_schedule_callback': {
 			return (
-				<Link href='#' className={`side-menu-quiz-btn fw-600 ${classes}`} data-popup-id='37274' data-popup-form-id='3b595ef7-8b30-4f43-9d82-2e9b1a297a74' data-popup-content='<h3>Schedule a callback</h3>'>
+				<Link id={id} href='#' className={`side-menu-quiz-btn fw-600 ${classes}`} data-popup-id='37274' data-popup-form-id='3b595ef7-8b30-4f43-9d82-2e9b1a297a74' data-popup-content='<h3>Schedule a callback</h3>'>
 					<span className='btn-txt'>Schedule<br/> a callback</span>
 					<svg className='side-menu-quiz-btn-svg' viewBox='0 0 59.8 60'>
 						<path d="M29.9 0C13.5 0 .1 13.4 0 29.8c-.1 8 3 15.6 8.6 21.3 5.6 5.7 13.1 8.9 21.1 8.9h.2c16.4 0 29.8-13.4 29.9-29.8C59.9 13.7 46.6.1 29.9 0zm8.5 47-1.3 1.3-.1.1c-2.2 2.2-4.1 2.7-7 1.9-3.1-.9-5.8-2.6-8.2-4.6-3.5-2.9-7.3-6.6-9.8-10.5-2.5-4-3.3-8.2.2-11.7l.1-.1 1.3-1.3c.9-.9 2.5-.9 3.5 0L21 26c.9.9.9 2.5 0 3.5l-2.3 2.3.1.1c2.6 3.9 6 7.3 9.9 9.9l.1.1 2.3-2.3c.9-.9 2.5-.9 3.5 0l3.9 3.9c.9 1 .9 2.6-.1 3.5zm8.4-11.4c-.3.9-1.1 1.4-2 1.4-.2 0-.4 0-.6-.1-1.1-.4-1.7-1.5-1.4-2.6 2.7-8.7-3.5-13.6-3.8-13.8-.1 0-.1-.1-.1-.1-4.1-3.7-9.2-3.1-12.1-2.4l2.6 1.6c.9.6 1.2 1.9.6 2.8-.4.6-1.1.9-1.7.9-.4 0-.7-.1-1.1-.3l-6.4-4c-.9-.6-1.2-1.9-.6-2.8l4-6.6c.6-.9 1.9-1.3 2.8-.7.9.6 1.3 1.9.7 2.8l-1.3 2.2c3.8-.9 10.2-1.4 15.5 3.3 2.9 2.6 7.8 9.3 4.9 18.4z"/>
@@ -114,7 +114,7 @@ export const Button = async ({type, text, link, popupID, popupHeading, popupDesc
 		}
 		case 'survey_download_guide': {
 			return (
-				<Link href='#' className={`side-menu-quiz-btn fw-600 ${classes}`} data-popup-id='37274' data-popup-form-id='3b595ef7-8b30-4f43-9d82-2e9b1a297a74' data-popup-content='<h3>Download our guide</h3>'>
+				<Link id={id} href='#' className={`side-menu-quiz-btn fw-600 ${classes}`} data-popup-id='37274' data-popup-form-id='3b595ef7-8b30-4f43-9d82-2e9b1a297a74' data-popup-content='<h3>Download our guide</h3>'>
 					<span className='btn-txt'>Download<br/> our guide</span>
 					<svg className='side-menu-quiz-btn-svg' viewBox='0 0 59.8 60'>
 						<path d="M29.9 0C13.5 0 .1 13.4 0 29.8c-.1 8 3 15.6 8.6 21.3 5.6 5.7 13.1 8.9 21.1 8.9h.2c16.4 0 29.8-13.4 29.9-29.8C59.9 13.7 46.6.1 29.9 0zM19.3 24.1c.8-.8 2-.8 2.8 0l4.4 4.4c.2.2.5.2.7.1.2-.1.4-.3.4-.6V14.8c0-1.1.9-2 2-2s2 .9 2 2V28c0 .3.2.5.4.6.1 0 .2.1.3.1.2 0 .3-.1.5-.2l4.4-4.4c.4-.4 1-.6 1.5-.6.6 0 1.1.3 1.4.8.6.8.5 2-.3 2.7l-9.4 9.4c-.5.5-1.2.5-1.7 0l-9.5-9.5c-.7-.8-.7-2.1.1-2.8zm19.5 23.1H20.3c-2.4 0-4.3-1.9-4.3-4.3v-2.7c0-1.1.9-2 2-2s2 .9 2 2v2.3c0 .4.3.7.7.7h17.8c.4 0 .7-.3.7-.7v-2.3c0-1.1.9-2 2-2s2 .9 2 2v2.7c-.1 2.4-2 4.3-4.4 4.3z"/>

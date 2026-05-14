@@ -27,7 +27,21 @@ export const BlocksGeneral = ({block}) => {
 				const urlMatches = [...matches[0][0].matchAll(urlRegex)]
 				const url = urlMatches[0][0].replace('icon-url="', 'https://wordpress-dev-appsvc.azurewebsites.net').replace('"', '')
 				const shortcodeImage = `<img src='${url}' alt='icon' height='40' width='40' style='width:40px;height:40px;' class=''>`
-				const newContent = content.replace(matches[0][0], shortcodeImage)
+				let newContent = ''
+
+				if(content.includes('icon-text=')){
+					const txtRegex = /icon-text="([^"]+)"/g
+					const txtMatches = [...content.matchAll(txtRegex)]
+
+					newContent = `
+						<p class='d-flex gap-20 align-items-center'>
+							<img src='${url}' alt='icon' height='40' width='40' style='width:40px;height:40px;' class=''>
+							<span>${txtMatches[0][1]}</span>
+						</p>
+					`
+				} else {
+					newContent = content.replace(matches[0][0], shortcodeImage)
+				}
 				
 				return newContent.trim()
 			} else if(content != '' && !hasHTML(content)){
@@ -66,6 +80,8 @@ export const BlocksGeneral = ({block}) => {
 		}
 	}).join('')
 
+	let blocksGridClass = block.blocks_type == 'jumbled' ? 'd-flex' : `blocks-grid-${block.blocks_per_row}`
+
 	return (
 		<section id={block.section_id} className={`content-block-holder sk-block blocks prel ov-hidden op-0 ${bgColour} ${block.section_classes}`}>
 			<div className='container prel z-2'>
@@ -76,18 +92,48 @@ export const BlocksGeneral = ({block}) => {
 					)}
 
 					{block.blocks && block.blocks > 0 && (
-						<div className={`blocks-grid blocks-grid-${block.blocks_per_row} gap-cols gap-rows blocks-type-${block.blocks_type}`}>
-							{blocks.map((element, index) => (
-								<div key={index} className='block'>
-									{element.image && (
-										<picture><Image src={element.image} alt={element.imageAlt} height='578' width='578' /></picture>
-									)}
+						<div className={`blocks-grid ${blocksGridClass} gap-cols gap-rows blocks-type-${block.blocks_type}`}>
+							{block.blocks_type == 'jumbled' && (
+								<>
+									<div className='block-wrap-big'>
+										<div className={`block ${blocks[0].section_classes}`}>
+											{blocks[0].image && (
+												<picture><Image src={blocks[0].image} alt={blocks[0].imageAlt} height='578' width='578' /></picture>
+											)}
+											{blocks[0].content != '' && (
+												<div className='block-content' dangerouslySetInnerHTML={{__html: blocks[0].content}}></div>
+											)}
+										</div>
+									</div>
+									<div className='block-wrap-jumble d-flex flex-wrap gap-cols gap-rows'>
+										{blocks.map((element, index) => (
+											index != 0 && (
+												<div key={index} className='block'>
+													{element.image && (
+														<picture><Image src={element.image} alt={element.imageAlt} height='578' width='578' /></picture>
+													)}
 
-									{element.content != '' && (
-										<div className='block-content' dangerouslySetInnerHTML={{__html: element.content}}></div>
-									)}
-								</div>
-							))}
+													{element.content != '' && (
+														<div className='block-content' dangerouslySetInnerHTML={{__html: element.content}}></div>
+													)}
+												</div>
+											)
+										))}
+									</div>
+								</>
+							) || (
+								blocks.map((element, index) => (
+									<div key={index} className='block'>
+										{element.image && (
+											<picture><Image src={element.image} alt={element.imageAlt} height='578' width='578' /></picture>
+										)}
+
+										{element.content != '' && (
+											<div className='block-content' dangerouslySetInnerHTML={{__html: element.content}}></div>
+										)}
+									</div>
+								))
+							)}
 						</div>
 					)}
 

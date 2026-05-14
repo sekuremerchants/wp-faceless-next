@@ -61,6 +61,30 @@ export const HalfTextHalfImage = ({block, image}) => {
 			html += `</div>`
 
 			return html
+		} else if(content.includes('[sekure_icon ')){
+			const regex = /\[sekure_icon(.*?)\]/g
+			const matches = [...content.matchAll(regex)]
+			const urlRegex = /icon-url="([^"]+)"/g
+			const urlMatches = [...matches[0][0].matchAll(urlRegex)]
+			const url = urlMatches[0][0].replace('icon-url="', 'https://wordpress-dev-appsvc.azurewebsites.net').replace('"', '')
+			const shortcodeImage = `<img src='${url}' alt='icon' height='40' width='40' style='width:40px;height:40px;' class=''>`
+			let newContent = ''
+
+			if(content.includes('icon-text=')){
+				const txtRegex = /icon-text="([^"]+)"/g
+				const txtMatches = [...content.matchAll(txtRegex)]
+
+				newContent = `
+					<p class='d-flex gap-20 align-items-center'>
+						<img src='${url}' alt='icon' height='40' width='40' style='width:40px;height:40px;' class=''>
+						<span>${txtMatches[0][1]}</span>
+					</p>
+				`
+			} else {
+				newContent = content.replace(matches[0][0], shortcodeImage)
+			}
+			
+			return newContent.trim()
 		} else if(content != '' && !hasHTML(content)){
 			return `<p>${content}</p>`
 		} else {

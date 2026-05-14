@@ -63,7 +63,7 @@ export const Hero = async ({block, bgImage, industryIcon, transparentIcon}) => {
 						)}
 
 						{block.hero_subheading && block.industry_image_url && (
-							<div className='text-white industry-icon-1 d-flex align-items-start gap-cols gap-rows'>
+							<div className='text-white single-txt-block-no-title industry-icon-1 d-flex align-items-start gap-cols gap-rows'>
 								<Image src={block.industry_image_url} alt={`icon`} height='300' width='300' className='industry-icon' />
 								<div className='txt-wrap' dangerouslySetInnerHTML={{__html:formatContent(block.hero_subheading)}}></div>
 							</div>
