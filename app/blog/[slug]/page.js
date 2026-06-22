@@ -72,7 +72,7 @@ const query = `
 
 const blogPostsQuery = `
 query blogPosts {
-  posts(first: 400) {
+  posts(first: 600) {
     nodes {
       id
       postId
