@@ -18,6 +18,7 @@ export function GlobalEvents() {
 			history.scrollRestoration = 'manual';
 		}
 
+		/*
 		window.addEventListener('load', () => {
 			const top = 0 - document.getElementById('header').offsetHeight
 			window.scrollTo(top, 0);
@@ -27,6 +28,7 @@ export function GlobalEvents() {
 			const top = 0 - document.getElementById('header').offsetHeight
 			window.scrollTo(top, 0);
 		}
+		*/
 
 		// #main-content padding top style update
 		const header = document.getElementById('header')

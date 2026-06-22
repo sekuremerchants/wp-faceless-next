@@ -118,16 +118,14 @@ export const TestimonialsSlider = ({block}) => {
 																<div className='txt-content-inner'>
 																	<div className='quote'>
 																		<p className='quote-by-txt' dangerouslySetInnerHTML={{__html: slide.quote}}></p>
-																		{slide.name || slide.company && (
-																			<p className='quote-by-info'>
-																				{slide.name && (
-																					<strong>{slide.name}</strong>
-																				)}
-																				{slide.company && (
-																					<span className='company-name'>{slide.company}</span>
-																				)}
-																			</p>
-																		)}
+																		<p className='quote-by-info'>
+																			{slide.name && (
+																				<strong>{slide.name}</strong>
+																			)}
+																			{slide.company && (
+																				<span className='company-name'>{slide.company}</span>
+																			)}
+																		</p>
 																	</div>
 																</div>
 															</div>

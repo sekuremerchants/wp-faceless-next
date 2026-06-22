@@ -117,7 +117,9 @@ export const HalfTextHalfImage = ({block, image}) => {
 						)}
 
 						{block.form_id && (
-							<HubspotForm formID={block.form_id} formContainer={`block--p-${randomNum}`} uid={randomNum} />
+							<div className='mt-3'>
+								<HubspotForm formID={block.form_id} submitText={block.form_submit_button} formContainer={`block--p-${randomNum}`} uid={randomNum} />
+							</div>
 						)}
 					</div>
 

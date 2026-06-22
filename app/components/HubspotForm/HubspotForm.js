@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import Script from 'next/script'
 
-export const HubspotForm = ({formID, formContainer, uid, formContent, bgColour}) => {
+export const HubspotForm = ({formID, submitText, formContainer, uid, formContent, bgColour}) => {
 
 	const bgColourClass = bgColour == 'blue' ? 'section-color-blue' : 'section-color-white'
 
@@ -10,7 +10,7 @@ export const HubspotForm = ({formID, formContainer, uid, formContent, bgColour})
     if (window.hbspt) {
 			window.hbspt.forms.create({
 				region: 'na3',
-				portalId: '341780804',
+				portalId: '4438792',
 				formId: `${formID}`,
 				target: `#form-wrap-${formContainer}`,
 				formInstanceId: `${uid}`, 
@@ -24,7 +24,7 @@ export const HubspotForm = ({formID, formContainer, uid, formContent, bgColour})
 					clearInterval(formCheck)
 					window.hbspt.forms.create({
 						region: 'na3',
-						portalId: '341780804',
+						portalId: '4438792',
 						formId: `${formID}`,
 						target: `#form-wrap-${formContainer}`,
 						formInstanceId: `${uid}`, 
@@ -45,7 +45,7 @@ export const HubspotForm = ({formID, formContainer, uid, formContent, bgColour})
 				var submitBtn = $form.querySelector('input[type="submit"]')
 				var newBtn = document.createElement('button')
 				newBtn.type = 'submit'
-				newBtn.value = submitBtn.defaultValue
+				newBtn.value = (submitText != '' ) ? submitText : submitBtn.defaultValue
 				newBtn.innerHTML = '<span class="btn-bg-el"></span><span class="btn-txt">' + submitBtn.defaultValue + '</span>'
 				newBtn.classList.add('hs-button', 'primary', 'large', 'btn-default', 'size-18-txt', 'ltr-spc-pos-0_25', 'c-blue-1', 'btn-green-1', 'btn-offset-10', 'fw-700', bgColourClass)
 				submitBtn.replaceWith(newBtn)
