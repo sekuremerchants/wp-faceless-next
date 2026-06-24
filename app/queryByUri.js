@@ -13,24 +13,8 @@ const query = `
 					title
 					metaDesc
 				}
-				customCSS {
-					customCSS
-				}
-			}
-			... on Landing {
-				id
-				landingId
-				title
-				blocks(postTemplate: false)
-				postLanguage {
-					contentLanguage
-				}
-				seo {
-					title
-					metaDesc
-				}
-				customCSS {
-					customCSS
+				customCss {
+					customCss
 				}
 			}
 		}
@@ -52,8 +36,8 @@ const landingQuery = `
 					title
 					metaDesc
 				}
-				customCSS {
-					customCSS
+				customCss {
+					customCss
 				}
 			}
 		}

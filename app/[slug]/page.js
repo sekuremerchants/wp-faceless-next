@@ -37,9 +37,9 @@ const query = `
 					title
 					metaDesc
 				}
-        customCSS {
-          customCss
-        }
+				customCss {
+					customCss
+				}
 			}
 		}
 	}
@@ -57,9 +57,9 @@ const landingQuery = `
 					title
 					metaDesc
 				}
-        customCSS {
-          customCss
-        }
+				customCss {
+					customCss
+				}
 			}
 		}
 	}
@@ -143,8 +143,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
 		var { data } = await resTwo.json();
 	}
 
-	console.log('[SLUG] PAGE DATA: ', data);
-
   return {
     title: data.nodeByUri.seo.title,
     description: data.nodeByUri.seo.metaDesc,
@@ -158,9 +156,13 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default async function Page({params}) {
 	const { slug } = await params;
 	const pageData = await queryByUri(slug);
+	const pageCSS = pageData.nodeByUri.customCss.customCss ? pageData.nodeByUri.customCss.customCss : false
 
 	return (
 		<>
+			{pageCSS && (
+				<style dangerouslySetInnerHTML={{__html: pageCSS}}></style>
+			)}
       <BlockRenderer blocks={pageData.nodeByUri.blocks}/>
     </>
 	);
