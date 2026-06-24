@@ -86,9 +86,9 @@ export const Hero = async ({block, bgImage, industryIcon, transparentIcon}) => {
 					)}
 
 					{block.show_next_button != 'hide' && (
-						<button class='section-scroll-btn scroll-to-next-btn d-block mt-default'>
-              <svg class='scroll-btn-border-svg' viewbox='0 0 115 115'>
-                <circle class="scroll-btn-border-circle" fill="none" cx="57.5" cy="57.5" r="56"/>
+						<button className='section-scroll-btn scroll-to-next-btn d-block mt-default'>
+              <svg className='scroll-btn-border-svg' viewBox='0 0 115 115'>
+                <circle className="scroll-btn-border-circle" fill="none" cx="57.5" cy="57.5" r="56"/>
               </svg>
               <Image width='36' height='57' alt='' role='presentation' src='/media/images/pictograms/scroll-arrow.webp' className='scroll-btn-img' />
             </button>
