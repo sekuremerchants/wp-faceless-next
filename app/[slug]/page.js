@@ -126,7 +126,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
   var { data } = await res.json();
 
 	if(!data.nodeByUri){
-		console.log('PAGE NOT FOUND, LOOKING FOR LANDERS');
 		const newQueryVars = {
 				uri: 'landings/' + pageParams.slug,
 		};
