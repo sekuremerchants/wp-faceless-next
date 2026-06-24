@@ -37,6 +37,9 @@ const query = `
 					title
 					metaDesc
 				}
+        customCSS {
+          customCss
+        }
 			}
 		}
 	}
@@ -50,13 +53,13 @@ const landingQuery = `
 				landingId
 				title
 				blocks(postTemplate: false)
-				postLanguage {
-					contentLanguage
-				}
 				seo {
 					title
 					metaDesc
 				}
+        customCSS {
+          customCss
+        }
 			}
 		}
 	}
@@ -140,7 +143,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 		var { data } = await resTwo.json();
 	}
 
-	//console.log('[SLUG] PAGE DATA: ', data);
+	console.log('[SLUG] PAGE DATA: ', data);
 
   return {
     title: data.nodeByUri.seo.title,

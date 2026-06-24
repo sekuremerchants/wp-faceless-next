@@ -13,6 +13,9 @@ const query = `
 					title
 					metaDesc
 				}
+				customCSS {
+					customCSS
+				}
 			}
 			... on Landing {
 				id
@@ -25,6 +28,9 @@ const query = `
 				seo {
 					title
 					metaDesc
+				}
+				customCSS {
+					customCSS
 				}
 			}
 		}
@@ -45,6 +51,9 @@ const landingQuery = `
 				seo {
 					title
 					metaDesc
+				}
+				customCSS {
+					customCSS
 				}
 			}
 		}

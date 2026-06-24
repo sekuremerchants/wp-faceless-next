@@ -15,11 +15,11 @@ export const ComparisonTable = ({block, logoOne, logoTwo}) => {
 	//console.log('COMPARISON TABLE BLOCK DATA: ', block)
 
 	let columnClass = block.left_side_content != '' && block.comparison_table_rows > 0 ? 'col-sm-12 col-lg-6' : 'col-sm-12'
-	if(block.table_full_width){
+	if(block.full_width_table){
 		columnClass = 'col-sm-12 col-lg-8 heading-balance'
 	}
-	const tableFullWidth = block.table_full_width ? 'table-full-width' : ''
-	const tableClass = block.table_full_width ? 'col-sm-12' : 'col-sm-12 col-lg-6'
+	const tableFullWidth = block.full_width_table ? 'table-full-width' : ''
+	const tableClass = block.full_width_table ? 'col-sm-12' : 'col-sm-12 col-lg-6'
 	const bgColour = block.full_width_with_background == 'Yes' ? 'full-width-bg' : ''
 	const maxTableRows = block.comparison_table_rows - 1;
 	let count = 0;
@@ -101,7 +101,7 @@ export const ComparisonTable = ({block, logoOne, logoTwo}) => {
 		<section className={`content-block-holder sk-block comparison-table block--g op-0 ${bgColour} ${block.section_classes}`}>
 			<div className={`content-block comparison-table compare ${tableFullWidth}`}>
 				<div className='container prel slider-arrows'>
-					<div className='row justify-content-between'>
+					<div className='row gap-rows justify-content-between'>
 
 						{block.left_side_content && (
 							<div className={columnClass} dangerouslySetInnerHTML={{__html: formattedContent}}></div>
@@ -245,6 +245,10 @@ export const ComparisonTable = ({block, logoOne, logoTwo}) => {
 										</div>
 									</div>
             		</div>
+
+								{block.comparison_table_fine_print != '' && (
+									<div className='col-sm-12 col-lg-8 footer-content mt-5' dangerouslySetInnerHTML={{__html: block.comparison_table_fine_print}}></div>
+								)}
 
 							</div>
 						)}
