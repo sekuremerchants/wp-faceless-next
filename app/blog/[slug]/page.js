@@ -271,13 +271,6 @@ export default async function BlogPost({params}) {
             <li><Link href='/' className='text-decoration-underline hover-text-col-blue-2'>Home</Link></li>
             <li><Link href='/blog' className='text-decoration-underline hover-text-col-blue-2'>Blog</Link></li>
           </ul>
-          {/* 
-          <p className='txt-size-12 upper letter-spacing'>{nodeData.title}</p>
-          <div className='back-to-all'>
-            <Image src={`${basePathLocal}/media/icons/green-arrow.svg`} width='21' height='16' alt='Back arrow' className='prel' />
-            <Link href='/blog' className='disclaimer'>Back to all posts</Link>
-          </div>
-          */}
         </div>
 
         <div className='article-body mb-50'>
@@ -323,12 +316,6 @@ export default async function BlogPost({params}) {
                 <div className='d-flex flex-wrap gap-10 mb-3'>
                   <p className='reading-time fw-600 mb-0'>{timeToRead.text}</p>
                   <p className='meta-separator mb-0'>|</p>
-                  {/* 
-                  <p className='d-flex flex-column fw-600'>
-                    <time itemProp='dateCreated' dateTime={postedDateFormatted}>Posted: {postedDateFormatted}</time>
-                  </p>
-                  <p className='meta-separator'>|</p>
-                  */}
                   <p className='d-flex flex-column fw-600 mb-0'>
                     <time itemProp='dateModified' dateTime={modifiedDateFormatted}>Last updated: {modifiedDateFormatted}</time>
                   </p>
@@ -365,11 +352,6 @@ export default async function BlogPost({params}) {
             </div>
           </div>
           
-          {/* 
-          <div className='article-aside col-sm-12 col-lg-2'>
-            <BlogCategories/>
-          </div>
-          */}
         </div>
 
         <section className='article-author row w-100 op-0' itemProp='author' itemScope itemType='https://schema.org/Person'>
