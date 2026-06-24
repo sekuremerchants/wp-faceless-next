@@ -187,7 +187,7 @@ export default async function BlogPost({params}) {
   const { data } = await res.json();
   const nodeData = data.nodeByUri;
 
-  console.log('POST DATA: ', nodeData)
+  //console.log('POST DATA: ', nodeData)
 
   const allPosts = await getAllPosts();
   const filterPostsForRelated = allPosts.map((post) => {

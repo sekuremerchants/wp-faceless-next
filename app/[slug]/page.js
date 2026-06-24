@@ -156,8 +156,6 @@ export default async function Page({params}) {
 	const { slug } = await params;
 	const pageData = await queryByUri(slug);
 
-	console.log('PAGE DATA: ', pageData);
-
 	return (
 		<>
       <BlockRenderer blocks={pageData.nodeByUri.blocks}/>
