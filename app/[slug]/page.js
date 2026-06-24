@@ -1,4 +1,5 @@
 import { queryByUri } from '../queryByUri';
+import { BlockRenderer } from "@/components/BlockRenderer"
 
 const allPagesAndLandersQuery = `
 	query AllPagesAndLandersQuery {
@@ -155,11 +156,11 @@ export default async function Page({params}) {
 	const { slug } = await params;
 	const pageData = await queryByUri(slug);
 
-	//console.log('PAGE DATA: ', pageData);
+	console.log('PAGE DATA: ', pageData);
 
 	return (
-		<main>
-			<h1>dynamic page file - {pageData.nodeByUri.title}</h1>
-		</main>  
+		<>
+      <BlockRenderer blocks={pageData.nodeByUri.blocks}/>
+    </>
 	);
 }

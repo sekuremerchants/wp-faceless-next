@@ -20,6 +20,9 @@ const query = `
 				uri
 				blocks(postTemplate: false)
         content
+        postSummary {
+          postSummary
+        }
         seo {
           title
           metaDesc
@@ -134,7 +137,7 @@ export async function generateStaticParams(){
   const allPosts = await getAllPosts();
 
 	return allPosts.map((post) => ({
-    slug: post.slug,
+    slug: String(post.slug),
   }));
 }
 
@@ -169,7 +172,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default async function BlogPost({params}) {
 	const { slug } = await params;
 	const queryVariables = {
-  		uri: "blog/" + slug,
+  		uri: "blog/" + String(slug),
 	};
   const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
@@ -184,13 +187,15 @@ export default async function BlogPost({params}) {
   const { data } = await res.json();
   const nodeData = data.nodeByUri;
 
+  console.log('POST DATA: ', nodeData)
+
   const allPosts = await getAllPosts();
   const filterPostsForRelated = allPosts.map((post) => {
     const newDate = new Date(post.date);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const postedDateFormatted = newDate.toLocaleDateString(undefined, options);
-    const timeToRead = readingTime(post.content);
-    const excerpt = post.content.replaceAll('<p>', '').substring(0, 135) + '...';
+    const timeToRead = post.content ? readingTime(post.content) : '0 mins';
+    const excerpt = post.content ? post.content.replaceAll('<p>', '').substring(0, 135) + '...' : '';
 
     return (post.postId != nodeData.postId && post.categories.nodes[0].name === nodeData.categories.nodes[0].name && (
       {relatedPost: {
@@ -199,7 +204,7 @@ export default async function BlogPost({params}) {
         uri: post.uri,
         excerpt: excerpt,
         image: post.featuredImage,
-        readingTime: timeToRead.text,
+        readingTime: (timeToRead != '0 mins' ? timeToRead.text : timeToRead),
       },}
     ))
   });
@@ -210,7 +215,7 @@ export default async function BlogPost({params}) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const postedDateFormatted = postedDate.toLocaleDateString(undefined, options);
   const modifiedDateFormatted = modifiedDate.toLocaleDateString(undefined, options);
-  const timeToRead = readingTime(nodeData.content);
+  const timeToRead = nodeData.content ? readingTime(nodeData.content) : '0'
 
   const stripTags = (html) => {
 		return html.replace(/<[^>]*>?/gm, '');
@@ -264,6 +269,7 @@ export default async function BlogPost({params}) {
         </div>
         
       </div>
+      
 
       <article className='sk-blog-content container prel' itemScope='' itemType='https://schema.org/BlogPosting' itemID={nodeData.uri}>
         <div className='breadcrumb-wrap prel single-article-breadcrumb mb-4'>
@@ -313,6 +319,12 @@ export default async function BlogPost({params}) {
                   </ul>
                 </div>
 
+                {nodeData.postSummary.postSummary && (
+                  <div className='summary mb-5'>
+                    <p>{nodeData.postSummary.postSummary}</p>
+                  </div>
+                )}
+
                 <div className='d-flex flex-wrap gap-10 mb-3'>
                   <p className='reading-time fw-600 mb-0'>{timeToRead.text}</p>
                   <p className='meta-separator mb-0'>|</p>
@@ -346,7 +358,7 @@ export default async function BlogPost({params}) {
 
               <div id='article-text' className={`article-text col-sm-12 ${mainContentColClass}`}>
                 <div className='blog-content' itemProp='articleBody'>
-                  <BlockRenderer blocks={nodeData.blocks}/> 
+                  <BlockRenderer blocks={nodeData.blocks}/>
                 </div>
               </div>
             </div>
@@ -371,7 +383,6 @@ export default async function BlogPost({params}) {
             <p className='txt-size-18 c-white newsletter-description'>Subscribe now to our monthly newsletter, and join over 40,000 business owners to gain access to exclusive content and insights.</p>
             <div className='subscribe-newsletter-form blog-subscribe-form'>
               <HubspotForm formID='edbc41d3-9034-41ac-b4e2-99da5f02cfa0' formContainer='blognewsletter' uid='987452043' />
-              {/*<script dangerouslySetInnerHTML={{__html: "hbspt.forms.create({ region: 'na1', portalId: '4438792', formId: '3b6792fb-f3dd-4b88-bf39-d923061cc138' })"}}></script>*/}
             </div>
           </div>
         </section>
