@@ -1,6 +1,12 @@
 @import 'block-base';
 
 .sk-block.blocks {
+	.col-lg-8 {
+		h2 {
+			text-wrap:balance;
+		}
+	}
+
 	.blocks-grid {
 		display:grid;
 

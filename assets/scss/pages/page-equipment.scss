@@ -1,18 +1,5 @@
 @import 'pages';
 
-/*
-@media (max-width: 1024px) {
-  .inner-pages-landing-section .sk-block.content-wrap {
-    padding-top: 100px;
-    padding-bottom: 100px;
-  }
-}
-*/
-
-.confirmation-body .survey-results .survey-txt,
-.survey-reset p {
-  font-family: 'Libre Franklin';
-}
 .survey-footer .error-msg,
 .survey-questions .question,
 .vary-question {
@@ -128,6 +115,10 @@
 .choices .choice input[type='checkbox']:checked ~ label::after,
 .choices .choice input[type='radio']:checked ~ label::after {
   opacity: 1;
+}
+.choices .choice input[type='checkbox']:checked ~ label::before,
+.choices .choice input[type='radio']:checked ~ label::before {
+  background: #002ea6;
 }
 .choices .choice input[type='checkbox']:checked ~ label,
 .choices .choice input[type='radio']:checked ~ label {

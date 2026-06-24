@@ -20,7 +20,7 @@
       width:calc(100% + 50px);
     }
   }
-  .blaze-slider:not(.multi-image) {
+  .blaze-slider:not(.multi-image):not(.awards) {
     --slides-to-show: 1;
     // --slide-gap: 0;
 

@@ -31,9 +31,9 @@ export function GlobalEvents() {
 		*/
 
 		// #main-content padding top style update
-		const header = document.getElementById('header')
+		//const header = document.getElementById('header')
 		const main = document.getElementById('main-content')
-		Object.assign(main.style, {paddingTop: header.offsetHeight + 'px'})
+		//Object.assign(main.style, {paddingTop: header.offsetHeight + 'px'})
 
 		// fade in/out sections/blocks using class op-0
 		let firstBlock = main.children[0]

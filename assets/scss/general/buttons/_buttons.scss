@@ -1,6 +1,8 @@
 .btn {
   &-default {
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     font-family: $redhat;
     text-align: center;
     position: relative;
@@ -56,11 +58,11 @@
         position: absolute;
         top: -5px;
         left: 0;
-        width: 130%;
+        width: 140%;
         height: calc(100% + 10px);
         z-index: 0;
         transform-origin: 0 0;
-        transform: translateX(105%) skewX(-45deg);
+        transform: translateX(110%) skewX(-45deg);
         transition:
           transform 0.5s $easeOutSine,
           background-color 0.5s $easeOutSine;
@@ -88,11 +90,11 @@
       font-weight: 700;
       font-family: $redhat;
       font-size:18px;
-      line-height:22px;
+      line-height:26px;
 
       @media screen and ($max1440){
         font-size:16px;
-        line-height:20px;
+        line-height:24px;
       }
     }
 
@@ -142,6 +144,22 @@
       &.read-more-button {
         .btn-bg-el {
           background-color: $green-1;
+        }
+      }
+    }
+
+    &.btn-ghost {
+      .btn-bg-el {
+        background-color: $white;
+        border:solid 1px $blue-1;
+
+        &::before {
+          background-color: $green-1;
+        }
+      }
+      &:hover, &:focus {
+        .btn-bg-el {
+          border-color:$green-1;
         }
       }
     }
@@ -303,6 +321,8 @@
 
     .btn-default {
       min-height: 60px;
+      display:flex;
+      align-items:center;
     }
   }
 }

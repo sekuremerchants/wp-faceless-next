@@ -2,8 +2,8 @@ import Link from "next/link"
 
 export const Social = () => {
 	return (
-		<div className="article-share">
-			<p className="fw-700">Share:</p>
+		<div className="article-share d-flex align-items-center gap-10">
+			<p className="fw-700 mb-0">Share:</p>
 			<Link href="#" rel="noopener noreferrer" className="social-item fb-share" arial-label="Share on facebook" title="Share on facebook">
 					<svg width="56" height="56" className="share-fb" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M28 56C20.5739 56 13.452 53.05 8.20101 47.799C2.94999 42.548 0 35.4261 0 28C0 20.5739 2.94999 13.452 8.20101 8.20101C13.452 2.94999 20.5739 0 28 0C35.4261 0 42.548 2.94999 47.799 8.20101C53.05 13.452 56 20.5739 56 28C56 35.4261 53.05 42.548 47.799 47.799C42.548 53.05 35.4261 56 28 56Z" fill="none"></path>

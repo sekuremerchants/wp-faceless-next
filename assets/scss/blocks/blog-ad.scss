@@ -1,0 +1,82 @@
+@import 'variables';
+
+.sk-block.blog-ad {
+	.post-ad.bg-green {
+		.hbspt-form {
+			.hs-form-field label:not(.hs-form-checkbox-display):not(.hs-error-msg) {
+				background-color: #17fcc4;
+			}
+
+			.hs-input:not(input[type=checkbox]) {
+				color:#002ea6;
+			}
+
+			.btn-default {
+				.btn-bg-el {
+					background-color: #002ea6;
+				}
+				.btn-txt {
+					color:#fff;
+				}
+				&:hover .btn-txt,
+				&:focus .btn-txt {
+					color:#002ea6;
+				}
+				.btn-bg-el:before {
+					background-color: #fff;
+				}
+			}
+		}
+	}
+
+	.post-ad.bg-light {
+		.hbspt-form {
+			.hs-form-field label:not(.hs-form-checkbox-display):not(.hs-error-msg) {
+				background-color: #f2f4fa;
+				color:#002ea6;
+			}
+			.hs-input:not(input[type=checkbox]) {
+				color:#002ea6;
+			}
+		}
+	}
+
+	.post-ad.bg-blue {
+		&::before {
+			background-image: url(/wp-content/themes/sekure/assets/media/svgs/blog-cta.svg);
+			background-position: 100% 100%;
+			background-repeat: no-repeat;
+			background-size: contain;
+			bottom: 0;
+			content: "";
+			display: block;
+			height: 85%;
+			position: absolute;
+			right: 0;
+			width: 100%;
+			z-index: 0;
+		}
+	}
+
+	.hbspt-form {
+		padding:0;
+		background:transparent;
+		border-radius:none;
+	}
+
+	.hs-input:not(input[type=checkbox])::-webkit-input-placeholder {
+		color:transparent;
+	}
+}
+
+@media screen and ($min1024){
+	.sk-block.blog-ad {
+		margin-bottom:0 !important;
+		opacity:0;
+		visibility:hidden;
+		pointer-events:none;
+	}
+	.sk-block.blog-ad .row {
+		display:none;
+	}
+}

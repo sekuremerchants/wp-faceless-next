@@ -13,37 +13,33 @@
       }
     }
   }
-  .h3,
-  .h4 {
-    padding-top: 1.5rem;
-  }
   .left-content {
     .person-quote-block {
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
-
-      .quote-by-info {
-        margin-bottom: 0;
-        font-family: $libre;
-        .person-name {
-          font-weight: 600;
-          font-family: $libre;
-        }
+      @media screen and ($max1024){
+        width:80%;
       }
 
+      picture {
+        display:block !important;
+        flex-shrink:0;
+      }
+      
       .person-img-wrap {
+        flex: 0 0 auto;
         width: 88px;
-        height: 89px;
-        margin-right: 30px;
+        height: 88px;
 
+        /*
         img {
           width: 110px;
           height: auto;
         }
+        */
       }
 
       blockquote {
-        display: flex;
+        padding-left:24px;
+
         &::before {
           content: '';
           background-image: url($ROOT_PATH + 'media/images/pictograms/quote-icon-red.webp');
@@ -54,18 +50,10 @@
           display: inline-block;
           width: 24px;
           height: 24px;
-          position: relative;
-          margin-right: 12px;
-          top: -5px;
-          opacity:0;
+          position: absolute;
+          top: 0;
+          left:-10px;
           transition:all 0.3s ease;
-        }
-      }
-      &.animated-in {
-        blockquote {
-          &::before {
-            opacity:1;
-          }
         }
       }
     }
@@ -73,14 +61,75 @@
 
   .right-form {
     .landing-page-form {
-      border-radius: 2.7778rem;
-      .form-subheading {
-        font-size: 16px;
+      padding:40px 30px;
+      border-radius: 28px;
+    }
+  }
+
+  .bg-img {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    picture {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      
+      img {
+        object-fit:cover;
+        height:100%;
+        width:100%;
+        max-width:none;
       }
-      form {
-        input:not(.button) {
-          width: 100%;
-        }
+    }
+  }
+  
+  &.overlay-blue::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    background: #002EA6B2;
+    opacity: 0.7;
+  }
+  &.version-B .phone-icon a[href^="tel:"] {
+    color:#17fcc4 !important;
+  }
+  &.version-B .right-form .landing-page-form {
+    background-color: rgb(0 46 166 / 80%) !important;
+  }
+  .quote-version-B {
+    padding: 3.5vw;
+    background: rgb(255 255 255 / 60%);
+    border-radius: 32px;
+  }
+  .quote-version-B .person-info {
+    gap:15px;
+  }
+
+  .person-quote-block.mobile-option {
+    display:none !important;
+  }
+
+  &.quote-mobile-option {
+    @media screen and ($max1024){
+      .person-quote-block:not(.mobile-option){
+        display:none !important;
+      }
+      .person-quote-block.mobile-option {
+        display:flex !important;
       }
     }
   }

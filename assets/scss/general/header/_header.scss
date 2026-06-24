@@ -1,28 +1,11 @@
 .admin-bar {
   .header {
     padding-top: 32px;
+
+    @media screen and (max-width:782px){
+      padding-top:46px;
+    }
   }
-}
-
-.header .logo-on-scroll {
-  opacity: 0 !important;
-}
-
-html.header-toggled-state .header .logo-anim-white.logo-on-scroll {
-  opacity: 1 !important;
-}
-
-html.header-toggled-state .header .logo-no-scroll {
-  opacity: 0 !important;
-}
-
-html.header-toggled-state.header-opened-dropdown .header .logo-no-scroll,
-html.header-toggled-state.mobile-menu-opened .header .logo-no-scroll {
-  opacity: 0 !important;
-}
-
-html.header-toggled-state.mobile-menu-opened .header .logo-anim-blue.logo-on-scroll {
-  opacity: 1 !important;
 }
 
 .header:not(.header-landing) {
@@ -40,12 +23,6 @@ html {
     }
   }
 
-  &.lang-fr {
-    .main-header .dropdown-links-wrap.industry-row {
-      grid-template-columns:auto;
-    }
-  }
-
   /*
   &.header-offset-homepage {
     .hero-section {
@@ -60,7 +37,8 @@ html {
   }
   */
 
-  .landing-template-btn.revealed {
+  .landing-template-btn.revealed,
+  .landing-template-btn.always-show {
     .btn-bg-el {
       background-color: $green-1;
 
@@ -74,15 +52,28 @@ html {
       color: $blue-1;
     }
   }
+  .landing-template-btn.always-show {
+    .btn-bg-el {
+      background-color: $green-1;
+
+      &::before {
+        background-color: $blue-1;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $green-1;
+    }
+  }
 
   &.header-toggled-state {
-    .page-id-3152,
     .single-post,
     .single-landings {
       header {
         .content-wrap {
           padding-top:25px;
-          padding-bottom:25px;
+          //padding-bottom:25px;
         }
       }
     }
@@ -92,7 +83,7 @@ html {
       
       .content-wrap {
         padding-top:10px;
-        padding-bottom:10px;
+        //padding-bottom:10px;
       }
 
       @media screen and ($mobile_all) {
@@ -108,9 +99,11 @@ html {
       @media screen and ($min1024) {
         top: 0;
 
+        /*
         .dropdown-item-links {
           border-radius: 0px 0px 30px 30px;
         }
+        */
       }
 
       .btn-default.btn-green-1.landing-template-btn {
@@ -128,43 +121,7 @@ html {
         }
       }
 
-      .logo-anim-white {
-        opacity: 1;
-      }
-
-      .logo-anim-blue {
-        opacity: 0;
-      }
-
-      .header-logo-white {
-        opacity: 1;
-      }
-
-      .header-logo-blue {
-        opacity: 0;
-      }
-
-      .lottie-anim-logo {
-        @media screen and ($min1024) {
-          @include vw(width, 190px);
-        }
-
-        @media screen and ($min1920) {
-          width: 190px;
-        }
-      }
-
       .header-logo-link {
-        @media screen and ($min1024) {
-          @include vw(width, 190px);
-          @include vw(height, 70px);
-        }
-
-        @media screen and ($min1920) {
-          width: 180px;
-          height: 140px;
-        }
-
         .header-logo {
           bottom: 0;
         }
@@ -173,17 +130,17 @@ html {
       .content-wrap {
         @media screen and ($min1920) {
           padding-top: 15px;
-          padding-bottom: 15px;
+          //padding-bottom: 15px;
         }
       }
 
       @media screen and ($min1024) {
-        .statement-analysis-btn {
-          margin-top: 0;
-        }
-
         .header-links-wrap {
           margin-top: 0;
+
+          .dropdown-item-wrap {
+            padding-bottom:25px;
+          }
         }
 
         .nav-extras {
@@ -191,15 +148,24 @@ html {
         }
       }
 
-      // .dropdown-items-links-hold {
-      //   @media screen and ($min1024) {
-      //     @include vw(margin, 78px 400px 0 531px);
-      //   }
+      .landing-template-btn.always-show {
+        .btn-bg-el {
+          background-color: $green-1;
 
-      //   @media screen and ($min1920) {
-      //     margin: 78px 400px 0 531px;
-      //   }
-      // }
+          &::before {
+            background-color: $white;
+          }
+        }
+
+        &:hover,
+        &:focus {
+          color: $blue-1;
+        }
+      }
+      
+      .header-link-item::after {
+        bottom:-2vw;
+      }
     }
   }
 
@@ -233,6 +199,7 @@ html {
         transform: translateY(0);
       }
 
+      /*
       .logo-anim-white {
         opacity: 0;
       }
@@ -248,6 +215,7 @@ html {
       .header-logo-blue {
         opacity: 1;
       }
+      */
 
       .mobile-menu-btn {
         border: 1px solid $blue-1;
@@ -274,6 +242,16 @@ html {
         text-align: left;
         font-size: 16px;
         line-height: 20px;
+
+        @media screen and ($mobile_all) {
+          bottom:20px;
+        }
+        @media screen and ($min1024) {
+          @include vw(bottom, 28px);
+        }
+        @media screen and ($min1920) {
+          bottom: 30px;
+        }
       }
     }
   }
@@ -285,106 +263,8 @@ html {
     .sk-sticky {
       z-index: 0;
     }
-
-    header {
-
-      .statement-analysis-btn {
-        .btn-bg-el {
-          border: 1px solid $blue-1;
-        }
-
-        &.btn-default.btn-white.section-color-blue .btn-bg-el::before {
-          background-color: $blue-1;
-        }
-
-        &:hover,
-        &:focus {
-          color: $white !important;
-        }
-      }
-
-      /*
-      .header-links-content-wrap {  
-        &:after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 1px;
-          background-color: $gray-1;
-          backface-visibility: hidden;
-        }
-        
-      }
-      */
-
-      .header-link-item,
-      .dropdown-item-wrap {
-        &.opened-dropdown {
-          .dropdown-arrow-btn {
-            transform: translateY(-40%) rotate(-180deg);
-          }
-        }
-
-        &:hover,
-        &:focus {
-          .dropdown-item-links {
-            height:auto;
-          }
-        }
-      }
-
-      /*
-      .logo-anim-white {
-        opacity: 0;
-      }
-
-      .logo-anim-blue {
-        opacity: 1;
-      }
-
-      .header-logo-white {
-        opacity: 0;
-      }
-
-      .header-logo-blue {
-        opacity: 1;
-      }
-      */
-    }
   }
 }
-
-.header-toggled-state {
-  .header {
-    position: fixed;
-
-    .cta-text {
-      p {
-        color: $white;
-      }
-    }
-
-    /*
-    @media screen and ($max1024){
-      .btn-default.btn-green-1 .btn-bg-el:before {
-        background-color: #002ea6 !important;
-      }
-    }
-    */
-  }
-}
-
-/*
-.mobile-menu-opened,
-.home,
-.page-home {
-  .header {
-    position: fixed;
-  }
-}
-*/
 
 .header {
   z-index: 9999;
@@ -394,18 +274,10 @@ html {
   position: fixed;
   transition: all 0.3s ease;
 
-  .container-lg {
-    @media screen and ($max1024){
-      max-width:100%;
-    }
-  }
-
   .content-wrap {
     display: flex;
     transition:
       background-color 0.3s $easeOutSine,
-      // border-radius 0.3s $easeOutSine,
-      // box-shadow 0.3s $easeOutSine,
       padding-top 0.3s $easeOutSine,
       padding-bottom 0.3s $easeOutSine;
 
@@ -419,53 +291,22 @@ html {
     @media screen and ($min1024) {
       align-items: flex-end;
       justify-content: space-between;
-      border-radius: 30px;
       @include vw(padding-top, 32px);
-      @include vw(padding-bottom, 28px);
+      //@include vw(padding-bottom, 28px);
     }
 
     @media screen and ($min1920) {
-      padding-top: 32px;
-      padding-bottom: 28px;
+      padding-top: 30px;
+      //padding-bottom: 30px;
     }
   }
 
-  .lottie-anim-logo {
-    display: inline-block;
-    @include pabs;
-    z-index:9;
-    left:-1vw;
-    //width:100%;
-    /*
-    top: 45%;
-    transform: translateY(-50%);
-    */
-
-    @media screen and ($mobile_sm) {
-      // left: -23px;
-      // width: 190px;
-      // @include vw(left, -10px, 500);
-      @include vw(width, 190px, 500);
-    }
-
-    @media screen and ($mobile_lg) {
-      // left: -23px;
-      width: 190px;
-    }
-
-    @media screen and ($max1024) {
-      bottom:-20px;
-    }
+  .nav-wrap > .btn-default {
     @media screen and ($min1024) {
-      // @include vw(top, -37px);
-      // @include vw(left, -32px);
-      bottom:-1vw;
-      @include vw(width, 271px);
+      @include vw(bottom, 28px);
     }
     @media screen and ($min1920) {
-      // top: -37px;
-      // left: -32px;
-      width: 271px;
+      bottom: 30px;
     }
   }
 
@@ -473,13 +314,22 @@ html {
     z-index:9;
     transition: all 0.3s ease;
 
+    @media screen and ($min1024) {
+      @include vw(width, 190px);
+      @include vw(height, 70px);
+      @include vw(bottom, 28px);
+    }
+    @media screen and ($min1920) {
+      bottom: 30px;
+    }
+
     .header-logo {
       transition:all 0.3s ease;
     }
 
     &:hover,
     &:focus {
-      .lottie-anim-logo, .header-logo {
+      .header-logo {
         transform: scale(1.05);
       }
     }
@@ -499,11 +349,6 @@ html {
       @include vw(height, 100px);
     }
 
-    @media screen and ($min1920) {
-      width: 225px;
-      height:165px;
-    }
-
     .header-logo {
       position:absolute;
       left:-0.5vw;
@@ -513,31 +358,6 @@ html {
         bottom:-10px;
       }
     }
-  }
-
-  .lottie-anim-logo {
-    opacity: 0;
-    transition:
-      opacity 0.3s $easeOutSine,
-      width 0.3s $easeOutSine,
-      margin-top 0.3s $easeOutSine,
-      transform 0.5s $easeOutSine;
-  }
-
-  .logo-anim-white {
-    opacity: 1;
-  }
-
-  .logo-anim-blue {
-    opacity: 0;
-  }
-
-  .header-logo-white {
-    opacity: 1;
-  }
-
-  .header-logo-blue {
-    opacity: 0;
   }
 
   .header-logo-img {
@@ -898,6 +718,42 @@ html {
     }
 
     .dropdown-item-wrap {
+      /*
+      @media screen and ($mobile_all) {
+        padding-bottom:20px;
+      }
+      */
+      @media screen and ($min1024) {
+        @include vw(padding-bottom, 28px);
+
+        &:hover,
+        &:focus {
+          .dropdown-item-links {
+            height:auto;
+            opacity:1;
+            visibility:visible;
+            pointer-events:all;
+
+            .dropdown-links-wrap {
+              opacity:1;
+              visibility:visible;
+            }
+          }
+          .header-link-item:before {
+            width: calc(100% + 12px);
+          }
+          .header-link-item:after {
+            opacity: 1;
+            visibility: visible;
+          }
+          .dropdown-arrow-btn {
+            transform: translateY(-40%) rotate(-180deg);
+          }
+        }
+      }
+      @media screen and ($min1920) {
+        padding-bottom: 30px;
+      }
       @media screen and ($max1024){
         .dropdown-arrow-btn {
           position: absolute;
@@ -1055,9 +911,12 @@ html {
       top: 0px;
       width: calc(100% - 3.646vw);
       margin: 0 1.823vw;
-      background: rgb(255 255 255 / 0);
+      background:#fff;
       transition: all 0.3s ease;
       overflow: visible;
+      pointer-events:none;
+      border-radius: 30px;
+      box-shadow: $box-shadow;
       //   border-radius: 30px;
       //   position: absolute;
       //   left: 0;
@@ -1068,9 +927,11 @@ html {
 
     &.opened-dropdown {
       .dropdown-items-links-hold {
+        /*
         @media screen and ($min1024) {
           background:#fff;
         }
+        */
         @media screen and ($max1024){
           left: 0;
         }
@@ -1365,19 +1226,6 @@ html {
       padding-bottom: 0;
       transition: all 0.3s ease;
     }
-
-    // @media screen and ($min1024) {
-    //   @include vw(margin, 99px 0 0 0);
-    //   margin-left: auto;
-    //   margin-right: auto;
-    //   max-width: 800px;
-    //   @include vw(padding-top, 60px);
-    //   position: absolute;
-    // }
-    // @media screen and ($min1920) {
-    //   margin: 99px 400px 0 531px;
-    //   padding-top: 60px;
-    // }
   }
 
   .dropdown-links-wrap {
@@ -1582,25 +1430,6 @@ html {
 
     a {
       position:relative;
-
-      /*
-      .arrow-img {
-        display:none;
-      }
-
-      &::after {
-        content:'';
-        position:absolute;
-        top:50%;
-        transform:translateY(-50%);
-        height:15px;
-        width:15px;
-        margin-left:8px;
-        background-image:url('https://wordpress-dev-appsvc.azurewebsites.net/wp-content/themes/sekure/assets/media/svgs/arrow.svg');
-        background-repeat:no-repeat;
-        background-position:center center;
-      }
-      */
     }
 
     @media screen and ($min1024){
@@ -1613,7 +1442,7 @@ html {
 
       a {
         font-family: 'Red Hat Display';
-        display: inline-block;
+        display: flex;
         width: auto;
         margin: 0 0 8px;
         padding: 0;
@@ -1723,10 +1552,11 @@ html {
         border-right: 16px solid transparent;
         border-bottom: 16px solid #fff;
         visibility: hidden;
-        transition: all 0.3s ease;
+        transition: all 0.25s ease;
         pointer-events: none;
       }
 
+      /*
       &.opened-dropdown {
         &::before {
           width:calc(100% + 12px);
@@ -1736,6 +1566,7 @@ html {
           visibility: visible;
         }
       }
+      */
 
       &:hover,
       &:focus {

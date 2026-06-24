@@ -70,6 +70,10 @@
       }
     }
   }
+
+  button[value='undefined']{
+    display:none;
+  }
 }
 
 .popup, .talk-us-block, .sk-block.one-column {

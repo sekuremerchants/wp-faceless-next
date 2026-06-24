@@ -39,4 +39,119 @@
       }
     }
   }
+
+  .landing-video-btn {
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    flex: 0 0 auto;
+    display: flex;
+
+    &:hover,
+    &:focus {
+      .circle-core {
+        background-color: $blue-1;
+      }
+
+      .play-video-icon-landing {
+        border-color: transparent transparent transparent $green-1;
+      }
+    }
+
+    @media screen and ($max1024) {
+      width: 141px;
+      height: 141px;
+    }
+
+    @media screen and ($max768) {
+      @include vw(width, 141px, 500);
+      @include vw(height, 141px, 500);
+    }
+
+    @media screen and ($min1024) {
+      @include vw(width, 141px);
+      @include vw(height, 141px);
+    }
+
+    @media screen and ($min1920) {
+      width: 141px;
+      height: 141px;
+    }
+
+    .circle-core {
+      @include pabs;
+      @include inline_block;
+      @include fit;
+      top: 0;
+      left: 0;
+      background-color: $gray-14;
+      border-radius: 50%;
+      transition: background-color 0.5s $easeOutSine;
+    }
+
+    .circle-outer {
+      @include pabs;
+      @include inline_block;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) !important;
+      backface-visibility: hidden;
+      border: 1px solid $gray-11;
+      width: 215%;
+      height: 215%;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .circle-inner {
+      @include pabs;
+      @include inline_block;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      backface-visibility: hidden;
+      border: 1px solid $gray-11;
+      width: 130%;
+      height: 130%;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .play-video-icon-landing {
+      @include pabs;
+      @include inline_block;
+      backface-visibility: hidden;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-color: transparent transparent transparent $gray-15;
+      transition: border-color 0.5s $easeOutSine;
+
+      @media screen and ($mobile_sm) {
+        top: calc(50% - 2vw);
+        left: calc(50% - 1.2vw);
+        @include vw(border-width, 9px 0 9px 16px, 500);
+      }
+
+      @media screen and ($mobile_lg) {
+        top: calc(50% - 10px);
+        left: calc(50% - 6px);
+        border-width: 9px 0 9px 16px;
+      }
+
+      @media screen and ($min1024) {
+        top: calc(50% - 0.521vw);
+        left: calc(50% - 0.313vw);
+        @include vw(border-width, 9px 0 9px 16px);
+      }
+
+      @media screen and ($min1920) {
+        top: calc(50% - 10px);
+        left: calc(50% - 6px);
+        border-width: 9px 0 9px 16px;
+      }
+    }
+  }
 }

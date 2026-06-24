@@ -1,5 +1,6 @@
 @import 'block-base';
 .block--j {
+  /*
   .icons-content-block-vertical {
     display: flex;
     flex-flow: row wrap;
@@ -63,6 +64,8 @@
       }
     }
   }
+  */
+
   .img--wrap,
   .img--wrap img {
     height: 60px;
@@ -84,11 +87,14 @@
       margin-bottom: 32px;
     }
 
+    /*
     &:last-of-type {
       margin-bottom: 0;
     }
+    */
   }
 
+  /*
   &.grid-2 {
     .icons--item {
       display: grid;
@@ -134,4 +140,5 @@
       }
     }
   }
+  */
 }

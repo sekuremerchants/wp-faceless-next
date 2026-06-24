@@ -1,4 +1,6 @@
 @import 'block-base';
+@import '../blocks/components/blaze-slider';
+
 .block--awards {
 	.txt-content {
 		position:relative;
@@ -19,10 +21,73 @@
 			}
 		}
 	}
+
+	.sk-slider {
+		.blaze-slider {
+			--slides-to-show: 6;
+			--slide-gap: 50px;
+
+			.blaze-track-container {
+				overflow:visible;
+			}
+		}
+		.slide {
+			img {
+				height:80px;
+			}
+		}
+	}
+
+	/*
+	.blaze-track {
+		gap: 0;
+    justify-content: center;
+		.slide {
+			width:25%;
+			img {
+				height:80px;
+				width:auto;
+			}
+		}
+	}
+
 	.swiper-slide {
-    	width: 80px;
+		width: 80px;
 		margin-right: 60px;
 	}
+	.swiper-button-prev, .swiper-nav-next {
+    background-image: url(/wp-content/themes/sekure/assets/media/icons/green-arrow.svg);
+    background-size: contain;
+    height: 40px;
+    width: 40px;
+	}
+	.swiper-button-prev {
+		left:-35px;
+	}
+	.swiper-nav-next {
+		transform:rotate(180deg);
+	}
+	*/
+
+	&.secondary {
+		padding-top:75px;
+		padding-bottom:75px;
+		
+		.txt-content {
+			background:#f6f8fc;
+
+			@media screen and ($min1024){
+				&::before {
+					background: #f6f8fc;
+				}
+			}
+		}
+
+		.sk-slider .slide img {
+			filter: brightness(0.25);
+		}
+	}
+
 	.swiper-pagination .swiper-pagination-bullet {
 		background: #fff;
 	}

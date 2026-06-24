@@ -139,6 +139,11 @@
   }
 
   &.no-slider {
+    @media screen and (min-width:1025px) and (max-width:1280px){
+      .testimonial-carousel .blaze-track {
+        flex-direction:column;
+      }
+    }
     @media screen and ($min1024){
       .left-content,
       .slider-holder,
@@ -160,6 +165,7 @@
         .blaze-track {
           gap:48px;
           padding-bottom:0;
+          pointer-events:none;
 
           .slide {
             flex:1;

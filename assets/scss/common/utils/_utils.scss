@@ -756,6 +756,16 @@
   text-decoration: none !important;
 }
 
+.text-balance {
+  text-wrap:balance !important;
+}
+
+.heading-balance {
+  h2, h3 {
+    text-wrap:balance !important;
+  }
+}
+
 .hover {
   &-text {
     &-decoration {

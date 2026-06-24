@@ -3,8 +3,31 @@ html :where(.wp-block) {
   max-width: 94%;
 }
 
+.editor-styles-wrapper {
+  background:#f4f4f4;
+}
+
 .editor-styles-wrapper .wp-block {
   max-width: 94%;
+}
+
+.editor-styles-wrapper .wp-block-post-title {
+  font-family: 'Red Hat Display';
+  color: #002ea6;
+}
+
+.editor-styles-wrapper .wp-block .acf-block-fields > .acf-field.acf-field-accordion {
+  cursor:pointer;
+}
+.editor-styles-wrapper .wp-block .acf-block-fields > .acf-field.acf-field-accordion:first-of-type .acf-accordion-title {
+  background-color:#002ea6 !important;
+}
+.editor-styles-wrapper .wp-block .acf-block-fields > .acf-field.acf-field-accordion:first-of-type .acf-accordion-title label {
+  font-size:18px !important;
+  color:#fff !important;
+}
+.editor-styles-wrapper .wp-block .acf-block-fields > .acf-field.acf-field-accordion:first-of-type .acf-accordion-title svg {
+  fill:#fff !important;
 }
 
 .taxonomy-campaigns .form-field.term-description-wrap {

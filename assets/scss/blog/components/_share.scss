@@ -1,37 +1,23 @@
-.article-content {
+.article-content,
+#sticky-bar {
   .article-share {
-    display: flex;
-    align-items: top;
-    margin: 20px 0;
-
-    @media screen and ($min1024) {
-      margin: 25px 0;
-    }
-
     .social-item {
       flex: 0 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
       border-radius: 50%;
       transition: background-color 0.5s $easeOutSine;
       background-color: $green-1;
       width: 35px;
       height: 35px;
-      margin: 0 9.5px;
       color: $white;
 
       @media screen and ($min1024) {
         width: 1.823vw;
         height: 1.823vw;
-        margin: 0vw 0.495vw;
       }
 
       @media screen and ($min1920) {
         width: 35px;
         height: 35px;
-        margin: 0 9.5px;
       }
 
       &:hover,

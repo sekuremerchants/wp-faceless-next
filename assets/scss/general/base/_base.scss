@@ -1,5 +1,27 @@
-html body.admin-bar {
-  margin-top:-30px;
+body:not(.home) {
+  padding-top:120px;
+
+  @media screen and ($min1024){
+    padding-top:calc(8.333vw + 15px);
+  }
+  @media screen and ($min1920){
+    padding-top:calc(6.208vw + 90px);
+  }
+  @media screen and (min-width: 551px) and (max-width: 1024px) {
+    padding-top: 120px;
+  }
+  @media screen and (max-width: 550px){
+    padding-top: calc(16vw + 40px);
+  }
+  @media screen and (max-width: 380px){
+    padding-top: 95px;
+  }
+}
+
+body.home .hero-section {
+  @media screen and ($min1024){
+    padding-top:calc(8.333vw + 135px);
+  }
 }
 
 .circle-img {
@@ -136,6 +158,8 @@ html {
   transition:all 0.3s ease;
 
   .popup-wrap {
+    display:flex;
+    flex-direction:column;
     position: relative;
     width: 70%;
     margin: 0 auto;
@@ -149,6 +173,10 @@ html {
     @media screen and ($min1024){
       width: 35%;
       padding: 110px 0;
+    }
+
+    .loader-init {
+      align-self:center;
     }
   }
 
@@ -165,6 +193,26 @@ html {
     background:transparent;
     border-radius:0;
   }
+
+  .loader-init {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #002ea6;
+    border-bottom-color: #fff;
+    border-radius: 50%;
+    display:inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+
+  @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+  } 
 }
 html.open-popup {
   overflow: hidden;

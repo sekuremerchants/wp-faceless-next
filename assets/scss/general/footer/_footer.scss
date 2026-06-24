@@ -1,7 +1,10 @@
 .footer {
   background-color: $blue-1;
   padding: 25px 10px;
-  transition:all 0.3s ease;
+
+  .container {
+    transition:all 0.3s ease;
+  }
 
   &.footer-default {
     padding: 100px 0px 35px;
