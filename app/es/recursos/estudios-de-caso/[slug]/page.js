@@ -83,6 +83,7 @@ const query = `
 	}
 `;
 
+/*
 const caseStudiesQuery = `
 query caseStudies {
   casestudies {
@@ -95,6 +96,21 @@ query caseStudies {
   }
 }
 `;
+*/
+
+const caseStudiesQuery = `
+  query NewQuery {
+    casestudy(
+      id: "/case-studies/the-taste-of-mexico-pasa-de-tarifas-altas-a-grandes-ahorros-con-sekure"
+      idType: URI
+    ) {
+      id
+      casestudyId
+      slug
+      title
+    }
+  }
+`
 
 export async function generateStaticParams(){
   const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
