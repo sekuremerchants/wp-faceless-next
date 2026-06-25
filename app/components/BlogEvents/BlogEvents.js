@@ -8,82 +8,6 @@ export function BlogEvents(){
 
   useEffect(() => {
 
-		/*
-		const blogContent = document.getElementsByClassName('blog-content')
-		const childElements = blogContent[0].children
-		let blogH2s = []
-
-		const blogTOC = document.getElementsByClassName('content-bullets')
-		var blogTOCs = false;
-
-		if(blogTOC.length){
-			blogTOCs = blogTOC[0].children[0].children
-		}
-
-		for (let i = 0; i < childElements.length; i++) {
-			if(childElements[i].tagName == "H2") {
-				blogH2s.push(childElements[i])
-			}
-		}
-
-		let lastScrollTop = 0
-
-		document.addEventListener('scroll', (event) => {
-
-			let activeHeading = null
-			let negatives = []
-			const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop
-
-			Array.from(blogH2s).forEach(function (current, index) {
-				const rect = current.getBoundingClientRect()
-				const distanceFromViewportTop = rect.top
-				const absoluteDistance = Math.abs(distanceFromViewportTop)
-				const offsetTop = current.offsetTop
-
-				if (currentScrollTop > lastScrollTop) {
-					if(current.id && (window.scrollY >= offsetTop)) {
-						activeHeading = current
-						return false
-					}
-				} else {
-					if(distanceFromViewportTop < 0){
-						let h2 = {
-							id: current.id,
-							distance: distanceFromViewportTop,
-						}
-						negatives.push(h2)
-					}
-
-					if(negatives){
-						let negsLength = negatives.length - 1
-						let negsID = negatives[negsLength] ? negatives[negsLength].id : null
-
-						if(negsID && blogTOCs){
-							Array.from(blogTOCs).forEach(function (current, index) {
-								current.children[0].classList.remove("active")
-								if((current.children[0].hash.replace('#','') == negsID) && !current.children[0].classList.contains('active')){
-									current.children[0].classList.add("active")
-								}
-							})
-						}
-					}
-				}
-
-				if (activeHeading && blogTOCs) {
-					Array.from(blogTOCs).forEach(function (current, index) {
-						current.children[0].classList.remove("active")
-						if((current.children[0].hash.replace('#','') == activeHeading.id) && !current.children[0].classList.contains('active')){
-							current.children[0].classList.add("active")
-						}
-					})
-				}
-			})
-
-			lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; 
-
-		})
-		*/
-
 		const blogContent = document.getElementsByClassName('blog-content')
 		const childElements = blogContent[0].children
 		let blogH2s = []
@@ -181,52 +105,48 @@ export function BlogEvents(){
 			const toggledHeader = document.getElementById('header')
 			
 			if (currentScrollTop > stickyBarScrollTop) {
-				const rect = document.getElementById('article-text').getBoundingClientRect()
-				const bullets = document.getElementById('article-text').getBoundingClientRect()
-				if (bullets.top < 0){
-					const stickyBar = document.getElementById('sticky-bar')
-					stickyBar.style.top = toggledHeader.offsetHeight + 'px'
-					stickyBar.classList.add('show')
-					const ads = document.getElementById('postads')
-					if(ads){
-						ads.style.opacity = '1'
-					}
-					
-					const parent = document.getElementById('sticky-toc')
-					const element = document.querySelector('#table-of-contents #content-bullets')
-					if(element){
-						parent.appendChild(element)
+				const bullets = (document.getElementById('article-text') ? document.getElementById('article-text').getBoundingClientRect() : false)
+
+				if(bullets){
+					if (bullets.top < 0){
+						const stickyBar = document.getElementById('sticky-bar')
+						stickyBar.style.top = toggledHeader.offsetHeight + 'px'
+						stickyBar.classList.add('show')
+						const ads = document.getElementById('postads')
+						if(ads){
+							ads.style.opacity = '1'
+						}
+						
+						const parent = document.getElementById('sticky-toc')
+						const element = document.querySelector('#table-of-contents #content-bullets')
+						if(element){
+							parent.appendChild(element)
+						}
 					}
 				}
 			} else if (currentScrollTop < stickyBarScrollTop) {
-				const rect = document.getElementById('article-text').getBoundingClientRect()
-				const bullets = document.getElementById('article-text').getBoundingClientRect()
-				//console.log('scrolling up, bullets react info bottom: ', bullets.bottom);
-				if (rect.top > 110){
-					/*
-					const blogTOCs = document.getElementsByClassName('anchor-link');
-					Array.from(blogTOCs).forEach(function (current, index) {
-						current.classList.remove("active");
-					})
-					*/
-					const ads = document.getElementById('postads')
-					if(ads){
-						ads.style.opacity = '0'
-						ads.scrollTop = 0
+				const rect = (document.getElementById('article-text') ? document.getElementById('article-text').getBoundingClientRect() : false)
+
+				if(rect){
+					if (rect.top > 110){
+						const ads = document.getElementById('postads')
+						if(ads){
+							ads.style.opacity = '0'
+							ads.scrollTop = 0
+						}
+						
+						document.getElementById('sticky-bar').classList.remove('show')
+						document.getElementById('sticky-toc').classList.remove('open')
+						document.getElementById('sticky-toc-toggle').classList.remove('open')
+						document.getElementById('sticky-toc').style.height = 0
+						
+						
+						const parent = document.getElementById('table-of-contents')
+						const element = document.querySelector('#sticky-toc #content-bullets')
+						if(element){
+							parent.prepend(element)
+						}
 					}
-					
-					document.getElementById('sticky-bar').classList.remove('show')
-					document.getElementById('sticky-toc').classList.remove('open')
-					document.getElementById('sticky-toc-toggle').classList.remove('open')
-					document.getElementById('sticky-toc').style.height = 0
-					
-					
-					const parent = document.getElementById('table-of-contents')
-					const element = document.querySelector('#sticky-toc #content-bullets')
-					if(element){
-						parent.prepend(element)
-					}
-					
 				}
 			}
 

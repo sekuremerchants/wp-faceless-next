@@ -8,7 +8,7 @@ export const CaseStudyContent = ({caseStudy, blocks, categories, businessTypes, 
 
 	//console.log('CASE STUDY BLOCKS: ', blocks)
 
-	const timeToRead = readingTime(caseStudy.content);
+	const timeToRead = caseStudy.content ? readingTime(caseStudy.content) : '0 mins';
   const postedDate = new Date(caseStudy.date);
   const modifiedDate = new Date(caseStudy.modified);
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -39,15 +39,15 @@ export const CaseStudyContent = ({caseStudy, blocks, categories, businessTypes, 
 				)}
 
 				<div className='article-time d-flex flex-wrap gap-10'>
-					<p className='fw-600'>{timeToRead.text}</p>
+					<p className='fw-600'>{(timeToRead != '0 mins' ? timeToRead.text : timeToRead)}</p>
 					<p className='meta-separator'>|</p>
-					<p className='fw-600'>Posted: <time itemProp='dateCreated' dateTime={postedDateFormatted}>{postedDateFormatted}</time></p>
-					<p className='meta-separator'>|</p>
+					{/*<p className='fw-600'>Posted: <time itemProp='dateCreated' dateTime={postedDateFormatted}>{postedDateFormatted}</time></p>
+					<p className='meta-separator'>|</p> */}
 					<p className='fw-600'>Posted: <time itemProp='dateModified' dateTime={modifiedDateFormatted}>{modifiedDateFormatted}</time></p>
 				</div>
 			</div>
 
-			<div className='article-share'>
+			<div className='article-share mb-3'>
 				<Social />
 			</div>
 

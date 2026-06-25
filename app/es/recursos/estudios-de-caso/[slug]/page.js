@@ -190,7 +190,7 @@ export default async function Page({params}) {
 
                 <p className='txt-size-12 upper letter-spacing current-page-breadcrumb-title'>{nodeData.title}</p>
 
-                <Link href='/resources/case-studies' className='disclaimer'><Image src={`${basePathLocal}/media/icons/green-arrow.svg`} alt='Back arrow' width='21' height='16' className='prel'/> Volver a todos los estudios de caso</Link>
+                <Link href='/resources/case-studies' className='back-to-all disclaimer'><Image src={`${basePathLocal}/media/icons/green-arrow.svg`} alt='Back arrow' width='21' height='16' className='prel'/> Volver a todos los estudios de caso</Link>
               </div>
             </div>
 

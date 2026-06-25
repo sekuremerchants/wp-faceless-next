@@ -19,6 +19,27 @@ const nextConfig = {
       },
     ],
   },
+  turbopack: {
+    images: {
+      unoptimized: true,
+      formats: ["image/avif", "image/webp"],
+      remotePatterns: [
+        {
+          protocol: "https",
+          hostname: "wordpress-dev-appsvc.azurewebsites.net",
+          port: "",
+          pathname: "/wp-content/uploads/**"
+        },
+      ],
+    }, 
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
+  },
+  /*
   turbopack(config){
     config.module.rules.push({
       images: {
@@ -58,6 +79,7 @@ const nextConfig = {
 
     return config;
   },
+  */
 };
 
 export default nextConfig;
