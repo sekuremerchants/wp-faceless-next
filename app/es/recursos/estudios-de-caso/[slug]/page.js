@@ -100,14 +100,12 @@ query caseStudies {
 
 const caseStudiesQuery = `
   query NewQuery {
-    casestudy(
-      id: "/case-studies/the-taste-of-mexico-pasa-de-tarifas-altas-a-grandes-ahorros-con-sekure"
-      idType: URI
+    casestudies(
+      where: {title: "The Taste of Mexico pasa de tarifas altas a grandes ahorros con Sekure"}
     ) {
-      id
-      casestudyId
-      slug
-      title
+      nodes {
+        slug
+      }
     }
   }
 `
@@ -124,7 +122,7 @@ export async function generateStaticParams(){
   })
   const { data } = await res.json()
 
-	return data.casestudy.map((post) => ({
+	return data.casestudies.nodes.map((post) => ({
     slug: post.slug,
   }))
 }
