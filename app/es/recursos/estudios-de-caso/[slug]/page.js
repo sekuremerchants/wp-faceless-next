@@ -124,7 +124,7 @@ export async function generateStaticParams(){
   })
   const { data } = await res.json()
 
-	return data.casestudies.nodes.map((post) => ({
+	return data.casestudy.map((post) => ({
     slug: post.slug,
   }))
 }
