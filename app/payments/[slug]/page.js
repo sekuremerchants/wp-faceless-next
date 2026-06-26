@@ -14,7 +14,7 @@ const query = `
           title
           metaDesc
         }
-        customCSS {
+        customCss {
           customCss
         }
 			}
@@ -34,7 +34,7 @@ const queryLander = `
           title
           metaDesc
         }
-        customCSS {
+        customCss {
           customCss
         }
 			}
@@ -183,7 +183,9 @@ export default async function Payment({params}) {
 
 	return (
     <>
-      <style dangerouslySetInnerHTML={{__html: data.nodeByUri.customCSS.customCss}}></style>
+      {data.nodeByUri.customCss && (
+        <style dangerouslySetInnerHTML={{__html: data.nodeByUri.customCss.customCss}}></style>
+      )}
       <BlockRenderer blocks={data.nodeByUri.blocks}/> 
       <TalkToUs />
     </>

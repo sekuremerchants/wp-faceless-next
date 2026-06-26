@@ -1,4 +1,5 @@
 import { BlockRenderer } from "@/components/BlockRenderer"
+import { TalkToUs } from "@/components/TalkToUs"
 
 const query = `
 	query IndustryQuery($uri: String!) {
@@ -109,6 +110,7 @@ export default async function Industry({params}) {
         <style dangerouslySetInnerHTML={{__html: data.nodeByUri.customCss.customCss}}></style>
       )}
       <BlockRenderer postID={data.nodeByUri.industryId} blocks={data.nodeByUri.blocks}/>  
+      <TalkToUs />
     </>
 	)
 }

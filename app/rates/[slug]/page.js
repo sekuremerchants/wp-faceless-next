@@ -26,7 +26,7 @@ const query = `
           title
           metaDesc
         }
-        customCSS {
+        customCss {
           customCss
         }
 			}
@@ -114,7 +114,9 @@ export default async function Page({params}) {
 
 	return (
 		<>
-      <style dangerouslySetInnerHTML={{__html: nodeData.customCSS.customCss}}></style>
+      {nodeData.customCss && (
+        <style dangerouslySetInnerHTML={{__html: nodeData.customCss.customCss}}></style>
+      )}
       <BlockRenderer blocks={nodeData.blocks}/>
     </>
 	);

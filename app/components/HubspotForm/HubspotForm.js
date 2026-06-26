@@ -45,7 +45,7 @@ export const HubspotForm = ({formID, submitText, formContainer, uid, formContent
 				var submitBtn = $form.querySelector('input[type="submit"]')
 				var newBtn = document.createElement('button')
 				newBtn.type = 'submit'
-				newBtn.value = (submitText != '' ) ? submitText : submitBtn.defaultValue
+				newBtn.value = submitBtn.defaultValue
 				newBtn.innerHTML = '<span class="btn-bg-el"></span><span class="btn-txt">' + submitBtn.defaultValue + '</span>'
 				newBtn.classList.add('hs-button', 'primary', 'large', 'btn-default', 'size-18-txt', 'ltr-spc-pos-0_25', 'c-blue-1', 'btn-green-1', 'btn-offset-10', 'fw-700', bgColourClass)
 				submitBtn.replaceWith(newBtn)
