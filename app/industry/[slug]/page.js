@@ -13,7 +13,7 @@ const query = `
           title
           metaDesc
         }
-        customCSS {
+        customCss {
           customCss
         }
 			}
@@ -99,14 +99,16 @@ export default async function Industry({params}) {
     }),
   })
   const { data } = await res.json()
-	const nodeData = data.nodeByUri
+	//const nodeData = data.nodeByUri
 
-	//console.log("INDUSTRY DATA: ", nodeData);
+	//console.log("INDUSTRY DATA: ", data.nodeByUri.customCss);
 
 	return (
     <>
-      <style dangerouslySetInnerHTML={{__html: nodeData.customCSS.customCss}}></style>
-      <BlockRenderer postID={nodeData.industryId} blocks={nodeData.blocks}/>  
+      {data.nodeByUri.customCss && (
+        <style dangerouslySetInnerHTML={{__html: data.nodeByUri.customCss.customCss}}></style>
+      )}
+      <BlockRenderer postID={data.nodeByUri.industryId} blocks={data.nodeByUri.blocks}/>  
     </>
 	)
 }
