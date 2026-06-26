@@ -99,8 +99,21 @@ export default async function Industry({params}) {
 			variables: queryVariables,
     }),
   })
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    console.error(`GraphQL failed with status ${res.status}. Response sample:`, errorText.slice(0, 300));
+    throw new Error(`WordPress API returned status ${res.status}`);
+  }
+
+  const contentType = res.headers.get("content-type");
+  if (!contentType || !contentType.includes("application/json")) {
+    const badBody = await res.text();
+    console.error("Expected JSON but received HTML/Text payload instead:", badBody.slice(0, 300));
+    throw new Error("WordPress returned HTML instead of GraphQL JSON data.");
+  }
+
   const { data } = await res.json()
-	//const nodeData = data.nodeByUri
 
 	//console.log("INDUSTRY DATA: ", data.nodeByUri.customCss);
 
