@@ -7,11 +7,6 @@ const nextConfig = {
   //matcher: [
   //  "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.[^/]+$).*)"
   //],
-  experimental: {
-    // Forces the build to use a single worker thread 
-    workerThreads: false,
-    cpus: 1
-  },
   images: {
     unoptimized: true,
     formats: ["image/avif", "image/webp"],
