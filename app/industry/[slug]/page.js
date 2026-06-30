@@ -100,6 +100,7 @@ export default async function Industry({params}) {
     }),
   })
 
+  /*
   if (!res.ok) {
     const errorText = await res.text();
     console.error(`GraphQL failed with status ${res.status}. Response sample:`, errorText.slice(0, 300));
@@ -112,6 +113,7 @@ export default async function Industry({params}) {
     console.error("Expected JSON but received HTML/Text payload instead:", badBody.slice(0, 300));
     throw new Error("WordPress returned HTML instead of GraphQL JSON data.");
   }
+  */
 
   const { data } = await res.json()
 
