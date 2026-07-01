@@ -43,6 +43,7 @@ const nextConfig = {
     //workerThreads: false,
     //cpus: 4, 
     limitConcurrentPageGeneration: 4,
+    staticPageGenerationTimeout: 120,
   },
   /*
   turbopack(config){
