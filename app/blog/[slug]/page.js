@@ -7,6 +7,7 @@ import { Social } from '@/components/Social'
 import { BlogCategories } from '@/components/BlogCategories'
 import { assetSourceLocal } from "../../paths"
 import readingTime from 'reading-time'
+import { rateLimitedFetch } from '@/lib/api'
 
 const basePathLocal = assetSourceLocal();
 
@@ -15,10 +16,9 @@ const query = `
 		nodeByUri(uri: $uri) {
 			... on Post {
 				id
-				postId
 				title
 				uri
-				blocks(postTemplate: false)
+        blocks
         content
         postSummary {
           postSummary
@@ -78,7 +78,6 @@ query blogPosts {
   posts(first: 500) {
     nodes {
       id
-      postId
       slug
       title
       date
@@ -105,7 +104,6 @@ query GetPostsByCategorySlug($uri: String!) {
   posts(first: 3, where: {categoryName: $uri}) {
     nodes {
       id
-      postId
       title
       date
       categories {
@@ -187,7 +185,7 @@ export default async function BlogPost({params}) {
   const { data } = await res.json();
   const nodeData = data.nodeByUri;
 
-  //console.log('POST DATA: ', nodeData)
+  console.log('POST DATA: ', nodeData)
 
   const allPosts = await getAllPosts();
   const filterPostsForRelated = allPosts.map((post) => {
@@ -223,11 +221,14 @@ export default async function BlogPost({params}) {
 
   let h2Count = 0;
 
-  nodeData.blocks.map((item, index) => {
-    if(item.name == 'core/heading' && item.attributes.level == '2'){
-      h2Count++;
-    }
-  })
+  {nodeData.blocks && (
+    nodeData.blocks.map((item, index) => {
+      if(item.name == 'core/heading' && item.attributes.level == '2'){
+        h2Count++;
+      }
+    })
+  )}
+
 
   const mainContentColClass = h2Count > 2 ? 'article-text prel mt-50 col-sm-12 col-lg-8 offset-xl-1' : 'article-text prel mt-50 col-sm-12'
 
@@ -340,7 +341,7 @@ export default async function BlogPost({params}) {
 
             <div className='article-main-content row'>
 
-              {nodeData.blocks.length > 0 && h2Count > 2 && (
+              {nodeData.blocks && h2Count > 2 && (
                 <div id='table-of-contents' className='table-of-contents sk-sticky mt-50 col-sm-12 col-lg-4 col-xl-3 prel'>
                   <div id='content-bullets' className='content-bullets'>
                     <p id='toc-title' className='toc-title title-highlight'>Jump to:</p>
@@ -358,7 +359,9 @@ export default async function BlogPost({params}) {
 
               <div id='article-text' className={`article-text col-sm-12 ${mainContentColClass}`}>
                 <div className='blog-content' itemProp='articleBody'>
-                  <BlockRenderer blocks={nodeData.blocks}/>
+                  {nodeData.blocks && (
+                    <BlockRenderer blocks={nodeData.blocks}/>
+                  )}
                 </div>
               </div>
             </div>

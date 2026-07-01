@@ -3,6 +3,7 @@
     "paths": {
       "@/*": ["./*"],
       "@/app/*": ["./app/*"],
+      "@/lib/*": ["./app/lib/*"],
       "@/components/*": ["./app/components/*"],
       "@/styles/*": ["./assets/css/styles/*"],
       "@/js/*": ["./assets/js/*"],

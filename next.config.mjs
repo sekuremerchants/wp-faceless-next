@@ -39,6 +39,10 @@ const nextConfig = {
       },
     },
   },
+  experimental: {
+    workerThreads: false,
+    cpus: 1, 
+  },
   /*
   turbopack(config){
     config.module.rules.push({
