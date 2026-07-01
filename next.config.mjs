@@ -42,9 +42,9 @@ const nextConfig = {
   experimental: {
     //workerThreads: false,
     //cpus: 4, 
-    limitConcurrentPageGeneration: 4,
-    staticPageGenerationTimeout: 120,
+    staticGenerationMaxConcurrency: 4,
   },
+  staticPageGenerationTimeout: 120,
   /*
   turbopack(config){
     config.module.rules.push({
