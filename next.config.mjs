@@ -39,6 +39,11 @@ const nextConfig = {
       },
     },
   },
+  experimental: {
+    workerThreads: false,
+    cpus: 4, 
+    // Or specify limitConcurrentPageGeneration: 2 depending on your RAM
+  },
   /*
   turbopack(config){
     config.module.rules.push({
