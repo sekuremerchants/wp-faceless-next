@@ -1,6 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import {HubspotForm } from '@/components/HubspotForm'
+import { HubspotForm } from '@/components/HubspotForm'
+import { assetSourceLocal } from "../../paths"
+
+const basePathLocal = assetSourceLocal();
 
 export const TalkToUs = ({}) => {
 
@@ -24,7 +27,7 @@ export const TalkToUs = ({}) => {
 	return (
 		<section id='contact' className={`inner-pages-contact-section contact-block sk-block prel sk-content-block block--s talk-us-block op-0`}>
 
-			<Image src="/media/images/inner/contact-section-bgr.webp" alt="Sekure call centre employee at their workstation talking on the phone with a customer and helping them with their account" width='1440' height='980' className="bg-image object-cover" />
+			<Image src={`${basePathLocal}/media/images/inner/contact-section-bgr.webp`} alt="Sekure call centre employee at their workstation talking on the phone with a customer and helping them with their account" width='1440' height='980' className="bg-image object-cover" />
 			
 			<div className="background-flower-path-patterns">
 				<svg viewBox="0 0 451.3 451.3" className="background-flower-path-svg">
@@ -63,12 +66,12 @@ export const TalkToUs = ({}) => {
 
 							<div className='d-flex flex-column gap-20 mb-4'>
 								<Link href='tel:18667107382' className="contact-section-btn c-white fw-700 text-decoration-none text-decoration-underline hover-text-col-green">
-									<Image src='/media/images/pictograms/talk-to-us-icon.webp' alt='telephone icon' width='60' height='60' className='contact-btn-icon' />
+									<Image src={`${basePathLocal}/media/images/pictograms/talk-to-us-icon.webp`} alt='telephone icon' width='60' height='60' className='contact-btn-icon' />
 									<span className='btn-txt c-white'>Talk to us now</span>
 								</Link>
 
 								<Link href='#' className="contact-section-btn c-white fw-700 text-decoration-none text-decoration-underline hover-text-col-green" data-popup-id='37274' data-popup-form-id='3b595ef7-8b30-4f43-9d82-2e9b1a297a74' data-popup-content='<h3>Schedule a callback</h3>'>
-									<Image src='/media/images/pictograms/callback-icon.webp' alt='callback icon' width='60' height='60' className='contact-btn-icon' />
+									<Image src={`${basePathLocal}/media/images/pictograms/callback-icon.webp`} alt='callback icon' width='60' height='60' className='contact-btn-icon' />
 									<span className='btn-txt c-white'>Schedule a callback</span>
 								</Link>
 							</div>
