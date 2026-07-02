@@ -56,7 +56,7 @@ export const metadata = {
 
 export default async function Blog() {
   const content = await getBlogContent();
-  console.log("CONTENT: ", content);
+  //console.log("CONTENT: ", content);
 
   return (
     <html lang='en-US'>
