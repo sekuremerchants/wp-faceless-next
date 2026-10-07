@@ -1,22 +1,6 @@
 import "@/styles/blocks/faq.css"
 import { FAQevents } from '@/components/FAQ/FAQevents'
-
-function textToParagraphs(text) {
-  // Split the text by single or double newlines to separate paragraphs
-  const paragraphs = text.split(/(\r\n|\n){2,}/g); 
-
-  return paragraphs.map((paragraph, index) => {
-    // Trim each paragraph to remove leading/trailing whitespace
-    const trimmedParagraph = paragraph.trim();
-
-    // Only create a paragraph tag if the content is not empty after trimming
-    if (trimmedParagraph) {
-      return <p key={index}>{trimmedParagraph}</p>;
-    }
-    // Handle cases where a split resulted in an empty string (e.g., if text started/ended with newlines)
-    return null; 
-  });
-}
+import { FormatContent } from '@/components/FormatContent'
 
 export const FAQ = ({block}) => {
 	const bgColour = block.full_width_with_background == 'Yes' ? 'full-width-bg' : '';
@@ -55,12 +39,12 @@ export const FAQ = ({block}) => {
 			<FAQevents/>
 			<div className='container'>
 				<div className='faq-block content-block'>
-					{block.faq_title_heading_text && (
+					{block.faq_title_heading_text && block.faq_title_heading_text != '' && (
 						<h2>{block.faq_title_heading_text}</h2>
 					)}
 
-					{block.faq_content && (
-						<div class='faq-content'>{block.faq_content}</div>
+					{block.faq_content && block.faq_content != '' && (
+						<div className='faq-content' dangerouslySetInnerHTML={{__html: FormatContent(block.faq_content) }}></div>
 					)}
 
 					{FAQcount >= 0 && (

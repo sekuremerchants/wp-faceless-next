@@ -6,7 +6,6 @@ const query = `
 		nodeByUri(uri: $uri) {
 			... on Industry {
 				id
-				industryId
 				title
 				uri
 				blocks(postTemplate: false)
@@ -14,9 +13,27 @@ const query = `
           title
           metaDesc
         }
-        customCss {
+        customCSS {
           customCss
         }
+				postLanguage {
+					contentLanguage
+					englishTranslation {
+						nodes {
+							uri
+						}
+					}
+					spanishTranslation {
+						nodes {
+							uri
+						}
+					}
+					frenchTranslation {
+						nodes {
+							uri
+						}
+					}
+				}
 			}
 		}
 	}
@@ -27,7 +44,6 @@ query IndustriesQuery {
   industries(first: 30) {
     nodes {
       id
-      industryId
       title
       slug
       seo {
@@ -100,32 +116,15 @@ export default async function Industry({params}) {
     }),
   })
 
-  /*
-  if (!res.ok) {
-    const errorText = await res.text();
-    console.error(`GraphQL failed with status ${res.status}. Response sample:`, errorText.slice(0, 300));
-    throw new Error(`WordPress API returned status ${res.status}`);
-  }
-
-  const contentType = res.headers.get("content-type");
-  if (!contentType || !contentType.includes("application/json")) {
-    const badBody = await res.text();
-    console.error("Expected JSON but received HTML/Text payload instead:", badBody.slice(0, 300));
-    throw new Error("WordPress returned HTML instead of GraphQL JSON data.");
-  }
-  */
-
   const { data } = await res.json()
-
-	//console.log("INDUSTRY DATA: ", data.nodeByUri.customCss);
 
 	return (
     <>
-      {data.nodeByUri.customCss && (
-        <style dangerouslySetInnerHTML={{__html: data.nodeByUri.customCss.customCss}}></style>
-      )}
-      <BlockRenderer postID={data.nodeByUri.industryId} blocks={data.nodeByUri.blocks}/>  
+      <BlockRenderer blocks={data.nodeByUri.blocks} language={data.nodeByUri.postLanguage.contentLanguage[0]}/>  
       <TalkToUs />
+      {data.nodeByUri.customCSS && (
+        <style dangerouslySetInnerHTML={{__html: data.nodeByUri.customCSS.customCss}}></style>
+      )}
     </>
 	)
 }

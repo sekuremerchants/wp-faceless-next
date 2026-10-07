@@ -1,3 +1,5 @@
+import { BlockRenderer } from '@/components/BlockRenderer'
+
 const AllLandersComparaQuery = `
 	query AllLandersCompara {
 		landings(first: 30, where: {parent: 5989}) {
@@ -19,10 +21,16 @@ const query = `
 				landingId
 				title
 				blocks(postTemplate: false)
+				postLanguage {
+					contentLanguage
+				}
 				seo {
 					title
 					metaDesc
 				}
+				customCSS {
+          customCss
+        }
 			}
 		}
 	}
@@ -89,8 +97,11 @@ export default async function Page({params}) {
 	const { data } = await res.json();
 
 	return (
-		<main>
-			<h1>dynamic page file - {data.nodeByUri.title}</h1>
-		</main>  
+		<>
+			<BlockRenderer blocks={data.nodeByUri.blocks} language={data.nodeByUri.postLanguage.contentLanguage[0]}/>
+			{data.nodeByUri != null && data.nodeByUri.customCSS && (
+        <style dangerouslySetInnerHTML={{__html: data.nodeByUri.customCSS.customCss}}></style>
+      )}
+		</>
 	);
 }

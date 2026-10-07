@@ -27,7 +27,7 @@ export const Hero = async ({block, bgImage, industryIcon, transparentIcon}) => {
 		<section id={block.section_id} className={`sk-page-block sk-page-hero block--psk1 sk-block inner-pages-landing-section prel ov-hidden ${block.section_classes}`}>
 			
 			{block.background_image_url != '' && block.background_image_url != false && (
-				<Image src={block.background_image_url} alt={block.background_image_alt} width='1440' height='860' className='bg-image object-cover' />
+				<Image src={block.background_image_url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={block.background_image_alt} width='1440' height='860' className='bg-image object-cover' />
 			)}
 
 			<div className='container prel z-3'>
@@ -115,7 +115,7 @@ export const Hero = async ({block, bgImage, industryIcon, transparentIcon}) => {
 			</div>
 
 			{block.transparent_icon != '' && (
-				<Image src={transparentIcon.sourceUrl} alt={transparentIcon.altText} height='387' width='275' className='hero-transparent-icon' />
+				<Image src={transparentIcon.sourceUrl.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={transparentIcon.altText} height='387' width='275' className='hero-transparent-icon' />
 			)}
 
 		</section>

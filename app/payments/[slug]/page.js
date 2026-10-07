@@ -6,7 +6,6 @@ const query = `
 		nodeByUri(uri: $uri) {
 			... on Equipment {
 				id
-				equipmentId
 				title
 				uri
 				blocks(postTemplate: false)
@@ -14,7 +13,7 @@ const query = `
           title
           metaDesc
         }
-        customCss {
+        customCSS {
           customCss
         }
 			}
@@ -25,19 +24,22 @@ const query = `
 const queryLander = `
 	query PaymentsLanderQuery($uri: String!) {
 		nodeByUri(uri: $uri) {
-			... on Landing {
-				id
-				landingId
-				title
-				blocks(postTemplate: false)
+      ... on Landing {
+        id
+        title
+        uri
+        blocks
+        customCSS {
+          customCss
+        }
+        postLanguage {
+          contentLanguage
+        }
         seo {
           title
           metaDesc
         }
-        customCss {
-          customCss
-        }
-			}
+      }
 		}
 	}
 `;
@@ -47,15 +49,13 @@ query EquipmentsQuery {
   equipments(first: 40) {
     nodes {
       id
-      equipmentId
       title
       slug
     }
   }
-  landings(where: {parent: 42053}) {
+  landings(where: {parent: 45773}) {
     nodes {
       id
-      landingId
       slug
       title
       uri
@@ -86,6 +86,8 @@ export async function generateStaticParams(){
 
 	const allSlugs = [...equipmentSlugs, ...landerSlugs];
 
+  //console.log('ALL PAYMENTS SLUGS: ', allSlugs)
+
   return allSlugs;
 
   /*
@@ -104,7 +106,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
   const pageParams = await params;
 
 	const queryVariables = {
-  		uri: "payments/" + pageParams.slug,
+    uri: "payments/" + pageParams.slug,
 	};
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
@@ -118,10 +120,11 @@ export async function generateMetadata({ params, searchParams }, parent) {
   });
   var { data } = await res.json();
 
-  if(!data.nodeByUri){
+  if(!data){
   	const queryLanderVariables = {
   		uri: "landings/payments/" + pageParams.slug,
-	  };
+	  }
+
     const resLander = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
       method: 'POST',
       headers: {
@@ -135,9 +138,12 @@ export async function generateMetadata({ params, searchParams }, parent) {
     var { data } = await resLander.json();
   }
 
+  const title = (data.nodeByUri != null && data.nodeByUri.seo ? data.nodeByUri.seo.title : 'Sekure Payment Experts')
+  const desc = (data.nodeByUri != null && data.nodeByUri.seo ? data.nodeByUri.seo.metaDesc : '')
+
   return {
-    title: data.nodeByUri.seo.title,
-    description: data.nodeByUri.seo.metaDesc,
+    title: title,
+    description: desc,
     robots: {
 			index: false,
 			follow: false,
@@ -147,8 +153,9 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 export default async function Payment({params}) {
 	const { slug } = await params;
+  //console.log('PAYMENTS SLUG: ', slug)
 	const queryVariables = {
-  		uri: "payments/" + slug,
+    uri: "payments/" + slug,
 	};
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
@@ -162,7 +169,7 @@ export default async function Payment({params}) {
   });
   var { data } = await res.json();
 
-  if(!data.nodeByUri){
+  if(data.nodeByUri == null){
   	const queryLanderVariables = {
   		uri: "landings/payments/" + slug,
 	  };
@@ -176,18 +183,23 @@ export default async function Payment({params}) {
         variables: queryLanderVariables,
       }),
     });
+
     var { data } = await resLander.json();
   }
 
-  //console.log("PAYMENTS DATA: ", data.nodeByUri);
+  //console.log('PAYMENTS DATA: ', data)
 
 	return (
     <>
-      {data.nodeByUri.customCss && (
-        <style dangerouslySetInnerHTML={{__html: data.nodeByUri.customCss.customCss}}></style>
+      {data.nodeByUri != null && (
+        <BlockRenderer blocks={data.nodeByUri.blocks}/> 
       )}
-      <BlockRenderer blocks={data.nodeByUri.blocks}/> 
-      <TalkToUs />
+      {data.nodeByUri != null && data.nodeByUri.customCSS && (
+        <style dangerouslySetInnerHTML={{__html: data.nodeByUri.customCSS.customCss}}></style>
+      )}
+      {data.nodeByUri.uri != '/payments/payanywhere-smart-flex' && (
+        <TalkToUs />
+      )}
     </>
 	);
 }

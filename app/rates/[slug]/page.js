@@ -1,33 +1,43 @@
 import { BlockRenderer } from "@/components/BlockRenderer"
+import { TalkToUs } from "@/components/TalkToUs"
 import { LanguageSelect } from "@/components/Header/LanguageSelect"
 
 const query = `
 	query RateQuery($uri: String!) {
 		nodeByUri(uri: $uri) {
 			... on Rate {
-				id
-				rateId
-				title
-				uri
-        skLanguage {
-					language
-					englishTranslationUrl {
-						url
-					}
-					frenchTranslationUrl {
-						url
-					}
-					spanishTranslationUrl {
-						url
-					}
-				}
-				blocks(postTemplate: false)
+        id
+        title
+        uri
+        contentTypeName
+        blocks
+        postLanguage {
+          contentLanguage
+          enTranslation {
+            nodes {
+              uri
+              ... on Rate {
+                id
+                uri
+              }
+            }
+          }
+          esTranslation {
+            nodes {
+              uri
+              ... on Rate {
+                id
+                uri
+              }
+            }
+          }
+        }
+        customCSS {
+          customCss
+        }
         seo {
           title
           metaDesc
-        }
-        customCss {
-          customCss
         }
 			}
 		}
@@ -39,7 +49,6 @@ query RatesQuery {
   rates {
     nodes {
       id
-      rateId
       title
       slug
     }
@@ -107,17 +116,23 @@ export default async function Page({params}) {
 			variables: queryVariables,
     }),
   });
-  const { data } = await res.json();
-  const nodeData = data.nodeByUri;
 
-  //console.log('RATES SINGLE DATA: ', nodeData)
+  if(!res.ok){
+    throw new Error('Failed to fetch GraphQL data')
+  }
+
+  const { data } = await res.json();
+  //const nodeData = data.nodeByUri;
+
+  //console.log('RATES SINGLE DATA: ', data)
 
 	return (
 		<>
-      {nodeData.customCss && (
-        <style dangerouslySetInnerHTML={{__html: nodeData.customCss.customCss}}></style>
+      {data.nodeByUri.customCSS && (
+        <style dangerouslySetInnerHTML={{__html: data.nodeByUri.customCSS.customCss}}></style>
       )}
-      <BlockRenderer blocks={nodeData.blocks}/>
+      <BlockRenderer blocks={data.nodeByUri.blocks}/>
+      <TalkToUs />
     </>
 	);
 }

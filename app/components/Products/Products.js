@@ -91,7 +91,7 @@ export const Products = ({block}) => {
 								<div key={index} id={product.productID} className='product'>
 									{product.imageURL && (
 										<div className={`img-wrap ${block.product_image_style}`}>
-											<picture><Image src={product.imageURL} alt={product.imageAlt} height='350' width='350' /></picture>
+											<picture><Image src={product.imageURL.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={product.imageAlt} height='350' width='350' /></picture>
 										</div>
 									)}
 
@@ -114,7 +114,7 @@ export const Products = ({block}) => {
 														<div key={index} className='slide product'>
 															{product.imageURL && (
 																<div className={`img-wrap ${block.product_image_style}`}>
-																	<picture><Image src={product.imageURL} alt={product.imageAlt} height='350' width='350' /></picture>
+																	<picture><Image src={product.imageURL.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={product.imageAlt} height='350' width='350' /></picture>
 																</div>
 															)}
 

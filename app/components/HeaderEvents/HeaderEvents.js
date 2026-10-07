@@ -7,9 +7,13 @@ import { assetSourceLocal } from "@/app/paths"
 export function HeaderEvents() {
   const pathname = usePathname()
 	const basePathLocal = assetSourceLocal()
+	
 
   useEffect(() => {
 
+		const lang = document.querySelector('html').getAttribute('lang') == 'es-US' ? 'es' : 'en'
+		console.log('HEADER EVENTS: ', document.querySelector('html').getAttribute('lang'))
+		console.log('HEADER EVENTS: ', lang)
 		const htmlElement = document.getElementsByTagName('html')
 		const bodyElement = document.getElementsByTagName('body')
 		const header = document.getElementById('header')
@@ -33,9 +37,9 @@ export function HeaderEvents() {
 				if(htmlElement[0].classList.contains('mobile-menu-opened')){
 					htmlElement[0].classList.remove('mobile-menu-opened')
 					if(htmlElement[0].classList.contains('header-toggled-state')){
-						logo.src = `${basePathLocal}/logo/en/logo-white-descriptor.webp`
+						logo.src = `${basePathLocal}/logo/${lang}/logo-white-descriptor.webp`
 					} else {
-						logo.src = `${basePathLocal}/logo/en/logo-white-descriptor-tagline.webp`
+						logo.src = `${basePathLocal}/logo/${lang}/logo-white-descriptor-tagline.webp`
 					}
 					resetMobileDropdownItemWraps()
 				}
@@ -68,16 +72,16 @@ export function HeaderEvents() {
 			if(!htmlElement[0].classList.contains('mobile-menu-opened')) {
 				htmlElement[0].classList.add('mobile-menu-opened')
 				if(htmlElement[0].classList.contains('header-toggled-state')) {
-					logo.src = `${basePathLocal}/logo/en/logo-blue-descriptor.webp`
+					logo.src = `${basePathLocal}/logo/${lang}/logo-blue-descriptor.webp`
 				} else {
-					logo.src = `${basePathLocal}/logo/en/logo-blue-descriptor-tagline.webp`
+					logo.src = `${basePathLocal}/logo/${lang}/logo-blue-descriptor-tagline.webp`
 				}
 			} else {
 				htmlElement[0].classList.remove('mobile-menu-opened')
 				if(htmlElement[0].classList.contains('header-toggled-state')) {
-					logo.src = `${basePathLocal}/logo/en/logo-white-descriptor.webp`
+					logo.src = `${basePathLocal}/logo/${lang}/logo-white-descriptor.webp`
 				} else {
-					logo.src = `${basePathLocal}/logo/en/logo-white-descriptor-tagline.webp`
+					logo.src = `${basePathLocal}/logo/${lang}/logo-white-descriptor-tagline.webp`
 				}
 
 				resetMobileDropdownItemWraps()
@@ -221,14 +225,14 @@ export function HeaderEvents() {
 				if (window.scrollY >= scrollThreshold) {
 						// Add the class using the classList.add() method
 						htmlElement[0].classList.add("header-toggled-state")
-						logo.src = `${basePathLocal}/logo/en/logo-white-descriptor.webp`
+						logo.src = `${basePathLocal}/logo/${lang}/logo-white-descriptor.webp`
 						Array.from(dropdownMenus).forEach(element => {
 							element.style.top = header.offsetHeight + "px"
 						})
 				} else {
 						// Otherwise, remove the class
 						htmlElement[0].classList.remove("header-toggled-state")
-						logo.src = `${basePathLocal}/logo/en/logo-white-descriptor-tagline.webp`
+						logo.src = `${basePathLocal}/logo/${lang}/logo-white-descriptor-tagline.webp`
 						Array.from(dropdownMenus).forEach(element => {
 							element.style.top = header.offsetHeight + "px"
 						})

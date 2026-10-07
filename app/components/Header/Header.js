@@ -1,3 +1,5 @@
+import { headers } from 'next/headers'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import Script from 'next/script'
@@ -5,7 +7,10 @@ import { assetSourceLocal } from '../../paths'
 import { LanguageSelect } from './LanguageSelect'
 import { HeaderEvents } from '@/components/HeaderEvents'
 import { HubspotForm } from '@/components/HubspotForm'
+import { Button } from '@/components/Button'
+import { LanderEvents } from '@/components/LanderEvents'
 import { Beauty, Ecommerce, Equipment, Fashion, Grocery, Hardware, Health, Services, Hospitality, Nonprofit, Restaurants, Retail, Wholesale, Wellness, Info, Career, Reviews, TalkToUs } from './Icons'
+import { queryByUri } from '../../queryByUri'
 
 const componentMap = {
   beauty: Beauty,
@@ -37,7 +42,30 @@ const DynamicRenderer = (type) => {
 
 const basePathLocal = assetSourceLocal()
 
-export const Header = async ({params}) => {
+export const Header = async (pageParams) => {
+
+	const headersList = await headers()
+	const host = headersList.get('host')
+	const currentUrl = headersList.get('x-url').replace('http://' + host, '')
+	const pageData = await queryByUri(currentUrl)
+	//console.log('HEADERS LIST CURRENT URL: ', currentUrl)
+	//console.log('HEADERS LIST PAGEDATA: ', pageData)
+
+	var landerCheck = false
+
+	if(pageData.nodeByUri && pageData.nodeByUri.contentTypeName == 'landings'){
+		landerCheck = true
+	}
+
+	const headerRowWidth = (landerCheck ? '' : 'full')
+	const headerClasses = (landerCheck ? 'header-landing' : 'main-header')
+	const landerHeaderStyle = (landerCheck && pageData.nodeByUri.headerSelect.headerStyle) ? 'bg-blue' : ''
+	
+	const logoLang = (pageData.nodeByUri && pageData.nodeByUri.postLanguage && pageData.nodeByUri.postLanguage.contentLanguage[0] == 'en') ? 'en' : 'es'
+	let translatedPage = (logoLang == 'es' && pageData.nodeByUri && pageData.nodeByUri.postLanguage && pageData.nodeByUri.postLanguage.englishTranslation) ? pageData.nodeByUri.postLanguage.englishTranslation.nodes[0].uri : ''
+	if(translatedPage == '' && logoLang == 'en' && pageData.nodeByUri && pageData.nodeByUri.postLanguage && pageData.nodeByUri.postLanguage.spanishTranslation){
+		translatedPage = pageData.nodeByUri.postLanguage.spanishTranslation.nodes[0].uri
+	}
 
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
 		method: 'POST',
@@ -47,41 +75,41 @@ export const Header = async ({params}) => {
 		body: JSON.stringify({
 		query: `
 			query mainNavQuery {
-			menu(id: "en-header-primary-menu-v2", idType: SLUG) {
-				menuItems(first: 90) {
-				nodes {
-					id
-					title
-					uri
-					parentId
-					label
-					description
-					linkRelationship
-					cssClasses
-					menuItems {
-						buttonLink {
-							edges {
-								node {
-									uri
-									link
+				menu(id: "en-header-primary-menu-v2", idType: SLUG) {
+					menuItems(first: 90) {
+					nodes {
+						id
+						title
+						uri
+						parentId
+						label
+						description
+						linkRelationship
+						cssClasses
+						menuItems {
+							buttonLink {
+								edges {
+									node {
+										uri
+										link
+									}
 								}
 							}
-						}
-						buttonType
-						buttonText
-						ctaContent
-						form
-						formID
-						icon
-						linkArrow
-						linkIcon
-						linkType
-						buttonClasses
-						rowMaxColumns
+							buttonType
+							buttonText
+							ctaContent
+							form
+							formId
+							icon
+							linkArrow
+							linkIcon
+							linkType
+							buttonClasses
+							rowMaxColumns
+							}
 						}
 					}
 				}
-			}
 			}
 		`,
 		}),
@@ -129,6 +157,7 @@ export const Header = async ({params}) => {
 		html.mobile-menu-opened header .line-el:last-of-type {
 			transform:translate(0px, -6px) rotate(45deg);
 		}
+		html[lang='es-US'] #nav-extras .careers-link {display:none!important}
 		@media screen and (min-width:1025px){
 			.header .contact-icons .dropdown-link-wrap a img {
 				margin-left:0;
@@ -148,113 +177,172 @@ export const Header = async ({params}) => {
 		}
   `;
 
+	const landerStyles = `
+		.sk-lander .header .content-wrap {
+			align-items: center;
+		}
+		.sk-lander .header .header-logo-link {
+			bottom:auto;
+		}
+		@media screen and (min-width: 1025px) {
+			body:not(.home) {
+				padding-top: 8.542vw;
+			}
+			.sk-lander .header .content-wrap {
+				padding-bottom: 1.667vw;
+			}
+		}
+		@media screen and (min-width: 1921px) {
+			body:not(.home) {
+				padding-top: calc(5.208vw + 60px);
+			}
+			.sk-lander .header .content-wrap {
+				padding-bottom: 30px;
+			}
+		}
+	`
+
+	if(landerCheck){
+		var CTAshow = (pageData.nodeByUri.landerCTA.ctaAlwaysShow == true ? 'always-show' : '')
+		CTAshow = CTAshow + ' landing-template-btn header-cta-btn'
+		var CTAtype = (pageData.nodeByUri.landerCTA.ctaLinkType[0] == 'popup' ? 'modal' : pageData.nodeByUri.landerCTA.ctaLinkType[0])
+		var CTAlink = (CTAtype == 'yes' ? pageData.nodeByUri.landerCTA.ctaExternalLink.url : '#')
+		var CTAtext = (pageData.nodeByUri.landerCTA.ctaButtonInHeader != '' ? pageData.nodeByUri.landerCTA.ctaButtonInHeader : '')
+		var landerLogoType = (pageData.nodeByUri.headerSelect.headerStyle ? 'white' : 'blue')
+		if(pageData.nodeByUri.landerCTA.popup != null) {
+			//console.log('LANDER DATA CTA: ', pageData.nodeByUri.landerCTA)
+			var popupID = pageData.nodeByUri.landerCTA.popup.nodes[0].popupId ? pageData.nodeByUri.landerCTA.popup.nodes[0].popupId : 37277
+		}
+	}
+
+	const headerCTAtext = logoLang == 'es' ? 'Empieza a ahorrar' : 'Start saving'
+
 	return (
-		<header id="header" className="header main-header">
-			<HeaderEvents/>
+		<header id="header" className={`header ${headerClasses} ${landerHeaderStyle}`}>
+			
 			<style>{styleCode}</style>
-			<div className="container full">
+			<div className={`container ${headerRowWidth}`}>
 				<div className="content-wrap">
-					<Link href="/" className="header-logo-link prel"><Image src={`${basePathLocal}/logo/en/logo-white-descriptor-tagline.webp`} alt="Sekure Payment Experts logo" width={245} height={138} id="logo" className="header-logo" unoptimized loading="eager"/></Link>
+				{landerCheck ? (
+					<>
+						<Link href="/" className="header-logo-link prel"><Image src={`${basePathLocal}/logo/${logoLang}/logo-${landerLogoType}-descriptor-tagline.webp`} alt="Sekure Payment Experts logo" width={245} height={138} id="logo" className="header-logo" unoptimized loading="eager"/></Link>
+						<style>{landerStyles}</style>
+						{pageData.nodeByUri.landerCTA.ctaButtonInHeader != null && (
+							<Button type={CTAtype} text={CTAtext} link={CTAlink} classes={CTAshow} popupID={popupID} sectionBgColour='blue' />
+						)}
+						
+						<LanderEvents />
+					</>
+				) : (
+					<>
+						<Link href="/" className="header-logo-link prel"><Image src={`${basePathLocal}/logo/${logoLang}/logo-white-descriptor-tagline.webp`} alt="Sekure Payment Experts logo" width={245} height={138} id="logo" className="header-logo" unoptimized loading="eager"/></Link>
+					
+						<nav role="navigation">
+							<HeaderEvents/>
+							<button aria-label="Toggle mobile menu button" id='mobile-menu-btn' className="mobile-menu-btn" aria-controls="menu" aria-expanded="false">
+								<span className="line-el"></span>
+								<span className="line-el"></span>
+								<span className="line-el"></span>
+							</button>
 
-					<nav role="navigation">
-						<button aria-label="Toggle mobile menu button" id='mobile-menu-btn' className="mobile-menu-btn" aria-controls="menu" aria-expanded="false">
-							<span className="line-el"></span>
-							<span className="line-el"></span>
-							<span className="line-el"></span>
-						</button>
+							<div className="nav-wrap">
 
-						<div className="nav-wrap">
+								{/* language switch and careers link */}
+								<div id='nav-extras' className="nav-extras">
+									
+									{translatedPage != '' && (
+										<LanguageSelect current={logoLang} translated={translatedPage}/>
+									)}
 
-							{/* language switch and careers link */}
-							<div id='nav-extras' className="nav-extras">
-								{/* <LanguageSelect/> */}
+									<Link href="/careers" className="careers-link">Careers</Link>
+								</div>
 
-								<Link href="/careers" className="careers-link">Careers</Link>
-							</div>
+								{/* main nav */}
+								<div className="header-links-wrap">
+									<div className="header-links-content-wrap">
 
-							{/* main nav */}
-							<div className="header-links-wrap">
-								<div className="header-links-content-wrap">
+										{data.menu.menuItems.nodes.map((menuItem, index) => (
+											menuItem.menuItems.linkType == "row" && (
+												<div id={index} key={index} className="dropdown-item-wrap">
 
-									{data.menu.menuItems.nodes.map((menuItem, index) => (
-										menuItem.menuItems.linkType == "row" && (
-											<div id={index} key={index} className="dropdown-item-wrap">
+													{/* mobile menu button (<=1024px)*/}
+													<Link href="#" className="header-link-item fw-700 c-white has-dropdown prel inline_block">
+														{menuItem.label}
+														<button aria-hidden="true" className="dropdown-arrow-btn js-header-dropdown-btn"></button>
+													</Link>
 
-												{/* mobile menu button (<=1024px)*/}
-												<Link href="#" className="header-link-item fw-700 c-white has-dropdown prel inline_block">
-													{menuItem.label}
-													<button aria-hidden="true" className="dropdown-arrow-btn js-header-dropdown-btn"></button>
-												</Link>
+													{/* <Image src={`${basePathLocal}/media/svgs/header/${columnItem.menuItems.icon[0]}.svg`} alt={`${columnItem.menuItems.icon[0]} icon`}  height="16" width="16" />  DynamicRenderer(columnItem.menuItems.icon[0]) */}
 
-												{/* <Image src={`${basePathLocal}/media/svgs/header/${columnItem.menuItems.icon[0]}.svg`} alt={`${columnItem.menuItems.icon[0]} icon`}  height="16" width="16" />  DynamicRenderer(columnItem.menuItems.icon[0]) */}
-
-												<div className="dropdown-item-links">
-													<div className="dropdown-items-links-hold dropdown-content prel">
-														<div className={`dropdown-links-wrap ${menuItem.cssClasses.join(' ')} ${menuItem.menuItems.rowMaxColumns}`}>
-															{data.menu.menuItems.nodes.map((childMenuItem, childIndex) => (
-																childMenuItem.parentId == menuItem.id &&
-																menuItem.parentId == null && (
-																	<div id={childIndex} key={childIndex} className={`links-column ${childMenuItem.cssClasses.join(' ')}`}>
-																		{data.menu.menuItems.nodes.map((columnItem, columnItemIndex) => (
-																			columnItem.parentId == childMenuItem.id &&
-																			columnItem.menuItems.linkType == "heading" && (
-																				<h3 id={columnItemIndex} key={columnItemIndex} className="c-red-2 prel column-heading">{columnItem.label}</h3>
-																			) ||
-																			columnItem.parentId == childMenuItem.id &&
-																			columnItem.menuItems.linkType == "link" && (
-																				<div id={columnItemIndex} key={columnItemIndex} className="dropdown-link-wrap">
-																					<Link href={columnItem.uri} className="dropdown-items-link c-blue-1">
-																						{columnItem.label}
-																						{columnItem.menuItems.linkArrow && (
-																							<Image src={`${basePathLocal}/media/svgs/arrow.svg`} alt="arrow icon" height="16" width="16" className="arrow-img"/>
-																						) || 
-																						columnItem.menuItems.linkIcon != null && (
-																							DynamicRenderer(columnItem.menuItems.icon[0].replaceAll('-', ''))
-																						)}
-																					</Link>
-																					<p className="column-desc c-blue-1">{columnItem.description}</p>
-																				</div>
-																			) ||
-																			columnItem.parentId == childMenuItem.id &&
-																			columnItem.menuItems.linkType == "cta" && (
-																				<div id={columnItemIndex} key={columnItemIndex} className={`dropdown-link-cta ${columnItem.cssClasses.join(' ')}`}>
-																					<div dangerouslySetInnerHTML={{ __html: columnItem.menuItems.ctaContent }} />
-																					{columnItem.menuItems.buttonLink != null && (
-																						<Link href={columnItem.menuItems.buttonLink.edges[0].node.uri} className="btn-default c-blue-1 btn-green-1 section-color-white btn-offset-8 fw-700 mt-default">
-																							<span className="btn-bg-el"></span>
-																							<span className="btn-txt">{columnItem.menuItems.buttonText}</span>
+													<div className="dropdown-item-links">
+														<div className="dropdown-items-links-hold dropdown-content prel">
+															<div className={`dropdown-links-wrap ${menuItem.cssClasses.join(' ')} ${menuItem.menuItems.rowMaxColumns}`}>
+																{data.menu.menuItems.nodes.map((childMenuItem, childIndex) => (
+																	childMenuItem.parentId == menuItem.id &&
+																	menuItem.parentId == null && (
+																		<div id={childIndex} key={childIndex} className={`links-column ${childMenuItem.cssClasses.join(' ')}`}>
+																			{data.menu.menuItems.nodes.map((columnItem, columnItemIndex) => (
+																				columnItem.parentId == childMenuItem.id &&
+																				columnItem.menuItems.linkType == "heading" && (
+																					<h3 id={columnItemIndex} key={columnItemIndex} className="c-red-2 prel column-heading">{columnItem.label}</h3>
+																				) ||
+																				columnItem.parentId == childMenuItem.id &&
+																				columnItem.menuItems.linkType == "link" && (
+																					<div id={columnItemIndex} key={columnItemIndex} className="dropdown-link-wrap">
+																						<Link href={columnItem.uri} className="dropdown-items-link c-blue-1">
+																							{columnItem.label}
+																							{columnItem.menuItems.linkArrow && (
+																								<Image src={`${basePathLocal}/media/svgs/arrow.svg`} alt="arrow icon" height="16" width="16" className="arrow-img"/>
+																							) || 
+																							columnItem.menuItems.linkIcon != null && (
+																								DynamicRenderer(columnItem.menuItems.icon[0].replaceAll('-', ''))
+																							)}
 																						</Link>
-																					)}
-																					{columnItem.menuItems.formID && (
-																						<HubspotForm formID={columnItem.menuItems.formID} formContainer={columnItemIndex} uid={columnItemIndex} />
-																					)}
-																				</div>
-																			)
-																		))}
-																	</div>
-																)
-															))}
+																						<p className="column-desc c-blue-1">{columnItem.description}</p>
+																					</div>
+																				) ||
+																				columnItem.parentId == childMenuItem.id &&
+																				columnItem.menuItems.linkType == "cta" && (
+																					<div id={columnItemIndex} key={columnItemIndex} className={`dropdown-link-cta ${columnItem.cssClasses.join(' ')}`}>
+																						<div dangerouslySetInnerHTML={{ __html: columnItem.menuItems.ctaContent }} />
+																						{columnItem.menuItems.buttonLink != null && (
+																							<Link href={columnItem.menuItems.buttonLink.edges[0].node.uri} className="btn-default c-blue-1 btn-green-1 section-color-white btn-offset-8 fw-700 mt-default">
+																								<span className="btn-bg-el"></span>
+																								<span className="btn-txt">{columnItem.menuItems.buttonText}</span>
+																							</Link>
+																						)}
+																						{columnItem.menuItems.formId && (
+																							<HubspotForm formID={columnItem.menuItems.formId} formContainer={columnItemIndex} uid={columnItemIndex} />
+																						)}
+																					</div>
+																				)
+																			))}
+																		</div>
+																	)
+																))}
+															</div>
 														</div>
 													</div>
 												</div>
-											</div>
-										)
-									))}
+											)
+										))}
 
+									</div>
 								</div>
-							</div>
 
-							<Link href="/savings-calculator" className="d-none d-desktop-block statement-analysis-btn btn-default c-blue-1 section-color-blue btn-white btn-offset-8 fw-700">
-								<span className="btn-bg-el"></span>
-								<span className="btn-txt">Start saving</span>
-							</Link>
-						</div> {/* mav wrap */}
+								<Link href="/savings-calculator" className="d-none d-desktop-block statement-analysis-btn btn-default c-blue-1 section-color-blue btn-white btn-offset-8 fw-700">
+									<span className="btn-bg-el"></span>
+									<span className="btn-txt">{headerCTAtext}</span>
+								</Link>
+							</div> {/* mav wrap */}
 
-							<Link href="/savings-calculator" className="statement-analysis-btn mobile-btn btn-default c-blue-1 btn-green-1 section-color-white btn-offset-8 fw-700">
-								<span className="btn-bg-el"></span>
-								<span className="btn-txt">Start saving</span>
-							</Link>
-					</nav>
+								<Link href="/savings-calculator" className="statement-analysis-btn mobile-btn btn-default c-blue-1 btn-green-1 section-color-white btn-offset-8 fw-700">
+									<span className="btn-bg-el"></span>
+									<span className="btn-txt">{headerCTAtext}</span>
+								</Link>
+						</nav>
+					</>
+
+				)}
 				</div>
 			</div>
 		</header>

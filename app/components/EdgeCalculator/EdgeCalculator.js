@@ -6,6 +6,34 @@ export const EdgeCalculator = ({block}) => {
 
 	//console.log('EDGE CALCULATOR BLOCK DATA: ', block)
 
+	function formatContent(content) {
+		const formatted = content.split('\r\n').map(content => {
+			const hasHTML = (str) => /<(?!(\/?(strong|span|a|b)\b))[^>]+>/i.test(str);
+			let hasOpen = content.includes('<span')
+			let hasClose = content.includes('</span>')
+
+			if(content.includes('[sekure_icon ')){
+				const shortcodeData = content.split(' ')
+				const url = shortcodeData[1].replace('icon-url="', 'https://wordpress-dev-appsvc.azurewebsites.net').replace('"', '')
+				const classes = shortcodeData.at(-1).replace("classes='", '').replace("']",'')
+				return `<img src='${url}' alt='icon' height='50' width='50' class='${classes}'>`
+			} else if(content.includes('[phone]')) {
+				const newContent = content.replace(/\[phone\]/g, '<a href="tel:8667107382">(866) 710-7382</a>')
+				return newContent
+			} else if(content.includes('[phone-icon]')) {
+				const newContent = content.replace('[phone-icon]', '<svg width="25" height="25" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0"><g clip-path="url(#clip0_63_2933)"><path d="M23.9926 0C10.7481 0 3.05176e-05 10.7481 3.05176e-05 23.9925C3.05176e-05 37.237 10.7481 47.985 23.9926 47.985C37.237 47.985 47.9851 37.237 47.9851 23.9925C47.9851 10.7481 37.252 0 23.9926 0ZM36.9381 32.7973C36.8783 32.9019 36.8035 33.0215 36.7288 33.1411C35.9963 34.2473 34.4416 35.8916 34.4416 35.8916C32.005 37.7602 26.7431 35.1741 26.7431 35.1741C16.6229 29.9421 11.4656 20.4198 11.4656 20.4198C9.5223 16.5332 12.6914 12.4522 12.6914 12.4522C14.5002 10.2846 17.2208 12.2579 17.2208 12.2579L20.0312 14.4852C21.84 15.9801 19.9116 17.9383 19.9116 17.9383C17.3703 20.36 19.0446 22.0193 19.0446 22.0193C21.0626 24.6353 26.4591 29.1199 26.4591 29.1199C28.4771 30.0766 29.673 27.5652 29.673 27.5652C30.6596 25.9059 32.7674 27.3261 32.7674 27.3261L35.0246 28.9854C36.8035 30.4204 37.5211 31.721 36.9231 32.7973H36.9381Z" fill="#17FCC4"></path></g><defs><clipPath id="clip0_63_2933"><rect width="48" height="48" fill="white"></rect></clipPath></defs></svg>')
+				return newContent
+			} else if(hasOpen && hasClose) {
+				return `<p>${content}</p>`
+			} else if(content != '' && !hasHTML(content)){
+				return `<p>${content}</p>`
+			} else {
+				return content.trim()
+			}
+		}).join('')
+		return formatted
+	}
+
 	const formattedContent = block.content.split('\r\n').map(content => {
 		const hasHTML = (str) => /<(?!(\/?(strong|span)\b))[^>]+>/i.test(str);
 		if(content != '' && !hasHTML(content)){
@@ -15,16 +43,28 @@ export const EdgeCalculator = ({block}) => {
 		}
 	}).join('')
 
+	const aboveCalcTextCol = (block.section_classes.includes('overlay') && block.section_classes.includes('blue')) ? 'text-white' : ''
+	const labelBelowOutputs = block.label_below_data_outputs && block.label_below_data_outputs != '' ? block.label_below_data_outputs : 'Talk to a Sekure Payment Expert and start earning today.'
+
 	return (
 		<section id={block.section_id} className={`content-block-holder sk-block block-edge-calc prel ov-hidden ${block.section_classes}`}>
 			<EdgeCalculatorEvents />
 
 			{block.background_image_url && (
-				<Image src={block.background_image_url} alt={block.background_image_alt} height='1080' width='1440' className='bg-image object-cover' />
+				<Image src={block.background_image_url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={block.background_image_alt} height='1080' width='1440' className='bg-image object-cover' />
 			)}
 
 			<div className='container prel z-2'>
 				<div className='row gap-rows'>
+
+					{block.content_above_calculator && block.content_above_calculator != '' && (
+						<div className={`col-sm-12 col-lg-7 heading-balance ${aboveCalcTextCol}`} dangerouslySetInnerHTML={{__html: formatContent(block.content_above_calculator)}}></div>
+					)}
+
+					{block.trustpilot_reviews_widget && block.trustpilot_reviews_widget != '' && (
+						<div className='col-sm-12 col-lg-5' dangerouslySetInnerHTML={{__html: block.trustpilot_reviews_widget}}></div>
+					)}
+
 					<div className='col-sm-12'>
 
 						<div className='edge-calculator d-flex flex-even gap-cols gap-rows flex-column-1024'>
@@ -63,9 +103,12 @@ export const EdgeCalculator = ({block}) => {
 									<p className='data-output annual-cashback title-highlight fw-700'>$0.00</p>
 								</div>
 
-								<div className='calculator-footer mt-4'>
-									<p className='fw-600'>Talk to a Sekure Payment Expert and start earning today.</p>
-								</div>
+								{block.label_below_data_outputs && block.label_below_data_outputs != '' && (
+									<div className='calculator-footer mt-4'>
+										<p className='fw-600'>{labelBelowOutputs}</p>
+									</div>
+								)}
+
 							</div>
 
 						</div>

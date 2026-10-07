@@ -44,6 +44,9 @@ export const TestimonialsSlider = ({block}) => {
 				const url = shortcodeData[1].replace('icon-url="', 'https://wordpress-dev-appsvc.azurewebsites.net').replace('"', '')
 				const classes = shortcodeData.at(-1).replace("classes='", '').replace("']",'')
 				return `<img src='${url}' alt='icon' height='50' width='50' class='${classes}'>`
+			} else if(content.includes('[img id="39329" width="527"]')) {
+				const newContent = content.replace('[img id="39329" width="527"]')
+				return `<img class="img-srtcode" alt="BBB 4.25 Google 4.25 Facebook 4.75 Trustpilot 4.25" src="https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2025/08/our-reviews-1.svg">`
 			} else if(content != '' && !hasHTML(content)){
 				return `<p>${content}</p>`
 			} else {
@@ -110,7 +113,7 @@ export const TestimonialsSlider = ({block}) => {
 														<div className='shadow'>
 															{slide.image_url && (
 																<div className='person-img-wrap'>
-																	<Image src={slide.image_url} alt={slide.image_alt} height='130' width='130' />
+																	<Image src={slide.image_url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={slide.image_alt} height='130' width='130' />
 																</div>
 															)}
 

@@ -1,8 +1,10 @@
 import Image from 'next/image'
 import { Button } from '@/components/Button'
+import { FormatContent } from '@/components/FormatContent'
 import '@/styles/blocks/blocks-general.css'
 
 export const BlocksGeneral = ({block}) => {
+	//console.log('GRID BLOCKS DATA: ', block)
 
 	const bgColour = block.full_width_with_background == 'Yes' ? 'full-width-bg' : ''
 	const blocksCount = block.blocks - 1
@@ -69,7 +71,15 @@ export const BlocksGeneral = ({block}) => {
 		}
 	}).join('')
 
-	const blocksFooter = block.footer.split('\r\n').map(content => {
+	const regex = /<span[\s\S]*?\r\n[\s\S]*?<\/span>/
+	const updatedString = block.footer.replace(regex, (match, openTag, content, closeTag) => {
+    const updatedContent = content.replace(/\r\n/g, '<br>')
+    return `${updatedContent}`
+	})
+
+	//console.log('UPDATED STRING: ', updatedString)
+
+	const blocksFooter = updatedString.split('\r\n').map(content => {
 		const hasHTML = (str) => /<(?!(\/?(strong|span|a|b)\b))[^>]+>/i.test(str);
 		if(content != '' && !hasHTML(content)){
 			return `<p>${content}</p>`
@@ -79,14 +89,15 @@ export const BlocksGeneral = ({block}) => {
 	}).join('')
 
 	let blocksGridClass = block.blocks_type == 'jumbled' ? 'd-flex' : `blocks-grid-${block.blocks_per_row}`
+	const CTAposition = block.buttons_position == 'center' ? 'd-flex justify-content-center' : ''
 
 	return (
 		<section id={block.section_id} className={`content-block-holder sk-block blocks prel ov-hidden op-0 ${bgColour} ${block.section_classes}`}>
 			<div className='container prel z-2'>
 				<div className='row'>
 
-					{block.content != '' && (
-						<div className='col-sm-12 col-lg-8 heading-balance mb-5' dangerouslySetInnerHTML={{__html: formattedContent}}></div>
+					{block.content && block.content != '' && (
+						<div className='col-sm-12 col-lg-8 heading-balance mb-5' dangerouslySetInnerHTML={{__html: FormatContent(block.content)}}></div>
 					)}
 
 					{block.blocks && block.blocks > 0 && (
@@ -96,7 +107,7 @@ export const BlocksGeneral = ({block}) => {
 									<div className='block-wrap-big'>
 										<div className={`block ${blocks[0].section_classes}`}>
 											{blocks[0].image && (
-												<picture><Image src={blocks[0].image} alt={blocks[0].imageAlt} height='578' width='578' /></picture>
+												<picture><Image src={blocks[0].image.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={blocks[0].imageAlt} height='578' width='578' /></picture>
 											)}
 											{blocks[0].content != '' && (
 												<div className='block-content' dangerouslySetInnerHTML={{__html: blocks[0].content}}></div>
@@ -108,7 +119,7 @@ export const BlocksGeneral = ({block}) => {
 											index != 0 && (
 												<div key={index} className='block'>
 													{element.image && (
-														<picture><Image src={element.image} alt={element.imageAlt} height='578' width='578' /></picture>
+														<picture><Image src={element.image.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={element.imageAlt} height='578' width='578' /></picture>
 													)}
 
 													{element.content != '' && (
@@ -123,7 +134,7 @@ export const BlocksGeneral = ({block}) => {
 								blocks.map((element, index) => (
 									<div key={index} className='block'>
 										{element.image && (
-											<picture><Image src={element.image} alt={element.imageAlt} height='578' width='578' /></picture>
+											<picture><Image src={element.image.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={element.imageAlt} height='578' width='578' /></picture>
 										)}
 
 										{element.content != '' && (
@@ -135,12 +146,12 @@ export const BlocksGeneral = ({block}) => {
 						</div>
 					)}
 
-					{block.footer && (
-						<div className='col-sm-12 mt-5' dangerouslySetInnerHTML={{__html: blocksFooter}}></div>
+					{block.footer && block.footer != '' && (
+						<div className='col-sm-12 mt-5' dangerouslySetInnerHTML={{__html: FormatContent(block.footer)}}></div>
 					)}
 
-					{block.cta_text && (
-						<div className='mt-default'>
+					{block.cta_text && block.cta_text != '' && (
+						<div className={`mt-default ${CTAposition}`}>
 							<Button type={block.external_link} text={block.cta_text} link={block.cta_link} popupID={block.popup} popupHeading={block.popup_title} popupDesc={block.popup_description} phone={block.phone}/>
 						</div>
 					)}

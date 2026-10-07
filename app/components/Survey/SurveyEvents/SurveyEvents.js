@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
-export const  SurveyEvents = ({results}) => {
+export const  SurveyEvents = ({results, language}) => {
 	const pathname = usePathname()
 
 	useEffect(() => {
@@ -218,13 +218,13 @@ export const  SurveyEvents = ({results}) => {
 									if(userSelections.length == 2 && resultSelections.length == 2){
 										const matches = userSelections.filter(value => resultSelections.includes(value))
 										if(matches.length == 2){
-											finalResult = result.result
+											finalResult = language == 'es_US' ? result.resultSp : result.result
 										}
 									}
 									if(userSelections.length == 3 && resultSelections.length == 3){
 										const matches = userSelections.filter(value => resultSelections.includes(value))
 										if(matches.length == 3){
-											finalResult = result.result
+											finalResult = language == 'es_US' ? result.resultSp : result.result
 										}
 									}
 								}
@@ -233,7 +233,7 @@ export const  SurveyEvents = ({results}) => {
 								if(resultSelections.length == 3 && surveyElement.dataset.survey_id == '30126' && userSelections[0] != 'iOS'){
 									const matches = userSelections.filter(value => resultSelections.includes(value))
 									if(matches.length == 3){
-										finalResult = result.result
+										finalResult = language == 'es_US' ? result.resultSp : result.result
 									}
 								}
 
@@ -241,7 +241,7 @@ export const  SurveyEvents = ({results}) => {
 								if(resultSelections.length == 4){
 									const matches = userSelections.filter(value => resultSelections.includes(value))
 									if(matches.length == 4){
-										finalResult = result.result
+										finalResult = language == 'es_US' ? result.resultSp : result.result
 									}
 								}
 							})

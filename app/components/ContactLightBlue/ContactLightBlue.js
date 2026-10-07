@@ -1,4 +1,5 @@
 import { HubspotForm } from '@/components/HubspotForm'
+import { FormatContent } from '@/components/FormatContent'
 //import { FormEvents } from './FormEvents'
 import '@/styles/blocks/contact-section-light-blue.css'
 
@@ -28,7 +29,7 @@ export const ContactLightBlue = ({block}) => {
 							)}
 
 							{block.content && (
-								<div dangerouslySetInnerHTML={{__html: block.content}}></div>
+								<div dangerouslySetInnerHTML={{__html: FormatContent(block.content)}}></div>
 							)}
 
 						</div>
@@ -36,7 +37,9 @@ export const ContactLightBlue = ({block}) => {
 
 					<div className='col-sm-12 col-lg-6'>
 						<div className='form-content home-page-form'>
-							<HubspotForm formID={block.form_id} formContainer={`contactlb`} uid={`0438672049874`} />
+							{block.form_id && block.form_id != '' && (
+								<HubspotForm formID={block.form_id} formContainer={`contactlb`} uid={`0438672049874`} />
+							)}
 						</div>
 					</div>
 				</div>

@@ -1,3 +1,5 @@
+import { BlockRenderer } from '@/components/BlockRenderer'
+
 const allPagesAndLandersQuery = `
 	query AllPagesAndLandersQuery {
 		pages(first: 20, where: {parent: 30211}) {
@@ -54,6 +56,9 @@ const landingQuery = `
 					title
 					metaDesc
 				}
+				customCSS {
+          customCss
+        }
 			}
 		}
 	}
@@ -156,8 +161,11 @@ export default async function Page({params}) {
 	
 
 	return (
-		<main>
-			<h1>dynamic ES page file - {data.nodeByUri.title}</h1>
-		</main>  
+		<>
+			<BlockRenderer blocks={data.nodeByUri.blocks} language={data.nodeByUri.postLanguage.contentLanguage[0]}/>
+			{data.nodeByUri != null && data.nodeByUri.customCSS && (
+        <style dangerouslySetInnerHTML={{__html: data.nodeByUri.customCSS.customCss}}></style>
+      )}
+		</>
 	);
 }

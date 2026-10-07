@@ -40,7 +40,7 @@ export const Expert = ({block}) => {
 						{block.block_style == 'b' && block.expert_image_url && (
 							<div className="analysis-person-wrap d-flex flex-column-1024 gap-20 mt-3">
 								<div className="img-wrap fade-in-last">
-									<Image src={block.expert_image_url} alt={block.expert_image_alt} height='243' width='243' />
+									<Image src={block.expert_image_url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={block.expert_image_alt} height='243' width='243' />
 								</div>
 								<div className="fade-in-last">
 									<h3 className="analysis-person-title">{block.expert_name}</h3>
@@ -68,7 +68,7 @@ export const Expert = ({block}) => {
 							<>
 								{block.expert_image_url && (
 									<div className="img-wrap fade-in-last">
-										<picture><Image src={block.expert_image_url} alt={block.expert_image_alt} width='243' height='243' /></picture>
+										<picture><Image src={block.expert_image_url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={block.expert_image_alt} width='243' height='243' /></picture>
 									</div>
 								)}
 								

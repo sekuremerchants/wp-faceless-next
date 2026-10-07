@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import '@/styles/blocks/sk-our-partners.css'
 
-export const OurPartners = ({block}) => {
+export const OurPartners = ({type, block}) => {
 	//console.log('OUR PARTNERS BLOCK DATA: ', block)
 
 	const bgColour = block.full_width_with_background != '0' ? 'full-width-bg' : ''
@@ -126,7 +126,7 @@ export const OurPartners = ({block}) => {
 				<div className='container d-none d-desktop pt-4'>
 					<div className='row d-flex justify-content-center align-items-start'>
 						{partners.map((row, index) => (
-							<Link key={index} href={row.link} rel='noopener noreferrer' target='_blank' className='partner-item col-xs-2 col-md-4 col-lg-2 py-3 px-2 text-center'><Image src={row.url} alt={row.alt} height='65' width='200' /></Link>
+							<Link key={index} href={row.link} rel='noopener noreferrer' target='_blank' className='partner-item col-xs-2 col-md-4 col-lg-2 py-3 px-2 text-center'><Image src={row.url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={row.alt} height='65' width='200' /></Link>
 						))}
 					</div>
 				</div>
@@ -144,7 +144,7 @@ export const OurPartners = ({block}) => {
 											{chunks.map((chunk, index) => (
 												<div key={index} className='mt-box-inner'>
 													{chunk.map((partnerLogo, index) => (
-														<Link key={index} href={partnerLogo.link} rel='noopener noreferrer' target='_blank' className='d-block partner-item text-center'><Image src={partnerLogo.url} alt={partnerLogo.alt} height='65' width='200' className='partner-img colored-img py-3' /></Link>
+														<Link key={index} href={partnerLogo.link} rel='noopener noreferrer' target='_blank' className='d-block partner-item text-center'><Image src={partnerLogo.url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={partnerLogo.alt} height='65' width='200' className='partner-img colored-img py-3' /></Link>
 													))}
 												</div>
 											))}

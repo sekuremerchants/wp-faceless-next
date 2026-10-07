@@ -4,87 +4,66 @@ import { useEffect, useRef } from 'react'
 import BlazeSlider from 'blaze-slider'
 
 import Image from 'next/image'
+import { FormatContent } from '@/components/FormatContent'
 import '@/styles/blocks/multi-columns-table.css'
 //import '@/styles/blocks/blocks.css'
 
 export const MultiColumnTable = ({block}) => {
 
+	//console.log('MULTI COLUMN TABLE DATA: ', block)
+
 	const bgColour = block.full_width_with_background == "1" ? "full-width-bg" : "";
-	const formatContent = block.content.split('\r\n').map(content => {
-		if(content.match(/<h[1-6]>.*?<\/h[1-6]>/gi)) {
-			return `${content}`
-		} else {
-			return `<p>${content}</p>`
-		}
-	}).join('')
-	const formatFooterContent = block.footer.split('\r\n').map(content => {
-		if(content.match(/<h[1-6]>.*?<\/h[1-6]>/gi)) {
-			return `${content}`
-		} else {
-			return `<p>${content}</p>`
-		}
-	}).join('')
 
-	let count = 0
-	let rowCount = 0
-	let headCells = []
-	let contentCells = []
-	const headRows = block.rows_0_cell - 1
-	const firstContentRow = block.rows_1_table_row_0_column - 1
+	const rows = block.rows
+	let newHeadCells = []
+	let newContentCells = []
 
-	while(count <= headRows){
+	if(rows.length > 0){
+		rows.forEach((current, index) => {
+			if(current == 'heading_row'){
+				let cellCount = block[`rows_${index}_cell`] - 1
+				let cellIndex = 0
 
-		let rowHeading = `rows_0_cell_${count}_heading`
-		let rowImage = `rows_0_cell_${count}_image`
+				while(cellIndex <= cellCount){
+					let row = {
+						rowHeading: block[`rows_${index}_cell_${cellIndex}_heading`],
+						rowImage: block[`rows_${index}_cell_${cellIndex}_image`],
+					}
 
-		let row = {
-			rowHeading: block[rowHeading],
-			rowImage: block[rowImage],
-		}
+					newHeadCells.push(row)
 
-		headCells.push(row)
-			
-		count++
-	}
-
-	count = 0
-
-	while(rowCount <= firstContentRow){
-		let rowCheck =  `rows_1_table_row_${rowCount}_column`
-		let rowCells = [];
-
-		if(block[rowCheck] > 0) {
-			let cellCount = block[rowCheck] - 1
-
-			count = 0
-
-			while(count <= cellCount){
-				
-				//rows_1_table_row_0_column_0_use_stars
-				let rowStars = `rows_1_table_row_${rowCount}_column_${count}_use_stars`
-				let rowContent = `rows_1_table_row_${rowCount}_column_${count}_content`
-				let rowCheck = `rows_1_table_row_${rowCount}_column_${count}_checkmark`
-				let rowImage = `rows_1_table_row_${rowCount}_column_${count}_image`
-
-				let row = {
-					rowNumber: rowCount,
-					rowStars: block[rowStars],
-					rowContent: block[rowContent],
-					rowCheck: block[rowCheck],
-					rowImage: block[rowImage],
+					cellIndex++
 				}
 
-				rowCells.push(row)
-
-				count++
 			}
-		} else {
-			return
-		}
+			if(current == 'table_content'){
+				let rowCount = block[`rows_${index}_table_row`].length - 1
+				let rowIndex = 0
 
-		contentCells.push(rowCells)
+				while(rowIndex <= rowCount){
+					let rowCellIndex = 0
+					let cellCount = block[`rows_${index}_table_row_${rowIndex}_column`] - 1
+					let rowContent = []
 
-		rowCount++
+					while(rowCellIndex <= cellCount){
+						let row = {
+							rowStars: block[`rows_${index}_table_row_${rowIndex}_column_${rowCellIndex}_use_stars`],
+							rowContent: block[`rows_${index}_table_row_${rowIndex}_column_${rowCellIndex}_content`],
+							rowCheck: block[`rows_${index}_table_row_${rowIndex}_column_${rowCellIndex}_checkmark`],
+							rowImage: block[`rows_${index}_table_row_${rowIndex}_column_${rowCellIndex}_image`],
+						}
+
+						rowContent.push(row)
+
+						rowCellIndex++
+					}
+
+					newContentCells.push(rowContent)
+
+					rowIndex++
+				}
+			}
+		})
 	}
 
   const sliderRef = useRef(null)
@@ -159,11 +138,11 @@ export const MultiColumnTable = ({block}) => {
 
 					{(block.heading || block.content) && (
 						<div className='col-sm-12 col-lg-8 heading-balance'>
-							{block.heading && (
+							{block.heading && block.heading != '' && (
 								<h2>{block.heading}</h2>
 							)}
-							{block.content && (
-								<div dangerouslySetInnerHTML={{__html: formatContent}}></div>
+							{block.content && block.content != '' && (
+								<div dangerouslySetInnerHTML={{__html: FormatContent(block.content)}}></div>
 							)}
 						</div>
 					)}
@@ -172,10 +151,10 @@ export const MultiColumnTable = ({block}) => {
 						<div className='table-responsive'>
 
 							<table className='table-multi-comparison table d-none d-desktop-table'>
-								{block.rows[0] == 'heading_row' && headRows > 0 && (
+								{rows.length > 0 && (
 									<thead>
 										<tr className='multi-columns-heading-row'>
-											{headCells.map((cell, index) => (
+											{newHeadCells.map((cell, index) => (
 												<th key={index}>
 													{cell.rowHeading && (
 														cell.rowHeading
@@ -187,12 +166,22 @@ export const MultiColumnTable = ({block}) => {
 								)}
 
 								<tbody>
-									{contentCells.map((row, index) => (
+
+									{newContentCells.map((row, index) => (
 										<tr key={index}>
 											{row.map((cell, index) => (
 												<td key={index}>
-													{cell.rowContent && (
+													{cell.rowContent && cell.rowContent != '' && (
 														cell.rowContent
+													)}
+
+													{cell.rowCheck && cell.rowCheck != '' && (
+														cell.rowCheck == 'Yes' && (
+															<Image src='https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2023/07/Check.svg' alt='yes' width='20' height='20' />
+														) ||
+														cell.rowCheck == 'No' && (
+															<Image src='https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2023/08/Cross.svg' alt='yes' width='20' height='20' />
+														)
 													)}
 												</td>
 											))}
@@ -212,7 +201,7 @@ export const MultiColumnTable = ({block}) => {
 								<div className='mb-table mb-multi-compare'>
 									<div className='fixed-column'>
 										<div className='fixed-column-inner' style={{display: 'grid', gridTemplateRows: `repeat(${block.rows_0_cell}, 1fr)`}}>
-											{headCells.map((cell, index) => (
+											{newHeadCells.map((cell, index) => (
 												<div key={index} className='mt-box'>
 													{cell.rowHeading && (
 														cell.rowHeading
@@ -227,12 +216,21 @@ export const MultiColumnTable = ({block}) => {
 											<div className='blaze-track-container'>
 												<div className='blaze-track'>
 
-													{contentCells.map((row, index) => (
+													{newContentCells.map((row, index) => (
 														<div key={index} className='mt-box-inner' style={{display: 'grid', gridTemplateRows: `repeat(${block.rows_0_cell}, 1fr)`}}>
 															{row.map((cell, index) => (
 																<div key={index} className='mt-box mt-ctn'>
-																	{cell.rowContent && (
+																	{cell.rowContent && cell.rowContent != '' && (
 																		<p>{cell.rowContent}</p>
+																	)}
+
+																	{cell.rowCheck && cell.rowCheck != '' && (
+																		cell.rowCheck == 'Yes' && (
+																			<Image src='https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2023/07/Check.svg' alt='yes' width='20' height='20' />
+																		) ||
+																		cell.rowCheck == 'No' && (
+																			<Image src='https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2023/08/Cross.svg' alt='yes' width='20' height='20' />
+																		)
 																	)}
 																</div>
 															))}
@@ -255,8 +253,8 @@ export const MultiColumnTable = ({block}) => {
 						</div>
 					</div>
 
-					{block.footer && (
-						<div className='col-sm-12' dangerouslySetInnerHTML={{__html: formatFooterContent}}></div>
+					{block.footer && block.footer != '' && (
+						<div className='col-sm-12' dangerouslySetInnerHTML={{__html: FormatContent(block.footer)}}></div>
 					)}
 				</div>
 			</div>

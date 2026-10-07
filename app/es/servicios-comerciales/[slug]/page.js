@@ -1,3 +1,6 @@
+import queryByUri from '../../../queryByUri';
+import { BlockRenderer } from "@/components/BlockRenderer"
+
 const AllLandersServiciosQuery = `
 	query AllLandersServicios {
 		landings(first: 30, where: {parent: 30367}) {
@@ -19,6 +22,9 @@ const query = `
 				landingId
 				title
 				blocks(postTemplate: false)
+				postLanguage {
+					contentLanguage
+				}
 				seo {
 					title
 					metaDesc
@@ -88,9 +94,9 @@ export default async function Page({params}) {
   });
 	const { data } = await res.json();
 
+	//console.log('ES BLOCK DATA: ', data.nodeByUri.postLanguage.contentLanguage[0])
+
 	return (
-		<main>
-			<h1>dynamic page file - {data.nodeByUri.title}</h1>
-		</main>  
+		<BlockRenderer blocks={data.nodeByUri.blocks} language={data.nodeByUri.postLanguage.contentLanguage[0]}/>
 	);
 }

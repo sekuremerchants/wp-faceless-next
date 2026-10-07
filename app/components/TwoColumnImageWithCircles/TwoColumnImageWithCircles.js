@@ -34,7 +34,7 @@ export const TwoColumnImageWithCircles = ({block}) => {
 						<div className='img-wrap'>
 							<div className='scale-in-circle img-width-wrap'>
 								{block.column_image_url != '' && block.column_image_url != false && (
-									<Image src={block.column_image_url} alt={block.column_image_alt} height='644' width='644' className='column-image' />
+									<Image src={block.column_image_url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={block.column_image_alt} height='644' width='644' className='column-image' />
 								)}
 							</div>
 							<div className='fade-in-circle circle-blue abs-cover-el'></div>

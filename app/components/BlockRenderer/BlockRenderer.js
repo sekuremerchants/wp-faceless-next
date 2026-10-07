@@ -24,6 +24,17 @@ import { FullWidthText } from '@/components/FullWidthText'
 import { Products } from '@/components/Products'
 import { Expert } from '@/components/Expert'
 import { Survey } from '@/components/Survey'
+import { Panels } from '@/components/Panels'
+import { Awards } from '@/components/Awards'
+import { CTAPhone } from '@/components/CTAPhone'
+import { ContactForm } from '@/components/ContactForm'
+import { TalkToUs } from '@/components/TalkToUs'
+import { TwoColumnBuilder } from '@/components/TwoColumnBuilder'
+import { ImageCarousel } from '@/components/ImageCarousel'
+import { Infographic } from '@/components/Infographic'
+import { IndustryShowcase } from '@/components/IndustryShowcase'
+import { MerchantSpotlight } from '@/components/MerchantSpotlight'
+import { MediaListItems } from '@/components/MediaListItems'
 import Image from 'next/image'
 
 const mediaItemQuery = `
@@ -36,6 +47,66 @@ const mediaItemQuery = `
 		}
 	}
 `;
+
+const awardsQuery = `
+query NewQuery {
+  nodeByUri(uri: "careers") {
+    ... on Page {
+      careersPage {
+        awardsSection {
+          singleAward {
+            image {
+              node {
+                altText
+                file
+                filePath
+                link
+                sourceUrl
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
+
+const industriesQuery = `
+	query NewQuery {
+		industries(first: 30, where: {orderby: {field: TITLE, order: ASC}}) {
+			nodes {
+				title
+				industriesTemplateHomePageIcon {
+					iconIndustry
+				}
+				postLanguage {
+					contentLanguage
+				}
+			}
+		}
+	}
+`
+
+const postsQuery = `
+query NewQuery {
+  posts(
+    first: 9, where: {taxQuery: {taxArray: {taxonomy: CONTENTTYPE, field: ID, terms: "282"}}}
+  ) {
+    nodes {
+      uri
+      title
+      excerpt
+      featuredImage {
+        node {
+          altText
+          sourceUrl
+        }
+      }
+    }
+  }
+}
+`
 
 async function getMediaItemData(id){
 	const queryVariables = {
@@ -60,7 +131,24 @@ async function getMediaItemData(id){
 	}
 }
 
-export const BlockRenderer = ({postID, blocks}) => {
+export const BlockRenderer = async ({postID, blocks, language}) => {
+
+	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: awardsQuery,
+    }),
+  });
+  const { data } = await res.json();
+	var awards;
+
+	if(data.nodeByUri){
+		awards = data.nodeByUri.careersPage.awardsSection.singleAward
+	}
+
 	return blocks.map(async (block, index) => {
 		switch(block.name){
 			case 'core/heading': {
@@ -172,7 +260,12 @@ export const BlockRenderer = ({postID, blocks}) => {
 			}
 			case 'acf/sk-our-partners': {
 				return (
-					<OurPartners block={block.attributes.data} />
+					<OurPartners type={`our-partners`} block={block.attributes.data} />
+				)
+			}
+			case 'acf/partners': {
+				return (
+					<OurPartners type={`partners`} block={block.attributes.data} />
 				)
 			}
 			case 'acf/sk-content-testimonials': {
@@ -197,7 +290,93 @@ export const BlockRenderer = ({postID, blocks}) => {
 			}
 			case 'acf/sk-page-survey': {
 				return (
-					<Survey postID={postID} block={block.attributes.data} />
+					<Survey postID={postID} block={block.attributes.data} language={language} />
+				)
+			}
+			case 'acf/sk-panel-video': {
+				return (
+					<Panels postID={postID} block={block.attributes.data} />
+				)
+			}
+			case 'acf/awards': {
+				return (
+					<Awards postID={postID} block={block.attributes.data} awards={awards} />
+				)
+			}
+			case 'acf/sk-cta-phone': {
+				return (
+					<CTAPhone postID={postID} block={block.attributes.data} />
+				)
+			}
+			case 'acf/cta-button': {
+				return (
+					<CTAPhone postID={postID} block={block.attributes.data} type='legacy' />
+				)
+			}
+			case 'acf/contact-form-section': {
+				return (
+					<ContactForm postID={postID} block={block.attributes.data} />
+				)
+			}
+			case 'acf/talk-to-us': {
+				return (
+					<TalkToUs postID={postID} language={language} />
+				)
+			}
+			case 'acf/two-column-builder': {
+				return (
+					<TwoColumnBuilder postID={postID} block={block.attributes.data} />
+				)
+			}
+			case 'acf/image-carousel': {
+				return (
+					<ImageCarousel postID={postID} block={block.attributes.data} />
+				)
+			}
+			case 'acf/sk-infographic': {
+				return (
+					<Infographic postID={postID} block={block.attributes.data} />
+				)
+			}
+			case 'acf/sk-merchant-spotlight': {
+				const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						query: postsQuery,
+					}),
+				});
+				const { data } = await res.json();
+				if(data && data.posts != null) {
+					var posts = data.posts.nodes
+				}
+				return (
+					<MerchantSpotlight postID={postID} block={block.attributes.data} posts={posts} />
+				)
+			}
+			case 'acf/sk-industries-showcase': {
+				const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						query: industriesQuery,
+					}),
+				});
+				const { data } = await res.json();
+				if(data && data.industries != null) {
+					var industries = data.industries.nodes
+				}
+				return (
+					<IndustryShowcase postID={postID} block={block.attributes.data} industries={industries} />
+				)
+			}
+			case 'acf/media-list-items' : {
+				return (
+					<MediaListItems postID={postID} block={block.attributes.data} industries={industries} />
 				)
 			}
 			case 'core/more': {

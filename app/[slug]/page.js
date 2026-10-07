@@ -1,5 +1,7 @@
 import { queryByUri } from '../queryByUri';
 import { BlockRenderer } from "@/components/BlockRenderer"
+import Image from  'next/image'
+import Link from  'next/link'
 
 const allPagesAndLandersQuery = `
 	query AllPagesAndLandersQuery {
@@ -37,7 +39,7 @@ const query = `
 					title
 					metaDesc
 				}
-				customCss {
+				customCSS {
 					customCss
 				}
 			}
@@ -53,11 +55,14 @@ const landingQuery = `
 				landingId
 				title
 				blocks(postTemplate: false)
+				postLanguage {
+					contentLanguage
+				}
 				seo {
 					title
 					metaDesc
 				}
-				customCss {
+				customCSS {
 					customCss
 				}
 			}
@@ -76,6 +81,8 @@ export async function generateStaticParams(){
 		}),
 	});
 	const { data } = await res.json();
+
+	//console.log('STATIC PARAMS DATA: ', data)
 
 	if(!data || data.length === 0){
 		return [{ slug: 'data-empty' }];
@@ -125,6 +132,9 @@ export async function generateMetadata({ params, searchParams }, parent) {
   });
   var { data } = await res.json();
 
+	//console.log('PAGE PARAMS: ', pageParams)
+	//console.log('PAGE DATA FROM /: ', data)
+
 	if(!data.nodeByUri){
 		const newQueryVars = {
 				uri: 'landings/' + pageParams.slug,
@@ -142,6 +152,8 @@ export async function generateMetadata({ params, searchParams }, parent) {
 		var { data } = await resTwo.json();
 	}
 
+	//console.log('LANDERS DATA FROM /: ', data)
+
   return {
     title: data.nodeByUri.seo.title,
     description: data.nodeByUri.seo.metaDesc,
@@ -153,16 +165,30 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 export default async function Page({params}) {
-	const { slug } = await params;
-	const pageData = await queryByUri(slug);
-	const pageCSS = pageData.nodeByUri.customCss.customCss ? pageData.nodeByUri.customCss.customCss : false
-
+	const { slug } = await params
+	const pageData = await queryByUri(slug)
+	if(pageData){
+		var pageCSS = pageData.nodeByUri.customCSS.customCss ? pageData.nodeByUri.customCSS.customCss : false
+		var pageBlocks = pageData.nodeByUri.blocks
+		var lang = pageData.nodeByUri.postLanguage.contentLanguage[0]
+	}
+	
 	return (
 		<>
+      <BlockRenderer blocks={pageBlocks} language={lang} />
+
 			{pageCSS && (
 				<style dangerouslySetInnerHTML={{__html: pageCSS}}></style>
 			)}
-      <BlockRenderer blocks={pageData.nodeByUri.blocks}/>
+
+			{pageData.nodeByUri.landerCTA.showStickyBar == 'yes' && (
+				<div className='sticky-contact'>
+					<div className='landing-sticky-block'>
+						<Link href='tel:'><Image src='/media/images/pictograms/landing-phone-icon.webp' alt='call us' height='50' width='50' /></Link>
+						<Link href='#' id='form-popup' data-popup-id='37274'><Image src='/media/images/pictograms/landing-mail-icon.webp' alt='call us' height='50' width='50' /></Link>
+					</div>
+				</div>
+			)}
     </>
 	);
 }

@@ -3,12 +3,13 @@ import { PhoneIconBlue } from '@/components/Header/Icons'
 
 const popupDataQuery = `
 	query getPopupData {
-		popups(first:100) {
+		popups(first: 40) {
 			nodes {
 				popupId
 				title
 				content
 				cptPopups {
+					form
 					formId
 				}
 			}
@@ -54,7 +55,7 @@ export const Button = async ({id, type, text, link, popupID, popupHeading, popup
 	switch(type){
 		case 'same': {
 			return (
-				<Link id={id} href={ctaLink} className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`}>
+				<Link id={id} href={ctaLink} className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} ${classes} btn-offset-9`}>
 					<span className='btn-bg-el'></span>
 					<span className='btn-txt' dangerouslySetInnerHTML={{__html: ctaText}}></span>
 				</Link>
@@ -62,7 +63,7 @@ export const Button = async ({id, type, text, link, popupID, popupHeading, popup
 		}
 		case 'yes': {
 			return (
-				<Link id={id} href={ctaLink} target='_blank' className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`}>
+				<Link id={id} href={ctaLink} target='_blank' className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} ${classes} btn-offset-9`}>
 					<span className='btn-bg-el'></span>
 					<span className='btn-txt' dangerouslySetInnerHTML={{__html: ctaText}}></span>
 				</Link>
@@ -70,7 +71,7 @@ export const Button = async ({id, type, text, link, popupID, popupHeading, popup
 		}
 		case 'modal': {
 			return (
-				<Link id={id} href='#' className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`} data-popup-id={popupID} data-popup-heading={popupHeading} data-popup-desc={popupDesc} data-popup-form-id={popupData.cptPopups.formId} data-popup-content={popupData.content}>
+				<Link id={id} href='#' className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} ${classes} btn-offset-9`} data-popup-id={popupID} data-popup-heading={popupHeading} data-popup-desc={popupDesc} data-popup-form-id={popupData.cptPopups.formId} data-popup-content={popupData.content}>
 					<span className='btn-bg-el'></span>
 					<span className='btn-txt' dangerouslySetInnerHTML={{__html: ctaText}}></span>
 				</Link>
@@ -78,7 +79,7 @@ export const Button = async ({id, type, text, link, popupID, popupHeading, popup
 		}
 		case 'video': {
 			return (
-				<Link id={id} href='#' className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`} data-video-embed-id=''>
+				<Link id={id} href='#' className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} ${classes} btn-offset-9`} data-video-embed-id=''>
 					<span className='btn-bg-el'></span>
 					<span className='btn-txt' dangerouslySetInnerHTML={{__html: ctaText}}></span>
 				</Link>
@@ -86,7 +87,7 @@ export const Button = async ({id, type, text, link, popupID, popupHeading, popup
 		}
 		case 'call': {
 			return (
-				<Link id={id} href={`tel:${phone}`} className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} btn-offset-9`}>
+				<Link id={id} href={`tel:${phone}`} className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} ${classes} btn-offset-9`}>
 					<span className='btn-bg-el'></span>
 					<span className='btn-txt' dangerouslySetInnerHTML={{__html: ctaText}}></span>
 				</Link>

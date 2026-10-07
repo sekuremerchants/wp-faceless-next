@@ -28,8 +28,8 @@ const nextConfig = {
     },
   },
   experimental: {
-    //workerThreads: false,
-    //cpus: 4, 
+    workerThreads: false,
+    cpus: 4, 
     staticGenerationMaxConcurrency: 4,
   },
   staticPageGenerationTimeout: 120,
