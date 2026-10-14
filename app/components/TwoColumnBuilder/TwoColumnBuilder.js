@@ -142,8 +142,10 @@ export const TwoColumnBuilder = ({block}) => {
 		}
 	}
 
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
+
 	return (
-		<section id={block.section_id} className={`content-block-holder sk-block builder-2 prel ov-hidden op-0 ${bgColour} ${block.section_classes}`}>
+		<section {...IDattr} className={`content-block-holder sk-block builder-2 prel ov-hidden op-0 ${bgColour} ${block.section_classes}`}>
 
 			{block.background_image_url != '' && (
 				<picture className='d-flex'><Image src={block.background_image_url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={block.background_image_alt} width='1440' height='1080' className='b-lazy bg-image object-cover' /></picture>

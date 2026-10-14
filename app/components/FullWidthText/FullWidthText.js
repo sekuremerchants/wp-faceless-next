@@ -20,8 +20,10 @@ export const FullWidthText = ({block}) => {
 		return formatted
 	}
 
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
+
 	return (
-		<section id={block.section_id} className={`sk-block block--b prel ov-hidden op-0 ${bgColour} ${block.section_classes}`}>
+		<section {...IDattr} className={`sk-block block--b prel ov-hidden op-0 ${bgColour} ${block.section_classes}`}>
 			<div className='container'>
 				<div className='row'>
 					<div className='col-sm-12 col-lg-8 heading-balance' dangerouslySetInnerHTML={{__html:formatContent(block.fullwidth_content)}}></div>

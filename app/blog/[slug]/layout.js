@@ -32,7 +32,7 @@ export default async function RootLayout({ children, params }) {
           strategy="afterInteractive"
           id="hs-script-loader"
         />
-        <Header pageParams={params}/>
+        <Header />
        
         <main id='main-content'>{children}</main>
 

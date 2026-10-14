@@ -28,9 +28,10 @@ export const CTAPhone = ({block, type}) => {
 	const CTAtype = (type && type == 'legacy') ? type : false
 	const bgColour = CTAtype == 'legacy' ? 'bg-blue' : ''
 	const columnSize = CTAtype == 'legacy' ? 'col-sm-12 col-md-8 offset-md-2' : 'col-sm-12'
+	//const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
 
 	return (
-		<section id={block.section_id} className={`sk-block block--psk13 cta-phone ${bgColour} ${block.section_classes}`}>
+		<section className={`sk-block block--psk13 cta-phone ${bgColour}`}>
 			<div className='container'>
 				<div className='text-content row'>
 					<div className={columnSize}>

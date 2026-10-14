@@ -8,7 +8,6 @@ const allPagesAndLandersQuery = `
 		pages(first: 30, where: {parent: 0}) {
 			nodes {
 				id
-				pageId
 				title
 				slug
 			}
@@ -16,7 +15,6 @@ const allPagesAndLandersQuery = `
 		landings(first: 170, where: {parent: 0}) {
 			nodes {
 				id
-				landingId
 				title
 				slug
 			}
@@ -29,7 +27,6 @@ const query = `
 		nodeByUri(uri: $uri) {
 			... on Page {
 				id
-				pageId
 				title
 				blocks(postTemplate: false)
 				postLanguage {
@@ -52,7 +49,6 @@ const landingQuery = `
 		nodeByUri(uri: $uri) {
 			... on Landing {
 				id
-				landingId
 				title
 				blocks(postTemplate: false)
 				postLanguage {
@@ -118,7 +114,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
   const pageParams = await params;
 
 	const queryVariables = {
-  		uri: "/" + pageParams.slug,
+		uri: "/" + pageParams.slug,
 	};
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
@@ -137,7 +133,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 	if(!data.nodeByUri){
 		const newQueryVars = {
-				uri: 'landings/' + pageParams.slug,
+			uri: 'landings/' + pageParams.slug,
 		};
 		const resTwo = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
 			method: 'POST',
@@ -181,7 +177,7 @@ export default async function Page({params}) {
 				<style dangerouslySetInnerHTML={{__html: pageCSS}}></style>
 			)}
 
-			{pageData.nodeByUri.landerCTA.showStickyBar == 'yes' && (
+			{pageData.nodeByUri.landerCTA && pageData.nodeByUri.landerCTA.showStickyBar == 'yes' && (
 				<div className='sticky-contact'>
 					<div className='landing-sticky-block'>
 						<Link href='tel:'><Image src='/media/images/pictograms/landing-phone-icon.webp' alt='call us' height='50' width='50' /></Link>

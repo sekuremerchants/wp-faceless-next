@@ -1,4 +1,3 @@
-import { headers } from 'next/headers'
 import { BlockRenderer } from '@/components/BlockRenderer'
 
 const ratesQuery = `
@@ -24,16 +23,21 @@ const query = `
         blocks
         postLanguage {
           contentLanguage
-          enTranslation {
+          englishTranslation {
             nodes {
               uri
             }
           }
-          esTranslation {
+          spanishTranslation {
             nodes {
               uri
             }
           }
+					frenchTranslation {
+						nodes {
+							uri
+						}
+					}
         }
         customCSS {
           customCss
@@ -66,16 +70,12 @@ export async function generateStaticParams(){
 export async function generateMetadata({ params, searchParams }, parent) {
 	var pageParams = await params;
 
-	const headersList = await headers()
-	const host = headersList.get('host')
-	const currentUrl = headersList.get('x-url').replace('http://' + host, '')
-
-	if(currentUrl == '/es/tarifas/interchange-plus') {
+	if(pageParams.slug == 'interchange-plus') {
 		pageParams.slug = 'interchange-plus-2'
 	}
 	
 	const queryVariables = {
-			uri: "rates/" + pageParams.slug,
+		uri: "rates/" + pageParams.slug,
 	};
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
 		method: 'POST',
@@ -102,11 +102,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default async function Page({params}) {
 	var { slug } = await params;
 
-	const headersList = await headers()
-	const host = headersList.get('host')
-	const currentUrl = headersList.get('x-url').replace('http://' + host, '')
-
-	if(currentUrl == '/es/tarifas/interchange-plus') {
+	if(slug == 'interchange-plus') {
 		slug = 'interchange-plus-2'
 	}
 	

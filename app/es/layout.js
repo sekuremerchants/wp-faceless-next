@@ -30,7 +30,7 @@ export default async function RootLayout({ children, params }) {
           strategy="afterInteractive"
           id="hs-script-loader"
         />
-        <Header />
+        <Header language='es' />
         <main id='main-content' className='prel txt-blocks-layout-section landing-page-template-blocks'>
           <div className="background-svg-wrap svg-wrap-top-left pabs">
             <svg viewBox="0 0 451.3 451.3" className="background-flower-path-svg svg-full">
@@ -54,7 +54,7 @@ export default async function RootLayout({ children, params }) {
           </div>
           {children}
         </main>
-        <Footer />
+        <Footer language='es' />
         <GlobalEvents />
       </body>
     </html>

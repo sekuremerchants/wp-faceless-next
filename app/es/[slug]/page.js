@@ -2,7 +2,7 @@ import { BlockRenderer } from '@/components/BlockRenderer'
 
 const allPagesAndLandersQuery = `
 	query AllPagesAndLandersQuery {
-		pages(first: 20, where: {parent: 30211}) {
+		pages(first: 20, where: {parent: 46134}) {
 			nodes {
 				id
 				pageId
@@ -29,12 +29,30 @@ const query = `
 				pageId
 				title
 				blocks(postTemplate: false)
-				postLanguage {
-					contentLanguage
-				}
+        postLanguage {
+          contentLanguage
+          englishTranslation {
+            nodes {
+              uri
+            }
+          }
+          spanishTranslation {
+            nodes {
+              uri
+            }
+          }
+					frenchTranslation {
+						nodes {
+							uri
+						}
+					}
+        }
 				seo {
 					title
 					metaDesc
+				}
+				customCSS {
+					customCss
 				}
 			}
 		}
@@ -49,9 +67,24 @@ const landingQuery = `
 				landingId
 				title
 				blocks(postTemplate: false)
-				postLanguage {
-					contentLanguage
-				}
+        postLanguage {
+          contentLanguage
+          englishTranslation {
+            nodes {
+              uri
+            }
+          }
+          spanishTranslation {
+            nodes {
+              uri
+            }
+          }
+					frenchTranslation {
+						nodes {
+							uri
+						}
+					}
+        }
 				seo {
 					title
 					metaDesc

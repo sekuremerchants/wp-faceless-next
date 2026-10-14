@@ -5,11 +5,9 @@ const popupDataQuery = `
 	query getPopupData {
 		popups(first: 40) {
 			nodes {
-				popupId
 				title
 				content
 				cptPopups {
-					form
 					formId
 				}
 			}
@@ -17,28 +15,134 @@ const popupDataQuery = `
 	}
 `;
 
+const popupForms = {
+	45568: {
+		id: "38ad7a0c-4b18-4299-86c0-6c83fb91031f",
+		content: "<h3>Descarga nuestra guía</h3>",
+	},
+	44580: {
+		id: "5022b176-98a0-4368-ba0a-7226e50b9491",
+		content: "<h3>Sube tu declaración</h3>",
+	},
+	44212: {
+		id: "137253f1-a70a-4cf2-949f-d197600aa028",
+		content: "<h3>Start earning today!</h3><p>Schedule a callback to learn how to become a Sekure Partner.</p>"
+	},
+	38191: {
+		id: "0f78a493-9ffb-4524-8340-9aad2da63fbc",
+		content: "<h3>Submit your info — a Sekure recruiter will reach out!</h3>",
+	},
+	37302: {
+		id: "d017160d-e3e6-47d9-81af-f7ce017d4409",
+		content: "<h3>Programar una devolución de llamada</h3>",
+	},
+	37300: {
+		id: "021180c3-1536-49f2-83f8-adcf818fdb9f",
+		content: "<h3>Asegura tu éxito con Sekure</h3><p>¡Completa este formulario y empieza a vender hoy!</p>",
+	},
+	37299: {
+		id: "4ac088e9-dde7-48bf-b3cc-82ae06624e78",
+		content: "",
+	},
+	37298: {
+		id: "4ac088e9-dde7-48bf-b3cc-82ae06624e78",
+		content: "",
+	},
+	37297: {
+		id: "4ac088e9-dde7-48bf-b3cc-82ae06624e78",
+		content: "",
+	},
+	37296: {
+		id: "4ac088e9-dde7-48bf-b3cc-82ae06624e78",
+		content: "",
+	},
+	37295: {
+		id: "82b81d45-5ded-4777-8af8-0e541af2d026",
+		content: "",
+	},
+	37294: {
+		id: "067cf5ef-9f1a-4250-8cd0-ee34c89873e7",
+		content: "",
+	},
+	37293: {
+		id: "067cf5ef-9f1a-4250-8cd0-ee34c89873e7",
+		content: "",
+	},
+	37292: {
+		id: "ecedc75b-fa85-4be1-8d25-0918174b105f",
+		content: "",
+	},
+	37291: {
+		id: "c736596c-870b-4023-8363-6bf396c654fb",
+		content: "",
+	},
+	37290: {
+		id: "067cf5ef-9f1a-4250-8cd0-ee34c89873e7",
+		content: "",
+	},
+	37289: {
+		id: "067cf5ef-9f1a-4250-8cd0-ee34c89873e7",
+		content: "",
+	},
+	37288: {
+		id: "3951dcf0-24be-4657-acf2-e294cf633be0",
+		content: "",
+	},
+	37287: {
+		id: "6dcc4d0b-1ee1-4419-90db-b9c9651908cd",
+		content: "",
+	},
+	37286: {
+		id: "5726be87-fd8a-4ab7-8ee1-efedd669ce96",
+		content: "",
+	},
+	37285: {
+		id: "ee6940af-5b71-4938-b6a2-d5228c14cd22",
+		content: "<h3>Unlocking the power of new payment technologies and POS equipment for your small business</h3><p>Download our free guide for an in-depth look at the most crucial new payment technologies available on the market today.</p>",
+	},
+	37284: {
+		id: "0ef2f0b8-631d-4bd0-a65e-1e11d920e782",
+		content: "<h3>Your free statement analysis is right around the corner</h3><p>We'll tell you exactly what you're currently paying in processing rates, highlight any unnecessary fees and show you the savings we can offer! Submit your statement today, and we'll have one of our Payment Experts get back to you in under 48 hours.</p>",
+	},
+	37283: {
+		id: "82e312ef-62a2-48dc-95f5-76c3d8461b64",
+		content: "<h3>Comience con Sekure</h3><p>¡Complete este formulario y comience a ahorrar hoy!</p>",
+	},
+	37282: {
+		id: "088f9d25-5e0e-4074-a6cd-76fa83cb9f6e",
+		content: "<h3>Get started with Sekure</h3><p>Fill out this form and start saving today!</p>",
+	},
+	37281: {
+		id: "118d46a3-433e-4492-82f6-0fd07651769e",
+		content: "<h3>Book your free demo</h3>",
+	},
+	37279: {
+		id: "4ac088e9-dde7-48bf-b3cc-82ae06624e78",
+		content: "<h3>Refer and earn!</h3><p>Fill out this form to get rewarded</p>",
+	},
+	37278: {
+		id: "b66c9b35-40f4-463b-955d-28633025e626",
+		content: "<h3>Upload your statement</h3>",
+	},
+	37277: {
+		id: "2ef297cc-cd3d-4bef-94cf-e12cdc13a3e8",
+		content: "<h3>Sekure your success</h3><p>Fill out this form and start selling today!</p>",
+	},
+	37276: {
+		id: "d74be8e6-676d-43a4-a3cf-5f796747705f",
+		content: "<h3>Download our guide</h3>",
+	},
+	37274: {
+		id: "3fbf0f98-82aa-434c-b6c6-0dc7bfa7fc6f",
+		content: "<h3>Schedule a callback</h3>",
+	},
+	37273: {
+		id: "b66c9b35-40f4-463b-955d-28633025e626",
+		content: "<h3>Sekure your savings today</h3><p>Upload your credit card processing statement and get a free analysis from our Payment Experts.</p>",
+	},
+}
+
 export const Button = async ({id, type, text, link, popupID, popupHeading, popupDesc, phone, sectionBgColour, classes}) => {
-
-	let popupData
-
-	if(popupID){
-		const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				query: popupDataQuery,
-			}),
-		})
-		const { data } = await res.json()
-
-		data.popups.nodes.map((popup, index) => {
-			if(popupID === popup.popupId){
-				popupData = popup
-			}
-		})
-	}
 
 	const bgColour = sectionBgColour ? sectionBgColour : 'white';
 	let ctaText = (text && text.includes('[phone-icon-blue]') ? text.replace('[phone-icon-blue]', '<svg width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0"><g clip-path="url(#clip0_63_2933)"><path d="M23.9926 0C10.7481 0 3.05176e-05 10.7481 3.05176e-05 23.9925C3.05176e-05 37.237 10.7481 47.985 23.9926 47.985C37.237 47.985 47.9851 37.237 47.9851 23.9925C47.9851 10.7481 37.252 0 23.9926 0ZM36.9381 32.7973C36.8783 32.9019 36.8035 33.0215 36.7288 33.1411C35.9963 34.2473 34.4416 35.8916 34.4416 35.8916C32.005 37.7602 26.7431 35.1741 26.7431 35.1741C16.6229 29.9421 11.4656 20.4198 11.4656 20.4198C9.5223 16.5332 12.6914 12.4522 12.6914 12.4522C14.5002 10.2846 17.2208 12.2579 17.2208 12.2579L20.0312 14.4852C21.84 15.9801 19.9116 17.9383 19.9116 17.9383C17.3703 20.36 19.0446 22.0193 19.0446 22.0193C21.0626 24.6353 26.4591 29.1199 26.4591 29.1199C28.4771 30.0766 29.673 27.5652 29.673 27.5652C30.6596 25.9059 32.7674 27.3261 32.7674 27.3261L35.0246 28.9854C36.8035 30.4204 37.5211 31.721 36.9231 32.7973H36.9381Z" fill="#002ea6"></path></g><defs><clipPath id="clip0_63_2933"><rect width="48" height="48" fill="white"></rect></clipPath></defs></svg>') : text)
@@ -71,7 +175,7 @@ export const Button = async ({id, type, text, link, popupID, popupHeading, popup
 		}
 		case 'modal': {
 			return (
-				<Link id={id} href='#' className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} ${classes} btn-offset-9`} data-popup-id={popupID} data-popup-heading={popupHeading} data-popup-desc={popupDesc} data-popup-form-id={popupData.cptPopups.formId} data-popup-content={popupData.content}>
+				<Link id={id} href='#' className={`btn-default c-blue-1 btn-green-1 section-color-${bgColour} ${classes} btn-offset-9`} data-popup-id={popupID} data-popup-heading={popupHeading} data-popup-desc={popupDesc} data-popup-form-id={popupForms[popupID] !== undefined ? popupForms[popupID].id : '2ef297cc-cd3d-4bef-94cf-e12cdc13a3e8'} data-popup-content={popupForms[popupID] !== undefined ? popupForms[popupID].content : ''}>
 					<span className='btn-bg-el'></span>
 					<span className='btn-txt' dangerouslySetInnerHTML={{__html: ctaText}}></span>
 				</Link>

@@ -68,9 +68,10 @@ export const IndustryShowcase = ({block, industries}) => {
 	}, [])
 	
 	const bgColour = block.full_width_with_background == '1' ? 'full-width-bg' : ''
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
 
 	return (
-		<section id={block.section_id} className={`content-block-holder sk-block block--sk4 op-0 ${block.section_classes} ${bgColour} ${block.post_showcase}`}>
+		<section {...IDattr} className={`content-block-holder sk-block block--sk4 op-0 ${block.section_classes} ${bgColour} ${block.post_showcase}`}>
 			<div className='container'>
 				<div className='row mb-5'>
 					<div className='col-sm-12 d-flex flex-even gap-cols flex-column-1024'>

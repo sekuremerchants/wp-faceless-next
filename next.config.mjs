@@ -29,10 +29,10 @@ const nextConfig = {
   },
   experimental: {
     workerThreads: false,
-    cpus: 4, 
-    staticGenerationMaxConcurrency: 4,
+    cpus: 2,
+    staticGenerationMaxConcurrency: 1,
   },
-  staticPageGenerationTimeout: 120,
+  staticPageGenerationTimeout: 180, 
 };
 
 export default nextConfig;

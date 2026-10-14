@@ -54,8 +54,10 @@ export const BlogCTA = async ({uid, block, sectionID, sectionClasses, title, con
 											formId: 'd74be8e6-676d-43a4-a3cf-5f796747705f',
 										});`
 
+	const IDattr = sectionID && sectionID != '' ? {id: sectionID} : ''
+
 	return (
-		<section id={sectionID} className={`content-block-holder sk-block blog-cta block--bsk8 py-0 op-0 ${sectionClasses}`}>
+		<section {...IDattr} className={`content-block-holder sk-block blog-cta block--bsk8 py-0 op-0 ${sectionClasses}`}>
 			<div className={`sk-blog-block blog-cta col-xs-12 bg-blue d-inline-block w-100 ${imageClass} ${imageStyle}`}>
 				{image && (
 					<div className='image-block'>

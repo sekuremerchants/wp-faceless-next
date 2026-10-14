@@ -100,8 +100,10 @@ export const OurPartners = ({type, block}) => {
 		}
 	`
 
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
+
 	return (
-		<section id={block.section_id} className={`content-block-holder sk-block sk-our-partners block--bsk3 op-0 ${bgColour} ${block.section_classes}`}>
+		<section {...IDattr} className={`content-block-holder sk-block sk-our-partners block--bsk3 op-0 ${bgColour} ${block.section_classes}`}>
 			<style>{styleCode}</style>
 			<div className='partners-section-home prel slider-arrows prel'>
 				<div className='container'>
@@ -126,7 +128,11 @@ export const OurPartners = ({type, block}) => {
 				<div className='container d-none d-desktop pt-4'>
 					<div className='row d-flex justify-content-center align-items-start'>
 						{partners.map((row, index) => (
-							<Link key={index} href={row.link} rel='noopener noreferrer' target='_blank' className='partner-item col-xs-2 col-md-4 col-lg-2 py-3 px-2 text-center'><Image src={row.url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={row.alt} height='65' width='200' /></Link>
+							row.url && row.url != '' && (
+								<Link key={index} href={row.link} rel='noopener noreferrer' target='_blank' className='partner-item col-xs-2 col-md-4 col-lg-2 py-3 px-2 text-center'>
+									<Image src={row.url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={row.alt} height='65' width='200' />
+								</Link>
+							)
 						))}
 					</div>
 				</div>
@@ -144,7 +150,9 @@ export const OurPartners = ({type, block}) => {
 											{chunks.map((chunk, index) => (
 												<div key={index} className='mt-box-inner'>
 													{chunk.map((partnerLogo, index) => (
-														<Link key={index} href={partnerLogo.link} rel='noopener noreferrer' target='_blank' className='d-block partner-item text-center'><Image src={partnerLogo.url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={partnerLogo.alt} height='65' width='200' className='partner-img colored-img py-3' /></Link>
+														partnerLogo.url && partnerLogo.url != '' && (
+															<Link key={index} href={partnerLogo.link} rel='noopener noreferrer' target='_blank' className='d-block partner-item text-center'><Image src={partnerLogo.url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={partnerLogo.alt} height='65' width='200' className='partner-img colored-img py-3' /></Link>
+														)
 													))}
 												</div>
 											))}

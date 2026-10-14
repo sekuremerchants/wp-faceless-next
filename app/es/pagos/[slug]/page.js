@@ -1,4 +1,3 @@
-import { headers } from 'next/headers'
 import { BlockRenderer } from '@/components/BlockRenderer'
 import { TalkToUs } from '@/components/TalkToUs'
 
@@ -25,16 +24,21 @@ const query = `
         blocks
         postLanguage {
           contentLanguage
-          enTranslation {
+          englishTranslation {
             nodes {
               uri
             }
           }
-          esTranslation {
+          spanishTranslation {
             nodes {
               uri
             }
           }
+					frenchTranslation {
+						nodes {
+							uri
+						}
+					}
         }
         customCSS {
           customCss
@@ -67,11 +71,7 @@ export async function generateStaticParams(){
 export async function generateMetadata({ params, searchParams }, parent) {
 	var pageParams = await params;
 
-	const headersList = await headers()
-	const host = headersList.get('host')
-	const currentUrl = headersList.get('x-url').replace('http://' + host, '')
-
-	if(currentUrl == '/es/pagos/tap-to-pay') {
+	if(pageParams.slug == 'tap-to-pay') {
 		pageParams.slug = 'tap-to-pay-2'
 	}
 	
@@ -103,15 +103,9 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default async function Page({params}) {
 	var { slug } = await params;
 
-	const headersList = await headers()
-	const host = headersList.get('host')
-	const currentUrl = headersList.get('x-url').replace('http://' + host, '')
-
-	if(currentUrl == '/es/pagos/tap-to-pay') {
+	if(slug == 'tap-to-pay') {
 		slug = 'tap-to-pay-2'
 	}
-	
-	console.log('EQUIPMENTS SLUG: ', slug)
 
 	const queryVariables = {
   	uri: "payments/" + slug,

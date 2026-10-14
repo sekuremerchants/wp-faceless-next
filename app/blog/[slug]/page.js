@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Social } from '@/components/Social'
 import { BlogCategories } from '@/components/BlogCategories'
+import { FormatContent } from '@/components/FormatContent'
 import { assetSourceLocal } from "../../paths"
 import readingTime from 'reading-time'
 import { rateLimitedFetch } from '@/lib/api'
@@ -73,6 +74,67 @@ const query = `
 	}
 `;
 
+const queryBackup = `
+	query blogPostQuery($uri: String!) {
+		nodeByUri(uri: $uri) {
+			... on Post {
+				id
+				title
+				uri
+        content
+        postSummary {
+          postSummary
+        }
+        seo {
+          title
+          metaDesc
+        }
+        categories {
+          nodes {
+            categoryId
+            name
+            uri
+            slug
+          }
+        }
+        businessTypes {
+          nodes {
+            name
+            uri
+          }
+        }
+        contentTypes {
+          nodes {
+            name
+            uri
+          }
+        }
+        author {
+          node {
+            name
+            description
+            userImage {
+              authorImage {
+                node {
+                  sourceUrl
+                }
+              }
+            }
+          }
+        }
+        date
+        modified
+        featuredImage {
+          node {
+            altText
+            sourceUrl
+          }
+        }
+			}
+		}
+	}
+`;
+
 const blogPostsQuery = `
 query blogPosts {
   posts(first: 500) {
@@ -83,6 +145,10 @@ query blogPosts {
       date
       uri
       content
+      seo {
+        title
+        metaDesc
+      }
       featuredImage {
         node {
           altText
@@ -121,6 +187,7 @@ const getAllPosts = async () => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
     },
     body: JSON.stringify({
       query: blogPostsQuery,
@@ -149,9 +216,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
     },
     body: JSON.stringify({
-      query: query,
+      query: queryBackup,
 			variables: queryVariables,
     }),
   });
@@ -170,23 +238,77 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default async function BlogPost({params}) {
 	const { slug } = await params;
 	const queryVariables = {
-  		uri: "blog/" + String(slug),
+    uri: "blog/" + slug,
 	};
-  const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: query,
-			variables: queryVariables,
-    }),
-  });
-  const { data } = await res.json();
-  const nodeData = data.nodeByUri;
+  let res
+  let postData = null;
 
-  //console.log('POST DATA: ', nodeData)
+  try {
+    res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      },
+      body: JSON.stringify({ query: query, variables: queryVariables }),
+    });
 
+    const contentType = res.headers.get("content-type");
+    if (!res.ok || !contentType || !contentType.includes("application/json")) {
+      throw new Error("Primary query returned HTML");
+    }
+
+    const result = await res.json();
+    if (result.errors || !result.data?.nodeByUri) {
+      throw new Error("Primary GraphQL error");
+    }
+
+    // Assign the successful data
+    postData = result.data.nodeByUri;
+
+  } catch(error) {
+    console.log('⚠️ Primary query failed, attempting backup content query...');
+    
+    try {
+      res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        },
+        body: JSON.stringify({ query: queryBackup, variables: queryVariables }),
+      });
+
+      const fallbackContentType = res.headers.get("content-type");
+      if (!res.ok || !fallbackContentType || !fallbackContentType.includes("application/json")) {
+        console.error("❌ CRITICAL: Backup query also failed or returned HTML");
+        return { notFound: true }; // Smoothly skips this page in Next.js builds instead of crashing
+      }
+
+      // 👉 PARSE THE BACKUP JSON
+      const backupResult = await res.json();
+      
+      if (backupResult.errors || !backupResult.data?.nodeByUri) {
+        console.error("❌ CRITICAL: Backup GraphQL returned data errors");
+        return { notFound: true };
+      }
+
+      // Assign the backup data
+      postData = backupResult.data.nodeByUri;
+      console.log('✅ Backup query parsed successfully!');
+
+    } catch (fallbackError) {
+      console.error('❌ CRITICAL: Network failure during the backup query:', fallbackError);
+      return { notFound: true };
+    }
+  }
+
+  //const { data } = res.ok ? await res.json() : false
+  const nodeData = postData != null ? postData : false
+
+  console.log('POST DATA: ', nodeData)
+
+  /*
   const allPosts = await getAllPosts();
   const filterPostsForRelated = allPosts.map((post) => {
     const newDate = new Date(post.date);
@@ -207,6 +329,8 @@ export default async function BlogPost({params}) {
     ))
   });
   const relatedPosts = filterPostsForRelated.filter(Boolean).slice(0, 3);
+  */
+  const relatedPosts = []
 
   const postedDate = new Date(nodeData.date);
   const modifiedDate = new Date(nodeData.modified);
@@ -228,6 +352,8 @@ export default async function BlogPost({params}) {
       }
     })
   )}
+
+  //console.log('BLOG POST BLOCKS DATA: ', nodeData.blocks)
 
 
   const mainContentColClass = h2Count > 2 ? 'article-text prel mt-50 col-sm-12 col-lg-8 offset-xl-1' : 'article-text prel mt-50 col-sm-12'
@@ -362,6 +488,9 @@ export default async function BlogPost({params}) {
                   {nodeData.blocks && (
                     <BlockRenderer blocks={nodeData.blocks}/>
                   )}
+                  {nodeData.blocks === undefined && nodeData.content && nodeData.content != '' && (
+                    <div dangerouslySetInnerHTML={{__html:nodeData.content}}></div>
+                  )}
                 </div>
               </div>
             </div>
@@ -394,7 +523,7 @@ export default async function BlogPost({params}) {
           <h2 className='fw-700 heading-anim'>Related posts</h2>
           <div className='related-articles-wrap row gap-rows'>
 
-            {relatedPosts.map((post, index) => (
+            {relatedPosts.length > 0 && relatedPosts.map((post, index) => (
               
               <div key={index} className='related-post-item col-sm-12 col-md-6 col-lg-4'>
                 <div className='related-post-thumb mb-3'>

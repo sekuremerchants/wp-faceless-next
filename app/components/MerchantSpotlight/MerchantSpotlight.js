@@ -101,9 +101,11 @@ export const MerchantSpotlight = ({block, posts}) => {
 			slider.destroy();
 		}
 	}, [])
+
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
 	
 	return (
-		<section id={block.section_id} className={`sk-block content-block-holder sk-merchant-spotlight block--bsk2 inner-pages-slider-section block-mc ${block.section_classes}`}>
+		<section {...IDattr} className={`sk-block content-block-holder sk-merchant-spotlight block--bsk2 inner-pages-slider-section block-mc ${block.section_classes}`}>
 			<div className='container'>
 				<div className='txt-content'>
 					{block.related_posts_heading_heading_text && block.related_posts_heading_heading_text != '' && (

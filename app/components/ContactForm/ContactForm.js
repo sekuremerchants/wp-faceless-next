@@ -58,9 +58,10 @@ export const ContactForm = ({block}) => {
 	}
 
 	const bgColour = block.full_width_with_background == '1' ? 'full-width-bg' : ''
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
 
 	return (
-		<section id={block.section_id} className={`contact-form-block sk-block block--a prel ov-hidden overlay- ${bgColour} ${block.section_classes}`}>
+		<section {...IDattr} className={`contact-form-block sk-block block--a prel ov-hidden overlay- ${bgColour} ${block.section_classes}`}>
 			<div className='container prel z-2'>
 				<div className='row justify-content-between gap-rows'>
 

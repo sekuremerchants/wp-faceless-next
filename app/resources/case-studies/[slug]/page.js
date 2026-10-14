@@ -21,18 +21,21 @@ const query = `
         uri
         date
         modified
-        skLanguage {
-					language
-					englishTranslationUrl {
-						url
-					}
-					frenchTranslationUrl {
-						url
-					}
-					spanishTranslationUrl {
-						url
-					}
-				}
+        postLanguage {
+          contentLanguage
+          englishTranslation {
+            nodes {
+              link
+              uri
+            }
+          }
+          spanishTranslation {
+            nodes {
+              link
+              uri
+            }
+          }
+        }
         postSummary {
           postSummary
         }
@@ -175,9 +178,6 @@ export default async function Page({params}) {
 
 	return (
     <main id='main-content' className='single-case-studies'>
-      {(nodeData.skLanguage.englishTranslationUrl !== null || nodeData.skLanguage.frenchTranslationUrl !== null || nodeData.skLanguage.spanishTranslationUrl !== null) && (
-        <LanguageSelect langData={nodeData}/>
-      )}
       <article className='prel single-article-section sk-case-study sk-blog-content'>
         <div className='container'>
           <div className='article-body row'>

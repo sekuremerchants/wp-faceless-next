@@ -107,7 +107,7 @@ export const Panels = ({block}) => {
   return (
     <section className={`sk-block panel-video block--sk1 sk-hero-${design} media-type-${mediaType} ${videoType} ${block.section_classes}`}>
 			{bgImage && (
-				<div className='bg-banner-media'>
+				<div className='bg-banner-media z-1'>
 					<picture className='d-flex'><Image src={block.background_image_url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={block.background_image_alt} height='650' width='1280' className='media-item' /></picture>
 				</div>
 			)}
@@ -130,7 +130,7 @@ export const Panels = ({block}) => {
 								)}
 
 								{block.cta_text != '' && (
-									<div className='mt-default'><Button type={block.external_link} text={block.cta_text} link={block.cta_link} /></div>
+									<div className='mt-default'><Button type={block.external_link} text={block.cta_text} link={block.cta_link} popupID={block.popup && block.popup != '' ? block.popup : 37277} /></div>
 								)}
 
 								{block.content_area_cta_type == 'form' && block.content_area_form_position != 'image' && (

@@ -1,5 +1,6 @@
 import { Button } from '@/components/Button'
 import { HubspotForm } from '@/components/HubspotForm'
+import { FormatContent } from '@/components/FormatContent'
 import Image from 'next/image'
 import '@/styles/blocks/half-text-half-image.css'
 
@@ -9,7 +10,7 @@ export const HalfTextHalfImage = ({block, image}) => {
 	let newsletterForm = false
 	let newsletterFormID = ''
 
-	function formatTextAndReplacePhone(inputString) {
+	function FormatContent(inputString) {
 		const spanBlocks = [];
 
 		// 1. Temporarily extract all <span>...</span> blocks
@@ -114,6 +115,7 @@ export const HalfTextHalfImage = ({block, image}) => {
 	const contentColSize = block.column_sizing == 'image-small-column-fill' ? 'col-lg-7' : 'col-lg-6'
 	const randomNum = Math.floor(Math.random() * 73)
 
+	/*
 	const formattedContent = block.text_content.split('\r\n').map(content => {
 		const hasHTML = (str) => /<(?!(\/?(strong|span|a|b)\b))[^>]+>/i.test(str);
 		if(content.includes('[template-output')){
@@ -195,6 +197,7 @@ export const HalfTextHalfImage = ({block, image}) => {
 			return content.trim()
 		}
 	}).join('')
+	*/
 
 	let imageCol = 'col-lg-5'
 	if(block.column_sizing == 'image-small' || block.column_sizing == 'image-small-column-fill'){
@@ -203,10 +206,12 @@ export const HalfTextHalfImage = ({block, image}) => {
 		imageCol = 'col-lg-6'
 	}
 
-	return (
-		<section id={block.section_id} className={`sk-block content-block-holder block--p media-content-block ov-hidden op-0 ${block.section_classes} ${bgColour}`}>
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
 
-			{block.background_image_url && (
+	return (
+		<section {...IDattr} className={`sk-block content-block-holder block--p media-content-block ov-hidden op-0 ${block.section_classes} ${bgColour}`}>
+
+			{block.background_image_url && block.background_image_url != '' && (
 				<Image src={block.background_image_url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={block.background_image_alt} width='1440' height='980' className='bg-image object-cover' />
 			)}
 
@@ -214,7 +219,7 @@ export const HalfTextHalfImage = ({block, image}) => {
 				<div className={`media-block ${imagePosition} video-media content-block row gap-rows align-items-start justify-content-between flex-column-reverse-1024`}>
 
 					<div className={`txt-content col-sm-12 ${contentColSize} animated fadeIn`}>
-						<div dangerouslySetInnerHTML={{__html: formatTextAndReplacePhone(block.text_content)}}></div>
+						<div dangerouslySetInnerHTML={{__html: FormatContent(block.text_content)}}></div>
 
 						{newsletterForm == true && (
 							<div className='newsletter-form form-shortcode'>
@@ -250,7 +255,7 @@ export const HalfTextHalfImage = ({block, image}) => {
 						)}
 					</div>
 
-					{block.section_image_url && (
+					{block.section_image_url && block.section_image_url != '' && (
 						<div className={`img-wrap col-sm-12 ${imageCol} offset-lg-0 d-flex justify-content-center sk-sticky`}>
 							<div className='img-content'>
 								<picture><Image src={block.section_image_url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={block.section_image_alt} height='450' width='450' className='animated zoomIn'/></picture>

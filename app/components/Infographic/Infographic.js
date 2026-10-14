@@ -96,8 +96,10 @@ export const Infographic = ({block}) => {
 		}
 	}, [])
 
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
+
 	return (
-		<section id={block.section_id} className={`content-block-holder sk-block sk-infographic block--psk12 op-0 ${bgColour} ${block.section_classes}`}>
+		<section {...IDattr} className={`content-block-holder sk-block sk-infographic block--psk12 op-0 ${bgColour} ${block.section_classes}`}>
 			<div className='container'>
 				<div className='txt-content'>
 					<div className='content-wrapper'>

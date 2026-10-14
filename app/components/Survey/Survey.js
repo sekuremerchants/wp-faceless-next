@@ -3,7 +3,7 @@ import { SurveyEvents } from './SurveyEvents'
 
 export const Survey = async ({postID, block, language}) => {
 
-	console.log('SURVEY BLOCK DATA: ', language)
+	//console.log('SURVEY BLOCK DATA: ', language)
 
 	const surveyQuery = `
 		query NewQuery($id: Int!) {
@@ -97,11 +97,12 @@ export const Survey = async ({postID, block, language}) => {
 	const txtCol = postID == 582 ? 'c-blue-1 text-blue' : 'c-white text-white'
 	const surveyType = postID == 582 ? 'inner-pages-quiz-section-type-2' : 'inner-pages-quiz-section'
 
-	const surveyQuestions = data.surveys ? data.surveys.nodes[0].cptSurveys.questions : false
-	const surveyResults = data.surveys ? data.surveys.nodes[0].cptSurveys.results : false
+	const surveyQuestions = data != null && data.surveys ? data.surveys.nodes[0].cptSurveys.questions : false
+	const surveyResults = data != null && data.surveys ? data.surveys.nodes[0].cptSurveys.results : false
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
 
 	return (
-		<section id={block.section_id} className={`page-block-holder sk-page-block sk-page-survey block--psk8 sk-block ${surveyType} ov-hidden prel op-0 ${block.section_classes}`}>
+		<section {...IDattr} className={`page-block-holder sk-page-block sk-page-survey block--psk8 sk-block ${surveyType} ov-hidden prel op-0 ${block.section_classes}`}>
 			<SurveyEvents results={surveyResults} language={language} />
 
 			<div className="background-flower-path-patterns fade-in-first">

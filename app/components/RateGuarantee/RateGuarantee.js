@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { Button } from '@/components/Button'
+import { FormatContent } from '@/components/FormatContent'
 import '@/styles/blocks/rate-guarantee.css'
 
 export const RateGuarantee = ({block}) => {
@@ -87,8 +88,10 @@ export const RateGuarantee = ({block}) => {
 		return finalResult;
 	}
 
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
+
 	return (
-		<section id={block.section_id} className={`content-block-holder sk-block block--i op-0 ${bgColour} ${block.section_classes}`}>
+		<section {...IDattr} className={`content-block-holder sk-block block--i op-0 ${bgColour} ${block.section_classes}`}>
 			<div className='container'>
 				<div className='circle-info-white-block content-block row gap-rows'>
 
@@ -97,7 +100,7 @@ export const RateGuarantee = ({block}) => {
 							<h2 dangerouslySetInnerHTML={{__html: block.heading}}></h2>
 						)}
 						{block.text_content && (
-							<div className='txt-wrap' dangerouslySetInnerHTML={{__html: formatTextAndReplacePhone(block.text_content)}}></div>
+							<div className='txt-wrap' dangerouslySetInnerHTML={{__html: FormatContent(block.text_content)}}></div>
 						)}
 						{block.cta_text && (
 							<div className='mt-default'>
@@ -108,7 +111,9 @@ export const RateGuarantee = ({block}) => {
 
 					<div className='img-txt-col col-sm-12 col-lg-7'>
 						<div className='img-wrap'>
-							<picture><Image src={block.image_url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={block.image_alt} height='450' width='450' className='info-white-section-img' /></picture>
+							{block.image_url && block.image_url != '' && (
+								<picture><Image src={block.image_url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={block.image_alt} height='450' width='450' className='info-white-section-img' /></picture>
+							)}
 
 							<div className='img-txt-content'>
 								<div className='inner-text'>

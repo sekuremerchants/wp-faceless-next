@@ -22,9 +22,10 @@ export const Expert = ({block}) => {
 	}
 
 	const bgColour = block.full_width_with_background == '1' ? 'full-width-bg' : ''
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
 
 	return (
-		<section id={block.section_id} className={`sk-block industry-analysis-section block-style-${block.block_style} prel ov-hidden op-0 ${bgColour} ${block.section_classes}`}>
+		<section {...IDattr} className={`sk-block industry-analysis-section block-style-${block.block_style} prel ov-hidden op-0 ${bgColour} ${block.section_classes}`}>
 			<div className='container prel'>
 				<div className='row gap-rows'>
 					<div className='col-sm-12 col-lg-6'>

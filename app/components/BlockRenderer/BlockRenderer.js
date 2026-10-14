@@ -169,12 +169,15 @@ export const BlockRenderer = async ({postID, blocks, language}) => {
 			}
 			case 'core/image': {
 				return (
-					<Image key={index} src={block.attributes.url} alt={block.attributes.alt} width='1024' height='768' className='op-0 mb-4'/>
+					block.attributes.url && block.attributes.url != '' && (
+						<Image key={index} src={block.attributes.url} alt={block.attributes.alt} width='1024' height='768' className='op-0 mb-4'/>
+					)
 				)
 			}
 			case 'acf/blog-cta': {
+				const sectionID = block.attributes.data.section_id ? block.attributes.data.section_id : ''
 				return (
-					<BlogCTA key={index} uid={index} block={block.attributes.data} sectionID={block.attributes.data.section_id} sectionClasses={block.attributes.data.section_classes} title={block.attributes.data.title} content={block.attributes.data.content} image={block.attributes.data.image ? block.attributes.data.image : false} imageStyle={block.attributes.data.image_style} showNewsletter={block.attributes.data.show_newsletter_form} newsletterSubmitText={block.attributes.data.newsletter_submit_text ? block.attributes.data.newsletter_submit_text : false} newsletterAlternateForm={block.attributes.data.alternate_newsletter_form ? block.attributes.data.alternate_newsletter_form : false} ctaText={block.attributes.data.cta_text} ctaType={block.attributes.data.external_link} ctaLink={block.attributes.data.cta_link}/>
+					<BlogCTA key={index} uid={index} block={block.attributes.data} sectionID={sectionID} sectionClasses={block.attributes.data.section_classes} title={block.attributes.data.title} content={block.attributes.data.content} image={block.attributes.data.image ? block.attributes.data.image : false} imageStyle={block.attributes.data.image_style} showNewsletter={block.attributes.data.show_newsletter_form} newsletterSubmitText={block.attributes.data.newsletter_submit_text ? block.attributes.data.newsletter_submit_text : false} newsletterAlternateForm={block.attributes.data.alternate_newsletter_form ? block.attributes.data.alternate_newsletter_form : false} ctaText={block.attributes.data.cta_text} ctaType={block.attributes.data.external_link} ctaLink={block.attributes.data.cta_link}/>
 				)
 			}
 			case 'acf/multi-columns-table': {

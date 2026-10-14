@@ -1,4 +1,3 @@
-import { headers } from 'next/headers'
 import { BlockRenderer } from '@/components/BlockRenderer'
 import { TalkToUs } from '@/components/TalkToUs'
 
@@ -11,7 +10,6 @@ query RatesQuery {
       id
       title
       slug
-			industryId
     }
   }
 }
@@ -26,19 +24,23 @@ const query = `
         uri
         contentTypeName
         blocks
-				industryId
         postLanguage {
           contentLanguage
-          enTranslation {
+          englishTranslation {
             nodes {
               uri
             }
           }
-          esTranslation {
+          spanishTranslation {
             nodes {
               uri
             }
           }
+					frenchTranslation {
+						nodes {
+							uri
+						}
+					}
         }
         customCSS {
           customCss
@@ -70,14 +72,6 @@ export async function generateStaticParams(){
 
 export async function generateMetadata({ params, searchParams }, parent) {
 	var pageParams = await params;
-
-	const headersList = await headers()
-	const host = headersList.get('host')
-	const currentUrl = headersList.get('x-url').replace('http://' + host, '')
-
-	if(currentUrl == '/es/pagos/tap-to-pay') {
-		pageParams.slug = 'tap-to-pay-2'
-	}
 	
 	const queryVariables = {
 			uri: "industry/" + pageParams.slug,
@@ -107,16 +101,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default async function Page({params}) {
 	var { slug } = await params;
 
-	const headersList = await headers()
-	const host = headersList.get('host')
-	const currentUrl = headersList.get('x-url').replace('http://' + host, '')
-
-	if(currentUrl == '/es/pagos/tap-to-pay') {
-		slug = 'tap-to-pay-2'
-	}
-	
-	console.log('INDUSTRIES SLUG: ', slug)
-
 	const queryVariables = {
   	uri: "industry/" + slug,
 	};
@@ -134,7 +118,7 @@ export default async function Page({params}) {
 
 	return (
 		<>
-			<BlockRenderer postID={data.nodeByUri.industryId} blocks={data.nodeByUri.blocks} language={data.nodeByUri.postLanguage.contentLanguage[0]}/>
+			<BlockRenderer blocks={data.nodeByUri.blocks} language={data.nodeByUri.postLanguage.contentLanguage[0]}/>
 			{data.nodeByUri != null && data.nodeByUri.customCSS && (
         <style dangerouslySetInnerHTML={{__html: data.nodeByUri.customCSS.customCss}}></style>
       )}

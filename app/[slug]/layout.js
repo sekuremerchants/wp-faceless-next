@@ -32,7 +32,7 @@ export default async function RootLayout({ children, params }) {
           id="hs-script-loader"
         />
         
-        <Header pageParams={layoutParams}/>
+        <Header />
         
         <main id='main-content' className='prel txt-blocks-layout-section landing-page-template-blocks'>
           <div className="background-svg-wrap svg-wrap-top-left pabs" style={{zIndex:-1}}>

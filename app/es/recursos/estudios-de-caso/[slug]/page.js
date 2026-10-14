@@ -22,18 +22,21 @@ const query = `
         uri
         date
         modified
-        skLanguage {
-					language
-					englishTranslationUrl {
-						url
-					}
-					frenchTranslationUrl {
-						url
-					}
-					spanishTranslationUrl {
-						url
-					}
-				}
+        postLanguage {
+          contentLanguage
+          englishTranslation {
+            nodes {
+              link
+              uri
+            }
+          }
+          spanishTranslation {
+            nodes {
+              link
+              uri
+            }
+          }
+        }
         postSummary {
           postSummary
         }
@@ -61,8 +64,6 @@ const query = `
             sourceUrl
           }
         }
-        content
-        blocks(postTemplate: false)
         seo {
           title
           metaDesc
@@ -78,6 +79,7 @@ const query = `
             }
           }
         }
+        blocks
       }
 		}
 	}
@@ -188,7 +190,6 @@ export default async function Page({params}) {
 
 	return (
     <main id='main-content' className='single-case-studies'>
-      <LanguageSelect langData={nodeData}/>
       <BlogEvents />
       <article className='prel single-article-section sk-case-study sk-blog-content'>
         <div className='container'>

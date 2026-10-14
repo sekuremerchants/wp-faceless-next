@@ -16,6 +16,7 @@ export const BlocksGeneral = ({block}) => {
 		let imageAlt = `blocks_${x}_image_alt`
 		let content = `blocks_${x}_content`
 
+		/*
 		const formattedContent = block[content].split('\r\n').map(content => {
 			const hasHTML = (str) => /<(?!(\/?(strong|span|a|b)\b))[^>]+>/i.test(str);
 			if(content.includes('[phone-icon-blue]')){
@@ -24,21 +25,31 @@ export const BlocksGeneral = ({block}) => {
 				const regex = /\[sekure_icon(.*?)\]/g
 				const matches = [...content.matchAll(regex)]
 				const urlRegex = /icon-url="([^"]+)"/g
-				const urlMatches = [...matches[0][0].matchAll(urlRegex)]
-				const url = urlMatches[0][0].replace('icon-url="', 'https://wordpress-dev-appsvc.azurewebsites.net').replace('"', '')
-				const shortcodeImage = `<img src='${url}' alt='icon' height='40' width='40' style='width:40px;height:40px;' class=''>`
+				let url = ''
+				let shortcodeImage = ''
+
+				if(matches.length > 0) {
+					const urlMatches = [...matches[0][0].matchAll(urlRegex)]
+					url = urlMatches[0][0].replace('icon-url="', 'https://wordpress-dev-appsvc.azurewebsites.net').replace('"', '')
+					shortcodeImage = `<img src='${url}' alt='icon' height='40' width='40' style='width:40px;height:40px;' class=''>`
+				}
+
 				let newContent = ''
+
 
 				if(content.includes('icon-text=')){
 					const txtRegex = /icon-text="([^"]+)"/g
 					const txtMatches = [...content.matchAll(txtRegex)]
 
-					newContent = `
-						<p class='d-flex gap-20 align-items-center'>
-							<img src='${url}' alt='icon' height='40' width='40' style='width:40px;height:40px;' class=''>
-							<span>${txtMatches[0][1]}</span>
-						</p>
-					`
+					if(txtMatches.length > 0){
+						newContent = `
+							<p class='d-flex gap-20 align-items-center'>
+								<img src='${url}' alt='icon' height='40' width='40' style='width:40px;height:40px;' class=''>
+								<span>${txtMatches[0][1]}</span>
+							</p>
+						`
+					}
+
 				} else {
 					newContent = content.replace(matches[0][0], shortcodeImage)
 				}
@@ -50,11 +61,12 @@ export const BlocksGeneral = ({block}) => {
 				return content.trim()
 			}
 		}).join('')
+		*/
 
 		let singleBlock = {
 			image: block[image],
 			imageAlt: block[imageAlt],
-			content: formattedContent,
+			content: FormatContent(block[content]),
 		}
 
 		blocks.push(singleBlock)
@@ -62,37 +74,13 @@ export const BlocksGeneral = ({block}) => {
 		x++
 	}	
 
-	const formattedContent = block.content.split('\r\n').map(content => {
-		const hasHTML = (str) => /<(?!(\/?(strong|span|a|b)\b))[^>]+>/i.test(str);
-		if(content != '' && !hasHTML(content)){
-			return `<p>${content}</p>`
-		} else {
-			return content.trim()
-		}
-	}).join('')
-
-	const regex = /<span[\s\S]*?\r\n[\s\S]*?<\/span>/
-	const updatedString = block.footer.replace(regex, (match, openTag, content, closeTag) => {
-    const updatedContent = content.replace(/\r\n/g, '<br>')
-    return `${updatedContent}`
-	})
-
-	//console.log('UPDATED STRING: ', updatedString)
-
-	const blocksFooter = updatedString.split('\r\n').map(content => {
-		const hasHTML = (str) => /<(?!(\/?(strong|span|a|b)\b))[^>]+>/i.test(str);
-		if(content != '' && !hasHTML(content)){
-			return `<p>${content}</p>`
-		} else {
-			return content.trim()
-		}
-	}).join('')
-
 	let blocksGridClass = block.blocks_type == 'jumbled' ? 'd-flex' : `blocks-grid-${block.blocks_per_row}`
 	const CTAposition = block.buttons_position == 'center' ? 'd-flex justify-content-center' : ''
 
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
+
 	return (
-		<section id={block.section_id} className={`content-block-holder sk-block blocks prel ov-hidden op-0 ${bgColour} ${block.section_classes}`}>
+		<section {...IDattr} className={`content-block-holder sk-block blocks prel ov-hidden op-0 ${bgColour} ${block.section_classes}`}>
 			<div className='container prel z-2'>
 				<div className='row'>
 
@@ -102,15 +90,15 @@ export const BlocksGeneral = ({block}) => {
 
 					{block.blocks && block.blocks > 0 && (
 						<div className={`blocks-grid ${blocksGridClass} gap-cols gap-rows blocks-type-${block.blocks_type}`}>
-							{block.blocks_type == 'jumbled' && (
+							{block.blocks_type == 'jumbled' && blocks[0] != null && (
 								<>
 									<div className='block-wrap-big'>
-										<div className={`block ${blocks[0].section_classes}`}>
+										<div className={`block ${blocks[0].block_classes}`}>
 											{blocks[0].image && (
-												<picture><Image src={blocks[0].image.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={blocks[0].imageAlt} height='578' width='578' /></picture>
+												<picture><Image src={blocks?.[0].image.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={blocks?.[0].imageAlt} height='578' width='578' /></picture>
 											)}
 											{blocks[0].content != '' && (
-												<div className='block-content' dangerouslySetInnerHTML={{__html: blocks[0].content}}></div>
+												<div className='block-content' dangerouslySetInnerHTML={{__html: blocks?.[0].content}}></div>
 											)}
 										</div>
 									</div>

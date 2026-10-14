@@ -1,6 +1,15 @@
-import "@/styles/pages/page-home.css"
+import "@/styles/pages/page-home.css";
 
-const getHomeContent = async () => {
+export const metadata = {
+  title: 'Sekure Payment Experts',
+  description: '',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
+export default async function SpanishHome() {
   const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
     method: 'POST',
     headers: {
@@ -19,21 +28,12 @@ const getHomeContent = async () => {
         }
       `,
     }),
-  })
-  const { data } = await res.json()
-  return data.nodeByUri
-}
+  });
+  const { data } = await res.json();
 
-export default async function Home() {
-  const content = await getHomeContent()
+  console.log("SPANISH HOME PAGE CONTENT: ", data);
 
   return (
-    <main id='main-content'>
-      <section className="sk-block ov-hidden">
-        <div className="container prel">
-          <div className="col-sm-12"><h1>{content.title}</h1></div>
-        </div>
-      </section>
-    </main>  
-  )
+    <h1>spanish home page</h1>
+  );
 }

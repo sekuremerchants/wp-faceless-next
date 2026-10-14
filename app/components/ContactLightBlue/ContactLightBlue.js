@@ -7,8 +7,10 @@ export const ContactLightBlue = ({block}) => {
 
 	//console.log('LIGHT BLUE CONTACT BLOCK DATA: ', block)
 
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
+
 	return (
-		<section id={block.section_id} className={`sk-block block-cta-lb form-contact-section-home bg-blue-6 prel ov-hidden op-0 ${block.section_classes}`}>
+		<section {...IDattr} className={`sk-block block-cta-lb form-contact-section-home bg-blue-6 prel ov-hidden op-0 ${block.section_classes}`}>
 			<div aria-hidden='true' className='inner-circles-wrap circle-full translate-100 pabs pointer-events-none border-radius-50'>
 				<div className='inner-circle-base pabs z-1 border-radius-50 bg-green-6'></div>
 				<div className='inner-circle-outer pabs z-2 bg-blue-6 border-radius-50'></div>

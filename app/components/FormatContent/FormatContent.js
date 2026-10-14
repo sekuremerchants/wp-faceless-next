@@ -1,12 +1,22 @@
 //export const FormatContent = (inputString) => {
 export function FormatContent(inputString) {
+	//console.log('BEGIN FORMAT CONTENT')
+
 	const spanBlocks = [];
 
 	// 1. Temporarily extract all <span>...</span> blocks
-	const tokenizedString = inputString.replace(/<span\b[\s\S]*?<\/span>/gi, (match) => {
-		spanBlocks.push(match);
-		return `__SPAN_PLACEHOLDER_${spanBlocks.length - 1}__`;
+	const tokenizedString = inputString.replace(/<span\b[\s\(\S\)]*?<\/span>/gi, (match) => {
+		// Check if spanBlocks exists and is an array
+		if (Array.isArray(spanBlocks)) {
+			spanBlocks.push(match);
+			return `__SPAN_PLACEHOLDER_${spanBlocks.length - 1}__`;
+		}
+		
+		// Fallback: return the original match if the array is missing
+		return match; 
 	});
+
+	//console.log('FORMAT CONTENT AFTER SPAN')
 
 	// 2. Split by \r\n and wrap non-HTML blocks in <p> tags
 	const processedLines = tokenizedString.split(/\r\n/).map(line => {
@@ -31,7 +41,11 @@ export function FormatContent(inputString) {
 		return line;
 	});
 
+	//console.log('FORMAT CONTENT AFTER STEP TWO')
+
 	let finalResult = processedLines.join('\r\n');
+
+	//console.log('FORMAT CONTENT SPAN BLOCKS: ', spanBlocks)
 
 	// 3. Logic Check: Replace [phone] inside span blocks, convert \r\n to <br>, and restore
 	spanBlocks.forEach((originalSpan, index) => {

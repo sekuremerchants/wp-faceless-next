@@ -111,12 +111,11 @@ export function HeaderEvents() {
 			Array.from(headerLinks).forEach(element => {
 				element.addEventListener('mouseover', desktopNavMouseOverEvent)
 				element.addEventListener('mouseout', (event) => {
-					if(
-						event['explicitOriginalTarget'].className == "nav-wrap" || 
-						event['explicitOriginalTarget'].className ==  "header-links-content-wrap"){
-							htmlElement[0].classList.remove('header-opened-dropdown')
-							element.classList.remove('opened-dropdown')
-							element.nextElementSibling.classList.remove('opened-dropdown')
+					console.log("HEADER EVENTS DESKTOP NAV MOUSEOVER ELEMENT: ", event)
+					if(event.toElement && event.toElement.className && (event.toElement.className == 'nav-wrap' || event.toElement.className == 'header-links-content-wrap' || event.toElement.className == 'header-links-wrap')){
+						htmlElement[0].classList.remove('header-opened-dropdown')
+						element.classList.remove('opened-dropdown')
+						element.nextElementSibling.classList.remove('opened-dropdown')
 					}
 				})
 			})
@@ -210,7 +209,7 @@ export function HeaderEvents() {
 				}			
 			})
 			bodyElement[0].addEventListener('click', function(event){
-				console.log('BODY CLICK EVENT: ', event)
+				//console.log('BODY CLICK EVENT: ', event)
 				if(event.target.id != 'lang-current'){
 					langSelect.classList.remove('open')
 					langToggle.setAttribute('style', 'height:0px;visibility:hidden;')

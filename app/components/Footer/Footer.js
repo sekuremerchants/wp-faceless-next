@@ -1,6 +1,3 @@
-import { headers } from 'next/headers'
-import { queryByUri } from '../../queryByUri'
-
 import Image from "next/image"
 import Link from "next/link"
 import Script from "next/script"
@@ -9,7 +6,7 @@ import { HubspotForm } from '@/components/HubspotForm'
 
 const basePathWP = assetSourceWP();
 
-export const Footer = async () => {
+export const Footer = async ({language}) => {
 	const res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
 		method: 'POST',
 		headers: {
@@ -38,15 +35,12 @@ export const Footer = async () => {
 	//console.log("Footer: ", data.menus.nodes);
 
 	const currentYear = new Date().getFullYear();
+	const lang = language && language != '' ? language : 'en'
 
-	const headersList = await headers()
-	const host = headersList.get('host')
-	const currentUrl = headersList.get('x-url').replace('http://' + host, '')
-	const pageData = await queryByUri(currentUrl)
+	const pageData = ''
 	//console.log('FOOTER PAGEDATA: ', pageData)
 
 	var landerCheck = false
-	const lang = pageData.nodeByUri && pageData.nodeByUri.postLanguage && pageData.nodeByUri.postLanguage.contentLanguage[0] == 'en' ? 'en' : 'es'
 
 	if(pageData.nodeByUri && pageData.nodeByUri.contentTypeName == 'landings'){
 		landerCheck = true

@@ -45,9 +45,10 @@ export const EdgeCalculator = ({block}) => {
 
 	const aboveCalcTextCol = (block.section_classes.includes('overlay') && block.section_classes.includes('blue')) ? 'text-white' : ''
 	const labelBelowOutputs = block.label_below_data_outputs && block.label_below_data_outputs != '' ? block.label_below_data_outputs : 'Talk to a Sekure Payment Expert and start earning today.'
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
 
 	return (
-		<section id={block.section_id} className={`content-block-holder sk-block block-edge-calc prel ov-hidden ${block.section_classes}`}>
+		<section {...IDattr} className={`content-block-holder sk-block block-edge-calc prel ov-hidden ${block.section_classes}`}>
 			<EdgeCalculatorEvents />
 
 			{block.background_image_url && (

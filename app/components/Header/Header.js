@@ -1,8 +1,5 @@
-import { headers } from 'next/headers'
-
 import Link from 'next/link'
 import Image from 'next/image'
-import Script from 'next/script'
 import { assetSourceLocal } from '../../paths'
 import { LanguageSelect } from './LanguageSelect'
 import { HeaderEvents } from '@/components/HeaderEvents'
@@ -42,14 +39,16 @@ const DynamicRenderer = (type) => {
 
 const basePathLocal = assetSourceLocal()
 
-export const Header = async (pageParams) => {
+export const Header = async ({language}) => {
 
-	const headersList = await headers()
-	const host = headersList.get('host')
-	const currentUrl = headersList.get('x-url').replace('http://' + host, '')
-	const pageData = await queryByUri(currentUrl)
-	//console.log('HEADERS LIST CURRENT URL: ', currentUrl)
-	//console.log('HEADERS LIST PAGEDATA: ', pageData)
+	const pageLanguage = language && language != '' ? language : 'en'
+
+	//const headersList = await headers()
+	//const host = headersList.get('host')
+	//const currentUrl = headersList.get('x-url').replace('http://' + host, '')
+	//const pageData = await queryByUri(currentUrl)
+
+	const pageData = ''
 
 	var landerCheck = false
 
@@ -61,7 +60,7 @@ export const Header = async (pageParams) => {
 	const headerClasses = (landerCheck ? 'header-landing' : 'main-header')
 	const landerHeaderStyle = (landerCheck && pageData.nodeByUri.headerSelect.headerStyle) ? 'bg-blue' : ''
 	
-	const logoLang = (pageData.nodeByUri && pageData.nodeByUri.postLanguage && pageData.nodeByUri.postLanguage.contentLanguage[0] == 'en') ? 'en' : 'es'
+	const logoLang = pageLanguage
 	let translatedPage = (logoLang == 'es' && pageData.nodeByUri && pageData.nodeByUri.postLanguage && pageData.nodeByUri.postLanguage.englishTranslation) ? pageData.nodeByUri.postLanguage.englishTranslation.nodes[0].uri : ''
 	if(translatedPage == '' && logoLang == 'en' && pageData.nodeByUri && pageData.nodeByUri.postLanguage && pageData.nodeByUri.postLanguage.spanishTranslation){
 		translatedPage = pageData.nodeByUri.postLanguage.spanishTranslation.nodes[0].uri

@@ -130,8 +130,10 @@ export const MultiColumnTable = ({block}) => {
 		}
   `;
 
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
+
 	return (
-		<section id={block.section_id} className={`content-block-holder sk-block multi-columns-table block--m op-0 ${bgColour} ${block.section_classNames}`}>
+		<section {...IDattr} className={`content-block-holder sk-block multi-columns-table block--m op-0 ${bgColour} ${block.section_classNames}`}>
 			<style>{styleCode}</style>
 			<div className='container prel slider-arrows'>
 				<div className='row'>

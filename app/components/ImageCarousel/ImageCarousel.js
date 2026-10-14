@@ -82,8 +82,10 @@ export const ImageCarousel = ({block}) => {
 
 	//console.log("IMAGE CAROUSEL SLIDES DATA: ", slides)
 
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
+
 	return (
-		<section id={block.section_id} className={`sk-block image-carousel content-block-holder ${bgColour} ${block.section_classes}`}>
+		<section {...IDattr} className={`sk-block image-carousel content-block-holder ${bgColour} ${block.section_classes}`}>
 			<style>{styleCode}</style>
 			<div className='container'>
 				<div className='row'>

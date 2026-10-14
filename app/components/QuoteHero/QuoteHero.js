@@ -43,8 +43,10 @@ export const QuoteHero = ({block}) => {
 		x++
 	}
 
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
+
 	return (
-		<section id={block.section_id} className={`sk-block sekure-block block-quote-hero prel ov-hidden op-0 ${block.section_classes}`}>
+		<section {...IDattr} className={`sk-block sekure-block block-quote-hero prel ov-hidden op-0 ${block.section_classes}`}>
 			{block.background_image_url && (
 				<Image src={block.background_image_url.replace('sekuremerchants.com', 'wordpress-dev-appsvc.azurewebsites.net')} alt={block.background_image_alt} height='1080' width='1440' className='bg-image object-cover' />
 			)}

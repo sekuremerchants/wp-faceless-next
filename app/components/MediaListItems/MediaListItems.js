@@ -23,9 +23,11 @@ export const MediaListItems = ({block}) => {
 			listIndex++
 		}
 	}
+
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
 	
 	return (
-		<section id={block.section_id} className={`sk-block block--q content-block-holder prel op-0 ${bgColour} ${block.section_classes}`}>
+		<section {...IDattr} className={`sk-block block--q content-block-holder prel op-0 ${bgColour} ${block.section_classes}`}>
 			<div className='container'>
 
 				{block.content && block.content != '' && (

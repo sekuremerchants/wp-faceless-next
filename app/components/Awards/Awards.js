@@ -46,8 +46,10 @@ export const Awards = ({block, awards}) => {
     }
   }, [])
 
+	const sectionID = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
+
 	return (
-		<section id={block.section_id} className={`sk-block block--awards awards-slider media-content-block content-block-holder op-0 ov-hidden ${block.section_classes} ${bgColour}`}>
+		<section {...sectionID} className={`sk-block block--awards awards-slider media-content-block content-block-holder op-0 ov-hidden ${block.section_classes} ${bgColour}`}>
 			<div className='container prel'>
 				<div className={`media-block media-${block.image_position} row gap-rows`}>
 					<div className='txt-content col-sm-12 col-lg-6 animated fadeIn'>

@@ -47,6 +47,9 @@ export const TestimonialsSlider = ({block}) => {
 			} else if(content.includes('[img id="39329" width="527"]')) {
 				const newContent = content.replace('[img id="39329" width="527"]')
 				return `<img class="img-srtcode" alt="BBB 4.25 Google 4.25 Facebook 4.75 Trustpilot 4.25" src="https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2025/08/our-reviews-1.svg">`
+			} else if(content.includes('[img id="39329"]')) {
+				const newContent = content.replace('[img id="39329"]')
+				return `<img class="img-srtcode" alt="BBB 4.25 Google 4.25 Facebook 4.75 Trustpilot 4.25" src="https://wordpress-dev-appsvc.azurewebsites.net/wp-content/uploads/2025/08/our-reviews-1.svg">`
 			} else if(content != '' && !hasHTML(content)){
 				return `<p>${content}</p>`
 			} else {
@@ -78,8 +81,10 @@ export const TestimonialsSlider = ({block}) => {
 		}
 	}, [])
 
+	const IDattr = block.section_id && block.section_id != '' ? {id: block.section_id} : ''
+
 	return (
-		<section id={block.section_id} className={`content-block-holder sk-block sk-content-testimonials block--bsk9 ${bgColour} ${block.section_classes}`}>
+		<section {...IDattr} className={`content-block-holder sk-block sk-content-testimonials block--bsk9 ${bgColour} ${block.section_classes}`}>
 			<div className='container'>
 				<div className={`media-block media-${block.slider_position} content-block row gap-rows row-eq-height`}>
 					<div className='left-content col-sm-12 col-lg-6 align-content-center'>
