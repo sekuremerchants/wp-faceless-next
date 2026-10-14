@@ -267,7 +267,7 @@ export default async function BlogPost({params}) {
     postData = result.data.nodeByUri;
 
   } catch(error) {
-    console.log('⚠️ Primary query failed, attempting backup content query...');
+    //console.log('⚠️ Primary query failed, attempting backup content query...');
     
     try {
       res = await fetch("https://wordpress-dev-appsvc.azurewebsites.net/graphql", {
@@ -289,16 +289,16 @@ export default async function BlogPost({params}) {
       const backupResult = await res.json();
       
       if (backupResult.errors || !backupResult.data?.nodeByUri) {
-        console.error("❌ CRITICAL: Backup GraphQL returned data errors");
+        //console.error("❌ CRITICAL: Backup GraphQL returned data errors");
         return { notFound: true };
       }
 
       // Assign the backup data
       postData = backupResult.data.nodeByUri;
-      console.log('✅ Backup query parsed successfully!');
+      //console.log('✅ Backup query parsed successfully!');
 
     } catch (fallbackError) {
-      console.error('❌ CRITICAL: Network failure during the backup query:', fallbackError);
+      //console.error('❌ CRITICAL: Network failure during the backup query:', fallbackError);
       return { notFound: true };
     }
   }
@@ -306,7 +306,7 @@ export default async function BlogPost({params}) {
   //const { data } = res.ok ? await res.json() : false
   const nodeData = postData != null ? postData : false
 
-  console.log('POST DATA: ', nodeData)
+  //console.log('POST DATA: ', nodeData)
 
   /*
   const allPosts = await getAllPosts();
